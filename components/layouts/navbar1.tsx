@@ -251,7 +251,7 @@ const Navbar1 = ({
   return (
     <section
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-0 md:py-6",
         scrolled
           ? "bg-white shadow-lg py-3"
           : "bg-transparent py-4",
