@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { Menu, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -9,14 +9,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -135,93 +127,145 @@ const Navbar1 = ({
       ],
     },
     {
-  title: "HYTORC",
-  url: "#",
-  items: [
-    { title: "About Royal-ABS", url: "/hytorc/about" },
-    { title: "Hydraulic", url: "/hytorc/hydraulic" },
-    { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
-    { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
-    { title: "Pumps", url: "/hytorc/pumps" },
-    { title: "Fasteners", url: "/hytorc/fasteners" },
-    { title: "Accessories", url: "/hytorc/accessories" },
-  ]
-},
-
-
+      title: "HYTORC",
+      url: "#",
+      items: [
+        { title: "About Royal-ABS", url: "/hytorc/about" },
+        { title: "Hydraulic", url: "/hytorc/hydraulic" },
+        { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
+        { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
+        { title: "Pumps", url: "/hytorc/pumps" },
+        { title: "Fasteners", url: "/hytorc/fasteners" },
+        { title: "Accessories", url: "/hytorc/accessories" },
+      ]
+    },
     { title: "Contact", url: "/contact" },
   ],
   className,
 }: Navbar1Props) => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      // Close dropdown if clicked outside
+      if (activeDropdown) {
+        const dropdownElement = dropdownRefs.current[activeDropdown];
+        if (dropdownElement && !dropdownElement.contains(event.target as Node)) {
+          setActiveDropdown(null);
+        }
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mousedown", handleClickOutside);
+    
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [activeDropdown]);
 
   const textColorClass = scrolled ? "text-gray-800" : "text-white";
   const hoverTextColorClass = "hover:text-red-600";
 
+  const toggleDropdown = (menuTitle: string) => {
+    setActiveDropdown(activeDropdown === menuTitle ? null : menuTitle);
+  };
+
+  const DesktopDropdown = ({ item }: { item: MenuItem }) => {
+    if (!item.items) return null;
+
+    return (
+      <div 
+        ref={el => dropdownRefs.current[item.title] = el}
+        className={cn(
+          "absolute top-full left-0 mt-2 bg-white shadow-2xl border border-gray-200 rounded-lg py-3 min-w-70 z-50",
+          "transition-all duration-300 origin-top",
+          activeDropdown === item.title 
+            ? "opacity-100 scale-100 translate-y-0" 
+            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+        )}
+      >
+        <div className="space-y-1">
+          {item.items.map((subItem) => (
+            <a
+              key={subItem.title}
+              href={subItem.url}
+              className={cn(
+                "flex flex-col px-4 py-3 mx-2 rounded-md transition-all duration-200",
+                "hover:bg-red-50 hover:text-red-700 text-gray-800",
+                "border-l-2 border-transparent hover:border-red-600"
+              )}
+              onClick={() => setActiveDropdown(null)}
+            >
+              <div className="text-sm font-semibold">{subItem.title}</div>
+              {subItem.description && (
+                <p className="text-xs text-gray-600 mt-1">
+                  {subItem.description}
+                </p>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   const renderMenuItem = (item: MenuItem) => {
     if (item.items) {
       return (
-        <NavigationMenuItem key={item.title}>
-          <NavigationMenuTrigger
+        <div key={item.title} className="relative">
+          <button
+            onClick={() => toggleDropdown(item.title)}
+            onMouseEnter={() => setActiveDropdown(item.title)}
             className={cn(
-              "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-all duration-200 flex items-center gap-1",
+              "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-all duration-200 group relative",
               textColorClass,
               hoverTextColorClass,
-              "data-[state=open]:text-red-600",
+              activeDropdown === item.title && "text-red-600"
             )}
           >
             {item.title}
-          </NavigationMenuTrigger>
-          <NavigationMenuContent className="bg-white text-gray-800 shadow-xl border rounded-lg p-4 min-w-70">
-            <div className="grid gap-2">
-              {item.items.map((subItem) => (
-                <NavigationMenuLink asChild key={subItem.title}>
-                  <a
-                    className="flex flex-col rounded-md p-3 leading-none no-underline transition-all duration-200 outline-none select-none hover:bg-red-50 hover:text-red-700 focus:bg-transparent text-gray-800 border-l-2 border-transparent hover:border-red-600"
-                    href={subItem.url}
-                  >
-                    <div className="text-sm font-semibold mb-1">
-                      {subItem.title}
-                    </div>
-                    {subItem.description && (
-                      <p className="text-xs leading-snug text-gray-600">
-                        {subItem.description}
-                      </p>
-                    )}
-                  </a>
-                </NavigationMenuLink>
-              ))}
-            </div>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
+            <ChevronDown className={cn(
+              "h-4 w-4 transition-transform duration-200",
+              activeDropdown === item.title && "rotate-180"
+            )} />
+            
+            {/* Active indicator */}
+            <div className={cn(
+              "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300",
+              activeDropdown === item.title && "w-4/5"
+            )} />
+          </button>
+          
+          <DesktopDropdown item={item} />
+        </div>
       );
     }
 
     return (
-      <NavigationMenuItem key={item.title}>
-        <NavigationMenuLink
-          href={item.url}
-          className={cn(
-            "group inline-flex h-10 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-transparent focus:bg-transparent",
-            textColorClass,
-            hoverTextColorClass,
-            "focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent",
-          )}
-        >
-          {item.title}
-        </NavigationMenuLink>
-      </NavigationMenuItem>
+      <a
+        key={item.title}
+        href={item.url}
+        className={cn(
+          "px-3 py-2 text-sm font-medium transition-all duration-200 relative group",
+          textColorClass,
+          hoverTextColorClass,
+          "hover:text-red-600"
+        )}
+      >
+        {item.title}
+        {/* Hover indicator */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-4/5" />
+      </a>
     );
   };
 
@@ -282,54 +326,69 @@ const Navbar1 = ({
   return (
     <section
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-0 md:py-6",
-        scrolled ? "bg-white shadow-lg py-3" : "bg-transparent py-4",
-        className,
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        scrolled
+          ? "bg-white shadow-lg py-3"
+          : "bg-transparent py-4",
+        className
       )}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
-          {/* Logo */}
+          {/* Logo with Enhanced Company Name */}
           <a
             href={logo.url}
             className={cn(
-              "flex items-center gap-2 transition-colors duration-200",
-              textColorClass,
-              hoverTextColorClass,
+              "flex items-center gap-3 transition-all duration-300 group hover:scale-[1.02]",
+              "bg-linear-to-r from-transparent via-transparent to-transparent group-hover:from-white/5 group-hover:via-white/10 group-hover:to-transparent",
+              "rounded-lg px-3 py-2",
             )}
           >
-            <Image
-              width={80}
-              height={40}
-              src={logo.src}
-              className="h-10 w-auto"
-              alt={logo.alt}
-            />
-            <span
-              className={cn(
-                "text-xl font-bold tracking-tight transition-colors duration-200",
-                textColorClass,
-                hoverTextColorClass,
-              )}
-            >
-              {logo.title}
-            </span>
+            <div className="relative">
+              <Image
+                width={80}
+                height={40}
+                src={logo.src}
+                className="h-10 w-auto"
+                alt={logo.alt}
+              />
+              <div className="absolute -inset-1 bg-red-600/20 blur-sm group-hover:bg-red-600/30 transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100"></div>
+            </div>
+            
+            <div className="flex flex-col leading-tight">
+              <span className={cn(
+                "text-lg font-extrabold tracking-tight bg-linear-to-r bg-clip-text text-transparent",
+                scrolled 
+                  ? "from-red-700 to-red-500 group-hover:from-red-600 group-hover:to-red-400"
+                  : "from-white to-gray-200 group-hover:from-red-300 group-hover:to-white",
+                "transition-all duration-300"
+              )}>
+                The Royal Utilisation
+              </span>
+              <span className={cn(
+                "text-sm font-bold tracking-wider",
+                scrolled 
+                  ? "text-red-700 group-hover:text-red-600"
+                  : "text-white/90 group-hover:text-red-300",
+                "transition-all duration-300"
+              )}>
+                SERVICES (PVT.) LTD
+              </span>
+            </div>
           </a>
-
-          <div className="flex items-center gap-1">
-            <NavigationMenu>
-              <NavigationMenuList>
-                {menu.map((item) => renderMenuItem(item))}
-              </NavigationMenuList>
-            </NavigationMenu>
+          
+          <div className="flex items-center space-x-1">
+            {menu.map((item) => renderMenuItem(item))}
           </div>
+
+        
         </nav>
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo with Full Company Name - Mobile */}
             <a
               href={logo.url}
               className={cn(
@@ -345,83 +404,119 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <span className="text-sm font-bold">{logo.title}</span>
+              <div className="flex flex-col leading-tight max-w-45">
+                <span
+                  className={cn(
+                    "text-sm font-bold tracking-tight transition-colors duration-200",
+                    textColorClass,
+                    hoverTextColorClass,
+                  )}
+                >
+                  Royal Utilisation Services
+                </span>
+                <span
+                  className={cn(
+                    "text-xs font-semibold tracking-tight transition-colors duration-200",
+                    textColorClass,
+                    hoverTextColorClass,
+                  )}
+                >
+                  (Pvt.) Ltd
+                </span>
+              </div>
             </a>
-
-            <div className="flex items-center gap-4">
-              {/* Mobile Contact Button */}
-              <a
-                href="/contact"
+            
+            <div className="flex items-center gap-2">
+              <a 
+                href="/contact" 
                 className={cn(
-                  "px-4 py-2 text-xs font-medium transition-all duration-300 rounded-md",
-                  scrolled
-                    ? "bg-red-600 text-white hover:bg-red-700"
-                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 border border-white/30",
+                  "px-3 py-2 text-xs font-medium transition-all duration-300 rounded-md border",
+                  scrolled 
+                    ? "bg-red-600 text-white hover:bg-red-700 border-red-600" 
+                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 border-white/30"
                 )}
               >
                 Contact
               </a>
-
+              
               <Sheet>
                 <SheetTrigger asChild>
-                  <button
+                  <button 
                     className={cn(
                       "p-2 transition-colors duration-200 rounded-md",
                       textColorClass,
-                      hoverTextColorClass,
+                      hoverTextColorClass
                     )}
+                    aria-label="Open menu"
                   >
                     <Menu className="size-5" />
                   </button>
                 </SheetTrigger>
-                <SheetContent className="overflow-y-auto w-full sm:max-w-md p-0">
-                  <SheetHeader className="p-6 border-b border-gray-100">
-                    <SheetTitle>
-                      <a
-                        href={logo.url}
-                        className={cn(
+                <SheetContent 
+                  side="right" 
+                  className="overflow-y-auto w-full sm:max-w-md p-0 h-screen"
+                >
+                  <div className="h-full flex flex-col">
+                    <SheetHeader className="p-6 border-b border-gray-100 bg-white">
+                      <SheetTitle>
+                        <a href={logo.url} className={cn(
                           "flex items-center gap-2 transition-colors duration-200",
                           "text-gray-900",
-                          hoverTextColorClass,
-                        )}
-                      >
-                        <Image
-                          width={60}
-                          height={30}
-                          src={logo.src}
-                          className="h-8 w-auto"
-                          alt={logo.alt}
-                        />
-                        <span className="text-gray-900 font-bold">
-                          {logo.title}
-                        </span>
-                      </a>
-                    </SheetTitle>
-                  </SheetHeader>
-                  <div className="flex flex-col p-6">
-                    <Accordion
-                      type="single"
-                      collapsible
-                      className="flex w-full flex-col"
-                    >
-                      {menu.map((item) => renderMobileMenuItem(item))}
-                    </Accordion>
-
-                    {/* Additional Mobile Links */}
-                    <div className="mt-6 pt-6 border-t border-gray-100">
-                      <div className="grid grid-cols-2 gap-4">
-                        <a
-                          href="/hytorc"
-                          className="text-sm font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 text-center py-3 bg-gray-50 rounded-md"
-                        >
-                          HYTORC
+                          hoverTextColorClass
+                        )}>
+                          <Image
+                            width={60}
+                            height={30}
+                            src={logo.src}
+                            className="h-8 w-auto"
+                            alt={logo.alt}
+                          />
+                          <div className="flex flex-col leading-tight">
+                            <span className="text-sm font-bold text-gray-900">
+                              The Royal Utilisation Services
+                            </span>
+                            <span className="text-xs font-semibold text-gray-900">
+                              (Pvt.) Ltd
+                            </span>
+                          </div>
                         </a>
-                        <a
-                          href="/certifications"
-                          className="text-sm font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 text-center py-3 bg-gray-50 rounded-md"
+                      </SheetTitle>
+                    </SheetHeader>
+                    
+                    <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+                      <div className="flex flex-col">
+                        <Accordion
+                          type="single"
+                          collapsible
+                          className="flex w-full flex-col"
+                        >
+                          {menu.map((item) => renderMobileMenuItem(item))}
+                        </Accordion>
+                      </div>
+                    </div>
+                    
+                    {/* Mobile Footer */}
+                    <div className="p-6 bg-white border-t border-gray-100">
+                      <div className="grid grid-cols-2 gap-3">
+                        <a 
+                          href="/certifications" 
+                          className="text-sm font-medium text-white bg-gray-800 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Certifications
                         </a>
+                        <a 
+                          href="/contact" 
+                          className="text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 text-center py-3 rounded-md"
+                        >
+                          Get Quote
+                        </a>
+                      </div>
+                      
+                      {/* Contact Info */}
+                      <div className="mt-6 text-xs text-gray-600">
+                        <p className="font-semibold mb-2">Contact Info:</p>
+                        <p>Email: info@sigma-royal.com</p>
+                        <p>Phone: +88 02222229238</p>
                       </div>
                     </div>
                   </div>
