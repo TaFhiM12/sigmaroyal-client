@@ -185,9 +185,12 @@ const Navbar1 = ({
 
     return (
       <div 
-        ref={el => dropdownRefs.current[item.title] = el}
+        ref={(el) => {
+          // Store the ref without returning anything
+          dropdownRefs.current[item.title] = el;
+        }}
         className={cn(
-          "absolute top-full left-0 mt-2 bg-white shadow-2xl border border-gray-200 rounded-lg py-3 min-w-70 z-50",
+          "absolute top-full left-0 mt-2 bg-white shadow-2xl border border-gray-200 rounded-lg py-3 min-w-[280px] z-50",
           "transition-all duration-300 origin-top",
           activeDropdown === item.title 
             ? "opacity-100 scale-100 translate-y-0" 
@@ -341,7 +344,7 @@ const Navbar1 = ({
             href={logo.url}
             className={cn(
               "flex items-center gap-3 transition-all duration-300 group hover:scale-[1.02]",
-              "bg-linear-to-r from-transparent via-transparent to-transparent group-hover:from-white/5 group-hover:via-white/10 group-hover:to-transparent",
+              "bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:from-white/5 group-hover:via-white/10 group-hover:to-transparent",
               "rounded-lg px-3 py-2",
             )}
           >
@@ -358,7 +361,7 @@ const Navbar1 = ({
             
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                "text-lg font-extrabold tracking-tight bg-linear-to-r bg-clip-text text-transparent",
+                "text-lg font-extrabold tracking-tight bg-gradient-to-r bg-clip-text text-transparent",
                 scrolled 
                   ? "from-red-700 to-red-500 group-hover:from-red-600 group-hover:to-red-400"
                   : "from-white to-gray-200 group-hover:from-red-300 group-hover:to-white",
@@ -382,7 +385,8 @@ const Navbar1 = ({
             {menu.map((item) => renderMenuItem(item))}
           </div>
 
-        
+          {/* Contact Button */}
+          
         </nav>
 
         {/* Mobile Menu */}
@@ -404,7 +408,7 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <div className="flex flex-col leading-tight max-w-45">
+              <div className="flex flex-col leading-tight max-w-[180px]">
                 <span
                   className={cn(
                     "text-sm font-bold tracking-tight transition-colors duration-200",
