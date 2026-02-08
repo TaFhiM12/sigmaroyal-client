@@ -5,7 +5,7 @@ export default function Home() {
     {
       id: 1,
       image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
-      title: "Sigma Construction Company",
+      title: "The Royal Utilisation Services (Pvt.) Ltd",
       subtitle: "46+ Years of Excellence",
       description: "Pioneer in energy sector with comprehensive infrastructure development in Oil, Gas & Power since 1977",
       ctaText: "View Our Projects",

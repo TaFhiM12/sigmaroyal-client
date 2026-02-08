@@ -361,13 +361,13 @@ const Navbar1 = ({
             
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                "text-lg font-extrabold tracking-tight bg-gradient-to-r bg-clip-text text-transparent",
+                "text-xl font-extrabold tracking-tight bg-gradient-to-r bg-clip-text text-transparent",
                 scrolled 
                   ? "from-red-700 to-red-500 group-hover:from-red-600 group-hover:to-red-400"
                   : "from-white to-gray-200 group-hover:from-red-300 group-hover:to-white",
                 "transition-all duration-300"
               )}>
-                The Royal Utilisation
+                The Royal Utilisation <br/>
               </span>
               <span className={cn(
                 "text-sm font-bold tracking-wider",
@@ -408,7 +408,7 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <div className="flex flex-col leading-tight max-w-[180px]">
+              <div className="flex flex-col leading-tight max-w-[300px]">
                 <span
                   className={cn(
                     "text-sm font-bold tracking-tight transition-colors duration-200",
@@ -416,32 +416,14 @@ const Navbar1 = ({
                     hoverTextColorClass,
                   )}
                 >
-                  Royal Utilisation Services
+                  The Royal Utilisation Services (Pvt.) Ltd
                 </span>
-                <span
-                  className={cn(
-                    "text-xs font-semibold tracking-tight transition-colors duration-200",
-                    textColorClass,
-                    hoverTextColorClass,
-                  )}
-                >
-                  (Pvt.) Ltd
-                </span>
+                
               </div>
             </a>
             
             <div className="flex items-center gap-2">
-              <a 
-                href="/contact" 
-                className={cn(
-                  "px-3 py-2 text-xs font-medium transition-all duration-300 rounded-md border",
-                  scrolled 
-                    ? "bg-red-600 text-white hover:bg-red-700 border-red-600" 
-                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 border-white/30"
-                )}
-              >
-                Contact
-              </a>
+              
               
               <Sheet>
                 <SheetTrigger asChild>
@@ -475,19 +457,16 @@ const Navbar1 = ({
                             className="h-8 w-auto"
                             alt={logo.alt}
                           />
-                          <div className="flex flex-col leading-tight">
+                          <div className="flex flex-col leading-tight mt-2">
                             <span className="text-sm font-bold text-gray-900">
-                              The Royal Utilisation Services
-                            </span>
-                            <span className="text-xs font-semibold text-gray-900">
-                              (Pvt.) Ltd
+                              The Royal Utilisation Services (Pvt.) Ltd
                             </span>
                           </div>
                         </a>
                       </SheetTitle>
                     </SheetHeader>
                     
-                    <div className="flex-1 overflow-y-auto p-6 bg-gray-50">
+                    <div className="flex-1 overflow-y-auto px-6 bg-gray-50">
                       <div className="flex flex-col">
                         <Accordion
                           type="single"

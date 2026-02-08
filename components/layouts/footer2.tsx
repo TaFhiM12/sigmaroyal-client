@@ -31,8 +31,8 @@ interface Footer2Props {
 const Footer2 = ({
   logo = {
     src: "https://sigma-royal.com/images/logo-1.png",
-    alt: "Sigma Construction Company",
-    title: "Sigma Construction",
+    alt: "The Royal Utilisation Services (Pvt.) Ltd",
+    title: "The Royal Utilisation Services (Pvt.) Ltd",
     url: "/",
   },
   className,
