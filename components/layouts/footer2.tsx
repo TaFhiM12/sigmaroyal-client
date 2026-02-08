@@ -1,31 +1,11 @@
 import { cn } from "@/lib/utils";
 
 import { Logo, LogoImage, LogoText } from "@/components/shadcnblocks/logo";
+import { Footer2Props } from "@/types/footer2Props";
 
-interface MenuItem {
-  title: string;
-  links: {
-    text: string;
-    url: string;
-  }[];
-}
 
-interface Footer2Props {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
-  className?: string;
-  tagline?: string;
-  menuItems?: MenuItem[];
-  copyright?: string;
-  bottomLinks?: {
-    text: string;
-    url: string;
-  }[];
-}
+
+
 
 const Footer2 = ({
   logo = {

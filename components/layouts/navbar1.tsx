@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -88,11 +88,10 @@ const Navbar1 = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50); // Reduced threshold for quicker change
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-    // Initial check
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -104,10 +103,7 @@ const Navbar1 = ({
         <NavigationMenuItem key={item.title}>
           <NavigationMenuTrigger
             className={cn(
-              "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-colors",
-              scrolled
-                ? "text-gray-800 hover:text-black"
-                : "text-black hover:text-white/90"
+              "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-colors duration-200 text-black hover:text-red-600 data-[state=open]:text-red-600"
             )}
           >
             {item.title}
@@ -128,11 +124,7 @@ const Navbar1 = ({
         <NavigationMenuLink
           href={item.url}
           className={cn(
-            "group inline-flex h-10 items-center justify-center rounded-none px-3 py-2 text-sm font-medium transition-colors relative",
-            scrolled
-              ? "text-gray-800 hover:text-black"
-              : "text-white hover:text-white/90",
-            "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-red-600 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+            "group inline-flex h-10 items-center justify-center rounded-none px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-transparent focus:bg-transparent text-black hover:text-red-600 focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent"
           )}
         >
           {item.title}
@@ -145,7 +137,7 @@ const Navbar1 = ({
     if (item.items) {
       return (
         <AccordionItem key={item.title} value={item.title} className="border-b-0">
-          <AccordionTrigger className="text-md py-0 font-semibold hover:no-underline">
+          <AccordionTrigger className="text-md py-0 font-semibold hover:text-red-600 hover:no-underline transition-colors duration-200 text-black">
             {item.title}
           </AccordionTrigger>
           <AccordionContent className="mt-2">
@@ -158,7 +150,11 @@ const Navbar1 = ({
     }
 
     return (
-      <a key={item.title} href={item.url} className="text-md font-semibold">
+      <a 
+        key={item.title} 
+        href={item.url} 
+        className="text-md font-semibold hover:text-red-600 transition-colors duration-200 text-black"
+      >
         {item.title}
       </a>
     );
@@ -167,7 +163,7 @@ const Navbar1 = ({
   const SubMenuLink = ({ item }: { item: MenuItem }) => {
     return (
       <a
-        className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-gray-100 hover:text-gray-900"
+        className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-transparent hover:text-red-700 focus:bg-transparent text-black"
         href={item.url}
       >
         <div className="text-gray-700">{item.icon}</div>
@@ -189,7 +185,7 @@ const Navbar1 = ({
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         scrolled
           ? "bg-white shadow-sm"
-          : "bg-transparent", // COMPLETELY transparent, no blur
+          : "bg-transparent",
         className
       )}
     >
@@ -197,7 +193,10 @@ const Navbar1 = ({
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           {/* Logo */}
-          <a href={logo.url} className="flex items-center gap-2 py-4">
+          <a 
+            href={logo.url} 
+            className="flex items-center gap-2 py-4 transition-colors duration-200 hover:text-red-600 text-black"
+          >
             <Image
               width={80}
               height={40}
@@ -205,10 +204,7 @@ const Navbar1 = ({
               className="h-10 w-auto"
               alt={logo.alt}
             />
-            <span className={cn(
-              "text-lg font-bold tracking-tight",
-              scrolled ? "text-gray-900" : "text-white"
-            )}>
+            <span className="text-lg font-bold tracking-tight transition-colors duration-200 hover:text-red-600 text-black">
               {logo.title}
             </span>
           </a>
@@ -221,29 +217,36 @@ const Navbar1 = ({
             </NavigationMenu>
           </div>
           
-          {/* Auth Buttons - Removed as per reference image */}
-          {/* You can uncomment this if needed */}
-          {/* <div className="flex gap-2">
-            <Button 
-              asChild 
-              variant="ghost" 
-              size="sm"
-              className={cn(
-                scrolled 
-                  ? "text-gray-800 hover:text-black hover:bg-gray-100" 
-                  : "text-white hover:text-white hover:bg-white/10"
-              )}
-            >
-              <a href={auth.login.url}>{auth.login.title}</a>
-            </Button>
-          </div> */}
+          {/* Optional Auth Buttons */}
+          {auth && (
+            <div className="flex gap-2">
+              <Button 
+                asChild 
+                variant="ghost" 
+                size="sm"
+                className="transition-colors duration-200 hover:bg-transparent text-black hover:text-red-600"
+              >
+                <a href={auth.login.url}>{auth.login.title}</a>
+              </Button>
+              <Button 
+                asChild 
+                size="sm"
+                className="transition-colors duration-200 bg-gray-800 text-white hover:bg-gray-800"
+              >
+                <a href={auth.signup.url}>{auth.signup.title}</a>
+              </Button>
+            </div>
+          )}
         </nav>
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
+            <a 
+              href={logo.url} 
+              className="flex items-center gap-2 transition-colors duration-200 hover:text-red-600 text-black"
+            >
               <Image
                 width={60}
                 height={30}
@@ -251,10 +254,7 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <span className={cn(
-                "text-sm font-bold",
-                scrolled ? "text-gray-900" : "text-white"
-              )}>
+              <span className="text-sm font-bold transition-colors duration-200 hover:text-red-600 text-black">
                 UAE CONTROLS
               </span>
             </a>
@@ -263,11 +263,7 @@ const Navbar1 = ({
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className={cn(
-                    scrolled 
-                      ? "text-gray-800 hover:text-black hover:bg-gray-100" 
-                      : "text-white hover:text-white hover:bg-white/10"
-                  )}
+                  className="transition-colors duration-200 hover:bg-transparent text-black hover:text-red-600"
                 >
                   <Menu className="size-5" />
                 </Button>
@@ -275,7 +271,7 @@ const Navbar1 = ({
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2">
+                    <a href={logo.url} className="flex items-center gap-2 hover:text-red-600 transition-colors duration-200 text-black">
                       <Image
                         width={60}
                         height={30}
@@ -296,12 +292,24 @@ const Navbar1 = ({
                     {menu.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
-                  {/* Removed auth buttons for mobile too */}
-                  {/* <div className="flex flex-col gap-3">
-                    <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
-                    </Button>
-                  </div> */}
+                  {/* Mobile Auth Buttons */}
+                  {auth && (
+                    <div className="flex flex-col gap-3">
+                      <Button 
+                        asChild 
+                        variant="outline"
+                        className="text-gray-800 hover:text-red-600 hover:border-red-600 transition-colors duration-200"
+                      >
+                        <a href={auth.login.url}>{auth.login.title}</a>
+                      </Button>
+                      <Button 
+                        asChild
+                        className="bg-gray-800 text-white hover:bg-red-600 transition-colors duration-200"
+                      >
+                        <a href={auth.signup.url}>{auth.signup.title}</a>
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
