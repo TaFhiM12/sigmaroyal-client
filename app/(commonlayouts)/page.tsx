@@ -1,12 +1,17 @@
+import AboutUs from '../components/AboutUs';
+import AreaOfExpertise from '../components/AreaOfExperties';
 import HeroCarousel from '../components/HeroCarousole';
 
 export default function Home() {
+  const currentYear = new Date().getFullYear();
+  const startYear = 1977;
+  const yearsExperience = currentYear - startYear;
   const customSlides = [
     {
       id: 1,
       image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
       title: "The Royal Utilisation Services (Pvt.) Ltd",
-      subtitle: "46+ Years of Excellence",
+      subtitle: `${yearsExperience}+ Years of Excellence`,
       description: "Pioneer in energy sector with comprehensive infrastructure development in Oil, Gas & Power since 1977",
       ctaText: "View Our Projects",
       ctaLink: "/projects",
@@ -59,15 +64,8 @@ export default function Home() {
         showProgressBar={true}
       />
       
-      {/* Rest of your page content */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Our Core Expertise
-          </h2>
-          {/* Add your content sections here */}
-        </div>
-      </section>
+      <AboutUs/>
+      <AreaOfExpertise />
     </>
   );
 }
