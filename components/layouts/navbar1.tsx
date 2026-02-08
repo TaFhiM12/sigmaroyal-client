@@ -54,45 +54,45 @@ const Navbar1 = ({
   },
   menu = [
     { title: "Home", url: "/" },
-    { 
-      title: "About", 
+    {
+      title: "About",
       url: "#",
       items: [
         { title: "About Us", url: "/about" },
         { title: "Our Team", url: "/team" },
         { title: "Mission & Vision", url: "/mission-vision" },
         { title: "Why Choose Us", url: "/why-choose-us" },
-      ]
+      ],
     },
-    { 
-      title: "Expertise", 
+    {
+      title: "Expertise",
       url: "#",
       items: [
-        { 
-          title: "Oil & Gas", 
+        {
+          title: "Oil & Gas",
           url: "/expertise/oil-gas",
-          description: "Pipeline construction, HDD, LPG solutions"
+          description: "Pipeline construction, HDD, LPG solutions",
         },
-        { 
-          title: "Power Plant", 
+        {
+          title: "Power Plant",
           url: "/expertise/power",
-          description: "BOP installation, fabrication, construction"
+          description: "BOP installation, fabrication, construction",
         },
-        { 
-          title: "Process Plant", 
+        {
+          title: "Process Plant",
           url: "/expertise/process",
-          description: "Refineries, petrochemicals"
+          description: "Refineries, petrochemicals",
         },
-        { 
-          title: "Engineering Services", 
+        {
+          title: "Engineering Services",
           url: "/expertise/engineering",
-          description: "Complete LPG solutions, equipment"
+          description: "Complete LPG solutions, equipment",
         },
-      ]
+      ],
     },
-    { title: "Certificates", url: "/certificates"},
-    { 
-      title: "Projects", 
+    { title: "Certificates", url: "/certificates" },
+    {
+      title: "Projects",
       url: "#",
       items: [
         { title: "All Projects", url: "/projects" },
@@ -100,10 +100,10 @@ const Navbar1 = ({
         { title: "Power Plant Projects", url: "/projects/power" },
         { title: "Completed Projects", url: "/projects/completed" },
         { title: "Ongoing Projects", url: "/projects/ongoing" },
-      ]
+      ],
     },
-    { 
-      title: "Resources", 
+    {
+      title: "Resources",
       url: "#",
       items: [
         { title: "Media Gallery", url: "/media" },
@@ -111,17 +111,44 @@ const Navbar1 = ({
         { title: "Certifications", url: "/certifications" },
         { title: "QHSE Policy", url: "/qhse-policy" },
         { title: "Notices", url: "/notices" },
-      ]
+      ],
     },
-    { 
-      title: "Clients", 
+    {
+      title: "Clients",
       url: "#",
       items: [
         { title: "Our Clients", url: "/clients" },
         { title: "Testimonials", url: "/testimonials" },
         { title: "Case Studies", url: "/case-studies" },
-      ]
+      ],
     },
+    {
+      title: "Team",
+      url: "#",
+      items: [
+        { title: "Core Management", url: "/team/core-management" },
+        { title: "HR & Admin", url: "/team/hr-admin" },
+        { title: "Accounts & Finance", url: "/team/accounts-finance" },
+        { title: "All Engineers", url: "/team/engineers" },
+        { title: "All Officers", url: "/team/officers" },
+        { title: "All Members", url: "/team/members" },
+      ],
+    },
+    {
+  title: "HYTORC",
+  url: "#",
+  items: [
+    { title: "About Royal-ABS", url: "/hytorc/about" },
+    { title: "Hydraulic", url: "/hytorc/hydraulic" },
+    { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
+    { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
+    { title: "Pumps", url: "/hytorc/pumps" },
+    { title: "Fasteners", url: "/hytorc/fasteners" },
+    { title: "Accessories", url: "/hytorc/accessories" },
+  ]
+},
+
+
     { title: "Contact", url: "/contact" },
   ],
   className,
@@ -145,20 +172,16 @@ const Navbar1 = ({
   const renderMenuItem = (item: MenuItem) => {
     if (item.items) {
       return (
-        <NavigationMenuItem 
-          key={item.title}
-        
-        >
+        <NavigationMenuItem key={item.title}>
           <NavigationMenuTrigger
             className={cn(
               "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-all duration-200 flex items-center gap-1",
               textColorClass,
               hoverTextColorClass,
-              "data-[state=open]:text-red-600"
+              "data-[state=open]:text-red-600",
             )}
           >
             {item.title}
-           
           </NavigationMenuTrigger>
           <NavigationMenuContent className="bg-white text-gray-800 shadow-xl border rounded-lg p-4 min-w-70">
             <div className="grid gap-2">
@@ -168,7 +191,9 @@ const Navbar1 = ({
                     className="flex flex-col rounded-md p-3 leading-none no-underline transition-all duration-200 outline-none select-none hover:bg-red-50 hover:text-red-700 focus:bg-transparent text-gray-800 border-l-2 border-transparent hover:border-red-600"
                     href={subItem.url}
                   >
-                    <div className="text-sm font-semibold mb-1">{subItem.title}</div>
+                    <div className="text-sm font-semibold mb-1">
+                      {subItem.title}
+                    </div>
                     {subItem.description && (
                       <p className="text-xs leading-snug text-gray-600">
                         {subItem.description}
@@ -191,7 +216,7 @@ const Navbar1 = ({
             "group inline-flex h-10 items-center justify-center rounded-md px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-transparent focus:bg-transparent",
             textColorClass,
             hoverTextColorClass,
-            "focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent"
+            "focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent",
           )}
         >
           {item.title}
@@ -203,12 +228,18 @@ const Navbar1 = ({
   const renderMobileMenuItem = (item: MenuItem) => {
     if (item.items) {
       return (
-        <AccordionItem key={item.title} value={item.title} className="border-b border-gray-100 last:border-b-0">
-          <AccordionTrigger className={cn(
-            "text-sm py-4 font-semibold hover:no-underline transition-colors duration-200",
-            "text-gray-800",
-            hoverTextColorClass
-          )}>
+        <AccordionItem
+          key={item.title}
+          value={item.title}
+          className="border-b border-gray-100 last:border-b-0"
+        >
+          <AccordionTrigger
+            className={cn(
+              "text-sm py-4 font-semibold hover:no-underline transition-colors duration-200",
+              "text-gray-800",
+              hoverTextColorClass,
+            )}
+          >
             {item.title}
           </AccordionTrigger>
           <AccordionContent className="mt-1">
@@ -234,13 +265,13 @@ const Navbar1 = ({
     }
 
     return (
-      <a 
-        key={item.title} 
-        href={item.url} 
+      <a
+        key={item.title}
+        href={item.url}
         className={cn(
           "text-sm font-semibold transition-colors duration-200 py-4 border-b border-gray-100 last:border-b-0",
           "text-gray-800",
-          hoverTextColorClass
+          hoverTextColorClass,
         )}
       >
         {item.title}
@@ -252,22 +283,20 @@ const Navbar1 = ({
     <section
       className={cn(
         "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-0 md:py-6",
-        scrolled
-          ? "bg-white shadow-lg py-3"
-          : "bg-transparent py-4",
-        className
+        scrolled ? "bg-white shadow-lg py-3" : "bg-transparent py-4",
+        className,
       )}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           {/* Logo */}
-          <a 
-            href={logo.url} 
+          <a
+            href={logo.url}
             className={cn(
               "flex items-center gap-2 transition-colors duration-200",
               textColorClass,
-              hoverTextColorClass
+              hoverTextColorClass,
             )}
           >
             <Image
@@ -277,15 +306,17 @@ const Navbar1 = ({
               className="h-10 w-auto"
               alt={logo.alt}
             />
-            <span className={cn(
-              "text-lg font-bold tracking-tight transition-colors duration-200",
-              textColorClass,
-              hoverTextColorClass
-            )}>
+            <span
+              className={cn(
+                "text-xl font-bold tracking-tight transition-colors duration-200",
+                textColorClass,
+                hoverTextColorClass,
+              )}
+            >
               {logo.title}
             </span>
           </a>
-          
+
           <div className="flex items-center gap-1">
             <NavigationMenu>
               <NavigationMenuList>
@@ -299,12 +330,12 @@ const Navbar1 = ({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a 
-              href={logo.url} 
+            <a
+              href={logo.url}
               className={cn(
                 "flex items-center gap-2 transition-colors duration-200",
                 textColorClass,
-                hoverTextColorClass
+                hoverTextColorClass,
               )}
             >
               <Image
@@ -314,32 +345,30 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <span className="text-sm font-bold">
-                {logo.title}
-              </span>
+              <span className="text-sm font-bold">{logo.title}</span>
             </a>
-            
+
             <div className="flex items-center gap-4">
               {/* Mobile Contact Button */}
-              <a 
-                href="/contact" 
+              <a
+                href="/contact"
                 className={cn(
                   "px-4 py-2 text-xs font-medium transition-all duration-300 rounded-md",
-                  scrolled 
-                    ? "bg-red-600 text-white hover:bg-red-700" 
-                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 border border-white/30"
+                  scrolled
+                    ? "bg-red-600 text-white hover:bg-red-700"
+                    : "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 border border-white/30",
                 )}
               >
                 Contact
               </a>
-              
+
               <Sheet>
                 <SheetTrigger asChild>
-                  <button 
+                  <button
                     className={cn(
                       "p-2 transition-colors duration-200 rounded-md",
                       textColorClass,
-                      hoverTextColorClass
+                      hoverTextColorClass,
                     )}
                   >
                     <Menu className="size-5" />
@@ -348,11 +377,14 @@ const Navbar1 = ({
                 <SheetContent className="overflow-y-auto w-full sm:max-w-md p-0">
                   <SheetHeader className="p-6 border-b border-gray-100">
                     <SheetTitle>
-                      <a href={logo.url} className={cn(
-                        "flex items-center gap-2 transition-colors duration-200",
-                        "text-gray-900",
-                        hoverTextColorClass
-                      )}>
+                      <a
+                        href={logo.url}
+                        className={cn(
+                          "flex items-center gap-2 transition-colors duration-200",
+                          "text-gray-900",
+                          hoverTextColorClass,
+                        )}
+                      >
                         <Image
                           width={60}
                           height={30}
@@ -360,7 +392,9 @@ const Navbar1 = ({
                           className="h-8 w-auto"
                           alt={logo.alt}
                         />
-                        <span className="text-gray-900 font-bold">{logo.title}</span>
+                        <span className="text-gray-900 font-bold">
+                          {logo.title}
+                        </span>
                       </a>
                     </SheetTitle>
                   </SheetHeader>
@@ -376,14 +410,14 @@ const Navbar1 = ({
                     {/* Additional Mobile Links */}
                     <div className="mt-6 pt-6 border-t border-gray-100">
                       <div className="grid grid-cols-2 gap-4">
-                        <a 
-                          href="/hytorc" 
+                        <a
+                          href="/hytorc"
                           className="text-sm font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 text-center py-3 bg-gray-50 rounded-md"
                         >
                           HYTORC
                         </a>
-                        <a 
-                          href="/certifications" 
+                        <a
+                          href="/certifications"
                           className="text-sm font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 text-center py-3 bg-gray-50 rounded-md"
                         >
                           Certifications
