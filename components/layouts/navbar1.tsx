@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
+import { navbarLogo, navbarMenu } from "@/app/data/navbar";
+import { Navbar1Props } from "@/types/navbar";
 
 interface MenuItem {
   title: string;
@@ -26,122 +28,11 @@ interface MenuItem {
   items?: MenuItem[];
 }
 
-interface Navbar1Props {
-  className?: string;
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-    className?: string;
-  };
-  menu?: MenuItem[];
-}
+
 
 const Navbar1 = ({
-  logo = {
-    url: "/",
-    src: "https://sigma-royal.com/images/logo-1.png",
-    alt: "Sigma Construction Company",
-    title: "Sigma Construction",
-  },
-  menu = [
-    { title: "Home", url: "/" },
-    {
-      title: "About",
-      url: "#",
-      items: [
-        { title: "About Us", url: "/about" },
-        { title: "Our Team", url: "/team" },
-        { title: "Mission & Vision", url: "/mission-vision" },
-        { title: "Why Choose Us", url: "/why-choose-us" },
-      ],
-    },
-    {
-      title: "Expertise",
-      url: "#",
-      items: [
-        {
-          title: "Oil & Gas",
-          url: "/expertise/oil-gas",
-          description: "Pipeline construction, HDD, LPG solutions",
-        },
-        {
-          title: "Power Plant",
-          url: "/expertise/power",
-          description: "BOP installation, fabrication, construction",
-        },
-        {
-          title: "Process Plant",
-          url: "/expertise/process",
-          description: "Refineries, petrochemicals",
-        },
-        {
-          title: "Engineering Services",
-          url: "/expertise/engineering",
-          description: "Complete LPG solutions, equipment",
-        },
-      ],
-    },
-    { title: "Certificates", url: "/certificates" },
-    {
-      title: "Projects",
-      url: "#",
-      items: [
-        { title: "All Projects", url: "/projects" },
-        { title: "Oil & Gas Projects", url: "/projects/oil-gas" },
-        { title: "Power Plant Projects", url: "/projects/power" },
-        { title: "Completed Projects", url: "/projects/completed" },
-        { title: "Ongoing Projects", url: "/projects/ongoing" },
-      ],
-    },
-    {
-      title: "Resources",
-      url: "#",
-      items: [
-        { title: "Media Gallery", url: "/media" },
-        { title: "Portfolio", url: "/portfolio" },
-        { title: "Certifications", url: "/certifications" },
-        { title: "QHSE Policy", url: "/qhse-policy" },
-        { title: "Notices", url: "/notices" },
-      ],
-    },
-    {
-      title: "Clients",
-      url: "#",
-      items: [
-        { title: "Our Clients", url: "/clients" },
-        { title: "Testimonials", url: "/testimonials" },
-        { title: "Case Studies", url: "/case-studies" },
-      ],
-    },
-    {
-      title: "Team",
-      url: "#",
-      items: [
-        { title: "Core Management", url: "/team/core-management" },
-        { title: "HR & Admin", url: "/team/hr-admin" },
-        { title: "Accounts & Finance", url: "/team/accounts-finance" },
-        { title: "All Engineers", url: "/team/engineers" },
-        { title: "All Officers", url: "/team/officers" },
-        { title: "All Members", url: "/team/members" },
-      ],
-    },
-    {
-      title: "HYTORC",
-      url: "#",
-      items: [
-        { title: "About Royal-ABS", url: "/hytorc/about" },
-        { title: "Hydraulic", url: "/hytorc/hydraulic" },
-        { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
-        { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
-        { title: "Pumps", url: "/hytorc/pumps" },
-        { title: "Fasteners", url: "/hytorc/fasteners" },
-        { title: "Accessories", url: "/hytorc/accessories" },
-      ]
-    },
-    { title: "Contact", url: "/contact" },
-  ],
+  logo = navbarLogo,
+  menu = navbarMenu,
   className,
 }: Navbar1Props) => {
   const [scrolled, setScrolled] = useState(false);
@@ -191,7 +82,7 @@ const Navbar1 = ({
           dropdownRefs.current[item.title] = el;
         }}
         className={cn(
-          "absolute top-full left-0 mt-2 bg-white shadow-2xl border border-gray-200 rounded-lg py-3 min-w-[280px] z-50",
+          "absolute top-full left-0 mt-2 bg-white shadow-2xl border border-gray-200 rounded-lg py-3 min-w-70 z-50",
           "transition-all duration-300 origin-top",
           activeDropdown === item.title 
             ? "opacity-100 scale-100 translate-y-0" 
@@ -345,7 +236,7 @@ const Navbar1 = ({
             href={logo.url}
             className={cn(
               "flex items-center gap-3 transition-all duration-300 group hover:scale-[1.02]",
-              "bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:from-white/5 group-hover:via-white/10 group-hover:to-transparent",
+              "bg-linear-to-r from-transparent via-transparent to-transparent group-hover:from-white/5 group-hover:via-white/10 group-hover:to-transparent",
               "rounded-lg px-3 py-2",
             )}
           >
@@ -362,7 +253,7 @@ const Navbar1 = ({
             
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                "text-xl font-extrabold tracking-tight bg-gradient-to-r bg-clip-text text-transparent",
+                "text-xl font-extrabold tracking-tight bg-linear-to-r bg-clip-text text-transparent",
                 scrolled 
                   ? "from-red-700 to-red-500 group-hover:from-red-600 group-hover:to-red-400"
                   : "from-white to-gray-200 group-hover:from-red-300 group-hover:to-white",
@@ -409,7 +300,7 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <div className="flex flex-col leading-tight max-w-[300px]">
+              <div className="flex flex-col leading-tight max-w-75">
                 <span
                   className={cn(
                     "text-sm font-bold tracking-tight transition-colors duration-200",
