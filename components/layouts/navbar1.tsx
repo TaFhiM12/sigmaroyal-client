@@ -103,7 +103,7 @@ const Navbar1 = ({
         <NavigationMenuItem key={item.title}>
           <NavigationMenuTrigger
             className={cn(
-              "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-colors duration-200 text-black hover:text-red-600 data-[state=open]:text-red-600"
+              "bg-transparent hover:bg-transparent px-3 py-2 text-sm font-medium transition-colors duration-200 text-[#1c2348 hover:text-red-600 data-[state=open]:text-red-600"
             )}
           >
             {item.title}
@@ -124,7 +124,7 @@ const Navbar1 = ({
         <NavigationMenuLink
           href={item.url}
           className={cn(
-            "group inline-flex h-10 items-center justify-center rounded-none px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-transparent focus:bg-transparent text-black hover:text-red-600 focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent"
+            "group inline-flex h-10 items-center justify-center rounded-none px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-transparent focus:bg-transparent text-[#1c2348 hover:text-red-600 focus:text-red-600 data-[active=true]:text-red-600 data-[active=true]:bg-transparent"
           )}
         >
           {item.title}
@@ -137,7 +137,7 @@ const Navbar1 = ({
     if (item.items) {
       return (
         <AccordionItem key={item.title} value={item.title} className="border-b-0">
-          <AccordionTrigger className="text-md py-0 font-semibold hover:text-red-600 hover:no-underline transition-colors duration-200 text-black">
+          <AccordionTrigger className="text-md py-0 font-semibold hover:text-red-600 hover:no-underline transition-colors duration-200 text-[#1c2348">
             {item.title}
           </AccordionTrigger>
           <AccordionContent className="mt-2">
@@ -153,7 +153,7 @@ const Navbar1 = ({
       <a 
         key={item.title} 
         href={item.url} 
-        className="text-md font-semibold hover:text-red-600 transition-colors duration-200 text-black"
+        className="text-md font-semibold hover:text-red-600 transition-colors duration-200 text-[#030419]"
       >
         {item.title}
       </a>
@@ -163,7 +163,7 @@ const Navbar1 = ({
   const SubMenuLink = ({ item }: { item: MenuItem }) => {
     return (
       <a
-        className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-transparent hover:text-red-700 focus:bg-transparent text-black"
+        className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-transparent hover:text-red-700 focus:bg-transparent text-[#030419]"
         href={item.url}
       >
         <div className="text-gray-700">{item.icon}</div>
@@ -182,7 +182,7 @@ const Navbar1 = ({
   return (
     <section
       className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5",
         scrolled
           ? "bg-white shadow-sm"
           : "bg-transparent",
@@ -195,7 +195,7 @@ const Navbar1 = ({
           {/* Logo */}
           <a 
             href={logo.url} 
-            className="flex items-center gap-2 py-4 transition-colors duration-200 hover:text-red-600 text-black"
+            className="flex items-center gap-2 py-4 transition-colors duration-200 hover:text-red-600 text-[#030419]"
           >
             <Image
               width={80}
@@ -204,7 +204,7 @@ const Navbar1 = ({
               className="h-10 w-auto"
               alt={logo.alt}
             />
-            <span className="text-lg font-bold tracking-tight transition-colors duration-200 hover:text-red-600 text-black">
+            <span className="text-lg font-bold tracking-tight transition-colors duration-200 hover:text-red-600 text-[#030419]">
               {logo.title}
             </span>
           </a>
@@ -224,7 +224,7 @@ const Navbar1 = ({
                 asChild 
                 variant="ghost" 
                 size="sm"
-                className="transition-colors duration-200 hover:bg-transparent text-black hover:text-red-600"
+                className="transition-colors duration-200 hover:bg-transparent text-[#030419] hover:text-red-600"
               >
                 <a href={auth.login.url}>{auth.login.title}</a>
               </Button>
@@ -245,7 +245,7 @@ const Navbar1 = ({
             {/* Logo */}
             <a 
               href={logo.url} 
-              className="flex items-center gap-2 transition-colors duration-200 hover:text-red-600 text-black"
+              className="flex items-center gap-2 transition-colors duration-200 hover:text-red-600 text-[#030419]"
             >
               <Image
                 width={60}
@@ -254,7 +254,7 @@ const Navbar1 = ({
                 className="h-8 w-auto"
                 alt={logo.alt}
               />
-              <span className="text-sm font-bold transition-colors duration-200 hover:text-red-600 text-black">
+              <span className="text-sm font-bold transition-colors duration-200 hover:text-red-600 text-[#1c2348">
                 UAE CONTROLS
               </span>
             </a>
@@ -263,7 +263,7 @@ const Navbar1 = ({
                 <Button 
                   variant="ghost" 
                   size="icon"
-                  className="transition-colors duration-200 hover:bg-transparent text-black hover:text-red-600"
+                  className="transition-colors duration-200 hover:bg-transparent text-[#1c2348] hover:text-red-600"
                 >
                   <Menu className="size-5" />
                 </Button>
@@ -271,7 +271,7 @@ const Navbar1 = ({
               <SheetContent className="overflow-y-auto">
                 <SheetHeader>
                   <SheetTitle>
-                    <a href={logo.url} className="flex items-center gap-2 hover:text-red-600 transition-colors duration-200 text-black">
+                    <a href={logo.url} className="flex items-center gap-2 hover:text-red-600 transition-colors duration-200 text-[#1c2348">
                       <Image
                         width={60}
                         height={30}

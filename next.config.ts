@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: "sigma-royal.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "vaecontrols.cz",
+        pathname: "/**"
+      }
     ],
   },
 };

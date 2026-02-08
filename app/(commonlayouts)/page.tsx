@@ -5,7 +5,7 @@ export default function Home() {
     <section className="relative w-full h-screen">
       {/* Banner Image */}
       <Image
-        src="https://sigma-royal.com/PhotoGallery/Screenshot_61717243477.jpg"
+        src="https://vaecontrols.cz/wp-content/uploads/2022/03/Obrazek1.jpg"
         alt="banner"
         fill
         priority
@@ -13,12 +13,12 @@ export default function Home() {
       />
 
       {/* Overlay Text */}
-      <div className="absolute top-1/2 left-20 -translate-y-1/2">
-        <h1 className="bg-red-600 text-white text-5xl font-bold px-6 py-4 mb-4">
+      <div className="absolute top-1/2 left-5 md:left-30 -translate-y-1/2">
+        <h1 className="bg-red-600 text-white text-2xl md:text-5xl font-bold px-6 py-4 mb-4">
           WORLDWIDE PARTNER <br /> FOR OIL & GAS
         </h1>
 
-        <h2 className="bg-red-600 text-white text-5xl font-bold px-6 py-4">
+        <h2 className="bg-red-600 text-white text-2xl md:text-5xl font-bold px-6 py-4">
           AND WATER SOLUTIONS
         </h2>
       </div>
