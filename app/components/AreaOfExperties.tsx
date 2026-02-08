@@ -34,7 +34,7 @@ interface AreaOfExpertiseProps {
 
 const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
   const [activeTab, setActiveTab] = useState("oil-gas");
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null); // Added this line
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const controls = useAnimation();
@@ -50,7 +50,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Oil & Gas Sector",
       description: "Comprehensive solutions for natural gas, LPG, and LNG infrastructure with advanced pipeline technology",
       icon: <Droplets className="h-6 w-6" />,
-      color: "from-red-600 to-orange-500",
+      color: "from-red-600 to-red-700",
       features: [
         "Cross Country Pipeline Construction in NG, LPG & LNG Sector",
         "River Crossing by HDD method",
@@ -69,7 +69,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Power Sector",
       description: "End-to-end power plant construction and maintenance services with cutting-edge technology",
       icon: <Zap className="h-6 w-6" />,
-      color: "from-amber-500 to-yellow-500",
+      color: "from-gray-600 to-gray-800",
       features: [
         "Fabrication, Erection, Installation & Commissioning of all piping, Tank, Structure",
         "Insulation Works of pipe & tank",
@@ -87,7 +87,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Process Plant",
       description: "Specialized engineering for refineries and petrochemical facilities",
       icon: <Factory className="h-6 w-6" />,
-      color: "from-blue-600 to-cyan-500",
+      color: "from-red-600 to-red-700",
       features: [
         "Refineries",
         "Petrochemicals"
@@ -103,7 +103,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Engineering & Services",
       description: "Complete LPG solutions and specialized equipment for energy distribution",
       icon: <Wrench className="h-6 w-6" />,
-      color: "from-emerald-600 to-green-500",
+      color: "from-gray-600 to-gray-800",
       features: [
         "Complete set of auto LPG dispensing station equipment (Storage tank, pump, dispenser etc)",
         "LPG solution for industry household and auto LPG station",
@@ -176,15 +176,15 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-24", // Fixed: bg-gradient-to-b
+        "relative overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gray-50 py-24",
         className
       )}
     >
-      {/* Animated Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-red-600/10 to-transparent" /> {/* Fixed: bg-gradient-to-b */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
+      {/* Simplified Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-red-600/10 to-transparent" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-500/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
       
-      {/* Floating Elements */}
+      {/* Floating Elements - Simplified */}
       <motion.div
         animate={{ 
           y: [0, -20, 0],
@@ -197,23 +197,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         }}
         className="absolute top-20 left-10 opacity-10"
       >
-        <Wind className="h-40 w-40 text-red-600" />
-      </motion.div>
-      
-      <motion.div
-        animate={{ 
-          y: [0, 20, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{ 
-          duration: 7, 
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 0.5
-        }}
-        className="absolute bottom-20 right-10 opacity-10"
-      >
-        <Wind className="h-40 w-40 text-blue-600" />
+        <Wind className="h-40 w-40 text-gray-600" />
       </motion.div>
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
@@ -225,12 +209,12 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-4">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" /> {/* Fixed: bg-gradient-to-r */}
+            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
             <Sparkles className="h-5 w-5 text-red-600" />
             <span className="text-sm font-semibold text-red-700 tracking-wider">
               CORE COMPETENCIES
             </span>
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" /> {/* Fixed: bg-gradient-to-r */}
+            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
           </motion.div>
 
           <motion.h2 
@@ -238,7 +222,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
           >
             <span className="text-gray-900">Areas of</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 ml-4"> {/* Fixed: bg-gradient-to-r */}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 ml-4">
               Expertise
             </span>
           </motion.h2>
@@ -263,7 +247,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           {/* Left Column - Tabs Navigation */}
           <motion.div variants={itemVariants} className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-2xl shadow-2xl"> {/* Fixed: bg-gradient-to-br */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-2xl shadow-2xl">
                 <h3 className="text-xl font-bold text-white mb-6">Expertise Categories</h3>
                 <div className="space-y-2">
                   {Object.entries(expertiseAreas).map(([key, area]) => (
@@ -275,7 +259,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                       className={cn(
                         "w-full text-left p-4 rounded-xl transition-all duration-300 group relative overflow-hidden",
                         activeTab === key 
-                          ? `bg-gradient-to-r ${area.color} text-white shadow-lg`  // Fixed: bg-gradient-to-r
+                          ? `bg-gradient-to-r ${area.color} text-white shadow-lg` 
                           : "bg-white/10 text-gray-300 hover:bg-white/20"
                       )}
                       whileHover={{ scale: 1.02 }}
@@ -294,20 +278,6 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                           activeTab === key ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
                         )} />
                       </div>
-                      
-                      {/* Animated background on hover */}
-                      <motion.div
-                        className={cn(
-                          "absolute inset-0 z-0",
-                          activeTab === key ? "opacity-100" : "opacity-0"
-                        )}
-                        initial={false}
-                        animate={{
-                          background: activeTab === key 
-                            ? `linear-gradient(135deg, var(--tw-gradient-stops))`
-                            : 'transparent'
-                        }}
-                      />
                     </motion.button>
                   ))}
                 </div>
@@ -357,10 +327,10 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" /> {/* Fixed: bg-gradient-to-t */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className={`p-2 rounded-lg bg-gradient-to-br ${expertiseAreas[activeTab].color}`}> {/* Fixed: bg-gradient-to-br */}
+                          <div className={`p-2 rounded-lg bg-gradient-to-br ${expertiseAreas[activeTab].color}`}>
                             {expertiseAreas[activeTab].icon}
                           </div>
                           <h3 className="text-2xl md:text-3xl font-bold text-white">
@@ -383,9 +353,9 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-full text-sm font-medium" // Fixed: bg-gradient-to-r
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-full text-sm font-medium"
                           >
-                            <CheckCircle className="h-3 w-3 text-green-500" />
+                            <CheckCircle className="h-3 w-3 text-red-600" />
                             {highlight}
                           </motion.span>
                         ))}
@@ -404,7 +374,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                               className="group flex items-start gap-3 p-4 rounded-lg hover:bg-red-50 transition-all duration-300 cursor-pointer"
                               whileHover={{ x: 5 }}
                             >
-                              <div className={`p-2 rounded-md bg-gradient-to-br ${expertiseAreas[activeTab].color} mt-0.5`}> {/* Fixed: bg-gradient-to-br */}
+                              <div className={`p-2 rounded-md bg-gradient-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
                                 <Shield className="h-4 w-4 text-white" />
                               </div>
                               <span className="text-gray-700 group-hover:text-gray-900">
@@ -439,7 +409,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                           <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`px-6 py-3 rounded-lg bg-gradient-to-r ${expertiseAreas[activeTab].color} text-white font-semibold hover:shadow-lg transition-shadow`} // Fixed: bg-gradient-to-r
+                            className={`px-6 py-3 rounded-lg bg-gradient-to-r ${expertiseAreas[activeTab].color} text-white font-semibold hover:shadow-lg transition-shadow`}
                           >
                             View Projects
                           </motion.button>
@@ -456,7 +426,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
               variants={itemVariants}
               className="mt-8 grid md:grid-cols-3 gap-4"
             >
-              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200"> {/* Fixed: bg-gradient-to-br */}
+              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
                   <Cpu className="h-5 w-5 text-red-600" />
                   <span className="font-semibold text-gray-900">Technology</span>
@@ -466,7 +436,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200"> {/* Fixed: bg-gradient-to-br */}
+              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
                   <Shield className="h-5 w-5 text-red-600" />
                   <span className="font-semibold text-gray-900">Safety</span>
@@ -476,7 +446,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200"> {/* Fixed: bg-gradient-to-br */}
+              <div className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
                 <div className="flex items-center gap-3 mb-3">
                   <Sparkles className="h-5 w-5 text-red-600" />
                   <span className="font-semibold text-gray-900">Innovation</span>
@@ -497,9 +467,9 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           className="mt-16 flex flex-wrap justify-center gap-4"
         >
           {[
-            { icon: <Zap />, label: "Power Specialists", color: "border-amber-300 bg-amber-50" },
-            { icon: <Factory />, label: "Plant Engineering", color: "border-blue-300 bg-blue-50" },
-            { icon: <Droplets />, label: "LPG Solutions", color: "border-emerald-300 bg-emerald-50" },
+            { icon: <Zap />, label: "Power Specialists", color: "border-gray-300 bg-gray-50" },
+            { icon: <Factory />, label: "Plant Engineering", color: "border-red-300 bg-red-50" },
+            { icon: <Droplets />, label: "LPG Solutions", color: "border-gray-300 bg-gray-50" },
           ].map((badge, index) => (
             <motion.div
               key={badge.label}
