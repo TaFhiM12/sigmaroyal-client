@@ -17,6 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
+import Link from "next/link";
 
 interface MenuItem {
   title: string;
@@ -199,7 +200,7 @@ const Navbar1 = ({
       >
         <div className="space-y-1">
           {item.items.map((subItem) => (
-            <a
+            <Link
               key={subItem.title}
               href={subItem.url}
               className={cn(
@@ -215,7 +216,7 @@ const Navbar1 = ({
                   {subItem.description}
                 </p>
               )}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -255,7 +256,7 @@ const Navbar1 = ({
     }
 
     return (
-      <a
+      <Link
         key={item.title}
         href={item.url}
         className={cn(
@@ -268,7 +269,7 @@ const Navbar1 = ({
         {item.title}
         {/* Hover indicator */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-4/5" />
-      </a>
+      </Link>
     );
   };
 
@@ -292,7 +293,7 @@ const Navbar1 = ({
           <AccordionContent className="mt-1">
             <div className="flex flex-col gap-2 pl-4">
               {item.items.map((subItem) => (
-                <a
+                <Link
                   key={subItem.title}
                   href={subItem.url}
                   className="flex flex-col rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-red-50 hover:text-red-700 text-gray-800"
@@ -303,7 +304,7 @@ const Navbar1 = ({
                       {subItem.description}
                     </p>
                   )}
-                </a>
+                </Link>
               ))}
             </div>
           </AccordionContent>
@@ -312,7 +313,7 @@ const Navbar1 = ({
     }
 
     return (
-      <a
+      <Link
         key={item.title}
         href={item.url}
         className={cn(
@@ -322,7 +323,7 @@ const Navbar1 = ({
         )}
       >
         {item.title}
-      </a>
+      </Link>
     );
   };
 
@@ -340,7 +341,7 @@ const Navbar1 = ({
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           {/* Logo with Enhanced Company Name */}
-          <a
+          <Link
             href={logo.url}
             className={cn(
               "flex items-center gap-3 transition-all duration-300 group hover:scale-[1.02]",
@@ -379,7 +380,7 @@ const Navbar1 = ({
                 SERVICES (PVT.) LTD
               </span>
             </div>
-          </a>
+          </Link>
           
           <div className="flex items-center space-x-1">
             {menu.map((item) => renderMenuItem(item))}
@@ -393,7 +394,7 @@ const Navbar1 = ({
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
             {/* Logo with Full Company Name - Mobile */}
-            <a
+            <Link
               href={logo.url}
               className={cn(
                 "flex items-center gap-2 transition-colors duration-200",
@@ -420,7 +421,7 @@ const Navbar1 = ({
                 </span>
                 
               </div>
-            </a>
+            </Link>
             
             <div className="flex items-center gap-2">
               
@@ -445,7 +446,7 @@ const Navbar1 = ({
                   <div className="h-full flex flex-col">
                     <SheetHeader className="p-6 border-b border-gray-100 bg-white">
                       <SheetTitle>
-                        <a href={logo.url} className={cn(
+                        <Link href={logo.url} className={cn(
                           "flex items-center gap-2 transition-colors duration-200",
                           "text-gray-900",
                           hoverTextColorClass
@@ -462,7 +463,7 @@ const Navbar1 = ({
                               The Royal Utilisation Services (Pvt.) Ltd
                             </span>
                           </div>
-                        </a>
+                        </Link>
                       </SheetTitle>
                     </SheetHeader>
                     
@@ -481,18 +482,18 @@ const Navbar1 = ({
                     {/* Mobile Footer */}
                     <div className="p-6 bg-white border-t border-gray-100">
                       <div className="grid grid-cols-2 gap-3">
-                        <a 
+                        <Link 
                           href="/certifications" 
                           className="text-sm font-medium text-white bg-gray-800 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Certifications
-                        </a>
-                        <a 
+                        </Link>
+                        <Link 
                           href="/contact" 
                           className="text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Get Quote
-                        </a>
+                        </Link>
                       </div>
                       
                       {/* Contact Info */}

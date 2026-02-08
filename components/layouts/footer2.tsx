@@ -96,11 +96,11 @@ const Footer2 = ({
                     height={60}
                     className="h-12 w-auto"
                   />
-                  <span className="text-2xl font-bold">{logo.title}</span>
+                  <span className="text-lg md:text-2xl font-bold">{logo.title}</span>
                 </div>
               </Link>
-              <p className="text-lg text-gray-300">
-                Pioneers in energy sector with 46+ years of excellence in Oil, Gas & Power infrastructure development.
+              <p className="text-sm md:text-lg text-gray-300">
+                Pioneers in energy sector with 46+ years of excellence  in Oil, <br /> Gas & Power infrastructure development.
               </p>
             </div>
 
@@ -110,18 +110,18 @@ const Footer2 = ({
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-red-400">Head Office</h3>
                 <div className="space-y-3 text-gray-300">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 flex-shrink-0 text-red-400 mt-0.5" />
+                  <div className="flex items-start gap-3 ">
+                    <MapPin className="h-5 w-5 shrink-0 text-red-400 mt-0.5" />
                     <p>28/A, Nayapaltan (4th Floor) VIP Road, Dhaka-1000, Bangladesh.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-5 w-5 flex-shrink-0 text-red-400" />
+                    <Phone className="h-5 w-5 shrink-0 text-red-400" />
                     <a href="tel:+8802222229238" className="hover:text-red-400 transition-colors">
                       +88 02222229238
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-5 w-5 flex-shrink-0 text-red-400" />
+                    <Mail className="h-5 w-5 shrink-0 text-red-400" />
                     <a href="mailto:info@sigma-royal.com" className="hover:text-red-400 transition-colors">
                       info@sigma-royal.com
                     </a>
