@@ -158,24 +158,24 @@ const HeroCarousel = ({
                 )}
 
                 {/* Main Title */}
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 md:mb-6">
+                <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold leading-tight mb-4 md:mb-6">
                   {slide.title}
                 </h1>
 
                 {/* Description */}
                 {slide.description && (
-                  <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 md:mb-10 max-w-lg">
+                  <p className="text-sm md:text-lg lg:text-xl text-gray-200 mb-8 md:mb-10 max-w-lg">
                     {slide.description}
                   </p>
                 )}
 
                 {/* Call to Action */}
                 {slide.ctaText && (
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-row gap-4">
                     <Button
                       asChild
                       size="lg"
-                      className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg rounded-none font-semibold transition-all duration-300 hover:scale-105"
+                      className="bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-sm md:text-lg rounded-full font-semibold transition-all duration-300 hover:scale-105 w-[50%] md:w-1/3"
                     >
                       <a href={slide.ctaLink || "#"}>{slide.ctaText}</a>
                     </Button>
@@ -183,7 +183,7 @@ const HeroCarousel = ({
                       asChild
                       variant="outline"
                       size="lg"
-                      className="border-white text-black hover:bg-white/10 hover:text-white px-8 py-6 text-lg rounded-none font-semibold transition-all duration-300"
+                      className="border-white text-black hover:bg-white/10 hover:text-white px-8 py-6 text-sm md:text-lg rounded-full font-semibold transition-all duration-300 w-[40%] md:w-1/3"
                     >
                       <a href="#contact">Contact Us</a>
                     </Button>
@@ -208,7 +208,7 @@ const HeroCarousel = ({
       
 
       {/* Slide Indicators */}
-      {showIndicators && (
+      {/* {showIndicators && (
         <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-3">
           {slides.map((_, index) => (
             <button
@@ -224,7 +224,7 @@ const HeroCarousel = ({
             />
           ))}
         </div>
-      )}
+      )} */}
 
       {/* Company Info Overlay (Optional) */}
       <div className="absolute bottom-4 left-4 md:left-8 md:bottom-8">

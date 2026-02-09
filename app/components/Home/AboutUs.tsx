@@ -262,9 +262,9 @@ const AboutUs = ({ className }: AboutUsProps) => {
                             stat.color
                           )}
                         >
-                          <div className="text-white">{stat.icon}</div>
+                          <div className="text-white text-8 sm:text-9 md:text-10 lg:text-11">{stat.icon}</div>
                         </div>
-                        <div className="text-4xl font-bold text-gray-900">
+                        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                           {stat.value}
                         </div>
                       </div>
