@@ -1,6 +1,7 @@
-import AboutUs from '../components/AboutUs';
-import AreaOfExpertise from '../components/AreaOfExperties';
-import HeroCarousel from '../components/HeroCarousole';
+import { Footer2 } from '@/components/layouts/footer2';
+import AboutUs from '../components/Home/AboutUs';
+import AreaOfExpertise from '../components/Home/AreaOfExperties';
+import HeroCarousel from '../components/Home/HeroCarousole';
 
 export default function Home() {
   const currentYear = new Date().getFullYear();
@@ -56,6 +57,7 @@ export default function Home() {
 
   return (
     <>
+      
       <HeroCarousel 
         slides={customSlides}
         autoPlayInterval={6000}
@@ -66,6 +68,7 @@ export default function Home() {
       
       <AboutUs/>
       <AreaOfExpertise />
+      <Footer2 />
     </>
   );
 }

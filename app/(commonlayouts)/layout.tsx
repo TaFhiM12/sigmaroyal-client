@@ -1,4 +1,4 @@
-import { Footer2 } from "@/components/layouts/footer2";
+
 import  Navbar1  from "@/components/layouts/navbar1";
 import React from "react";
 
@@ -13,8 +13,7 @@ export default function CommonLayout({
         <Navbar1 />
       </header>
 
-      <main className="">{children}</main>
-      <Footer2 />
+      <main className="h-screen">{children}</main>
     </div>
   );
 }

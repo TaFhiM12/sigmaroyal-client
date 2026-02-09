@@ -139,9 +139,9 @@ const HeroCarousel = ({
               className="object-cover"
               sizes="100vw"
             />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            {/* linear Overlay */}
+            <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
           </div>
 
           {/* Content */}

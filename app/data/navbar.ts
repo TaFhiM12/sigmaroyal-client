@@ -69,14 +69,13 @@ export const navbarMenu: NavbarMenu[] = [
       ],
     },
     {
-      title: "Clients",
-      url: "#",
-      items: [
-        { title: "Our Clients", url: "/clients" },
-        { title: "Testimonials", url: "/testimonials" },
-        { title: "Case Studies", url: "/case-studies" },
-      ],
-    },
+      title: "Clients", url: "/clients",},
+    //   items: [
+    //     { title: "Our Clients", url: "/clients" },
+    //     { title: "Testimonials", url: "/testimonials" },
+    //     { title: "Case Studies", url: "/case-studies" },
+    //   ],
+    // },
     {
       title: "Team",
       url: "#",
