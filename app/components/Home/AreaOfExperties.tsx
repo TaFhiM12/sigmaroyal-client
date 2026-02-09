@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, useInView, useAnimation, AnimatePresence, Variants } from "framer-motion";
 import { 
   Factory, 
@@ -32,12 +32,28 @@ interface AreaOfExpertiseProps {
   className?: string;
 }
 
+// Define specific tab keys as a type
+type ExpertiseTab = "oil-gas" | "power" | "process" | "engineering";
+
 const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
-  const [activeTab, setActiveTab] = useState("oil-gas");
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<ExpertiseTab>("oil-gas");
+  const [hoveredCard, setHoveredCard] = useState<ExpertiseTab | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
   const controls = useAnimation();
+
+  useEffect(() => {
+    // Check if mobile for performance optimization
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     if (isInView) {
@@ -45,11 +61,12 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     }
   }, [isInView, controls]);
 
-  const expertiseAreas: Record<string, ExpertiseAreaProps> = {
+  // Memoize expertise areas to prevent re-creation on every render
+  const expertiseAreas = useMemo(() => ({
     "oil-gas": {
       title: "Oil & Gas Sector",
       description: "Comprehensive solutions for natural gas, LPG, and LNG infrastructure with advanced pipeline technology",
-      icon: <Droplets className="h-6 w-6" />,
+      icon: <Droplets className="h-5 w-5 md:h-6 md:w-6" />,
       color: "from-red-600 to-red-700",
       features: [
         "Cross Country Pipeline Construction in NG, LPG & LNG Sector",
@@ -68,7 +85,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     "power": {
       title: "Power Sector",
       description: "End-to-end power plant construction and maintenance services with cutting-edge technology",
-      icon: <Zap className="h-6 w-6" />,
+      icon: <Zap className="h-5 w-5 md:h-6 md:w-6" />,
       color: "from-gray-600 to-gray-800",
       features: [
         "Fabrication, Erection, Installation & Commissioning of all piping, Tank, Structure",
@@ -86,7 +103,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     "process": {
       title: "Process Plant",
       description: "Specialized engineering for refineries and petrochemical facilities",
-      icon: <Factory className="h-6 w-6" />,
+      icon: <Factory className="h-5 w-5 md:h-6 md:w-6" />,
       color: "from-red-600 to-red-700",
       features: [
         "Refineries",
@@ -102,15 +119,15 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     "engineering": {
       title: "Engineering & Services",
       description: "Complete LPG solutions and specialized equipment for energy distribution",
-      icon: <Wrench className="h-6 w-6" />,
+      icon: <Wrench className="h-5 w-5 md:h-6 md:w-6" />,
       color: "from-gray-600 to-gray-800",
       features: [
-        "Complete set of auto LPG dispensing station equipment (Storage tank, pump, dispenser etc)",
+        "Complete set of auto LPG dispensing station equipment",
         "LPG solution for industry household and auto LPG station",
         "3 wheeler and 4 wheeler LPG kit",
         "LPG domestic meter",
-        "Bullet Tank, Carousel and other equipment in LPG mother plant & satellite plant",
-        "Bullet tank, fabrication & commissioning of spherical tank, LPG transportation line"
+        "Bullet Tank, Carousel and other equipment",
+        "Spherical tank fabrication & commissioning"
       ],
       highlights: [
         "Auto LPG Stations",
@@ -119,110 +136,132 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       ],
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070"
     }
-  };
+  }), []);
 
+  // Simplified animations for mobile performance
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: isMobile ? 0.05 : 0.1,
+        delayChildren: isMobile ? 0 : 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: isMobile ? 0.3 : 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const fadeUpVariants: Variants = {
+    hidden: { y: isMobile ? 10 : 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
+        duration: isMobile ? 0.4 : 0.8,
+        ease: "easeOut" as const,
       },
     },
   };
 
   const tabContentVariants: Variants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      x: 0,
+      opacity: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
+        duration: isMobile ? 0.3 : 0.5,
+        ease: "easeOut" as const,
       }
     },
-    exit: { opacity: 0, x: 20 }
   };
 
-  
+  const scaleVariants: Variants = {
+    hidden: { scale: 0.9, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
 
   return (
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-gray-50 via-white to-gray-50 py-24",
+        "relative overflow-hidden bg-linear-to-b from-gray-50 via-white to-gray-50 py-12 md:py-24",
         className
       )}
     >
-      {/* Simplified Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-red-600/10 to-transparent" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-500/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
-      
-      {/* Floating Elements - Simplified */}
-      <motion.div
-        animate={{ 
-          y: [0, -20, 0],
-          rotate: [0, 5, 0]
-        }}
-        transition={{ 
-          duration: 6, 
-          repeat: Infinity,
-          ease: "easeInOut" 
-        }}
-        className="absolute top-20 left-10 opacity-10"
-      >
-        <Wind className="h-40 w-40 text-gray-600" />
-      </motion.div>
+      {/* Simplified Background - Only on desktop */}
+      {!isMobile && (
+        <>
+          <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-red-600/10 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-500/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
+        </>
+      )}
+
+      {/* Only show floating animation on desktop */}
+      {!isMobile && (
+        <motion.div
+          animate={{ 
+            y: [0, -10, 0],
+          }}
+          transition={{ 
+            duration: 4, 
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-20 left-10 opacity-5"
+        >
+          <Wind className="h-40 w-40 text-gray-600" />
+        </motion.div>
+      )}
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header Section */}
+        {/* Header Section - Optimized */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-8 md:mb-16"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-4">
-            <div className="w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
-            <Sparkles className="h-5 w-5 text-red-600" />
-            <span className="text-sm font-semibold text-red-700 tracking-wider">
+          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-3 md:mb-4">
+            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
+            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+            <span className="text-xs md:text-sm font-semibold text-red-700 tracking-wider">
               CORE COMPETENCIES
             </span>
-            <div className="w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
           </motion.div>
 
           <motion.h2 
-            variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            variants={fadeUpVariants}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
           >
             <span className="text-gray-900">Areas of</span>
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800 ml-4">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800 ml-2 md:ml-4">
               Expertise
             </span>
           </motion.h2>
 
           <motion.p 
             variants={itemVariants}
-            className="text-lg text-gray-600 leading-relaxed"
+            className="text-base md:text-lg text-gray-600 leading-relaxed"
           >
             {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
-            delivering innovative solutions across multiple sectors with uncompromising 
-            quality and safety standards.
+            delivering innovative solutions with uncompromising quality and safety.
           </motion.p>
         </motion.div>
 
@@ -231,162 +270,143 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="grid lg:grid-cols-3 gap-8"
+          className="space-y-8 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0"
         >
           {/* Left Column - Tabs Navigation */}
-          <motion.div variants={itemVariants} className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4">
-              <div className="bg-linear-to-br from-gray-900 to-gray-800 p-6 rounded-2xl shadow-2xl">
-                <h3 className="text-xl font-bold text-white mb-6">Expertise Categories</h3>
+          <motion.div variants={fadeUpVariants} className="lg:col-span-1">
+            <div className="sticky top-24 space-y-3 md:space-y-4">
+              <div className="bg-linear-to-br from-gray-900 to-gray-800 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Expertise Categories</h3>
                 <div className="space-y-2">
-                  {Object.entries(expertiseAreas).map(([key, area]) => (
-                    <motion.button
+                  {(Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][]).map(([key, area]) => (
+                    <button
                       key={key}
                       onClick={() => setActiveTab(key)}
-                      onMouseEnter={() => setHoveredCard(key)}
-                      onMouseLeave={() => setHoveredCard(null)}
+                      onMouseEnter={() => !isMobile && setHoveredCard(key)}
+                      onMouseLeave={() => !isMobile && setHoveredCard(null)}
                       className={cn(
-                        "w-full text-left p-4 rounded-xl transition-all duration-300 group relative overflow-hidden",
+                        "w-full text-left p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-200",
                         activeTab === key 
-                          ? `bg-linear-to-r ${area.color} text-white shadow-lg` 
+                          ? `bg-linear-to-r ${area.color} text-white shadow-md` 
                           : "bg-white/10 text-gray-300 hover:bg-white/20"
                       )}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
                     >
-                      <div className="flex items-center gap-3 relative z-10">
+                      <div className="flex items-center gap-2 md:gap-3">
                         <div className={cn(
-                          "p-2 rounded-lg transition-colors",
+                          "p-1.5 md:p-2 rounded-md transition-colors",
                           activeTab === key ? "bg-white/20" : "bg-white/10"
                         )}>
                           {area.icon}
                         </div>
-                        <span className="font-semibold">{area.title}</span>
+                        <span className="text-sm md:text-base font-semibold">{area.title}</span>
                         <ArrowRight className={cn(
-                          "ml-auto h-4 w-4 transition-transform",
-                          activeTab === key ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
+                          "ml-auto h-3 w-3 md:h-4 md:w-4 transition-transform",
+                          activeTab === key ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
                         )} />
                       </div>
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
 
-                {/* Stats */}
-                <motion.div 
-                  variants={itemVariants}
-                  className="mt-8 pt-6 border-t border-white/20"
-                >
-                  <div className="grid grid-cols-2 gap-4">
+                {/* Stats - Simplified for mobile */}
+                <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-white/20">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-white">4</div>
+                      <div className="text-xl md:text-2xl font-bold text-white">4</div>
                       <div className="text-xs text-gray-400">Expertise Sectors</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-white">25+</div>
+                      <div className="text-xl md:text-2xl font-bold text-white">25+</div>
                       <div className="text-xs text-gray-400">Services</div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
 
           {/* Right Column - Tab Content */}
-          <motion.div 
-            variants={itemVariants}
-            className="lg:col-span-2"
-          >
+          <div className="lg:col-span-2">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
                 initial="hidden"
                 animate="visible"
-                exit="exit"
+                exit="hidden"
                 variants={tabContentVariants}
-                className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200"
+                className="bg-white rounded-xl md:rounded-2xl shadow-lg overflow-hidden border border-gray-200"
               >
                 {activeTab && expertiseAreas[activeTab] && (
                   <>
-                    {/* Content Header with Image */}
-                    <div className="relative h-48 md:h-56 overflow-hidden">
+                    {/* Content Header with Image - Optimized */}
+                    <div className="relative h-40 md:h-56 overflow-hidden">
                       <Image
                         src={expertiseAreas[activeTab].image || "/placeholder.jpg"}
                         alt={expertiseAreas[activeTab].title}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={activeTab === "oil-gas"}
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className={`p-2 rounded-lg bg-linear-to-br ${expertiseAreas[activeTab].color}`}>
+                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                        <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
+                          <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color}`}>
                             {expertiseAreas[activeTab].icon}
                           </div>
-                          <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
                             {expertiseAreas[activeTab].title}
                           </h3>
                         </div>
-                        <p className="text-gray-200">
+                        <p className="text-sm md:text-base text-gray-200 line-clamp-2">
                           {expertiseAreas[activeTab].description}
                         </p>
                       </div>
                     </div>
 
                     {/* Content Body */}
-                    <div className="p-6 md:p-8">
+                    <div className="p-4 md:p-6 lg:p-8">
                       {/* Highlights */}
-                      <div className="flex flex-wrap gap-3 mb-8">
-                        {expertiseAreas[activeTab].highlights.map((highlight, index) => (
-                          <motion.span
+                      <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
+                        {expertiseAreas[activeTab].highlights.map((highlight) => (
+                          <span
                             key={highlight}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.1 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-gray-50 to-white border border-gray-200 rounded-full text-sm font-medium"
+                            className="inline-flex items-center gap-1 md:gap-2 px-3 py-1.5 bg-linear-to-r from-gray-50 to-white border border-gray-200 rounded-full text-xs md:text-sm font-medium"
                           >
                             <CheckCircle className="h-3 w-3 text-red-600" />
                             {highlight}
-                          </motion.span>
+                          </span>
                         ))}
                       </div>
 
                       {/* Features List */}
-                      <div className="space-y-4">
-                        <h4 className="text-lg font-semibold text-gray-900 mb-4">Key Services</h4>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {expertiseAreas[activeTab].features.map((feature, index) => (
-                            <motion.div
+                      <div className="space-y-3 md:space-y-4">
+                        <h4 className="text-base md:text-lg font-semibold text-gray-900">Key Services</h4>
+                        <div className="space-y-2 md:space-y-3">
+                          {expertiseAreas[activeTab].features.map((feature) => (
+                            <div
                               key={feature}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.2 + index * 0.05 }}
-                              className="group flex items-start gap-3 p-4 rounded-lg hover:bg-red-50 transition-all duration-300 cursor-pointer"
-                              whileHover={{ x: 5 }}
+                              className="flex items-start gap-2 md:gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200"
                             >
-                              <div className={`p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
-                                <Shield className="h-4 w-4 text-white" />
+                              <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
+                                <Shield className="h-3 w-3 md:h-4 md:w-4 text-white" />
                               </div>
-                              <span className="text-gray-700 group-hover:text-gray-900">
+                              <span className="text-sm md:text-base text-gray-700">
                                 {feature}
                               </span>
-                            </motion.div>
+                            </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Projects Reference */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-8 pt-6 border-t border-gray-200"
-                      >
-                        <div className="flex items-center justify-between">
+                      <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-200">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                           <div>
-                            <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                            <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-2">
                               Featured Project
                             </h4>
-                            <p className="text-gray-600">
+                            <p className="text-sm md:text-base text-gray-600">
                               {activeTab === "oil-gas" 
                                 ? "07 Nos. capacity of 60 MMSCFD Project at B-baria"
                                 : activeTab === "power"
@@ -395,89 +415,80 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                               }
                             </p>
                           </div>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`px-6 py-3 rounded-lg bg-linear-to-r ${expertiseAreas[activeTab].color} text-white font-semibold hover:shadow-lg transition-shadow`}
+                          <button
+                            className={`px-4 py-2 md:px-6 md:py-3 rounded-lg bg-linear-to-r ${expertiseAreas[activeTab].color} text-white font-semibold text-sm md:text-base hover:shadow-md transition-shadow`}
                           >
                             View Projects
-                          </motion.button>
+                          </button>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   </>
                 )}
               </motion.div>
             </AnimatePresence>
 
-            {/* Additional Info */}
-            <motion.div
-              variants={itemVariants}
-              className="mt-8 grid md:grid-cols-3 gap-4"
-            >
-              <div className="bg-linear-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Cpu className="h-5 w-5 text-red-600" />
-                  <span className="font-semibold text-gray-900">Technology</span>
+            {/* Additional Info - Optimized */}
+            <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <Cpu className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <span className="text-sm md:text-base font-semibold text-gray-900">Technology</span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-gray-600">
                   Latest HDD, SCADA, and PLC systems ensuring precision and safety
                 </p>
               </div>
               
-              <div className="bg-linear-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Shield className="h-5 w-5 text-red-600" />
-                  <span className="font-semibold text-gray-900">Safety</span>
+              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <Shield className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <span className="text-sm md:text-base font-semibold text-gray-900">Safety</span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-gray-600">
                   ISO certified safety protocols with zero compromise on quality
                 </p>
               </div>
               
-              <div className="bg-linear-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200">
-                <div className="flex items-center gap-3 mb-3">
-                  <Sparkles className="h-5 w-5 text-red-600" />
-                  <span className="font-semibold text-gray-900">Innovation</span>
+              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                  <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <span className="text-sm md:text-base font-semibold text-gray-900">Innovation</span>
                 </div>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-gray-600">
                   Continuous R&D for sustainable and efficient energy solutions
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Floating Expertise Badges */}
+        {/* Floating Expertise Badges - Simplified */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0 }}
           animate={controls}
-          transition={{ delay: 0.8 }}
-          className="mt-16 flex flex-wrap justify-center gap-4"
+          transition={{ delay: 0.5 }}
+          className="mt-8 md:mt-16 flex flex-wrap justify-center gap-3"
         >
           {[
-            { icon: <Zap />, label: "Power Specialists", color: "border-gray-300 bg-gray-50" },
-            { icon: <Factory />, label: "Plant Engineering", color: "border-red-300 bg-red-50" },
-            { icon: <Droplets />, label: "LPG Solutions", color: "border-gray-300 bg-gray-50" },
-          ].map((badge, index) => (
-            <motion.div
+            { icon: <Zap className="h-4 w-4 md:h-5 md:w-5" />, label: "Power Specialists", color: "border-gray-300 bg-gray-50" },
+            { icon: <Factory className="h-4 w-4 md:h-5 md:w-5" />, label: "Plant Engineering", color: "border-red-300 bg-red-50" },
+            { icon: <Droplets className="h-4 w-4 md:h-5 md:w-5" />, label: "LPG Solutions", color: "border-gray-300 bg-gray-50" },
+          ].map((badge) => (
+            <div
               key={badge.label}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1 + index * 0.1 }}
-              whileHover={{ y: -5 }}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-full border",
+                "flex items-center gap-1 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border",
                 badge.color
               )}
             >
               <div className="text-gray-700">
                 {badge.icon}
               </div>
-              <span className="text-sm font-medium text-gray-800">
+              <span className="text-xs md:text-sm font-medium text-gray-800">
                 {badge.label}
               </span>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
       </div>

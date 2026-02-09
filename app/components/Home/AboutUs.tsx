@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation, Variants } from "framer-motion";
 import { Briefcase, Users, Target, Award, ChevronRight, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,7 +36,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
   }, [isInView, controls]);
 
   // Simplified animations for mobile performance
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -47,46 +47,51 @@ const AboutUs = ({ className }: AboutUsProps) => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         duration: isMobile ? 0.3 : 0.6,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const fadeUpVariants = {
+  const fadeUpVariants: Variants = {
     hidden: { y: isMobile ? 10 : 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
         duration: isMobile ? 0.4 : 0.8,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  const scaleVariants = {
+  const scaleVariants: Variants = {
     hidden: { scale: 0.9, opacity: 0 },
     visible: {
       scale: 1,
       opacity: 1,
       transition: {
         duration: isMobile ? 0.4 : 0.8,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
 
-  // Performance-optimized animations for mobile
-  const mobileAnimationConfig = {
-    initial: "hidden",
-    animate: controls,
-    variants: isMobile ? fadeUpVariants : containerVariants,
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "easeOut" as const,
+      }
+    }
   };
 
   return (
@@ -290,7 +295,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
           className="mt-12 md:mt-24 space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8"
         >
           {/* Mission Card */}
-          <motion.div variants={fadeUpVariants} className="relative">
+          <motion.div variants={cardVariants} className="relative">
             <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="p-2 md:p-3 bg-red-50 rounded-lg">
@@ -312,7 +317,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
           </motion.div>
 
           {/* Vision Card */}
-          <motion.div variants={fadeUpVariants} className="relative">
+          <motion.div variants={cardVariants} className="relative">
             <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="p-2 md:p-3 bg-gray-50 rounded-lg">
