@@ -53,7 +53,7 @@ export default function CertificateProcess() {
                       <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-700 -translate-x-1/2" />
                     )}
                     <div className="flex items-start gap-4">
-                      <div className="flex-shrink-0">
+                      <div className="shrink-0">
                         <div className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center text-white text-lg font-bold">
                           {step.number}
                         </div>
@@ -83,7 +83,7 @@ export default function CertificateProcess() {
                       Continuous Improvement
                     </h3>
                     <p className="text-gray-300">
-                      Our commitment to quality extends beyond certification - it's embedded in our culture
+                      Our commitment to quality extends beyond certification - it&apos;s embedded in our culture
                     </p>
                   </div>
                   <div className="flex items-center gap-4">
