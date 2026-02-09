@@ -22,11 +22,11 @@ export default function ClientLogos() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
             <span className="text-sm font-semibold text-red-700 tracking-wider">
               TRUSTED BY INDUSTRY LEADERS
             </span>
-            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">

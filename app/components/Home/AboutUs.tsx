@@ -100,7 +100,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-24",
+        "relative overflow-hidden bg-linear-to-b from-gray-50 to-white py-24",
         className
       )}
     >
@@ -128,7 +128,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 <span className="text-gray-900">Pioneering</span>
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
                   Energy Excellence
                 </span>
               </h2>
@@ -158,7 +158,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 {/* Highlight underline effect */}
                 <motion.div
                   variants={highlightVariants}
-                  className="absolute -bottom-2 left-0 h-0.5 bg-gradient-to-r from-red-600/50 to-transparent"
+                  className="absolute -bottom-2 left-0 h-0.5 bg-linear-to-r from-red-600/50 to-transparent"
                 />
               </div>
             </motion.div>
@@ -189,7 +189,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     className="group bg-white p-6 rounded-xl border border-gray-200 hover:border-red-300 transition-all duration-300 hover:shadow-xl cursor-pointer"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="shrink-0 w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <div className="shrink-0 w-12 h-12 bg-linear-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <Briefcase className="h-6 w-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -250,7 +250,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                   <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-transparent">
                     <div
                       className={cn(
-                        "absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500",
+                        "absolute inset-0 rounded-xl bg-linear-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500",
                         stat.color
                       )}
                     />
@@ -258,7 +258,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                       <div className="flex items-center justify-between mb-4">
                         <div
                           className={cn(
-                            "p-3 rounded-lg bg-gradient-to-br",
+                            "p-3 rounded-lg bg-linear-to-br",
                             stat.color
                           )}
                         >
@@ -285,7 +285,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <Button
                 asChild
                 size="lg"
-                className="group bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-8 py-6 text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                className="group bg-linear-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-8 py-6 text-lg rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 <a href="/about">
                   <span className="mr-3">Discover Our Journey</span>
@@ -305,7 +305,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
         >
           {/* Mission Card */}
           <motion.div variants={cardVariants} className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-red-600 to-gray-700 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000 group-hover:duration-200" />
+            <div className="absolute -inset-0.5 bg-linear-to-r from-red-600 to-gray-700 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000 group-hover:duration-200" />
             <div className="relative bg-white p-8 rounded-2xl border border-gray-200">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="p-3 bg-red-50 rounded-lg">
@@ -328,7 +328,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
 
           {/* Vision Card */}
           <motion.div variants={cardVariants} className="relative group">
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-gray-700 to-red-600 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000 group-hover:duration-200" />
+            <div className="absolute -inset-0.5 bg-linear-to-r from-gray-700 to-red-600 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000 group-hover:duration-200" />
             <div className="relative bg-white p-8 rounded-2xl border border-gray-200">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="p-3 bg-gray-50 rounded-lg">
@@ -356,7 +356,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
           initial={{ width: 0 }}
           animate={controls}
           transition={{ delay: 1, duration: 1.5 }}
-          className="mt-16 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent rounded-full"
+          className="mt-16 h-1 bg-linear-to-r from-transparent via-red-600 to-transparent rounded-full"
         />
       </div>
     </section>

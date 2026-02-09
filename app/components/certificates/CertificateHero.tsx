@@ -3,10 +3,10 @@ import { Shield, Award, FileCheck } from 'lucide-react';
 
 export default function CertificateHero() {
   return (
-    <section className="relative bg-gradient-to-br from-gray-900 via-gray-900 to-black py-20 md:py-24">
+    <section className="relative bg-linear-to-br from-gray-900 via-gray-900 to-black py-20 md:py-24">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2074')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/80 to-transparent" />
       </div>
       
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
@@ -20,7 +20,7 @@ export default function CertificateHero() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Our
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-500 ml-4">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-500 ml-4">
               Certifications
             </span>
           </h1>

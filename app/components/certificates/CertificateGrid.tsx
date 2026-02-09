@@ -23,11 +23,11 @@ export default function CertificateGrid({ certificates }: CertificateGridProps) 
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+              <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
               <span className="text-sm font-semibold text-red-700 tracking-wider">
                 RECOGNIZED STANDARDS
               </span>
-              <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+              <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -52,14 +52,14 @@ export default function CertificateGrid({ certificates }: CertificateGridProps) 
                     fill
                     className="object-contain p-6 group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute top-4 right-4 w-10 h-10 bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <ZoomIn className="h-5 w-5 text-white" />
                   </div>
                 </div>
                 <div className="p-6">
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
+                    <div className="shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
                       {index % 3 === 0 ? (
                         <Shield className="h-5 w-5 text-red-600" />
                       ) : index % 3 === 1 ? (

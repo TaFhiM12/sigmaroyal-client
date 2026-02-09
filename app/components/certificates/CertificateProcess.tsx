@@ -33,7 +33,7 @@ export default function CertificateProcess() {
     <section className="py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden">
+          <div className="bg-linear-to-br from-gray-900 to-black rounded-2xl overflow-hidden">
             <div className="p-8 md:p-12 lg:p-16">
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle className="h-6 w-6 text-red-400" />
@@ -43,7 +43,7 @@ export default function CertificateProcess() {
               </div>
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">
-                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">Certification</span> Journey
+                Our <span className="text-transparent bg-clip-text bg-linear-to-r from-red-400 to-red-300">Certification</span> Journey
               </h2>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

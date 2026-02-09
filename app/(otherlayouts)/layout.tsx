@@ -8,8 +8,7 @@ export default function CommonLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col">
         {/* Static Navbar */}
         <Navbar1 />
 
@@ -20,7 +19,6 @@ export default function CommonLayout({
 
         {/* Footer at bottom */}
         <Footer2 />
-      </body>
-    </html>
+      </div>
   );
 }
