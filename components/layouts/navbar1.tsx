@@ -28,8 +28,6 @@ interface MenuItem {
   items?: MenuItem[];
 }
 
-
-
 const Navbar1 = ({
   logo = navbarLogo,
   menu = navbarMenu,
@@ -37,6 +35,8 @@ const Navbar1 = ({
 }: Navbar1Props) => {
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
   const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
@@ -45,7 +45,6 @@ const Navbar1 = ({
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      // Close dropdown if clicked outside
       if (activeDropdown) {
         const dropdownElement = dropdownRefs.current[activeDropdown];
         if (dropdownElement && !dropdownElement.contains(event.target as Node)) {
@@ -72,13 +71,18 @@ const Navbar1 = ({
     setActiveDropdown(activeDropdown === menuTitle ? null : menuTitle);
   };
 
+  const handleMobileLinkClick = () => {
+    // Close the accordion and sheet when a link is clicked
+    setOpenAccordion(null);
+    setSheetOpen(false);
+  };
+
   const DesktopDropdown = ({ item }: { item: MenuItem }) => {
     if (!item.items) return null;
 
     return (
       <div 
         ref={(el) => {
-          // Store the ref without returning anything
           dropdownRefs.current[item.title] = el;
         }}
         className={cn(
@@ -134,7 +138,6 @@ const Navbar1 = ({
               activeDropdown === item.title && "rotate-180"
             )} />
             
-            {/* Active indicator */}
             <div className={cn(
               "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300",
               activeDropdown === item.title && "w-4/5"
@@ -158,7 +161,6 @@ const Navbar1 = ({
         )}
       >
         {item.title}
-        {/* Hover indicator */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-4/5" />
       </Link>
     );
@@ -178,6 +180,7 @@ const Navbar1 = ({
               "text-gray-800",
               hoverTextColorClass,
             )}
+            onClick={() => setOpenAccordion(openAccordion === item.title ? null : item.title)}
           >
             {item.title}
           </AccordionTrigger>
@@ -187,6 +190,7 @@ const Navbar1 = ({
                 <Link
                   key={subItem.title}
                   href={subItem.url}
+                  onClick={handleMobileLinkClick}
                   className="flex flex-col rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-red-50 hover:text-red-700 text-gray-800"
                 >
                   <div className="text-sm font-medium">{subItem.title}</div>
@@ -207,6 +211,7 @@ const Navbar1 = ({
       <Link
         key={item.title}
         href={item.url}
+        onClick={handleMobileLinkClick}
         className={cn(
           "text-sm font-semibold transition-colors duration-200 py-4 border-b border-gray-100 last:border-b-0",
           "text-gray-800",
@@ -231,7 +236,6 @@ const Navbar1 = ({
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
-          {/* Logo with Enhanced Company Name */}
           <Link
             href={logo.url}
             className={cn(
@@ -276,15 +280,11 @@ const Navbar1 = ({
           <div className="flex items-center space-x-1">
             {menu.map((item) => renderMenuItem(item))}
           </div>
-
-          {/* Contact Button */}
-          
         </nav>
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
           <div className="flex items-center justify-between">
-            {/* Logo with Full Company Name - Mobile */}
             <Link
               href={logo.url}
               className={cn(
@@ -310,14 +310,11 @@ const Navbar1 = ({
                 >
                   The Royal Utilisation Services (Pvt.) Ltd
                 </span>
-                
               </div>
             </Link>
             
             <div className="flex items-center gap-2">
-              
-              
-              <Sheet>
+              <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
                 <SheetTrigger asChild>
                   <button 
                     className={cn(
@@ -337,11 +334,15 @@ const Navbar1 = ({
                   <div className="h-full flex flex-col">
                     <SheetHeader className="p-6 border-b border-gray-100 bg-white">
                       <SheetTitle>
-                        <Link href={logo.url} className={cn(
-                          "flex items-center gap-2 transition-colors duration-200",
-                          "text-gray-900",
-                          hoverTextColorClass
-                        )}>
+                        <Link 
+                          href={logo.url} 
+                          onClick={() => setSheetOpen(false)}
+                          className={cn(
+                            "flex items-center gap-2 transition-colors duration-200",
+                            "text-gray-900",
+                            hoverTextColorClass
+                          )}
+                        >
                           <Image
                             width={60}
                             height={30}
@@ -363,6 +364,8 @@ const Navbar1 = ({
                         <Accordion
                           type="single"
                           collapsible
+                          value={openAccordion || ""}
+                          onValueChange={(value) => setOpenAccordion(value)}
                           className="flex w-full flex-col"
                         >
                           {menu.map((item) => renderMobileMenuItem(item))}
@@ -370,24 +373,24 @@ const Navbar1 = ({
                       </div>
                     </div>
                     
-                    {/* Mobile Footer */}
                     <div className="p-6 bg-white border-t border-gray-100">
                       <div className="grid grid-cols-2 gap-3">
                         <Link 
                           href="/certifications" 
+                          onClick={handleMobileLinkClick}
                           className="text-sm font-medium text-white bg-gray-800 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Certifications
                         </Link>
                         <Link 
                           href="/contact" 
+                          onClick={handleMobileLinkClick}
                           className="text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Get Quote
                         </Link>
                       </div>
                       
-                      {/* Contact Info */}
                       <div className="mt-6 text-xs text-gray-600">
                         <p className="font-semibold mb-2">Contact Info:</p>
                         <p>Email: info@sigma-royal.com</p>
