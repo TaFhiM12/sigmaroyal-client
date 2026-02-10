@@ -33,7 +33,7 @@ export default function HeroBanner() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070')",
+          backgroundImage: "url('/banner/banner.jpeg')",
           backgroundAttachment: "fixed",
         }}
       >
