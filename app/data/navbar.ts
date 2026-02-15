@@ -48,14 +48,7 @@ export const navbarMenu: NavbarMenu[] = [
     { title: "Certificates", url: "/certificates" },
     {
       title: "Projects",
-      url: "#",
-      items: [
-        { title: "All Projects", url: "/projects" },
-        { title: "Oil & Gas Projects", url: "/projects/oil-gas" },
-        { title: "Power Plant Projects", url: "/projects/power" },
-        { title: "Completed Projects", url: "/projects/completed" },
-        { title: "Ongoing Projects", url: "/projects/ongoing" },
-      ],
+      url: "/projects",
     },
     {
       title: "Resources",
