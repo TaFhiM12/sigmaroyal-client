@@ -106,12 +106,13 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
         <section className="relative">
           <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl py-8 mb-16 border-b border-gray-100">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 tracking-tight wrap-break-word">
+
                     IN PROGRESS
                   </h2>
                   <p className="text-gray-500 text-lg mt-2 flex items-center gap-2">
@@ -144,12 +145,12 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
         <section className="relative">
           <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl py-8 mb-16 border-b border-gray-100">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl flex items-center justify-center">
                   <Award className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-gray-900 tracking-tight wrap-break-word">
                     COMPLETED
                   </h2>
                   <p className="text-gray-500 text-lg mt-2">
@@ -220,7 +221,8 @@ function OngoingFeature({
     >
       <div className="relative grid lg:grid-cols-2 gap-8 items-center">
         {/* Image */}
-        <div className={`relative lg:order-${index % 2 === 0 ? '1' : '2'}`}>
+        <div
+  className={`relative ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
             {imageUrl ? (
               <Image
@@ -269,7 +271,8 @@ function OngoingFeature({
         </div>
 
         {/* Content */}
-        <div className={`lg:order-${index % 2 === 0 ? '2' : '1'} space-y-4`}>
+        <div className={`${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} space-y-4`}>
+
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className={`px-2 py-1 bg-gradient-to-r ${sectorColors.gradient} text-white rounded-full text-xs font-medium`}>
