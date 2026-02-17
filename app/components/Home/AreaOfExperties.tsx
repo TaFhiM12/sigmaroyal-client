@@ -80,7 +80,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "42-inch Pipeline",
         "Safety Certified"
       ],
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070"
+      image: "/banner/banner1.jpeg"
     },
     "power": {
       title: "Power Sector",
@@ -98,7 +98,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "SCADA Systems",
         "Turnkey Solutions"
       ],
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070"
+      image: "/banner/banner1.jpeg"
     },
     "process": {
       title: "Process Plant",
@@ -114,7 +114,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "Chemical Processing",
         "Safety Standards"
       ],
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070"
+      image: "/banner/banner1.jpeg"
     },
     "engineering": {
       title: "Engineering & Services",
@@ -134,7 +134,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "Spherical Tanks",
         "Turnkey Solutions"
       ],
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070"
+      image: "/banner/banner1.jpeg"
     }
   }), []);
 

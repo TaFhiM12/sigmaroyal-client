@@ -210,7 +210,7 @@ const HeroCarousel = ({
                     animate="visible"
                     exit="exit"
                   >
-                    <span className="inline-flex items-center gap-2 bg-red-600/15 border border-red-600/40 text-red-400 text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full backdrop-blur-sm">
+                    <span className="inline-flex items-center gap-2 bg-red-600/15 border border-red-600/40 text-red-400 text-[8px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full backdrop-blur-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                       {slide.subtitle}
                     </span>
@@ -224,8 +224,8 @@ const HeroCarousel = ({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight text-white"
-                  style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-[0.95] tracking-tight text-white"
+                  
                 >
                   {slide.title}
                 </motion.h1>
@@ -238,7 +238,7 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="text-sm md:text-base lg:text-lg text-white/60 max-w-lg leading-relaxed font-light tracking-wide"
+                    className="text-xs md:text-sm lg:text-base text-white/60 max-w-lg leading-relaxed font-light tracking-wide"
                   >
                     {slide.description}
                   </motion.p>
@@ -256,7 +256,7 @@ const HeroCarousel = ({
                   >
                     <Button
                       asChild
-                      className="group relative bg-red-600 hover:bg-red-700 text-white px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-none font-semibold tracking-wide transition-all duration-300 overflow-hidden border-0"
+                      className="group relative bg-red-600 hover:bg-red-700 text-white px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 overflow-hidden border-0"
                     >
                       <a href={slide.ctaLink || "#"} className="flex items-center gap-2">
                         <span className="relative z-10">{slide.ctaText}</span>
@@ -268,7 +268,7 @@ const HeroCarousel = ({
                     <Button
                       asChild
                       variant="outline"
-                      className="group bg-transparent border border-white/25 hover:border-white/60 text-white hover:bg-white/8 px-6 md:px-8 py-5 md:py-6 text-sm md:text-base rounded-none font-semibold tracking-wide transition-all duration-300 backdrop-blur-sm"
+                      className="group bg-transparent border border-white/25 hover:border-white/60 text-white hover:bg-white/8 px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 backdrop-blur-sm"
                     >
                       <a href="#contact">Contact Us</a>
                     </Button>

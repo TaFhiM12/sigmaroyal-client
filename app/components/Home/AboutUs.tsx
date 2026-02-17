@@ -6,6 +6,7 @@ import { Briefcase, Users, Target, Award, ChevronRight, Eye } from "lucide-react
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import yearsExperience from "@/lib/yearsExperience";
+import Link from "next/link";
 
 interface AboutUsProps {
   className?: string;
@@ -278,10 +279,10 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 size={isMobile ? "default" : "lg"}
                 className="w-full md:w-auto group bg-linear-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl font-semibold transition-all duration-300"
               >
-                <a href="/about">
-                  <span className="mr-2 md:mr-3">Discover Our Journey</span>
+                <Link href="/about">
+                  <span className="mr-2 md:mr-3 text-xs sm:text-sm md:text-base lg:text-lg">Discover Our Journey</span>
                   <ChevronRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 md:group-hover:translate-x-2 transition-transform" />
-                </a>
+                </Link>
               </Button>
             </motion.div>
           </div>

@@ -175,6 +175,7 @@ const Navbar1 = ({
           className="border-b border-gray-100 last:border-b-0"
         >
           <AccordionTrigger
+          style={{ fontFamily: "Inter, sans-serif" }}
             className={cn(
               "text-sm py-4 font-semibold hover:no-underline transition-colors duration-200",
               "text-gray-800",
@@ -211,6 +212,7 @@ const Navbar1 = ({
       <Link
         key={item.title}
         href={item.url}
+        style={{ fontFamily: "Inter, sans-serif" }}
         onClick={handleMobileLinkClick}
         className={cn(
           "text-sm font-semibold transition-colors duration-200 py-4 border-b border-gray-100 last:border-b-0",
