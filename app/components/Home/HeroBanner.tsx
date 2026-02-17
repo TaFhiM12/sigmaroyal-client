@@ -29,11 +29,10 @@ export default function HeroBanner() {
 
   return (
     <section className="relative h-100 md:h-112.5 overflow-hidden">
-      {/* Background Image with Parallax Effect */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/banner/banner.jpeg')",
+          backgroundImage: "url('/banner/banner1.jpeg')",
           backgroundAttachment: "fixed",
         }}
       >

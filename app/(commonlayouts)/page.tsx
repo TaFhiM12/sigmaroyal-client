@@ -4,71 +4,19 @@ import AreaOfExpertise from '../components/Home/AreaOfExperties';
 import HeroCarousel from '../components/Home/HeroCarousole';
 
 export default function Home() {
-  const currentYear = new Date().getFullYear();
-  const startYear = 1977;
-  const yearsExperience = currentYear - startYear;
-  const customSlides = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
-      title: "The Royal Utilisation Services (Pvt.) Ltd",
-      subtitle: `${yearsExperience}+ Years of Excellence`,
-      description: "Pioneer in energy sector with comprehensive infrastructure development in Oil, Gas & Power since 1977",
-      ctaText: "View Our Projects",
-      ctaLink: "/projects",
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070",
-      title: "Cross Country Pipeline Experts",
-      subtitle: "HDD River Crossing",
-      description: "Specialized construction of 42-inch high pressure natural gas pipelines using horizontal directional drilling",
-      ctaText: "Our Expertise",
-      ctaLink: "/expertise",
-    },
-    {
-      id: 3,
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070",
-      title: "Complete LPG Solutions",
-      subtitle: "End-to-End Services",
-      description: "Auto LPG stations, industrial & household systems, storage tanks, and complete reticulated systems",
-      ctaText: "Explore Solutions",
-      ctaLink: "/solutions",
-    },
-    {
-      id: 4,
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
-      title: "Power Plant Construction",
-      subtitle: "588.31 MW CCPP Project",
-      description: "Fabrication & construction of Balance of Plant including steam, fuel, and lube oil pipelines",
-      ctaText: "Power Projects",
-      ctaLink: "/projects/power",
-    },
-    {
-      id: 5,
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
-      title: "Trusted by Industry Leaders",
-      subtitle: "Government & Private Sector",
-      description: "Serving CPP, SGFL, Petrobangla, Titas Gas, and other major clients across Bangladesh",
-      ctaText: "Our Clients",
-      ctaLink: "/clients",
-    },
-  ];
-
   return (
-    <>
-      
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <HeroCarousel 
-        slides={customSlides}
         autoPlayInterval={6000}
-        showControls={true}
-        showIndicators={true}
         showProgressBar={true}
       />
       
-      <AboutUs/>
-      <AreaOfExpertise />
-      <Footer2 />
-    </>
+      {/* Add smooth scroll behavior */}
+      <div className="relative z-10">
+        <AboutUs/>
+        <AreaOfExpertise />
+        <Footer2 />
+      </div>
+    </main>
   );
 }

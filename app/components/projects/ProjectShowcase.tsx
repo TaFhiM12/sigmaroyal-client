@@ -11,13 +11,9 @@ import {
   Droplets,
   Zap,
   Sparkles,
-  CheckCircle,
   Clock,
-  Users,
-  Shield,
   Award,
   Building2,
-  Ruler,
   Eye
 } from 'lucide-react';
 import { Project } from '@/types/projects';
@@ -41,19 +37,19 @@ const getSectorColor = (sector: string) => {
     bg: string; 
     text: string; 
     border: string; 
-    gradient: string;
+    linear: string;
   }> = {
     OIL_GAS: { 
       bg: 'bg-red-50', 
       text: 'text-red-700', 
       border: 'border-red-200',
-      gradient: 'from-red-600 to-red-700',
+      linear: 'from-red-600 to-red-700',
     },
     POWER_SECTOR: { 
       bg: 'bg-gray-50', 
       text: 'text-gray-700', 
       border: 'border-gray-200',
-      gradient: 'from-gray-600 to-gray-800',
+      linear: 'from-gray-600 to-gray-800',
     },
   };
   return colors[sector] || colors.OIL_GAS;
@@ -87,7 +83,7 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
         animate={{ opacity: 1 }}
         className="text-center py-32"
       >
-        <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-red-50 to-gray-50 rounded-full mb-8">
+        <div className="inline-flex items-center justify-center w-32 h-32 bg-linear-to-br from-red-50 to-gray-50 rounded-full mb-8">
           <Sparkles className="h-16 w-16 text-red-400" />
         </div>
         <h3 className="text-4xl font-light text-gray-900 mb-4">No projects found</h3>
@@ -107,7 +103,7 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
           <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl py-8 mb-16 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center">
+                <div className="w-16 h-16 bg-linear-to-br from-red-600 to-red-700 rounded-2xl shadow-2xl flex items-center justify-center">
                   <Clock className="h-8 w-8 text-white" />
                 </div>
                 <div>
@@ -146,7 +142,7 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
           <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl py-8 mb-16 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl flex items-center justify-center">
+                <div className="w-16 h-16 bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl flex items-center justify-center">
                   <Award className="h-8 w-8 text-white" />
                 </div>
                 <div>
@@ -194,7 +190,6 @@ export function ProjectShowcase({ projects, loading, onProjectClick }: ProjectSh
 function OngoingFeature({ 
   project, 
   index, 
-  isHovered,
   onHover,
   onLeave,
   onClick 
@@ -223,7 +218,7 @@ function OngoingFeature({
         {/* Image */}
         <div
   className={`relative ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
             {imageUrl ? (
               <Image
                 src={imageUrl}
@@ -234,7 +229,7 @@ function OngoingFeature({
                 unoptimized
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+              <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
                 <div className="text-center">
                   <div className="text-7xl mb-3 text-gray-400">🏗️</div>
                   <p className="text-sm text-gray-500">Project visualization</p>
@@ -242,7 +237,7 @@ function OngoingFeature({
               </div>
             )}
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
             
             {/* Status Badge */}
             <div className="absolute top-4 left-4">
@@ -275,7 +270,7 @@ function OngoingFeature({
 
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className={`px-2 py-1 bg-gradient-to-r ${sectorColors.gradient} text-white rounded-full text-xs font-medium`}>
+              <span className={`px-2 py-1 bg-linear-to-r ${sectorColors.linear} text-white rounded-full text-xs font-medium`}>
                 {project.sector === 'OIL_GAS' ? 'OIL & GAS' : 'POWER'}
               </span>
               {project.featured && (
@@ -333,7 +328,7 @@ function CompletedHero({ project, onClick }: { project: Project; onClick: () => 
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.02 }}
       onClick={onClick}
-      className="group relative cursor-pointer rounded-3xl overflow-hidden h-[500px] shadow-2xl"
+      className="group relative cursor-pointer rounded-3xl overflow-hidden h-125 shadow-2xl"
     >
       {imageUrl ? (
         <Image
@@ -346,7 +341,7 @@ function CompletedHero({ project, onClick }: { project: Project; onClick: () => 
           unoptimized
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+        <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-800 to-gray-900">
           <div className="text-center text-white/30">
             <div className="text-9xl mb-6">🏆</div>
             <p className="text-2xl">Completed Project</p>
@@ -354,13 +349,13 @@ function CompletedHero({ project, onClick }: { project: Project; onClick: () => 
         </div>
       )}
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
       
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3 mb-4">
-            <span className={`px-3 py-1 bg-gradient-to-r ${sectorColors.gradient} text-white rounded-full text-sm font-medium`}>
+            <span className={`px-3 py-1 bg-linear-to-r ${sectorColors.linear} text-white rounded-full text-sm font-medium`}>
               {project.sector === 'OIL_GAS' ? 'Oil & Gas' : 'Power'}
             </span>
             {project.featured && (
@@ -434,7 +429,7 @@ function CompletedGridItem({
               unoptimized
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+            <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
               <div className="text-5xl text-gray-400">🏆</div>
             </div>
           )}
@@ -499,7 +494,7 @@ function ShowcaseSkeleton() {
         <div className="space-y-24">
           {[1, 2].map(i => (
             <div key={i} className="grid lg:grid-cols-2 gap-8">
-              <div className="aspect-[4/3] bg-gray-200 rounded-3xl animate-pulse" />
+              <div className="aspect-4/3 bg-gray-200 rounded-3xl animate-pulse" />
               <div className="space-y-4">
                 <div className="h-8 bg-gray-200 rounded w-3/4 animate-pulse" />
                 <div className="h-4 bg-gray-200 rounded animate-pulse" />
@@ -514,7 +509,7 @@ function ShowcaseSkeleton() {
         <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-xl py-8 mb-16">
           <div className="w-64 h-16 bg-gray-200 rounded-2xl animate-pulse" />
         </div>
-        <div className="h-[500px] bg-gray-200 rounded-3xl mb-12 animate-pulse" />
+        <div className="h-125 bg-gray-200 rounded-3xl mb-12 animate-pulse" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3].map(i => (
             <div key={i} className="h-80 bg-gray-200 rounded-2xl animate-pulse" />

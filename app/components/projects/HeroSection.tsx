@@ -1,25 +1,18 @@
-// app/components/projects/HeroSection.tsx (Fixed gradient classes)
 'use client';
 
+import { HeroSectionProps } from '@/types/heroSectionProps';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
-interface HeroSectionProps {
-  stats: {
-    total: number;
-    completed: number;
-    ongoing: number;
-    sectors: number;
-  };
-}
+
 
 export function HeroSection({ stats }: HeroSectionProps) {
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center bg-white overflow-hidden">
-      {/* Minimal background - Fixed gradient classes */}
+      {/* Minimal background - Fixed linear classes */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-gray-50 to-transparent" />
-        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-gray-50 to-transparent" />
+        <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-linear-to-br from-gray-50 to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-linear-to-tl from-gray-50 to-transparent" />
       </div>
 
       <div className="container relative mx-auto px-4 py-24">
