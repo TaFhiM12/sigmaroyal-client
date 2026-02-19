@@ -4,6 +4,10 @@ import { ProjectsSkeleton } from '@/app/components/projects/ProjectsSkeleton';
 import { ProjectsResponse } from '@/types/projects';
 import ProjectsClient from '@/app/components/projects/ProjectClients';
 
+export const metadata = {
+  title: "RUSL | Project",
+};
+
 export const revalidate = 3600;
 
 async function getProjects(): Promise<ProjectsResponse | null> {

@@ -5,6 +5,10 @@ import ContactInfo from "@/app/components/contact/ContactInfo";
 import ContactMap from "@/app/components/contact/ContactMap";
 
 
+export const metadata = {
+  title: "RUSL | Contact",
+};
+
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
