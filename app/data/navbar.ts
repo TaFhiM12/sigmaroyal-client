@@ -13,10 +13,11 @@ export const navbarMenu: NavbarMenu[] = [
       title: "About",
       url: "#",
       items: [
-        { title: "About Us", url: "/about" },
-        { title: "Our Team", url: "/team" },
+        { title: "Preface", url: "/preface" },
+        { title: "Company Portfolio", url: "/portfolio" },
         { title: "Mission & Vision", url: "/mission-vision" },
-        { title: "Why Choose Us", url: "/why-choose-us" },
+        { title: "Our Strength", url: "/our-strength" },
+        { title: "At a Glance", url: "/at-a-glance" },
       ],
     },
     {
@@ -62,23 +63,13 @@ export const navbarMenu: NavbarMenu[] = [
       ],
     },
     {
-      title: "Clients", url: "/clients",},
-    //   items: [
-    //     { title: "Our Clients", url: "/clients" },
-    //     { title: "Testimonials", url: "/testimonials" },
-    //     { title: "Case Studies", url: "/case-studies" },
-    //   ],
-    // },
+      title: "Clients", url: "/clients"},
     {
       title: "Team",
       url: "#",
       items: [
         { title: "Core Management", url: "/team/core-management" },
         { title: "HR & Admin", url: "/team/hr-admin" },
-        { title: "Accounts & Finance", url: "/team/accounts-finance" },
-        { title: "All Engineers", url: "/team/engineers" },
-        { title: "All Officers", url: "/team/officers" },
-        { title: "All Members", url: "/team/members" },
       ],
     },
     {

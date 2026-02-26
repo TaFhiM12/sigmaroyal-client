@@ -30,7 +30,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     ongoing: 0,
     sectors: 0
   });
-  console.log(stats);
+  // console.log(stats);
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');

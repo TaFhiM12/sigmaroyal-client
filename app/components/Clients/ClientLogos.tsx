@@ -59,7 +59,7 @@ export default function ClientShowcase() {
   };
 
   return (
-    <section ref={containerRef} className="py-12 md:py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section ref={containerRef} className="py-12 md:py-20 lg:py-28 bg-linear-to-b from-gray-50 to-white relative overflow-hidden">
       {/* Abstract Background Pattern */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-64 md:w-125 h-64 md:h-125 bg-red-100 rounded-full blur-3xl opacity-20" />
@@ -67,7 +67,7 @@ export default function ClientShowcase() {
         
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-30 md:opacity-100" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #e5e7eb 1px, transparent 0)',
+          backgroundImage: 'radial-linear(circle at 1px 1px, #e5e7eb 1px, transparent 0)',
           backgroundSize: '20px 20px md:40px 40px'
         }} />
       </div>
@@ -89,14 +89,14 @@ export default function ClientShowcase() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-3 md:mb-4 px-2">
               Trusted by 
               <span className="relative ml-2 md:ml-3 block sm:inline">
-                <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
                   National Energy Leaders
                 </span>
                 <motion.span
                   initial={{ width: 0 }}
                   animate={isInView ? { width: '100%' } : {}}
                   transition={{ delay: 0.8, duration: 0.6 }}
-                  className="absolute -bottom-2 left-0 h-0.5 md:h-1 bg-gradient-to-r from-red-600 to-red-300 rounded-full"
+                  className="absolute -bottom-2 left-0 h-0.5 md:h-1 bg-linear-to-r from-red-600 to-red-300 rounded-full"
                 />
               </span>
             </h2>
@@ -132,7 +132,7 @@ export default function ClientShowcase() {
         <div className="max-w-6xl mx-auto">
           {/* Client Spotlight - With touch support for mobile */}
           <div 
-            className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-8 lg:p-12 overflow-hidden"
+            className="relative bg-linear-to-br from-gray-900 to-gray-800 rounded-2xl md:rounded-3xl p-4 md:p-8 lg:p-12 overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={handleTouchStart}
@@ -142,7 +142,7 @@ export default function ClientShowcase() {
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-5 md:opacity-10">
               <div className="absolute inset-0" style={{
-                backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                backgroundImage: 'radial-linear(circle at 2px 2px, white 1px, transparent 0)',
                 backgroundSize: '20px 20px md:30px 30px'
               }} />
             </div>
@@ -161,7 +161,7 @@ export default function ClientShowcase() {
                 >
                   {/* Logo Display */}
                   <div className="relative w-full">
-                    <div className="relative aspect-square max-w-[200px] md:max-w-[300px] mx-auto">
+                    <div className="relative aspect-square max-w-50 md:max-w-75 mx-auto">
                       {/* Glow Effect */}
                       <div className="absolute inset-0 bg-red-500/20 rounded-full blur-2xl md:blur-3xl animate-pulse" />
                       
@@ -221,10 +221,10 @@ export default function ClientShowcase() {
                       {/* Partnership highlights - Hidden on mobile, shown on desktop */}
                       <div className="hidden md:flex items-center gap-4 pt-4">
                         <div className="flex -space-x-2">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">
+                          <div className="w-8 h-8 rounded-full bg-linear-to-br from-red-400 to-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">
                             {(activeIndex + 1).toString()}
                           </div>
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">
+                          <div className="w-8 h-8 rounded-full bg-linear-to-br from-red-400 to-red-600 border-2 border-white flex items-center justify-center text-white text-xs font-bold">
                             ✓
                           </div>
                         </div>
