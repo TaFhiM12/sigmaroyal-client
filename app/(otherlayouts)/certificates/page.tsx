@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import CertificateGrid from "@/app/components/certificates/CertificateGrid";
 import CertificateProcess from "@/app/components/certificates/CertificateProcess";
 import CertificateStandards from "@/app/components/certificates/CertificateStandards";
-
+export const revalidate = 3600;
 export const metadata = {
   title: "Certifications | The Royal Utilisation Services",
   description: "View our professional certifications and accreditations including ISO 9001, ISO 14001, ISO 45001, and industry-specific enlistments.",

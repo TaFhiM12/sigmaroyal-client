@@ -8,7 +8,7 @@ import CertificationsClient from '../components/CertificationsClient';
 
 export const dynamic = 'force-dynamic';
 export const metadata = {
-  title: 'Admin - Manage Certifications',
+  title: 'RUSL | Manage Certifications',
   description: 'Create, edit, and manage certifications',
 };
 

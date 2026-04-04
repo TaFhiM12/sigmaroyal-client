@@ -4,7 +4,7 @@ import ClientCTA from "@/app/components/Clients/ClientCTA";
 import ClientLogos from "@/app/components/Clients/ClientLogos";
 import ClientStats from "@/app/components/Clients/ClientStats";
 import ClientTestimonials from "@/app/components/Clients/ClientTestimonials";
-
+export const revalidate = 3600;
 export const metadata = {
   title: "RUSL | Client",
 };

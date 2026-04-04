@@ -168,7 +168,7 @@ export default function ClientShowcase() {
                       {/* Logo Container */}
                       <div className="relative w-full h-full bg-white rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl flex items-center justify-center p-4 md:p-8">
                         <Image
-                          src={`/client/${clientLogos[activeIndex]}`}
+                          src={`/clients/${clientLogos[activeIndex]}`}
                           alt={clientNames[activeIndex]}
                           width={150}
                           height={75}
@@ -296,7 +296,7 @@ export default function ClientShowcase() {
                   title={clientNames[index]}
                 >
                   <Image
-                    src={`/client/${logo}`}
+                    src={`/clients/${logo}`}
                     alt={clientNames[index]}  
                     fill
                     className="object-contain p-1 md:p-2"
