@@ -1,4 +1,3 @@
-// app/admin/components/ProjectsTable.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -162,9 +161,11 @@ export default function ProjectsTable({
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem asChild>
-                        <Link href={`/admin/projects/${project.id}`} target="_blank">
-                          <Eye className="h-4 w-4 mr-2" />
-                          View
+                        <Link href={`/admin/projects/${project.id}`}>
+                          <span className="flex items-center">
+                            <Eye className="h-4 w-4 mr-2" />
+                            View
+                          </span>
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => onEdit(project)}>

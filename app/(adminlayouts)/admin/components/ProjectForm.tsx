@@ -118,8 +118,8 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     const method = project ? "PUT" : "POST";
 
-    console.log('Submitting to:', url);
-    console.log('Submit data:', submitData);
+    // console.log('Submitting to:', url);
+    // console.log('Submit data:', submitData);
 
     const res = await fetch(url, {
       method,
@@ -129,10 +129,10 @@ const handleSubmit = async (e: React.FormEvent) => {
       body: JSON.stringify(submitData),
     });
 
-    console.log('Response status:', res.status);
+    // console.log('Response status:', res.status);
     
     const data = await res.json();
-    console.log('Response data:', data);
+    // console.log('Response data:', data);
 
     if (!res.ok) throw new Error(data.message || "Failed to save project");
 

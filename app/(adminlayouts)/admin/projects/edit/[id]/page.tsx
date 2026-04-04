@@ -25,8 +25,8 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        console.log('Fetching project with ID:', params.id);
-        console.log('API URL:', `${process.env.NEXT_PUBLIC_API_URL}/projects/${params.id}`);
+        // console.log('Fetching project with ID:', params.id);
+        // console.log('API URL:', `${process.env.NEXT_PUBLIC_API_URL}/projects/${params.id}`);
         
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/projects/${params.id}`,
@@ -38,7 +38,7 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
           }
         );
         
-        console.log('Response status:', res.status);
+        // console.log('Response status:', res.status);
         
         if (!res.ok) {
           const text = await res.text();
@@ -47,7 +47,7 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
         }
         
         const data = await res.json();
-        console.log('Fetched project data:', data);
+        // console.log('Fetched project data:', data);
         
         if (data.success && data.data) {
           setProject(data.data);

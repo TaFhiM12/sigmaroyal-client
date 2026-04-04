@@ -38,7 +38,7 @@ async function getProjects(): Promise<ProjectsResponse | null> {
 
 export default async function ProjectsPage() {
   const initialData = await getProjects();
-  console.log(initialData);
+  // console.log(initialData);
   return (
     <Suspense fallback={<ProjectsSkeleton />}>
       <ProjectsClient initialData={initialData} />
