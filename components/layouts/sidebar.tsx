@@ -100,68 +100,68 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
       url: "#",
       icon: FolderTree,
       items: [
-        { title: "Home Page", url: "/admin/home", icon: Home },
-        { title: "About Pages", url: "/admin/about", icon: Info },
-        { title: "Expertise", url: "/admin/expertise", icon: Star },
+        // { title: "Home Page", url: "/admin/home", icon: Home },
+        // { title: "About Pages", url: "/admin/about", icon: Info },
+        // { title: "Expertise", url: "/admin/expertise", icon: Star },
         { title: "Projects", url: "/admin/projects", icon: FolderKanban },
-        { title: "Resources", url: "/admin/resources", icon: FileText },
-        { title: "Team Members", url: "/admin/team", icon: Users },
-        { title: "Clients", url: "/admin/clients", icon: Building2 },
-        { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
+        // { title: "Resources", url: "/admin/resources", icon: FileText },
+        // { title: "Team Members", url: "/admin/team", icon: Users },
+        // { title: "Clients", url: "/admin/clients", icon: Building2 },
+        // { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
       ],
     },
-    {
-      title: "Media Gallery",
-      url: "/admin/media",
-      icon: ImageIcon,
-      badge: "New",
-    },
+    // {
+    //   title: "Media Gallery",
+    //   url: "/admin/media",
+    //   icon: ImageIcon,
+    //   badge: "New",
+    // },
     {
       title: "Certifications",
       url: "/admin/certifications",
       icon: Award,
     },
-    {
-      title: "Portfolio",
-      url: "/admin/portfolio",
-      icon: Briefcase,
-    },
-    {
-      title: "Notices",
-      url: "/admin/notices",
-      icon: Bell,
-    },
-    {
-      title: "Contact Messages",
-      url: "/admin/messages",
-      icon: MessageSquare,
-    },
-    {
-      title: "Users & Roles",
-      url: "#",
-      icon: UserCog,
-      items: [
-        { title: "All Users", url: "/admin/users", icon: Users },
-        { title: "Roles & Permissions", url: "/admin/roles", icon: Shield },
-        { title: "Activity Logs", url: "/admin/logs", icon: Database },
-      ],
-    },
-    {
-      title: "Analytics",
-      url: "/admin/analytics",
-      icon: BarChart3,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings,
-      items: [
-        { title: "General Settings", url: "/admin/settings/general", icon: Globe },
-        { title: "SEO Settings", url: "/admin/settings/seo", icon: Lock },
-        { title: "Email Templates", url: "/admin/settings/email", icon: Mail },
-        { title: "Backup", url: "/admin/settings/backup", icon: Database },
-      ],
-    },
+    // {
+    //   title: "Portfolio",
+    //   url: "/admin/portfolio",
+    //   icon: Briefcase,
+    // },
+    // {
+    //   title: "Notices",
+    //   url: "/admin/notices",
+    //   icon: Bell,
+    // },
+    // {
+    //   title: "Contact Messages",
+    //   url: "/admin/messages",
+    //   icon: MessageSquare,
+    // },
+    // {
+    //   title: "Users & Roles",
+    //   url: "#",
+    //   icon: UserCog,
+    //   items: [
+    //     { title: "All Users", url: "/admin/users", icon: Users },
+    //     { title: "Roles & Permissions", url: "/admin/roles", icon: Shield },
+    //     { title: "Activity Logs", url: "/admin/logs", icon: Database },
+    //   ],
+    // },
+    // {
+    //   title: "Analytics",
+    //   url: "/admin/analytics",
+    //   icon: BarChart3,
+    // },
+    // {
+    //   title: "Settings",
+    //   url: "#",
+    //   icon: Settings,
+    //   items: [
+    //     { title: "General Settings", url: "/admin/settings/general", icon: Globe },
+    //     { title: "SEO Settings", url: "/admin/settings/seo", icon: Lock },
+    //     { title: "Email Templates", url: "/admin/settings/email", icon: Mail },
+    //     { title: "Backup", url: "/admin/settings/backup", icon: Database },
+    //   ],
+    // },
   ];
 
   const isActive = (url: string) => {
