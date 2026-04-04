@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ProjectsResponse } from '@/types/projects';
 import ProjectsClient from '../components/ProjectsClient';
 
+export const dynamic = 'force-dynamic';
 export const metadata = {
   title: 'Admin - Manage Projects',
   description: 'Create, edit, and manage projects',

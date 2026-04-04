@@ -1,5 +1,9 @@
-// components/certificates/CertificateProcess.tsx
-import { FileCheck, Search, Award, Shield, CheckCircle } from 'lucide-react';
+// app/components/certificates/CertificateProcess.tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { FileCheck, Search, Award, Shield, CheckCircle, TrendingUp } from 'lucide-react';
+import { Certification } from '@/types/certification';
 
 const processSteps = [
   {
@@ -29,6 +33,24 @@ const processSteps = [
 ];
 
 export default function CertificateProcess() {
+  const [certCount, setCertCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCertCount = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/certifications`);
+        const data = await res.json();
+        if (data.success) {
+          setCertCount(data.data.filter((cert: Certification) => cert.isActive).length);
+        }
+      } catch (error) {
+        console.error('Error fetching certifications:', error);
+      }
+    };
+
+    void fetchCertCount();
+  }, []);
+
   return (
     <section className="py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -86,18 +108,21 @@ export default function CertificateProcess() {
                       Our commitment to quality extends beyond certification - it&apos;s embedded in our culture
                     </p>
                   </div>
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-6">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-red-400">9+</div>
+                      <div className="text-3xl font-bold text-red-400">{certCount}+</div>
                       <div className="text-sm text-gray-400">Certifications</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-red-400">46+</div>
-                      <div className="text-sm text-gray-400">Years Experience</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-red-400">100%</div>
                       <div className="text-sm text-gray-400">Compliance</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-red-400 flex items-center gap-1">
+                        <TrendingUp className="h-6 w-6" />
+                        ∞
+                      </div>
+                      <div className="text-sm text-gray-400">Continuous</div>
                     </div>
                   </div>
                 </div>
