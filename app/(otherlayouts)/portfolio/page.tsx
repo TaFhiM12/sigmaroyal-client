@@ -18,6 +18,7 @@ import {
   X
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import yearsExperience from '@/lib/yearsExperience';
 
 export default function PortfolioPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -130,7 +131,7 @@ export default function PortfolioPage() {
               </button>
               
               <a
-                href="/companyPortfolio.pdf"
+                href="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"
                 download
                 className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 rounded-xl font-semibold border-2 border-gray-200 hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
@@ -220,9 +221,9 @@ export default function PortfolioPage() {
             <motion.div variants={fadeInUp} className="bg-gray-900 text-white rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold mb-4">47+ Years of Excellence</h3>
+                  <h3 className="text-3xl font-bold mb-4">{yearsExperience}+ Years of Excellence</h3>
                   <p className="text-gray-300 mb-6">
-                    Since 1977, we have been at the forefront of Bangladesh's energy sector, delivering world-class infrastructure projects that power the nation's growth.
+                    Since 1977, we have been at the forefront of Bangladesh&apos;s energy sector, delivering world-class infrastructure projects that power the nation&apos;s growth.
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="flex -space-x-2">
@@ -276,7 +277,7 @@ export default function PortfolioPage() {
               <div className="relative w-full max-w-5xl h-[80vh] bg-gray-900 rounded-xl overflow-hidden">
                 {/* PDF Viewer */}
                 <iframe
-                  src="/companyPortfolio.pdf"
+                  src="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"
                   className="w-full h-full"
                   title="Company Portfolio"
                 />

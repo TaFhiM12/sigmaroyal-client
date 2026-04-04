@@ -1,8 +1,10 @@
-// app/projects/types/index.ts
+// types/project.ts
 export interface ProjectImage {
   id: string;
   url: string;
   caption: string | null;
+  isMain?: boolean;
+  publicId?: string;
 }
 
 export interface Project {
@@ -18,16 +20,11 @@ export interface Project {
   year: number | null;
   scopeOfWork: string;
   description: string | null;
-  status: 'COMPLETED' | 'ONGOING';
+  status: 'COMPLETED' | 'ONGOING' | 'UPCOMING';
   featured: boolean;
   images: ProjectImage[];
   createdAt: string;
   updatedAt: string;
-}
-
-export interface SectorCount {
-  _count: { sector: number };
-  sector: string;
 }
 
 export interface ProjectsResponse {
@@ -42,12 +39,23 @@ export interface ProjectsResponse {
   counts: {
     completed: number;
     ongoing: number;
-    bySector: SectorCount[];
+    bySector: Array<{ _count: { sector: number }; sector: string }>;
   };
   data: Project[];
 }
 
-export interface FilterOption {
-  value: string;
-  label: string;
+export interface ProjectFormData {
+  title: string;
+  slug: string;
+  sector: string;
+  client: string;
+  companyRole: string;
+  location: string;
+  capacity: string;
+  duration: string;
+  year: string;
+  scopeOfWork: string;
+  description: string;
+  status: string;
+  featured: boolean;
 }

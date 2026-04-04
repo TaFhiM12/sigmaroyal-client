@@ -178,7 +178,7 @@ export default function MissionVisionPage() {
                     </div>
                     <div>
                       <h2 className="text-3xl md:text-4xl font-bold text-white">Vision</h2>
-                      <p className="text-gray-300 text-sm mt-1">Where we're heading</p>
+                      <p className="text-gray-300 text-sm mt-1">Where we&apos;re heading</p>
                     </div>
                   </div>
                 </div>
@@ -302,7 +302,7 @@ export default function MissionVisionPage() {
               <Sparkles className="w-5 h-5 text-red-600" />
             </div>
             <p className="text-xl text-gray-700 italic">
-              "Committed to delivering excellence through quality, safety, honesty, and immense strength"
+              Committed to delivering excellence through quality, safety, honesty, and immense strength
             </p>
             <div className="flex justify-center gap-2 mt-6">
               <div className="w-12 h-0.5 bg-red-600" />

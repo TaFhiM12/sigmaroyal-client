@@ -6,17 +6,8 @@ import { motion, useInView } from 'framer-motion';
 import { 
   Clock,
   Award,
-  Target,
   Briefcase,
   Users,
-  ChevronRight,
-  Flame,
-  Zap,
-  Wrench,
-  FlameKindling,
-  Ship,
-  Wind,
-  Eye
 } from 'lucide-react';
 import yearsExperience from '@/lib/yearsExperience';
 
@@ -40,15 +31,7 @@ export default function PrefaceContent() {
     }
   };
 
-  // Business areas data
-  const businessAreas = [
-    { icon: Wrench, name: 'Pipeline Construction', description: 'Mechanical, Electrical & Civil Works' },
-    { icon: Flame, name: 'Oil & Gas', description: 'Infrastructure Development' },
-    { icon: Zap, name: 'Power Sector', description: 'Energy Solutions' },
-    { icon: FlameKindling, name: 'LPG Systems', description: 'Reticulated System & ALDS' },
-    { icon: Ship, name: 'Marine Facilities', description: 'CBM & PLEM' },
-    { icon: Wind, name: 'Storage Tanks', description: 'Spherical & Bullet Tanks' }
-  ];
+  
 
   return (
     <section className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
