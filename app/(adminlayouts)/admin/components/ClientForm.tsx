@@ -12,7 +12,15 @@ import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Image from 'next/image';
-import { Client, ClientFormData } from '@/types/client';
+import { Client } from '@/types/client';
+
+interface ClientFormData {
+  name: string;
+  logoUrl: string;
+  website: string;
+  order: number;
+  isActive: boolean;
+}
 
 interface ClientFormProps {
   client?: Client;

@@ -23,28 +23,28 @@ export const navbarMenu: NavbarMenu[] = [
     {
       title: "Expertise",
       url: "#",
-      items: [
-        {
-          title: "Oil & Gas",
-          url: "/expertise/oil-gas",
-          description: "Pipeline construction, HDD, LPG solutions",
-        },
-        {
-          title: "Power Plant",
-          url: "/expertise/power",
-          description: "BOP installation, fabrication, construction",
-        },
-        {
-          title: "Process Plant",
-          url: "/expertise/process",
-          description: "Refineries, petrochemicals",
-        },
-        {
-          title: "Engineering Services",
-          url: "/expertise/engineering",
-          description: "Complete LPG solutions, equipment",
-        },
-      ],
+      // items: [
+      //   {
+      //     title: "Oil & Gas",
+      //     url: "/expertise/oil-gas",
+      //     description: "Pipeline construction, HDD, LPG solutions",
+      //   },
+      //   {
+      //     title: "Power Plant",
+      //     url: "/expertise/power",
+      //     description: "BOP installation, fabrication, construction",
+      //   },
+      //   {
+      //     title: "Process Plant",
+      //     url: "/expertise/process",
+      //     description: "Refineries, petrochemicals",
+      //   },
+      //   {
+      //     title: "Engineering Services",
+      //     url: "/expertise/engineering",
+      //     description: "Complete LPG solutions, equipment",
+      //   },
+      // ],
     },
     { title: "Certificates", url: "/certificates" },
     {
@@ -54,36 +54,36 @@ export const navbarMenu: NavbarMenu[] = [
     {
       title: "Resources",
       url: "#",
-      items: [
-        { title: "Media Gallery", url: "/media" },
-        { title: "Portfolio", url: "/portfolio" },
-        { title: "Certifications", url: "/certifications" },
-        { title: "QHSE Policy", url: "/qhse-policy" },
-        { title: "Notices", url: "/notices" },
-      ],
+      // items: [
+      //   { title: "Media Gallery", url: "/media" },
+      //   { title: "Portfolio", url: "/portfolio" },
+      //   { title: "Certifications", url: "/certifications" },
+      //   { title: "QHSE Policy", url: "/qhse-policy" },
+      //   { title: "Notices", url: "/notices" },
+      // ],
     },
     {
       title: "Clients", url: "/clients"},
     {
       title: "Team",
       url: "#",
-      items: [
-        { title: "Core Management", url: "/team/core-management" },
-        { title: "HR & Admin", url: "/team/hr-admin" },
-      ],
+      // items: [
+      //   { title: "Core Management", url: "/team/core-management" },
+      //   { title: "HR & Admin", url: "/team/hr-admin" },
+      // ],
     },
     {
       title: "HYTORC",
       url: "#",
-      items: [
-        { title: "About Royal-ABS", url: "/hytorc/about" },
-        { title: "Hydraulic", url: "/hytorc/hydraulic" },
-        { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
-        { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
-        { title: "Pumps", url: "/hytorc/pumps" },
-        { title: "Fasteners", url: "/hytorc/fasteners" },
-        { title: "Accessories", url: "/hytorc/accessories" },
-      ]
+      // items: [
+      //   { title: "About Royal-ABS", url: "/hytorc/about" },
+      //   { title: "Hydraulic", url: "/hytorc/hydraulic" },
+      //   { title: "Pneumatic Torque Wrench", url: "/hytorc/pneumatic-torque-wrench" },
+      //   { title: "Electric Torque Wrench", url: "/hytorc/electric-torque-wrench" },
+      //   { title: "Pumps", url: "/hytorc/pumps" },
+      //   { title: "Fasteners", url: "/hytorc/fasteners" },
+      //   { title: "Accessories", url: "/hytorc/accessories" },
+      // ]
     },
     { title: "Contact", url: "/contact" },
 ];

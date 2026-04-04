@@ -1,14 +1,15 @@
 // app/admin/components/ClientsTable.tsx
 'use client';
 
-import React, { useState } from 'react';
-import { Edit, Trash2, GripVertical, Check, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Edit, Trash2, GripVertical, Check, ExternalLink, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import Image from 'next/image';
 import { Client } from '@/types/client';
+import { toast } from 'sonner';
 
 interface ClientsTableProps {
   clients: Client[];
@@ -16,6 +17,7 @@ interface ClientsTableProps {
   onDelete: (id: string) => Promise<void>;
   onReorder?: (ids: string[]) => Promise<void>;
   loading?: boolean;
+  onRefresh?: () => Promise<void>;
 }
 
 export default function ClientsTable({ 
@@ -23,13 +25,22 @@ export default function ClientsTable({
   onEdit, 
   onDelete, 
   onReorder,
-  loading 
+  loading,
+  onRefresh
 }: ClientsTableProps) {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [deleteName, setDeleteName] = useState<string>('');
   const [deleting, setDeleting] = useState(false);
   const [isReorderMode, setIsReorderMode] = useState(false);
-  const [orderedIds, setOrderedIds] = useState<string[]>(clients.map(c => c.id));
+  const [orderedIds, setOrderedIds] = useState<string[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Initialize orderedIds when clients change or reorder mode is entered
+  useEffect(() => {
+    if (isReorderMode) {
+      setOrderedIds(clients.map(c => c.id));
+    }
+  }, [isReorderMode, clients]);
 
   const handleDelete = async () => {
     if (deleteId) {
@@ -41,13 +52,29 @@ export default function ClientsTable({
   };
 
   const handleReorder = async () => {
-    if (onReorder) {
+    if (!onReorder || orderedIds.length === 0) return;
+    
+    setIsSaving(true);
+    try {
       await onReorder(orderedIds);
       setIsReorderMode(false);
+      toast.success('Order updated successfully');
+      if (onRefresh) await onRefresh();
+    } catch (error) {
+      console.error('Reorder failed:', error);
+      toast.error('Failed to update order');
+    } finally {
+      setIsSaving(false);
     }
   };
 
+  const handleCancelReorder = () => {
+    setIsReorderMode(false);
+    setOrderedIds([]);
+  };
+
   const moveItem = (fromIndex: number, toIndex: number) => {
+    if (toIndex < 0 || toIndex >= orderedIds.length) return;
     const newIds = [...orderedIds];
     const [movedId] = newIds.splice(fromIndex, 1);
     newIds.splice(toIndex, 0, movedId);
@@ -72,7 +99,10 @@ export default function ClientsTable({
     );
   }
 
-  const displayItems = isReorderMode ? orderedIds.map(id => clients.find(c => c.id === id)!) : clients;
+  // Display items based on reorder mode
+  const displayItems = isReorderMode 
+    ? orderedIds.map(id => clients.find(c => c.id === id)!).filter(Boolean)
+    : clients;
 
   return (
     <>
@@ -83,12 +113,27 @@ export default function ClientsTable({
             <div className="flex gap-2">
               {isReorderMode ? (
                 <>
-                  <Button variant="outline" size="sm" onClick={() => setIsReorderMode(false)}>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleCancelReorder}
+                    disabled={isSaving}
+                  >
+                    <X className="h-4 w-4 mr-1" />
                     Cancel
                   </Button>
-                  <Button size="sm" onClick={handleReorder} className="bg-green-600 hover:bg-green-700">
-                    <Check className="h-4 w-4 mr-1" />
-                    Save Order
+                  <Button 
+                    size="sm" 
+                    onClick={handleReorder} 
+                    className="bg-green-600 hover:bg-green-700"
+                    disabled={isSaving}
+                  >
+                    {isSaving ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    ) : (
+                      <Check className="h-4 w-4 mr-1" />
+                    )}
+                    {isSaving ? 'Saving...' : 'Save Order'}
                   </Button>
                 </>
               ) : (
@@ -103,8 +148,8 @@ export default function ClientsTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-12">Order</TableHead>
-              <TableHead className="w-12">Logo</TableHead>
+              <TableHead className="w-24">Order</TableHead>
+              <TableHead className="w-16">Logo</TableHead>
               <TableHead>Client Name</TableHead>
               <TableHead>Website</TableHead>
               <TableHead className="w-24">Status</TableHead>
@@ -116,28 +161,31 @@ export default function ClientsTable({
               <TableRow key={client.id} className="hover:bg-gray-50">
                 <TableCell>
                   {isReorderMode ? (
-                    <div className="flex gap-1">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => moveItem(index, index - 1)}
-                        disabled={index === 0}
-                        className="h-8 w-8 p-0"
-                      >
-                        ↑
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => moveItem(index, index + 1)}
-                        disabled={index === displayItems.length - 1}
-                        className="h-8 w-8 p-0"
-                      >
-                        ↓
-                      </Button>
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm text-gray-400 w-6 text-center">{index + 1}</span>
+                      <div className="flex flex-col">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => moveItem(index, index - 1)}
+                          disabled={index === 0}
+                          className="h-6 w-6 p-0"
+                        >
+                          ↑
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => moveItem(index, index + 1)}
+                          disabled={index === displayItems.length - 1}
+                          className="h-6 w-6 p-0"
+                        >
+                          ↓
+                        </Button>
+                      </div>
                     </div>
                   ) : (
-                    <span className="text-sm text-gray-500">{client.order}</span>
+                    <span className="text-sm font-medium text-gray-600">{client.order}</span>
                   )}
                 </TableCell>
                 <TableCell>

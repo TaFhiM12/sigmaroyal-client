@@ -6,13 +6,11 @@ import { motion } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
-// Components
 import { Project, ProjectsResponse } from '@/types/projects';
-// import { HeroSection } from './HeroSection';
 import { FilterBar } from './FilterBar';
 import { ProjectModal } from './ProjectModal';
 import { ProjectShowcase } from './ProjectShowcase';
+import { HeroSection } from './HeroSection';
 
 interface ProjectsClientProps {
   initialData?: ProjectsResponse | null;
@@ -30,7 +28,6 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     ongoing: 0,
     sectors: 0
   });
-  // console.log(stats);
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
@@ -41,7 +38,6 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
   // Initialize with server data
   useEffect(() => {
     if (initialData?.success) {
-      // Sort projects to show ongoing first
       const sortedProjects = [...initialData.data].sort((a, b) => {
         if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
         if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
@@ -54,7 +50,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
         total: initialData.meta.total,
         completed: initialData.counts.completed,
         ongoing: initialData.counts.ongoing,
-        sectors: initialData.counts.bySector.length
+        sectors: initialData.counts.bySector?.length || 0
       });
       setLoading(false);
     } else {
@@ -66,7 +62,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     try {
       setLoading(true);
       const res = await fetch(
-        'https://sigmaroyal-server.onrender.com/api/v1/projects?limit=50',
+        `${process.env.NEXT_PUBLIC_API_URL}/projects?limit=50`,
         { cache: 'no-store' }
       );
       
@@ -87,7 +83,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
           total: data.meta.total,
           completed: data.counts.completed,
           ongoing: data.counts.ongoing,
-          sectors: data.counts.bySector.length
+          sectors: data.counts.bySector?.length || 0
         });
       }
     } catch (err) {
@@ -165,9 +161,9 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-white"
+      className="min-h-screen bg-gradient-to-b from-gray-50 to-white"
     >
-      {/* <HeroSection stats={stats} /> */}
+      <HeroSection stats={stats} />
       
       <div className="container mx-auto px-4 py-12">
         <FilterBar

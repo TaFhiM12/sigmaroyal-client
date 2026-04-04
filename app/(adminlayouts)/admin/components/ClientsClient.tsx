@@ -9,11 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import ClientsTable from '../components/ClientsTable';
 import ClientForm from '../components/ClientForm';
 
-interface ClientsClientProps {
-  initialData: ClientsResponse | null;
-}
-
-export default function ClientsClient({ initialData }: ClientsClientProps) {
+export default function ClientsClient({ initialData }: { initialData: ClientsResponse | null }) {
   const router = useRouter();
   const [clients, setClients] = useState<Client[]>([]);
   const [loading, setLoading] = useState(true);
@@ -74,16 +70,20 @@ export default function ClientsClient({ initialData }: ClientsClientProps) {
         body: JSON.stringify({ ids }),
       });
       
-      if (res.ok) {
-        toast.success('Order updated successfully');
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
+        // Fetch fresh data after successful reorder
         await fetchClients();
         router.refresh();
+        return;
       } else {
-        throw new Error('Failed to reorder');
+        throw new Error(data.message || 'Failed to reorder');
       }
     } catch (error) {
       console.error('Error reordering clients:', error);
       toast.error('Failed to update order');
+      throw error; // Re-throw so the table knows it failed
     }
   };
 
@@ -106,6 +106,7 @@ export default function ClientsClient({ initialData }: ClientsClientProps) {
         onEdit={handleEdit}
         onDelete={handleDelete}
         onReorder={handleReorder}
+        onRefresh={fetchClients}
         loading={loading}
       />
 

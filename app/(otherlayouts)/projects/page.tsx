@@ -1,11 +1,12 @@
-// app/projects/page.tsx (Server Component)
+// app/projects/page.tsx
 import { Suspense } from 'react';
 import { ProjectsSkeleton } from '@/app/components/projects/ProjectsSkeleton';
 import { ProjectsResponse } from '@/types/projects';
 import ProjectsClient from '@/app/components/projects/ProjectClients';
 
 export const metadata = {
-  title: "RUSL | Project",
+  title: "Projects | The Royal Utilisation Services",
+  description: "Explore our portfolio of oil & gas, power sector, and energy infrastructure projects across Bangladesh.",
 };
 
 export const revalidate = 3600;
@@ -13,7 +14,7 @@ export const revalidate = 3600;
 async function getProjects(): Promise<ProjectsResponse | null> {
   try {
     const res = await fetch(
-      'https://sigmaroyal-server.onrender.com/api/v1/projects?limit=50',
+      `${process.env.NEXT_PUBLIC_API_URL}/projects?limit=50`,
       { 
         next: { revalidate: 3600 },
         headers: { 
@@ -38,7 +39,6 @@ async function getProjects(): Promise<ProjectsResponse | null> {
 
 export default async function ProjectsPage() {
   const initialData = await getProjects();
-  // console.log(initialData);
   return (
     <Suspense fallback={<ProjectsSkeleton />}>
       <ProjectsClient initialData={initialData} />
