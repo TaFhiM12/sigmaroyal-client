@@ -9,19 +9,18 @@ import yearsExperience from "@/lib/yearsExperience";
 export default function HeroBanner() {
   const pathname = usePathname();
 
-  // Convert route into title
+  // Convert route into title, with special case for QHSE Policy
   const getTitle = () => {
     if (pathname === "/") return "HOME";
-    
+    if (pathname === "/qhse-policy") return "QHSE Policy";
     const segments = pathname
       .split("/")
       .filter(Boolean)
-      .map(segment => 
+      .map(segment =>
         segment
           .replace(/-/g, " ")
           .replace(/\b\w/g, char => char.toUpperCase())
       );
-    
     return segments.join(" → ");
   };
 

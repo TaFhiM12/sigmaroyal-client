@@ -8,6 +8,7 @@ import { CertificationsResponse, Certification } from '@/types/certification';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import CertificationsTable from './CertificationsTable';
 import CertificationForm from './CertificationForm';
+import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
 interface CertificationsClientProps {
   initialData: CertificationsResponse | null;
@@ -49,6 +50,7 @@ export default function CertificationsClient({ initialData }: CertificationsClie
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/certifications/${id}`, {
         method: 'DELETE',
+        headers: getAdminAuthHeaders(),
       });
       
       if (res.ok) {
@@ -68,7 +70,7 @@ export default function CertificationsClient({ initialData }: CertificationsClie
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/certifications/reorder`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAdminAuthHeaders(),
         body: JSON.stringify({ ids }),
       });
       

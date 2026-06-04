@@ -15,6 +15,7 @@ interface CloudinaryUploadProps {
   onSetAsFeatured?: (index: number) => void;
   multiple?: boolean;
   maxFiles?: number;
+  folder?: string;
 }
 
 export default function CloudinaryUpload({
@@ -26,36 +27,60 @@ export default function CloudinaryUpload({
   onSetAsFeatured,
   multiple = true,
   maxFiles = 10,
+  folder = 'royal-utilisation/projects',
 }: CloudinaryUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
+  const processFiles = (files: File[]) => {
     
     if (files.length === 0) return;
-    
+
     if (selectedFiles.length + files.length > maxFiles) {
       alert(`You can only upload up to ${maxFiles} images`);
       return;
     }
-    
+
     const validFiles = files.filter(file => {
       const isValidType = file.type.startsWith('image/');
       const isValidSize = file.size <= 10 * 1024 * 1024;
-      
+
       if (!isValidType) alert(`${file.name} is not an image file`);
       if (!isValidSize) alert(`${file.name} exceeds 10MB limit`);
       return isValidType && isValidSize;
     });
-    
+
     if (validFiles.length === 0) return;
-    
+
     const newPreviewUrls = validFiles.map(file => URL.createObjectURL(file));
     setSelectedFiles([...selectedFiles, ...validFiles]);
     setPreviewUrls([...previewUrls, ...newPreviewUrls]);
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    processFiles(Array.from(e.target.files || []));
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    processFiles(Array.from(e.dataTransfer.files || []));
   };
 
   const removeSelectedFile = (index: number) => {
@@ -74,7 +99,7 @@ export default function CloudinaryUpload({
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', 'projects_upload');
-      formData.append('folder', 'royal-utilisation/projects');
+      formData.append('folder', folder);
 
       try {
         const res = await fetch(
@@ -116,6 +141,26 @@ export default function CloudinaryUpload({
     <div className="space-y-4">
       {/* File Input Area */}
       <div className="space-y-3">
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          onClick={() => !uploading && fileInputRef.current?.click()}
+          className={`rounded-lg border-2 border-dashed p-6 text-center cursor-pointer transition-colors ${
+            isDragging
+              ? 'border-red-500 bg-red-50'
+              : 'border-gray-300 bg-white hover:border-red-400 hover:bg-red-50/40'
+          } ${uploading ? 'opacity-60 cursor-not-allowed' : ''}`}
+        >
+          <Upload className="h-6 w-6 mx-auto text-gray-500" />
+          <p className="mt-3 text-sm font-medium text-gray-700">
+            Drag and drop image files here
+          </p>
+          <p className="text-xs text-gray-500 mt-1">
+            or click this area to browse files
+          </p>
+        </div>
+
         <div className="flex items-center gap-4">
           <Button
             type="button"

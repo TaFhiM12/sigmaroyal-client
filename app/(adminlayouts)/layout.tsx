@@ -1,16 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { Bell } from "lucide-react";
+import { Bell, LogOut } from "lucide-react";
 import AdminSidebar from "@/components/layouts/sidebar";
+import { clearAdminSession, getAdminUser, isAdminLoggedIn } from "@/lib/admin-auth";
+import { useRouter } from "next/navigation";
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const user = getAdminUser();
+  const adminName = user?.name || "Admin User";
+  const adminEmail = user?.email || "admin@sigma-royal.com";
+
+  useEffect(() => {
+    if (!isAdminLoggedIn()) {
+      router.replace("/admin/login");
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    clearAdminSession();
+    router.push("/admin/login");
+    router.refresh();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -40,13 +58,20 @@ export default function AdminLayout({
               <div className="h-6 w-px bg-gray-200" />
               <div className="flex items-center gap-2">
                 <div className="text-right">
-                  <p className="text-sm font-medium text-gray-800">Admin User</p>
-                  <p className="text-xs text-gray-500">admin@sigma-royal.com</p>
+                  <p className="text-sm font-medium text-gray-800">{adminName}</p>
+                  <p className="text-xs text-gray-500">{adminEmail}</p>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-red-500 to-red-600 flex items-center justify-center text-white text-sm font-semibold">
+                <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-semibold">
                   AD
                 </div>
               </div>
+              <button
+                onClick={handleLogout}
+                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                title="Logout"
+              >
+                <LogOut className="h-5 w-5 text-gray-600" />
+              </button>
             </div>
           </div>
         </div>

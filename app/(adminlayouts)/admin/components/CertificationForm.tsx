@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Image from 'next/image';
 import { Certification, CertificationFormData } from '@/types/certification';
+import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
 interface CertificationFormProps {
   certification?: Certification;
@@ -103,7 +104,7 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
 
       const res = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAdminAuthHeaders(),
         body: JSON.stringify(submitData),
       });
 

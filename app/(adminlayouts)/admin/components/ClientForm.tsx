@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Image from 'next/image';
 import { Client } from '@/types/client';
+import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
 interface ClientFormData {
   name: string;
@@ -109,7 +110,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
 
       const res = await fetch(url, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAdminAuthHeaders(),
         body: JSON.stringify(submitData),
       });
 

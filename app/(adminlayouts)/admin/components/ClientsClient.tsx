@@ -8,6 +8,7 @@ import { ClientsResponse, Client } from '@/types/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import ClientsTable from '../components/ClientsTable';
 import ClientForm from '../components/ClientForm';
+import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
 export default function ClientsClient({ initialData }: { initialData: ClientsResponse | null }) {
   const router = useRouter();
@@ -45,6 +46,7 @@ export default function ClientsClient({ initialData }: { initialData: ClientsRes
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/${id}`, {
         method: 'DELETE',
+        headers: getAdminAuthHeaders(),
       });
       
       const data = await res.json();
@@ -66,7 +68,7 @@ export default function ClientsClient({ initialData }: { initialData: ClientsRes
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/reorder`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAdminAuthHeaders(),
         body: JSON.stringify({ ids }),
       });
       

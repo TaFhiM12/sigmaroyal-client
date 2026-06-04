@@ -49,9 +49,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
           >
-            <span className="text-gray-900">Featured</span>
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800">
+            <span className="text-gray-900">Featured </span>
+           
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
               Projects
             </span>
           </motion.h1>

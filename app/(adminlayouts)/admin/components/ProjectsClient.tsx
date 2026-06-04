@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Project, ProjectsResponse } from '@/types/projects';
 import ProjectsTable from './ProjectsTable';
 import ProjectForm from './ProjectForm';
+import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
 interface ProjectsClientProps {
   initialData: ProjectsResponse | null;
@@ -50,6 +51,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`, {
         method: 'DELETE',
+        headers: getAdminAuthHeaders(),
       });
       
       if (res.ok) {

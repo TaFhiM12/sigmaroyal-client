@@ -29,6 +29,7 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import CloudinaryUpload from "./CloudinaryUpload";
 import { Project, ProjectFormData } from "@/types/projects";
+import { getAdminAuthHeaders } from "@/lib/admin-auth";
 
 interface ProjectFormProps {
   project?: Project;
@@ -123,9 +124,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     const res = await fetch(url, {
       method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: getAdminAuthHeaders(),
       body: JSON.stringify(submitData),
     });
 

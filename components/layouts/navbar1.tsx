@@ -235,7 +235,7 @@ const Navbar1 = ({
         className
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-screen-2xl">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <Link

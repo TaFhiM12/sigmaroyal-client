@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -8,32 +8,17 @@ import {
   ChevronLeft,
   ChevronRight,
   LayoutDashboard,
-  Users,
-  Briefcase,
-  FileText,
   Award,
   Settings,
   LogOut,
   Menu,
   ChevronDown,
-  Home,
-  Info,
-  Star,
   FolderKanban,
   FolderTree,
   Wrench,
-  Mail,
-  Building2,
-  Shield,
-  BarChart3,
+  ShieldCheck,
   Bell,
-  MessageSquare,
-  Globe,
-  Lock,
-  UserCog,
-  Database,
   LucideIcon,
-  ImageIcon,
 } from "lucide-react";
 import Image from "next/image";
 import {
@@ -104,10 +89,11 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
         // { title: "About Pages", url: "/admin/about", icon: Info },
         // { title: "Expertise", url: "/admin/expertise", icon: Star },
         { title: "Projects", url: "/admin/projects", icon: FolderKanban },
+        { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
+        { title: "QHSE Policy", url: "/admin/qhse-policy", icon: ShieldCheck },
         // { title: "Resources", url: "/admin/resources", icon: FileText },
         // { title: "Team Members", url: "/admin/team", icon: Users },
         // { title: "Clients", url: "/admin/clients", icon: Building2 },
-        // { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
       ],
     },
     // {
