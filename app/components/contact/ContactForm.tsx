@@ -25,7 +25,12 @@ export default function ContactForm() {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '');
+      if (!apiUrl) {
+        throw new Error('Contact API URL is not configured');
+      }
+
+      const response = await fetch(`${apiUrl}/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,8 +59,8 @@ export default function ContactForm() {
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
-          <Send className="h-5 w-5 text-red-600" />
+        <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+          <Send className="h-5 w-5 text-blue-700" />
         </div>
         <h2 className="text-2xl font-bold text-gray-900">Send Message</h2>
       </div>
@@ -97,7 +102,7 @@ export default function ContactForm() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-colors text-black"
               placeholder="Enter your full name"
             />
           </div>
@@ -113,7 +118,7 @@ export default function ContactForm() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-colors text-black"
               placeholder="Enter your email address"
             />
           </div>
@@ -130,7 +135,7 @@ export default function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-colors text-black"
             placeholder="What is this regarding?"
           />
         </div>
@@ -146,7 +151,7 @@ export default function ContactForm() {
             onChange={handleChange}
             required
             rows={6}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors resize-none"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-700 focus:border-blue-700 outline-none transition-colors resize-none text-black"
             placeholder="Please provide details about your inquiry..."
           />
         </div>
@@ -155,7 +160,7 @@ export default function ContactForm() {
           <button
             type="submit"
             disabled={status === 'loading'}
-            className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-4 rounded-lg transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full flex items-center justify-center gap-2 bg-blue-950 hover:bg-red-700 text-white font-semibold px-6 py-4 rounded-lg transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {status === 'loading' ? (
               <>

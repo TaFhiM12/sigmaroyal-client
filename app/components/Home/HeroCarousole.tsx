@@ -198,7 +198,7 @@ const HeroCarousel = ({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="h-0.5 w-16 bg-red-600"
+                  className="h-0.5 w-16 bg-blue-500"
                 />
 
                 {/* Badge / Subtitle */}
@@ -210,7 +210,7 @@ const HeroCarousel = ({
                     animate="visible"
                     exit="exit"
                   >
-                    <span className="inline-flex items-center gap-2 bg-red-600/15 border border-red-600/40 text-red-400 text-[8px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full backdrop-blur-sm">
+                    <span className="inline-flex items-center gap-2 bg-blue-700/20 border border-blue-400/50 text-blue-100 text-[8px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full backdrop-blur-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
                       {slide.subtitle}
                     </span>
@@ -238,7 +238,7 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="text-xs md:text-sm lg:text-base text-white/60 max-w-lg leading-relaxed font-light tracking-wide"
+                    className="text-xs md:text-sm lg:text-base text-white max-w-lg leading-relaxed font-normal tracking-wide"
                   >
                     {slide.description}
                   </motion.p>
@@ -256,7 +256,7 @@ const HeroCarousel = ({
                   >
                     <Button
                       asChild
-                      className="group relative bg-red-600 hover:bg-red-700 text-white px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 overflow-hidden border-0"
+                      className="group relative bg-blue-950 hover:bg-red-700 text-white px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 overflow-hidden border-0"
                     >
                       <a href={slide.ctaLink || "#"} className="flex items-center gap-2">
                         <span className="relative z-10">{slide.ctaText}</span>

@@ -36,7 +36,7 @@ export default function PrefaceContent() {
   return (
     <section className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
@@ -53,23 +53,24 @@ export default function PrefaceContent() {
             <div className="space-y-8">
               {/* Title Section */}
               <motion.div variants={fadeInUp} className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full">
-                  <Clock className="w-4 h-4 text-red-600" />
-                  <span className="text-sm font-semibold text-red-700 tracking-wider">SINCE 1977</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
+                  <Clock className="w-4 h-4 text-blue-700" />
+                  <span className="text-sm font-semibold text-blue-900 tracking-wider">SINCE 1977</span>
                 </div>
                 
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                   <span className="text-gray-900">Pioneering</span>
                   <br />
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
+                  <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600">
                     Energy Excellence
                   </span>
                 </h2>
+                <div className="h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
               </motion.div>
 
               {/* Description */}
               <motion.div variants={fadeInUp} className="space-y-4">
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                <p className="text-base md:text-lg text-black leading-relaxed">
                   <span className="font-bold text-gray-900">The Royal Utilisation Services (Pvt.) Ltd</span>
                   , together with{' '}
                   <span className="font-bold text-gray-900">Sigma Construction Company</span>
@@ -77,11 +78,11 @@ export default function PrefaceContent() {
                   <span className="font-bold text-red-600">{yearsExperience} years</span> of experience since 1977.
                 </p>
                 
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                <p className="text-base md:text-lg text-black leading-relaxed">
                   We are one of the leading infrastructure developer in Oil, Gas and Power Sector in Bangladesh pursuing business in Pipeline Construction including Mechanical, Electrical & Civil works.
                 </p>
 
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                <p className="text-base md:text-lg text-black leading-relaxed">
                   Recently we stepped in the business relating to LPG covering reticulated system,{' '}
                   <span className="font-medium text-red-600">Auto LPG Dispensing Station (ALDS)</span>,{' '}
                   <span className="font-medium text-red-600">Conventional Buoy Mooring (CBM)</span>,{' '}
@@ -100,8 +101,8 @@ export default function PrefaceContent() {
                   const Icon = stat.icon;
                   return (
                     <div key={index} className="text-center">
-                      <div className="inline-flex p-2 bg-red-50 rounded-lg mb-2">
-                        <Icon className="w-5 h-5 text-red-600" />
+                      <div className="inline-flex p-2 bg-blue-50 rounded-lg mb-2">
+                        <Icon className="w-5 h-5 text-blue-700" />
                       </div>
                       <div className="text-xl font-bold text-gray-900">{stat.value}</div>
                       <p className="text-xs text-gray-500">{stat.label}</p>
@@ -115,7 +116,7 @@ export default function PrefaceContent() {
                 {/* Royal Utilisation */}
                 <motion.div 
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-red-500"
+                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-700"
                 >
                   <div className="relative w-[40px] h-[50px] shrink-0 bg-gray-50 rounded-lg">
                     <Image 
@@ -136,7 +137,7 @@ export default function PrefaceContent() {
                 {/* Sigma Construction */}
                 <motion.div 
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-red-500"
+                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-700"
                 >
                   <div className="relative w-[40px] h-[45px] shrink-0 bg-gray-50 rounded-lg">
                     <Image 
@@ -165,13 +166,13 @@ export default function PrefaceContent() {
             >
               <div className="relative group">
                 {/* Decorative Elements */}
-                <div className="absolute -inset-4 bg-linear-to-r from-red-500 to-red-600 rounded-full opacity-20 group-hover:opacity-30 blur-xl transition-opacity" />
-                <div className="absolute inset-0 rounded-full border-2 border-red-200 group-hover:border-red-300 transition-colors" />
+                <div className="absolute -inset-4 bg-linear-to-r from-blue-700 to-blue-500 rounded-full opacity-20 group-hover:opacity-30 blur-xl transition-opacity" />
+                <div className="absolute inset-0 rounded-full border-2 border-blue-200 group-hover:border-blue-300 transition-colors" />
                 
                 {/* Image Container */}
                 <div className="relative w-70 h-70 sm:w-80 sm:h-80 lg:w-95 lg:h-95 rounded-full overflow-hidden shadow-xl">
                   <Image
-                    src="/preface/ceo1.png"
+                    src="/preface/ceo-corporate.png"
                     alt="Managing Director"
                     fill
                     className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-700"
@@ -196,7 +197,7 @@ export default function PrefaceContent() {
             initial={{ width: 0 }}
             animate={isTextInView ? { width: "100%" } : {}}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="h-px bg-linear-to-r from-transparent via-red-600 to-transparent"
+            className="h-px bg-linear-to-r from-transparent via-blue-700 to-transparent"
           />
         </motion.div>
       </div>

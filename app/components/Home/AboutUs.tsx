@@ -106,8 +106,8 @@ const AboutUs = ({ className }: AboutUsProps) => {
       {/* Simplified background elements - only show on desktop */}
       {!isMobile && (
         <>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/8 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
         </>
       )}
 
@@ -121,9 +121,9 @@ const AboutUs = ({ className }: AboutUsProps) => {
           {/* Left Column - Company Introduction */}
           <div className="space-y-6">
             <motion.div variants={itemVariants} className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
                 <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />
-                <span className="text-xs md:text-sm font-semibold text-red-700 tracking-wider">
+                <span className="text-xs md:text-sm font-semibold text-blue-900 tracking-wider">
                   SINCE 1977
                 </span>
               </div>
@@ -131,13 +131,14 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
                 <span className="text-gray-900">Pioneering</span>
                 <br />
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600">
                   Energy Excellence
                 </span>
               </h2>
+              <div className="h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
 
               <div className="space-y-4">
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                <p className="text-base md:text-lg text-black leading-relaxed">
                   <span className="font-bold text-gray-900">
                     The Royal Utilisation Services (Pvt.) Ltd
                   </span>
@@ -150,7 +151,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                   <span className="font-bold text-red-600">{yearsExperience} years</span> of
                   unparalleled experience since 1977.
                 </p>
-                <p className="text-base md:text-lg text-gray-600 leading-relaxed">
+                <p className="text-base md:text-lg text-black leading-relaxed">
                   We are one of the foremost infrastructure developers in the
                   Oil, Gas & Power sector, delivering comprehensive solutions
                   that power the nation&apos;s growth.
@@ -183,10 +184,10 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     animate={controls}
                     variants={fadeUpVariants}
                     custom={index}
-                    className="bg-white p-4 md:p-6 rounded-xl border border-gray-200 hover:border-red-300 transition-colors duration-300"
+                    className="bg-white p-4 md:p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition-colors duration-300"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-red-500 to-red-700 rounded-lg flex items-center justify-center">
+                      <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-blue-800 to-blue-600 rounded-lg flex items-center justify-center">
                         <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -196,7 +197,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                         <p className="text-xs md:text-sm text-red-600 font-medium mt-1">
                           {project.location}
                         </p>
-                        <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                        <p className="text-sm text-black mt-2 line-clamp-2">
                           {project.description}
                         </p>
                       </div>
@@ -221,25 +222,25 @@ const AboutUs = ({ className }: AboutUsProps) => {
                   value: `${yearsExperience}+`,
                   label: "Years Experience",
                   icon: <Award className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-red-500 to-red-700",
+                  color: "from-blue-800 to-blue-600",
                 },
                 {
                   value: "500+",
                   label: "Projects",
                   icon: <Briefcase className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-gray-500 to-gray-700",
+                  color: "from-blue-950 to-blue-800",
                 },
                 {
                   value: "50+",
                   label: "Engineers",
                   icon: <Users className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-red-500 to-red-700",
+                  color: "from-blue-800 to-blue-600",
                 },
                 {
                   value: "100%",
                   label: "Satisfaction",
                   icon: <Target className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-gray-500 to-gray-700",
+                  color: "from-blue-950 to-blue-800",
                 },
               ].map((stat) => (
                 <motion.div
@@ -259,7 +260,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     <div className="text-2xl md:text-3xl font-bold text-gray-900">
                       {stat.value}
                     </div>
-                    <p className="text-xs md:text-sm font-medium text-gray-600">
+                    <p className="text-xs md:text-sm font-medium text-black">
                       {stat.label}
                     </p>
                   </div>
@@ -277,7 +278,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <Button
                 asChild
                 size={isMobile ? "default" : "lg"}
-                className="w-full md:w-auto group bg-linear-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl font-semibold transition-all duration-300"
+                className="w-full md:w-auto group bg-linear-to-r from-blue-950 to-blue-800 hover:from-red-700 hover:to-red-900 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl font-semibold transition-all duration-300"
               >
                 <Link href="/about">
                   <span className="mr-2 md:mr-3 text-xs sm:text-sm md:text-base lg:text-lg">Discover Our Journey</span>
@@ -299,12 +300,12 @@ const AboutUs = ({ className }: AboutUsProps) => {
           <motion.div variants={cardVariants} className="relative">
             <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <div className="p-2 md:p-3 bg-red-50 rounded-lg">
-                  <Target className="h-5 w-5 md:h-6 md:w-6 text-red-600" />
+                <div className="p-2 md:p-3 bg-blue-50 rounded-lg">
+                  <Target className="h-5 w-5 md:h-6 md:w-6 text-blue-700" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900">Mission</h3>
               </div>
-              <div className="space-y-3 text-gray-600">
+              <div className="space-y-3 text-black">
                 <p className="text-sm md:text-base leading-relaxed">
                   To be among the leading contractors for delivering a personalized
                   standard of services that pertains to a level of excellence.
@@ -321,12 +322,12 @@ const AboutUs = ({ className }: AboutUsProps) => {
           <motion.div variants={cardVariants} className="relative">
             <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
-                <div className="p-2 md:p-3 bg-gray-50 rounded-lg">
-                  <Eye className="h-5 w-5 md:h-6 md:w-6 text-gray-700" />
+                <div className="p-2 md:p-3 bg-blue-50 rounded-lg">
+                  <Eye className="h-5 w-5 md:h-6 md:w-6 text-blue-700" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900">Vision</h3>
               </div>
-              <div className="space-y-3 text-gray-600">
+              <div className="space-y-3 text-black">
                 <p className="text-sm md:text-base leading-relaxed">
                   To have a viable business suitable for sustainable development by
                   assuring the topmost quality and safety.
@@ -346,7 +347,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
           initial={{ width: 0 }}
           animate={controls}
           transition={{ delay: isMobile ? 0 : 0.5, duration: 0.8 }}
-          className="mt-8 md:mt-16 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent rounded-full"
+          className="mt-8 md:mt-16 h-0.5 bg-linear-to-r from-transparent via-blue-700 to-transparent rounded-full"
         />
       </div>
     </section>

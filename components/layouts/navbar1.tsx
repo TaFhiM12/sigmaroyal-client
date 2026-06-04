@@ -64,7 +64,7 @@ const Navbar1 = ({
     };
   }, [activeDropdown]);
 
-  const textColorClass = scrolled ? "text-gray-800" : "text-white";
+  const textColorClass = scrolled ? "text-blue-950" : "text-white";
   const hoverTextColorClass = "hover:text-red-600";
 
   const toggleDropdown = (menuTitle: string) => {
@@ -100,7 +100,7 @@ const Navbar1 = ({
               href={subItem.url}
               className={cn(
                 "flex flex-col px-4 py-3 mx-2 rounded-md transition-all duration-200",
-                "hover:bg-red-50 hover:text-red-700 text-gray-800",
+                "hover:bg-blue-50 hover:text-blue-950 text-gray-900",
                 "border-l-2 border-transparent hover:border-red-600"
               )}
               onClick={() => setActiveDropdown(null)}
@@ -139,7 +139,7 @@ const Navbar1 = ({
             )} />
             
             <div className={cn(
-              "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300",
+              "absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300",
               activeDropdown === item.title && "w-4/5"
             )} />
           </button>
@@ -161,7 +161,7 @@ const Navbar1 = ({
         )}
       >
         {item.title}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 transition-all duration-300 group-hover:w-4/5" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-4/5" />
       </Link>
     );
   };
@@ -192,7 +192,7 @@ const Navbar1 = ({
                   key={subItem.title}
                   href={subItem.url}
                   onClick={handleMobileLinkClick}
-                  className="flex flex-col rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-red-50 hover:text-red-700 text-gray-800"
+                  className="flex flex-col rounded-md p-3 leading-none no-underline transition-colors duration-200 outline-none select-none hover:bg-blue-50 hover:text-blue-950 text-gray-900"
                 >
                   <div className="text-sm font-medium">{subItem.title}</div>
                   {subItem.description && (
@@ -231,7 +231,7 @@ const Navbar1 = ({
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         scrolled
           ? "bg-white shadow-lg py-3"
-          : "bg-transparent py-4",
+          : "bg-blue-950/70 backdrop-blur-sm py-4",
         className
       )}
     >
@@ -254,15 +254,15 @@ const Navbar1 = ({
                 className="h-10 w-auto"
                 alt={logo.alt}
               />
-              <div className="absolute -inset-1 bg-red-600/20 blur-sm group-hover:bg-red-600/30 transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute -inset-1 bg-blue-600/20 blur-sm group-hover:bg-blue-600/30 transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100"></div>
             </div>
             
             <div className="flex flex-col leading-tight">
               <span className={cn(
                 "text-xl font-extrabold tracking-tight bg-linear-to-r bg-clip-text text-transparent",
                 scrolled 
-                  ? "from-red-700 to-red-500 group-hover:from-red-600 group-hover:to-red-400"
-                  : "from-white to-gray-200 group-hover:from-red-300 group-hover:to-white",
+                  ? "from-blue-950 to-blue-700 group-hover:from-blue-900 group-hover:to-red-600"
+                  : "from-white to-blue-100 group-hover:from-blue-200 group-hover:to-white",
                 "transition-all duration-300"
               )}>
                 The Royal Utilisation <br/>
@@ -270,7 +270,7 @@ const Navbar1 = ({
               <span className={cn(
                 "text-sm font-bold tracking-wider",
                 scrolled 
-                  ? "text-red-700 group-hover:text-red-600"
+                  ? "text-red-700 group-hover:text-blue-900"
                   : "text-white/90 group-hover:text-red-300",
                 "transition-all duration-300"
               )}>
@@ -380,7 +380,7 @@ const Navbar1 = ({
                         <Link 
                           href="/certifications" 
                           onClick={handleMobileLinkClick}
-                          className="text-sm font-medium text-white bg-gray-800 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
+                          className="text-sm font-medium text-white bg-blue-950 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Certifications
                         </Link>

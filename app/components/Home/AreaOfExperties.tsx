@@ -67,7 +67,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Oil & Gas Sector",
       description: "Comprehensive solutions for natural gas, LPG, and LNG infrastructure with advanced pipeline technology",
       icon: <Droplets className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-red-600 to-red-700",
+      color: "from-blue-950 to-blue-700",
       features: [
         "Cross Country Pipeline Construction in NG, LPG & LNG Sector",
         "River Crossing by HDD method",
@@ -86,7 +86,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Power Sector",
       description: "End-to-end power plant construction and maintenance services with cutting-edge technology",
       icon: <Zap className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-gray-600 to-gray-800",
+      color: "from-blue-950 to-blue-800",
       features: [
         "Fabrication, Erection, Installation & Commissioning of all piping, Tank, Structure",
         "Insulation Works of pipe & tank",
@@ -104,7 +104,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Process Plant",
       description: "Specialized engineering for refineries and petrochemical facilities",
       icon: <Factory className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-red-600 to-red-700",
+      color: "from-blue-900 to-blue-700",
       features: [
         "Refineries",
         "Petrochemicals"
@@ -120,7 +120,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       title: "Engineering & Services",
       description: "Complete LPG solutions and specialized equipment for energy distribution",
       icon: <Wrench className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-gray-600 to-gray-800",
+      color: "from-blue-950 to-blue-800",
       features: [
         "Complete set of auto LPG dispensing station equipment",
         "LPG solution for industry household and auto LPG station",
@@ -207,8 +207,8 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
       {/* Simplified Background - Only on desktop */}
       {!isMobile && (
         <>
-          <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-red-600/10 to-transparent" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-gray-500/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
+          <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-blue-700/10 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/8 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
         </>
       )}
 
@@ -238,12 +238,12 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           className="text-center max-w-3xl mx-auto mb-8 md:mb-16"
         >
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-3 md:mb-4">
-            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
-            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
-            <span className="text-xs md:text-sm font-semibold text-red-700 tracking-wider">
+            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-blue-700 to-transparent" />
+            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
+            <span className="text-xs md:text-sm font-semibold text-blue-900 tracking-wider">
               CORE COMPETENCIES
             </span>
-            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-blue-700 to-transparent" />
           </motion.div>
 
           <motion.h2 
@@ -251,14 +251,15 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
           >
             <span className="text-gray-900">Areas of</span>
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800 ml-2 md:ml-4">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600 ml-2 md:ml-4">
               Expertise
             </span>
           </motion.h2>
+          <div className="mx-auto -mt-2 mb-5 h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
 
           <motion.p 
             variants={itemVariants}
-            className="text-base md:text-lg text-gray-600 leading-relaxed"
+            className="text-base md:text-lg text-black leading-relaxed"
           >
             {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
             delivering innovative solutions with uncompromising quality and safety.
@@ -275,7 +276,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           {/* Left Column - Tabs Navigation */}
           <motion.div variants={fadeUpVariants} className="lg:col-span-1">
             <div className="sticky top-24 space-y-3 md:space-y-4">
-              <div className="bg-linear-to-br from-gray-900 to-gray-800 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg">
+              <div className="bg-linear-to-br from-blue-950 to-blue-900 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg">
                 <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Expertise Categories</h3>
                 <div className="space-y-2">
                   {(Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][]).map(([key, area]) => (
@@ -373,7 +374,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                             key={highlight}
                             className="inline-flex items-center gap-1 md:gap-2 px-3 py-1.5 bg-linear-to-r from-gray-50 to-white border border-gray-200 rounded-full text-xs md:text-sm font-medium"
                           >
-                            <CheckCircle className="h-3 w-3 text-red-600" />
+                            <CheckCircle className="h-3 w-3 text-blue-700" />
                             {highlight}
                           </span>
                         ))}
@@ -386,12 +387,12 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                           {expertiseAreas[activeTab].features.map((feature) => (
                             <div
                               key={feature}
-                              className="flex items-start gap-2 md:gap-3 p-3 rounded-lg hover:bg-red-50 transition-colors duration-200"
+                              className="flex items-start gap-2 md:gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200"
                             >
                               <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
                                 <Shield className="h-3 w-3 md:h-4 md:w-4 text-white" />
                               </div>
-                              <span className="text-sm md:text-base text-gray-700">
+                              <span className="text-sm md:text-base text-black">
                                 {feature}
                               </span>
                             </div>
@@ -406,7 +407,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                             <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-2">
                               Featured Project
                             </h4>
-                            <p className="text-sm md:text-base text-gray-600">
+                            <p className="text-sm md:text-base text-black">
                               {activeTab === "oil-gas" 
                                 ? "07 Nos. capacity of 60 MMSCFD Project at B-baria"
                                 : activeTab === "power"
@@ -432,30 +433,30 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
             <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
               <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Cpu className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <Cpu className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Technology</span>
                 </div>
-                <p className="text-xs md:text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-black">
                   Latest HDD, SCADA, and PLC systems ensuring precision and safety
                 </p>
               </div>
               
               <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Shield className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <Shield className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Safety</span>
                 </div>
-                <p className="text-xs md:text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-black">
                   ISO certified safety protocols with zero compromise on quality
                 </p>
               </div>
               
               <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                  <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Innovation</span>
                 </div>
-                <p className="text-xs md:text-sm text-gray-600">
+                <p className="text-xs md:text-sm text-black">
                   Continuous R&D for sustainable and efficient energy solutions
                 </p>
               </div>
@@ -472,7 +473,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         >
           {[
             { icon: <Zap className="h-4 w-4 md:h-5 md:w-5" />, label: "Power Specialists", color: "border-gray-300 bg-gray-50" },
-            { icon: <Factory className="h-4 w-4 md:h-5 md:w-5" />, label: "Plant Engineering", color: "border-red-300 bg-red-50" },
+            { icon: <Factory className="h-4 w-4 md:h-5 md:w-5" />, label: "Plant Engineering", color: "border-blue-300 bg-blue-50" },
             { icon: <Droplets className="h-4 w-4 md:h-5 md:w-5" />, label: "LPG Solutions", color: "border-gray-300 bg-gray-50" },
           ].map((badge) => (
             <div

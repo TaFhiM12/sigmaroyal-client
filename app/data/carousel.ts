@@ -44,7 +44,7 @@ export const customSlides: CarouselSlide[] = [
   },
   {
     id: 5,
-    image: "/banner/banner5.jpg",
+    image: "/banner/banner5-sharp.png",
     title: "Trusted by National & International Energy Leaders",
     subtitle: "PetroBangla Enlisted • ISO Certified • Government Approved",
     description:
