@@ -34,7 +34,7 @@ export default function PrefaceContent() {
   
 
   return (
-    <section className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
+    <section className="relative bg-linear-to-b from-slate-50 to-white py-12 md:py-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -53,24 +53,24 @@ export default function PrefaceContent() {
             <div className="space-y-8">
               {/* Title Section */}
               <motion.div variants={fadeInUp} className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
+                <div className="section-kicker">
                   <Clock className="w-4 h-4 text-blue-700" />
-                  <span className="text-sm font-semibold text-blue-900 tracking-wider">SINCE 1977</span>
+                  <span>SINCE 1977</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  <span className="text-gray-900">Pioneering</span>
+                <h2 className="section-title">
+                  <span>Pioneering</span>
                   <br />
-                  <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600">
+                  <span className="brand-text-gradient">
                     Energy Excellence
                   </span>
                 </h2>
-                <div className="h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
+                <div className="section-underline" />
               </motion.div>
 
               {/* Description */}
               <motion.div variants={fadeInUp} className="space-y-4">
-                <p className="text-base md:text-lg text-black leading-relaxed">
+                <p className="section-copy">
                   <span className="font-bold text-gray-900">The Royal Utilisation Services (Pvt.) Ltd</span>
                   , together with{' '}
                   <span className="font-bold text-gray-900">Sigma Construction Company</span>
@@ -78,11 +78,11 @@ export default function PrefaceContent() {
                   <span className="font-bold text-red-600">{yearsExperience} years</span> of experience since 1977.
                 </p>
                 
-                <p className="text-base md:text-lg text-black leading-relaxed">
+                <p className="section-copy">
                   We are one of the leading infrastructure developer in Oil, Gas and Power Sector in Bangladesh pursuing business in Pipeline Construction including Mechanical, Electrical & Civil works.
                 </p>
 
-                <p className="text-base md:text-lg text-black leading-relaxed">
+                <p className="section-copy">
                   Recently we stepped in the business relating to LPG covering reticulated system,{' '}
                   <span className="font-medium text-red-600">Auto LPG Dispensing Station (ALDS)</span>,{' '}
                   <span className="font-medium text-red-600">Conventional Buoy Mooring (CBM)</span>,{' '}
@@ -104,8 +104,8 @@ export default function PrefaceContent() {
                       <div className="inline-flex p-2 bg-blue-50 rounded-lg mb-2">
                         <Icon className="w-5 h-5 text-blue-700" />
                       </div>
-                      <div className="text-xl font-bold text-gray-900">{stat.value}</div>
-                      <p className="text-xs text-gray-500">{stat.label}</p>
+                      <div className="text-xl font-extrabold text-gray-900">{stat.value}</div>
+                      <p className="text-xs font-medium text-gray-600">{stat.label}</p>
                     </div>
                   );
                 })}
@@ -116,9 +116,9 @@ export default function PrefaceContent() {
                 {/* Royal Utilisation */}
                 <motion.div 
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-700"
+                  className="brand-card flex items-center gap-4 p-4 hover:shadow-md transition-all border-l-4 border-blue-700"
                 >
-                  <div className="relative w-[40px] h-[50px] shrink-0 bg-gray-50 rounded-lg">
+                  <div className="relative w-[40px] h-[50px] shrink-0 bg-slate-50 rounded-md">
                     <Image 
                       src="/preface/logo.png" 
                       alt="The Royal Utilisation Services Logo" 
@@ -130,16 +130,16 @@ export default function PrefaceContent() {
                     <h3 className="text-base font-bold text-gray-900">
                       The Royal Utilisation Services (Pvt.)Limited
                     </h3>
-                    <p className="text-xs text-gray-500">Energy Infrastructure Pioneer</p>
+                    <p className="text-xs font-medium text-gray-600">Energy Infrastructure Pioneer</p>
                   </div>
                 </motion.div>
 
                 {/* Sigma Construction */}
                 <motion.div 
                   whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border-l-4 border-blue-700"
+                  className="brand-card flex items-center gap-4 p-4 hover:shadow-md transition-all border-l-4 border-blue-700"
                 >
-                  <div className="relative w-[40px] h-[45px] shrink-0 bg-gray-50 rounded-lg">
+                  <div className="relative w-[40px] h-[45px] shrink-0 bg-slate-50 rounded-md">
                     <Image 
                       src="/preface/logo2.png" 
                       alt="Sigma Construction Company Logo" 
@@ -151,7 +151,7 @@ export default function PrefaceContent() {
                     <h3 className="text-base font-bold text-gray-900">
                       Sigma Construction Company
                     </h3>
-                    <p className="text-xs text-gray-500">Construction & Engineering Excellence</p>
+                    <p className="text-xs font-medium text-gray-600">Construction & Engineering Excellence</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -182,9 +182,9 @@ export default function PrefaceContent() {
                 </div>
 
                 {/* Caption */}
-                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-white px-6 py-3 rounded-full shadow-lg">
-                  <p className="text-sm font-medium text-gray-900">Managing Director</p>
-                  <p className="text-xs text-gray-500">The Royal Utilisation Services & Sigma Construction</p>
+                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-white px-6 py-3 rounded-lg shadow-lg border border-slate-200">
+                  <p className="text-sm font-bold text-gray-900">Managing Director</p>
+                  <p className="text-xs font-medium text-gray-600">The Royal Utilisation Services & Sigma Construction</p>
                 </div>
               </div>
             </motion.div>

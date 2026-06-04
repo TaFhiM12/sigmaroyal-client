@@ -79,7 +79,7 @@ const Footer2 = ({
   ],
 }: Footer2Props) => {
   return (
-    <footer className={cn("bg-gray-900 text-white", className)}>
+    <footer className={cn("bg-blue-950 text-white", className)}>
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -96,10 +96,10 @@ const Footer2 = ({
                     height={60}
                     className="h-12 w-auto"
                   />
-                  <span className="text-lg md:text-2xl font-bold">{logo.title}</span>
+                  <span className="text-lg md:text-2xl font-extrabold leading-tight">{logo.title}</span>
                 </div>
               </Link>
-              <p className="text-sm md:text-lg text-gray-300">
+              <p className="text-sm md:text-base text-blue-50/90 max-w-xl">
                 Pioneers in energy sector with 46+ years of excellence  in Oil, <br /> Gas & Power infrastructure development.
               </p>
             </div>
@@ -108,8 +108,8 @@ const Footer2 = ({
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {/* Head Office */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-red-400">Head Office</h3>
-                <div className="space-y-3 text-gray-300">
+                <h3 className="text-lg font-extrabold text-blue-100">Head Office</h3>
+                <div className="space-y-3 text-blue-50/85">
                   <div className="flex items-start gap-3 ">
                     <MapPin className="h-5 w-5 shrink-0 text-red-400 mt-0.5" />
                     <p>28/A, Nayapaltan (4th Floor) VIP Road, Dhaka-1000, Bangladesh.</p>
@@ -131,8 +131,8 @@ const Footer2 = ({
 
               {/* Business Office */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-red-400">Business Office</h3>
-                <div className="space-y-3 text-gray-300">
+                <h3 className="text-lg font-extrabold text-blue-100">Business Office</h3>
+                <div className="space-y-3 text-blue-50/85">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 flex-shrink-0 text-red-400 mt-0.5" />
                     <p>House#383, (3rd floor), Road#28, New DOHS, Mohakhali, Dhaka-1206.</p>
@@ -152,8 +152,8 @@ const Footer2 = ({
 
               {/* Sirajgonj Office */}
               <div className="space-y-4 md:col-span-2">
-                <h3 className="text-lg font-semibold text-red-400">Sirajgonj Office</h3>
-                <div className="space-y-3 text-gray-300">
+                <h3 className="text-lg font-extrabold text-blue-100">Sirajgonj Office</h3>
+                <div className="space-y-3 text-blue-50/85">
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 flex-shrink-0 text-red-400 mt-0.5" />
                     <p>Wasim Villa, Masumpur, Sirajgonj.</p>
@@ -177,18 +177,18 @@ const Footer2 = ({
 
             {/* Social Media */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-red-400">Connect With Us</h3>
+              <h3 className="text-lg font-extrabold text-blue-100">Connect With Us</h3>
               <div className="flex gap-4">
-                <a href="#" aria-label="Facebook" className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition-colors">
+                <a href="#" aria-label="Facebook" className="p-2 bg-blue-900 rounded-md hover:bg-red-600 transition-colors">
                   <Facebook className="h-5 w-5" />
                 </a>
-                <a href="#" aria-label="LinkedIn" className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition-colors">
+                <a href="#" aria-label="LinkedIn" className="p-2 bg-blue-900 rounded-md hover:bg-red-600 transition-colors">
                   <Linkedin className="h-5 w-5" />
                 </a>
-                <a href="#" aria-label="Twitter" className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition-colors">
+                <a href="#" aria-label="Twitter" className="p-2 bg-blue-900 rounded-md hover:bg-red-600 transition-colors">
                   <Twitter className="h-5 w-5" />
                 </a>
-                <a href="mailto:info@sigma-royal.com" aria-label="Email" className="p-2 bg-gray-800 rounded-full hover:bg-red-600 transition-colors">
+                <a href="mailto:info@sigma-royal.com" aria-label="Email" className="p-2 bg-blue-900 rounded-md hover:bg-red-600 transition-colors">
                   <Mail className="h-5 w-5" />
                 </a>
               </div>
@@ -199,7 +199,7 @@ const Footer2 = ({
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {menuItems.map((section, index) => (
               <div key={index} className="space-y-4">
-                <h3 className="text-lg font-semibold text-red-400 border-b border-gray-700 pb-2">
+                <h3 className="text-lg font-extrabold text-blue-100 border-b border-blue-800 pb-2">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -207,7 +207,7 @@ const Footer2 = ({
                     <li key={linkIndex}>
                       <Link 
                         href={link.url}
-                        className="text-gray-300 hover:text-red-400 transition-colors duration-200 flex items-center gap-2 group"
+                        className="text-blue-50/85 hover:text-red-300 transition-colors duration-200 flex items-center gap-2 group"
                       >
                         <span className="w-2 h-2 bg-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
                         {link.text}
@@ -222,7 +222,7 @@ const Footer2 = ({
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800 bg-gray-950">
+      <div className="border-t border-blue-900 bg-slate-950">
         <div className="container mx-auto px-4 py-6 md:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-center text-sm text-gray-400 md:text-left">

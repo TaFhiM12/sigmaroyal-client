@@ -200,7 +200,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-gray-50 via-white to-gray-50 py-12 md:py-24",
+        "relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-50 py-12 md:py-24",
         className
       )}
     >
@@ -237,29 +237,25 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           variants={containerVariants}
           className="text-center max-w-3xl mx-auto mb-8 md:mb-16"
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 mb-3 md:mb-4">
-            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-blue-700 to-transparent" />
+          <motion.div variants={itemVariants} className="section-kicker mb-3 md:mb-4">
             <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
-            <span className="text-xs md:text-sm font-semibold text-blue-900 tracking-wider">
-              CORE COMPETENCIES
-            </span>
-            <div className="w-8 md:w-12 h-0.5 bg-linear-to-r from-transparent via-blue-700 to-transparent" />
+            <span>CORE COMPETENCIES</span>
           </motion.div>
 
           <motion.h2 
             variants={fadeUpVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6"
+            className="section-title mb-4 md:mb-6"
           >
-            <span className="text-gray-900">Areas of</span>
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600 ml-2 md:ml-4">
+            <span>Areas of</span>
+            <span className="brand-text-gradient ml-2 md:ml-4">
               Expertise
             </span>
           </motion.h2>
-          <div className="mx-auto -mt-2 mb-5 h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
+          <div className="section-underline mx-auto -mt-2 mb-5" />
 
           <motion.p 
             variants={itemVariants}
-            className="text-base md:text-lg text-black leading-relaxed"
+            className="section-copy"
           >
             {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
             delivering innovative solutions with uncompromising quality and safety.
@@ -276,8 +272,8 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
           {/* Left Column - Tabs Navigation */}
           <motion.div variants={fadeUpVariants} className="lg:col-span-1">
             <div className="sticky top-24 space-y-3 md:space-y-4">
-              <div className="bg-linear-to-br from-blue-950 to-blue-900 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-lg">
-                <h3 className="text-lg md:text-xl font-bold text-white mb-4 md:mb-6">Expertise Categories</h3>
+              <div className="bg-linear-to-br from-blue-950 to-blue-900 p-4 md:p-6 rounded-lg shadow-lg">
+                <h3 className="text-lg md:text-xl font-extrabold text-white mb-4 md:mb-6">Expertise Categories</h3>
                 <div className="space-y-2">
                   {(Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][]).map(([key, area]) => (
                     <button
@@ -286,7 +282,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                       onMouseEnter={() => !isMobile && setHoveredCard(key)}
                       onMouseLeave={() => !isMobile && setHoveredCard(null)}
                       className={cn(
-                        "w-full text-left p-3 md:p-4 rounded-lg md:rounded-xl transition-all duration-200",
+                        "w-full text-left p-3 md:p-4 rounded-lg transition-all duration-200",
                         activeTab === key 
                           ? `bg-linear-to-r ${area.color} text-white shadow-md` 
                           : "bg-white/10 text-gray-300 hover:bg-white/20"
@@ -335,7 +331,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                 animate="visible"
                 exit="hidden"
                 variants={tabContentVariants}
-                className="bg-white rounded-xl md:rounded-2xl shadow-lg overflow-hidden border border-gray-200"
+                className="brand-card overflow-hidden"
               >
                 {activeTab && expertiseAreas[activeTab] && (
                   <>
@@ -355,11 +351,11 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                           <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color}`}>
                             {expertiseAreas[activeTab].icon}
                           </div>
-                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white">
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-white">
                             {expertiseAreas[activeTab].title}
                           </h3>
                         </div>
-                        <p className="text-sm md:text-base text-gray-200 line-clamp-2">
+                        <p className="text-sm md:text-base text-gray-100 line-clamp-2">
                           {expertiseAreas[activeTab].description}
                         </p>
                       </div>
@@ -382,7 +378,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
 
                       {/* Features List */}
                       <div className="space-y-3 md:space-y-4">
-                        <h4 className="text-base md:text-lg font-semibold text-gray-900">Key Services</h4>
+                        <h4 className="text-base md:text-lg font-extrabold text-gray-900">Key Services</h4>
                         <div className="space-y-2 md:space-y-3">
                           {expertiseAreas[activeTab].features.map((feature) => (
                             <div
@@ -392,7 +388,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                               <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
                                 <Shield className="h-3 w-3 md:h-4 md:w-4 text-white" />
                               </div>
-                              <span className="text-sm md:text-base text-black">
+                              <span className="section-copy-sm">
                                 {feature}
                               </span>
                             </div>
@@ -404,10 +400,10 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                       <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-200">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                           <div>
-                            <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-1 md:mb-2">
+                            <h4 className="text-base md:text-lg font-extrabold text-gray-900 mb-1 md:mb-2">
                               Featured Project
                             </h4>
-                            <p className="text-sm md:text-base text-black">
+                            <p className="section-copy-sm">
                               {activeTab === "oil-gas" 
                                 ? "07 Nos. capacity of 60 MMSCFD Project at B-baria"
                                 : activeTab === "power"
@@ -417,7 +413,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
                             </p>
                           </div>
                           <button
-                            className={`px-4 py-2 md:px-6 md:py-3 rounded-lg bg-linear-to-r ${expertiseAreas[activeTab].color} text-white font-semibold text-sm md:text-base hover:shadow-md transition-shadow`}
+                            className={`px-4 py-2 md:px-6 md:py-3 rounded-lg bg-linear-to-r ${expertiseAreas[activeTab].color} text-white font-bold text-sm md:text-base hover:shadow-md transition-shadow`}
                           >
                             View Projects
                           </button>
@@ -431,32 +427,32 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
 
             {/* Additional Info - Optimized */}
             <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
                   <Cpu className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Technology</span>
                 </div>
-                <p className="text-xs md:text-sm text-black">
+                <p className="section-copy-sm">
                   Latest HDD, SCADA, and PLC systems ensuring precision and safety
                 </p>
               </div>
               
-              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
                   <Shield className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Safety</span>
                 </div>
-                <p className="text-xs md:text-sm text-black">
+                <p className="section-copy-sm">
                   ISO certified safety protocols with zero compromise on quality
                 </p>
               </div>
               
-              <div className="bg-linear-to-br from-gray-50 to-white p-4 md:p-6 rounded-lg md:rounded-xl border border-gray-200">
+              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
                 <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
                   <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
                   <span className="text-sm md:text-base font-semibold text-gray-900">Innovation</span>
                 </div>
-                <p className="text-xs md:text-sm text-black">
+                <p className="section-copy-sm">
                   Continuous R&D for sustainable and efficient energy solutions
                 </p>
               </div>

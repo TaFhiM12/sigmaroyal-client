@@ -99,7 +99,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-gray-50 to-white py-12 md:py-24",
+        "relative overflow-hidden bg-linear-to-b from-slate-50 to-white py-12 md:py-24",
         className
       )}
     >
@@ -121,24 +121,22 @@ const AboutUs = ({ className }: AboutUsProps) => {
           {/* Left Column - Company Introduction */}
           <div className="space-y-6">
             <motion.div variants={itemVariants} className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full">
+              <div className="section-kicker">
                 <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />
-                <span className="text-xs md:text-sm font-semibold text-blue-900 tracking-wider">
-                  SINCE 1977
-                </span>
+                <span>SINCE 1977</span>
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-                <span className="text-gray-900">Pioneering</span>
+              <h2 className="section-title">
+                <span>Pioneering</span>
                 <br />
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-900 to-blue-600">
+                <span className="brand-text-gradient">
                   Energy Excellence
                 </span>
               </h2>
-              <div className="h-1 w-20 bg-linear-to-r from-blue-700 to-red-600 rounded-full" />
+              <div className="section-underline" />
 
               <div className="space-y-4">
-                <p className="text-base md:text-lg text-black leading-relaxed">
+                <p className="section-copy">
                   <span className="font-bold text-gray-900">
                     The Royal Utilisation Services (Pvt.) Ltd
                   </span>
@@ -151,7 +149,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                   <span className="font-bold text-red-600">{yearsExperience} years</span> of
                   unparalleled experience since 1977.
                 </p>
-                <p className="text-base md:text-lg text-black leading-relaxed">
+                <p className="section-copy">
                   We are one of the foremost infrastructure developers in the
                   Oil, Gas & Power sector, delivering comprehensive solutions
                   that power the nation&apos;s growth.
@@ -161,7 +159,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
 
             {/* Featured Projects */}
             <motion.div variants={itemVariants} className="space-y-4">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+              <h3 className="section-title-sm">
                 Featured Projects
               </h3>
               
@@ -184,20 +182,20 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     animate={controls}
                     variants={fadeUpVariants}
                     custom={index}
-                    className="bg-white p-4 md:p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition-colors duration-300"
+                    className="brand-card p-4 md:p-6 hover:border-blue-300 transition-colors duration-300"
                   >
                     <div className="flex items-start gap-3">
                       <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-blue-800 to-blue-600 rounded-lg flex items-center justify-center">
                         <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-base md:text-lg font-bold text-gray-900 line-clamp-2">
+                        <h4 className="text-base md:text-lg font-extrabold text-gray-900 line-clamp-2">
                           {project.title}
                         </h4>
                         <p className="text-xs md:text-sm text-red-600 font-medium mt-1">
                           {project.location}
                         </p>
-                        <p className="text-sm text-black mt-2 line-clamp-2">
+                        <p className="section-copy-sm mt-2 line-clamp-2">
                           {project.description}
                         </p>
                       </div>
@@ -246,7 +244,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 <motion.div
                   key={stat.label}
                   variants={scaleVariants}
-                  className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100"
+                  className="brand-card p-4 md:p-6"
                 >
                   <div className="space-y-2">
                     <div
@@ -257,7 +255,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     >
                       <div className="text-white">{stat.icon}</div>
                     </div>
-                    <div className="text-2xl md:text-3xl font-bold text-gray-900">
+                    <div className="text-2xl md:text-3xl font-extrabold text-gray-900">
                       {stat.value}
                     </div>
                     <p className="text-xs md:text-sm font-medium text-black">
@@ -278,7 +276,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <Button
                 asChild
                 size={isMobile ? "default" : "lg"}
-                className="w-full md:w-auto group bg-linear-to-r from-blue-950 to-blue-800 hover:from-red-700 hover:to-red-900 text-white px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-xl font-semibold transition-all duration-300"
+                className="brand-button-primary w-full md:w-auto group px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-lg"
               >
                 <Link href="/about">
                   <span className="mr-2 md:mr-3 text-xs sm:text-sm md:text-base lg:text-lg">Discover Our Journey</span>
@@ -298,19 +296,19 @@ const AboutUs = ({ className }: AboutUsProps) => {
         >
           {/* Mission Card */}
           <motion.div variants={cardVariants} className="relative">
-            <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
+            <div className="brand-card p-6 md:p-8">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="p-2 md:p-3 bg-blue-50 rounded-lg">
                   <Target className="h-5 w-5 md:h-6 md:w-6 text-blue-700" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900">Mission</h3>
+                <h3 className="section-title-sm">Mission</h3>
               </div>
-              <div className="space-y-3 text-black">
-                <p className="text-sm md:text-base leading-relaxed">
+              <div className="space-y-3">
+                <p className="section-copy-sm">
                   To be among the leading contractors for delivering a personalized
                   standard of services that pertains to a level of excellence.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed">
+                <p className="section-copy-sm">
                   To provide the most efficient, trustworthy, high-quality service
                   while ensuring international standards of safety and quality.
                 </p>
@@ -320,19 +318,19 @@ const AboutUs = ({ className }: AboutUsProps) => {
 
           {/* Vision Card */}
           <motion.div variants={cardVariants} className="relative">
-            <div className="bg-white p-6 md:p-8 rounded-xl border border-gray-200">
+            <div className="brand-card p-6 md:p-8">
               <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <div className="p-2 md:p-3 bg-blue-50 rounded-lg">
                   <Eye className="h-5 w-5 md:h-6 md:w-6 text-blue-700" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900">Vision</h3>
+                <h3 className="section-title-sm">Vision</h3>
               </div>
-              <div className="space-y-3 text-black">
-                <p className="text-sm md:text-base leading-relaxed">
+              <div className="space-y-3">
+                <p className="section-copy-sm">
                   To have a viable business suitable for sustainable development by
                   assuring the topmost quality and safety.
                 </p>
-                <p className="text-sm md:text-base leading-relaxed">
+                <p className="section-copy-sm">
                   Having a commitment to long term business relationships with our
                   Clients while providing guidance and innovation in worldwide
                   business.

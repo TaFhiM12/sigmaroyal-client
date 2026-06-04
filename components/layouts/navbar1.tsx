@@ -175,9 +175,8 @@ const Navbar1 = ({
           className="border-b border-gray-100 last:border-b-0"
         >
           <AccordionTrigger
-          style={{ fontFamily: "Inter, sans-serif" }}
             className={cn(
-              "text-sm py-4 font-semibold hover:no-underline transition-colors duration-200",
+              "text-sm py-4 font-bold hover:no-underline transition-colors duration-200",
               "text-gray-800",
               hoverTextColorClass,
             )}
@@ -212,10 +211,9 @@ const Navbar1 = ({
       <Link
         key={item.title}
         href={item.url}
-        style={{ fontFamily: "Inter, sans-serif" }}
         onClick={handleMobileLinkClick}
         className={cn(
-          "text-sm font-semibold transition-colors duration-200 py-4 border-b border-gray-100 last:border-b-0",
+          "text-sm font-bold transition-colors duration-200 py-4 border-b border-gray-100 last:border-b-0",
           "text-gray-800",
           hoverTextColorClass,
         )}
@@ -231,7 +229,7 @@ const Navbar1 = ({
         "fixed top-0 left-0 w-full z-50 transition-all duration-300",
         scrolled
           ? "bg-white shadow-lg py-3"
-          : "bg-blue-950/70 backdrop-blur-sm py-4",
+          : "bg-blue-950/85 backdrop-blur-sm py-4",
         className
       )}
     >
@@ -259,7 +257,7 @@ const Navbar1 = ({
             
             <div className="flex flex-col leading-tight">
               <span className={cn(
-                "text-xl font-extrabold tracking-tight bg-linear-to-r bg-clip-text text-transparent",
+                "text-xl font-extrabold tracking-normal bg-linear-to-r bg-clip-text text-transparent",
                 scrolled 
                   ? "from-blue-950 to-blue-700 group-hover:from-blue-900 group-hover:to-red-600"
                   : "from-white to-blue-100 group-hover:from-blue-200 group-hover:to-white",
@@ -268,7 +266,7 @@ const Navbar1 = ({
                 The Royal Utilisation <br/>
               </span>
               <span className={cn(
-                "text-sm font-bold tracking-wider",
+                "text-sm font-extrabold tracking-normal",
                 scrolled 
                   ? "text-red-700 group-hover:text-blue-900"
                   : "text-white/90 group-hover:text-red-300",
@@ -380,14 +378,14 @@ const Navbar1 = ({
                         <Link 
                           href="/certifications" 
                           onClick={handleMobileLinkClick}
-                          className="text-sm font-medium text-white bg-blue-950 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
+                          className="text-sm font-bold text-white bg-blue-950 hover:bg-red-600 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Certifications
                         </Link>
                         <Link 
                           href="/contact" 
                           onClick={handleMobileLinkClick}
-                          className="text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 text-center py-3 rounded-md"
+                          className="text-sm font-bold text-white bg-red-600 hover:bg-red-700 transition-colors duration-200 text-center py-3 rounded-md"
                         >
                           Get Quote
                         </Link>
