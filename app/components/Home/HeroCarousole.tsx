@@ -129,7 +129,7 @@ const HeroCarousel = ({
   return (
     <section
       className={cn(
-        "relative w-full h-screen min-h-150 overflow-hidden bg-neutral-950",
+        "relative min-h-[640px] h-[100svh] w-full overflow-hidden bg-neutral-950 md:min-h-150",
         className
       )}
       onMouseMove={handleMouseMove}
@@ -161,8 +161,9 @@ const HeroCarousel = ({
           </motion.div>
 
           {/* Layered overlays */}
-          <div className="absolute inset-0 bg-linear-to-r from-neutral-950/90 via-neutral-950/60 to-neutral-950/10" />
-          <div className="absolute inset-0 bg-linear-to-t from-neutral-950/80 via-transparent to-neutral-950/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-neutral-950/92 via-neutral-950/68 to-neutral-950/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-blue-950/25" />
+          <div className="absolute inset-0 bg-linear-to-b from-blue-950/30 via-transparent to-transparent md:hidden" />
           {/* Noise texture overlay */}
           <div
             className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -186,11 +187,11 @@ const HeroCarousel = ({
       </div> */}
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-5 md:px-10 lg:px-16">
-          <div className="max-w-3xl">
+      <div className="relative z-10 flex h-full items-center pt-20 md:pt-0">
+        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16">
+          <div className="max-w-[680px]">
             <AnimatePresence mode="wait">
-              <motion.div key={currentSlide} className="space-y-5 md:space-y-7">
+              <motion.div key={currentSlide} className="space-y-4 sm:space-y-5 md:space-y-7">
 
                 {/* Accent line */}
                 <motion.div
@@ -198,7 +199,7 @@ const HeroCarousel = ({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="h-0.5 w-16 bg-blue-500"
+                  className="h-0.5 w-16 bg-blue-500 sm:w-20"
                 />
 
                 {/* Badge / Subtitle */}
@@ -210,9 +211,9 @@ const HeroCarousel = ({
                     animate="visible"
                     exit="exit"
                   >
-                    <span className="inline-flex items-center gap-2 bg-blue-700/20 border border-blue-400/50 text-blue-100 text-[8px] md:text-xs font-semibold tracking-[0.2em] uppercase px-4 py-2 rounded-full backdrop-blur-sm">
+                    <span className="inline-flex max-w-full items-center gap-2 rounded-lg border border-blue-300/45 bg-blue-700/20 px-3 py-2 text-[10px] font-extrabold uppercase leading-relaxed tracking-[0.12em] text-blue-50 shadow-sm backdrop-blur-md sm:rounded-full sm:px-4 md:text-xs md:tracking-[0.2em]">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                      {slide.subtitle}
+                      <span className="min-w-0">{slide.subtitle}</span>
                     </span>
                   </motion.div>
                 )}
@@ -224,7 +225,7 @@ const HeroCarousel = ({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-[0.95] tracking-tight text-white"
+                  className="max-w-[12ch] text-[34px] font-extrabold leading-[1.02] tracking-normal text-white sm:max-w-[14ch] sm:text-5xl md:max-w-3xl md:text-4xl md:leading-[0.98] lg:text-5xl xl:text-6xl"
                   
                 >
                   {slide.title}
@@ -238,7 +239,7 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="text-xs md:text-sm lg:text-base text-white max-w-lg leading-relaxed font-normal tracking-wide"
+                    className="max-w-[34rem] text-[15px] font-medium leading-7 tracking-normal text-white/90 sm:text-base md:text-sm lg:text-base"
                   >
                     {slide.description}
                   </motion.p>
@@ -252,11 +253,11 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="flex flex-wrap gap-3 md:gap-4 pt-2"
+                    className="grid grid-cols-2 gap-3 pt-2 sm:flex sm:flex-wrap md:gap-4"
                   >
                     <Button
                       asChild
-                      className="group relative bg-blue-950 hover:bg-red-700 text-white px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 overflow-hidden border-0"
+                      className="group relative h-12 overflow-hidden rounded-lg border-0 bg-blue-950 px-4 text-sm font-extrabold tracking-normal text-white transition-all duration-300 hover:bg-red-700 sm:h-13 sm:px-6 md:px-8"
                     >
                       <a href={slide.ctaLink || "#"} className="flex items-center gap-2">
                         <span className="relative z-10">{slide.ctaText}</span>
@@ -268,7 +269,7 @@ const HeroCarousel = ({
                     <Button
                       asChild
                       variant="outline"
-                      className="group bg-transparent border border-white/25 hover:border-white/60 text-white hover:bg-white/8 px-6 md:px-8 py-5 md:py-6 text-xs md:text-sm lg:text-base rounded-none font-semibold tracking-wide transition-all duration-300 backdrop-blur-sm"
+                      className="group h-12 rounded-lg border border-white/25 bg-white/8 px-4 text-sm font-extrabold tracking-normal text-white backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:bg-white/14 hover:text-white sm:h-13 sm:px-6 md:px-8"
                     >
                       <a href="#contact">Contact Us</a>
                     </Button>
@@ -340,7 +341,7 @@ const HeroCarousel = ({
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6 }}
-        className="absolute bottom-12 md:bottom-16 right-5 md:right-10 z-20 text-right"
+        className="absolute bottom-8 right-5 z-20 hidden text-right sm:block md:bottom-16 md:right-10"
       >
         <p className="text-white/70 text-xs md:text-sm font-semibold tracking-widest uppercase">
           Since 1977

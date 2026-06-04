@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { ProjectsSkeleton } from '@/app/components/projects/ProjectsSkeleton';
 import { ProjectsResponse } from '@/types/projects';
 import ProjectsClient from '@/app/components/projects/ProjectClients';
+import { apiUrl } from '@/lib/api';
 
 export const metadata = {
   title: "Projects | The Royal Utilisation Services",
@@ -14,7 +15,7 @@ export const revalidate = 3600;
 async function getProjects(): Promise<ProjectsResponse | null> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/projects?limit=50`,
+      apiUrl('/projects?limit=50'),
       { 
         next: { revalidate: 3600 },
         headers: { 
@@ -25,14 +26,17 @@ async function getProjects(): Promise<ProjectsResponse | null> {
     );
     
     if (!res.ok) {
-      console.error(`HTTP error! status: ${res.status}`);
+      return null;
+    }
+
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
       return null;
     }
     
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error('Error fetching projects:', error);
     return null;
   }
 }

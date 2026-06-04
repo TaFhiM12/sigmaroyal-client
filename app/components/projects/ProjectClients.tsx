@@ -11,6 +11,7 @@ import { FilterBar } from './FilterBar';
 import { ProjectModal } from './ProjectModal';
 import { ProjectShowcase } from './ProjectShowcase';
 import { HeroSection } from './HeroSection';
+import { apiUrl } from '@/lib/api';
 
 interface ProjectsClientProps {
   initialData?: ProjectsResponse | null;
@@ -62,11 +63,16 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     try {
       setLoading(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/projects?limit=50`,
+        apiUrl('/projects?limit=50'),
         { cache: 'no-store' }
       );
       
-      if (!res.ok) throw new Error('Failed to fetch');
+      if (!res.ok) throw new Error(`Projects API returned ${res.status}`);
+
+      const contentType = res.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('Projects API returned a non-JSON response');
+      }
       
       const data: ProjectsResponse = await res.json();
       

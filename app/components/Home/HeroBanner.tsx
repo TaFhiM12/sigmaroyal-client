@@ -27,17 +27,16 @@ export default function HeroBanner() {
   const title = getTitle();
 
   return (
-    <section className="relative h-100 md:h-112.5 overflow-hidden">
+    <section className="relative h-[320px] overflow-hidden sm:h-[360px] md:h-112.5">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/banner/banner1.jpeg')",
-          backgroundAttachment: "fixed",
         }}
       >
         {/* linear Overlay */}
-        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-950/92 via-blue-950/68 to-blue-950/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-neutral-950/78 via-transparent to-blue-950/20" />
         
         {/* Animated Grid Pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -51,15 +50,15 @@ export default function HeroBanner() {
 
       {/* Content Container - Matches Navbar/Footer width */}
       <div className="container relative h-full mx-auto px-4 md:px-6 lg:px-8">
-        <div className="h-full flex flex-col justify-end pb-8 md:pb-12">
+        <div className="flex h-full flex-col justify-end pb-8 pt-24 md:pb-12">
           {/* Breadcrumb Navigation */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-6"
+            className="mb-4 md:mb-6"
           >
-            <nav className="flex items-center gap-2 text-sm text-white/80">
+            <nav className="flex flex-wrap items-center gap-2 text-xs font-semibold text-white/80 md:text-sm">
               <Link href="/" className="flex items-center gap-1 hover:text-red-400 transition-colors">
                 <Home className="h-4 w-4" />
                 <span>Home</span>
@@ -92,29 +91,29 @@ export default function HeroBanner() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-4"
+              className="max-w-3xl space-y-3 md:space-y-4"
             >
               <div className="flex items-center gap-3">
                 {/* Animated Red Line */}
                 <motion.div 
                   initial={{ width: 0 }}
-                  animate={{ width: "60px" }}
+                  animate={{ width: "52px" }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="h-1 bg-red-600 rounded-full"
+                  className="h-0.75 rounded-full bg-blue-500 md:h-1"
                 />
                 
-                <span className="text-sm font-semibold text-red-400 tracking-wider">
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-blue-100 md:text-sm">
                   {yearsExperience}+ YEARS OF EXCELLENCE
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              <h1 className="text-[34px] font-extrabold leading-[1.05] tracking-normal text-white sm:text-4xl md:text-5xl lg:text-6xl">
                 {title}
                 <motion.span 
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 1, delay: 0.6 }}
-                  className="block h-1 bg-linear-to-r from-red-600 to-transparent mt-4 rounded-full"
+                  className="mt-3 block h-1 rounded-full bg-linear-to-r from-blue-500 via-blue-400 to-transparent md:mt-4"
                 />
               </h1>
             </motion.div>
@@ -124,13 +123,13 @@ export default function HeroBanner() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="hidden lg:flex flex-col items-end gap-2"
+            className="hidden lg:flex flex-col items-end gap-2"
             >
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
                 <span className="text-xs text-white/60">ENERGY INFRASTRUCTURE</span>
               </div>
-              <div className="w-16 h-0.5 bg-linear-to-l from-red-600 to-transparent" />
+              <div className="w-16 h-0.5 bg-linear-to-l from-blue-500 to-transparent" />
             </motion.div>
           </div>
 
@@ -139,7 +138,7 @@ export default function HeroBanner() {
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ duration: 1.5, delay: 0.8 }}
-            className="mt-8 h-0.5 bg-linear-to-r from-transparent via-red-600/50 to-transparent rounded-full"
+            className="mt-6 h-0.5 rounded-full bg-linear-to-r from-transparent via-blue-500/60 to-transparent md:mt-8"
           />
         </div>
       </div>
@@ -149,7 +148,7 @@ export default function HeroBanner() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-6 right-6 md:right-8"
+        className="absolute bottom-6 right-6 hidden md:block md:right-8"
       >
         <div className="flex flex-col items-center text-white/60">
           <span className="text-xs font-medium mb-1">SCROLL</span>

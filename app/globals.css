@@ -148,7 +148,7 @@
   }
 
   p {
-    color: var(--brand-copy);
+    color: inherit;
     line-height: 1.7;
   }
 

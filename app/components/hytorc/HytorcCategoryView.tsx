@@ -16,15 +16,6 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
   const [isHovered, setIsHovered] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
 
-  // Calculate items per view based on screen size
-  const getItemsPerView = () => {
-    if (typeof window === 'undefined') return 4;
-    if (window.innerWidth < 640) return 1;
-    if (window.innerWidth < 1024) return 2;
-    if (window.innerWidth < 1280) return 3;
-    return 4;
-  };
-
   const [itemsPerView, setItemsPerView] = useState(4);
   const totalItems = category.products.length;
   const maxIndex = Math.max(0, totalItems - itemsPerView);
@@ -32,7 +23,15 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
   // Handle resize
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerView(getItemsPerView());
+      if (window.innerWidth < 640) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(2);
+      } else if (window.innerWidth < 1280) {
+        setItemsPerView(3);
+      } else {
+        setItemsPerView(4);
+      }
     };
     handleResize();
     window.addEventListener('resize', handleResize);

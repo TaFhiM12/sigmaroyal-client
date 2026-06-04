@@ -7,16 +7,38 @@ import { ArrowRight, Building2, Mail, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
+const PARTICLE_POSITIONS = [
+  { top: '12%', left: '8%' },
+  { top: '24%', left: '18%' },
+  { top: '38%', left: '6%' },
+  { top: '62%', left: '14%' },
+  { top: '78%', left: '9%' },
+  { top: '16%', left: '34%' },
+  { top: '46%', left: '28%' },
+  { top: '84%', left: '36%' },
+  { top: '10%', left: '52%' },
+  { top: '34%', left: '48%' },
+  { top: '68%', left: '56%' },
+  { top: '88%', left: '51%' },
+  { top: '18%', left: '70%' },
+  { top: '44%', left: '76%' },
+  { top: '72%', left: '68%' },
+  { top: '8%', left: '88%' },
+  { top: '30%', left: '92%' },
+  { top: '58%', left: '84%' },
+  { top: '80%', left: '91%' },
+  { top: '94%', left: '74%' },
+];
+
 export default function ClientCTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const particles = useMemo(
     () =>
-      Array.from({ length: 20 }, (_, i) => ({
+      PARTICLE_POSITIONS.map((position, i) => ({
         id: i,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
+        ...position,
       })),
     []
   );

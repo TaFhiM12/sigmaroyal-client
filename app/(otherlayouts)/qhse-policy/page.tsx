@@ -286,7 +286,7 @@ export default async function QhsePolicyPage() {
                 </p>
               </div>
               <p className="text-xs text-gray-400 mt-2">
-                Last updated: {new Date().toLocaleDateString()}
+                Last updated: June 5, 2026
               </p>
             </div>
           </div>

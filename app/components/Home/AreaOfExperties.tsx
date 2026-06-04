@@ -246,8 +246,8 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
             variants={fadeUpVariants}
             className="section-title mb-4 md:mb-6"
           >
-            <span>Areas of</span>
-            <span className="brand-text-gradient ml-2 md:ml-4">
+            <span>Areas of </span>
+            <span className="brand-text-gradient">
               Expertise
             </span>
           </motion.h2>
