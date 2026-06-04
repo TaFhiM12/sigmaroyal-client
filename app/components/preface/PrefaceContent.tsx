@@ -172,7 +172,7 @@ export default function PrefaceContent() {
                 {/* Image Container */}
                 <div className="relative w-70 h-70 sm:w-80 sm:h-80 lg:w-95 lg:h-95 rounded-full overflow-hidden shadow-xl">
                   <Image
-                    src="/preface/ceo-corporate.png"
+                    src="/preface/ceo-corporate.jpeg"
                     alt="Managing Director"
                     fill
                     className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-700"
