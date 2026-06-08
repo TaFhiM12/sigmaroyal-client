@@ -12,10 +12,22 @@ export const metadata = {
 
 export const revalidate = 3600;
 
-async function getProjects(): Promise<ProjectsResponse | null> {
+const normalizeStatus = (status?: string | string[]) => {
+  const value = Array.isArray(status) ? status[0] : status;
+  const normalizedStatus = value?.toUpperCase();
+
+  return normalizedStatus === 'COMPLETED' || normalizedStatus === 'ONGOING'
+    ? normalizedStatus
+    : undefined;
+};
+
+async function getProjects(status?: string): Promise<ProjectsResponse | null> {
   try {
+    const params = new URLSearchParams({ limit: '50' });
+    if (status) params.set('status', status);
+
     const res = await fetch(
-      apiUrl('/projects?limit=50'),
+      apiUrl(`/projects?${params.toString()}`),
       { 
         next: { revalidate: 3600 },
         headers: { 
@@ -36,16 +48,23 @@ async function getProjects(): Promise<ProjectsResponse | null> {
     
     const data = await res.json();
     return data;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
 
-export default async function ProjectsPage() {
-  const initialData = await getProjects();
+interface ProjectsPageProps {
+  searchParams?: Promise<{ status?: string | string[] }>;
+}
+
+export default async function ProjectsPage({ searchParams }: ProjectsPageProps) {
+  const params = searchParams ? await searchParams : {};
+  const initialStatus = normalizeStatus(params.status);
+  const initialData = await getProjects(initialStatus);
+
   return (
     <Suspense fallback={<ProjectsSkeleton />}>
-      <ProjectsClient initialData={initialData} />
+      <ProjectsClient initialData={initialData} initialStatus={initialStatus} />
     </Suspense>
   );
 }

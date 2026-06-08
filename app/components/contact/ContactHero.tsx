@@ -40,7 +40,7 @@ export default function ContactHero() {
             </div>
             <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-lg">
               <MapPin className="h-5 w-5 text-red-400" />
-              <span className="text-white font-medium">Dhaka 1206</span>
+              <span className="text-white font-medium">Dhaka 1205</span>
             </div>
           </div>
         </div>

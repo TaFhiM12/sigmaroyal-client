@@ -73,16 +73,16 @@ export function FilterBar({
     selectedStatus !== 'all';
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       {/* Search and Filter Toggle */}
-      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-        <div className="w-full md:w-96 relative">
+      <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
+        <div className="w-full md:w-86 relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
           <Input
             placeholder="Search projects..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="pl-10 pr-10"
+            className="h-9 rounded-lg border-slate-200 bg-white pl-9 pr-9 text-sm shadow-sm"
           />
           {searchQuery && (
             <button
@@ -94,11 +94,11 @@ export function FilterBar({
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full md:w-auto">
           <Button
             variant="outline"
             onClick={() => setShowFilters(!showFilters)}
-            className="flex-1 md:flex-none items-center gap-2"
+            className="h-9 flex-1 items-center gap-2 rounded-lg border-slate-200 bg-white shadow-sm md:flex-none"
           >
             <Filter className="h-4 w-4" />
             Filters
@@ -111,7 +111,7 @@ export function FilterBar({
 
           {/* Sort Dropdown */}
           <Select value={sortBy} onValueChange={onSortChange}>
-            <SelectTrigger className="w-full sm:w-auto min-w-45">
+            <SelectTrigger className="h-9 w-full rounded-lg border-slate-200 bg-white shadow-sm sm:w-auto sm:min-w-42">
               <SlidersHorizontal className="h-4 w-4 mr-2" />
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
@@ -134,13 +134,13 @@ export function FilterBar({
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-4 overflow-hidden"
+            className="mt-3 overflow-hidden"
           >
-            <div className="p-4 bg-white rounded-lg border shadow-sm">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {/* Sector Filter */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Sector</label>
+                  <label className="text-xs font-bold text-slate-600">Sector</label>
                   <Select value={selectedSector} onValueChange={onSectorChange}>
                     <SelectTrigger>
                       <SelectValue />
@@ -157,7 +157,7 @@ export function FilterBar({
 
                 {/* Status Filter */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Status</label>
+                  <label className="text-xs font-bold text-slate-600">Status</label>
                   <Select value={selectedStatus} onValueChange={onStatusChange}>
                     <SelectTrigger>
                       <SelectValue />
@@ -174,8 +174,8 @@ export function FilterBar({
               </div>
 
               {/* Filter Actions */}
-              <div className="flex items-center justify-between mt-4 pt-4 border-t">
-                <p className="text-sm text-gray-600">
+              <div className="mt-3 flex items-center justify-between border-t pt-3">
+                <p className="text-xs text-gray-600">
                   Found <span className="font-semibold">{totalResults}</span> projects
                 </p>
                 {isFilterActive && (
@@ -196,10 +196,10 @@ export function FilterBar({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="flex flex-wrap gap-2 mt-4"
+            className="mt-2 flex flex-wrap gap-2"
           >
             {searchQuery && (
-              <Badge variant="secondary" className="gap-1">
+              <Badge variant="secondary" className="h-6 gap-1 rounded-full bg-slate-100 px-2 text-xs font-semibold text-slate-700">
                 Search: {searchQuery}
                 <button onClick={() => onSearchChange('')}>
                   <X className="h-3 w-3 ml-1" />
@@ -207,7 +207,7 @@ export function FilterBar({
               </Badge>
             )}
             {selectedSector !== 'all' && (
-              <Badge variant="secondary" className="gap-1">
+              <Badge variant="secondary" className="h-6 gap-1 rounded-full bg-slate-100 px-2 text-xs font-semibold text-slate-700">
                 Sector: {sectors.find(s => s.value === selectedSector)?.label}
                 <button onClick={() => onSectorChange('all')}>
                   <X className="h-3 w-3 ml-1" />
@@ -215,7 +215,7 @@ export function FilterBar({
               </Badge>
             )}
             {selectedStatus !== 'all' && (
-              <Badge variant="secondary" className="gap-1">
+              <Badge variant="secondary" className="h-6 gap-1 rounded-full bg-slate-100 px-2 text-xs font-semibold text-slate-700">
                 Status: {statuses.find(s => s.value === selectedStatus)?.label}
                 <button onClick={() => onStatusChange('all')}>
                   <X className="h-3 w-3 ml-1" />

@@ -35,8 +35,7 @@ export default function ContactInfo() {
                 </p>
                 <p className="text-gray-600">3rd Floor, Achhia Manjil</p>
                 <p className="text-gray-600">House#383, Road No 28</p>
-                <p className="text-gray-600">New DOHS, Mohakhali</p>
-                <p className="text-gray-800 font-semibold">Dhaka 1206, Bangladesh</p>
+                <p className="text-gray-800 font-semibold">Dhaka 1205, Bangladesh</p>
                 
                 <div className="mt-3 flex items-center gap-4 text-sm">
                   <div className="flex items-center gap-1">

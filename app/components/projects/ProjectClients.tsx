@@ -1,7 +1,7 @@
 // app/components/projects/ProjectsClient.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -15,9 +15,14 @@ import { apiUrl } from '@/lib/api';
 
 interface ProjectsClientProps {
   initialData?: ProjectsResponse | null;
+  initialStatus?: 'COMPLETED' | 'ONGOING';
 }
 
-export default function ProjectsClient({ initialData }: ProjectsClientProps) {
+const getStatsTotal = (data: ProjectsResponse) => {
+  return data.counts.completed + data.counts.ongoing || data.meta.total;
+};
+
+export default function ProjectsClient({ initialData, initialStatus }: ProjectsClientProps) {
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,37 +38,19 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSector, setSelectedSector] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [selectedStatus, setSelectedStatus] = useState<string>(initialStatus || 'all');
   const [sortBy, setSortBy] = useState<string>('newest');
 
-  // Initialize with server data
-  useEffect(() => {
-    if (initialData?.success) {
-      const sortedProjects = [...initialData.data].sort((a, b) => {
-        if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
-        if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      });
-      
-      setProjects(sortedProjects);
-      setFilteredProjects(sortedProjects);
-      setStats({
-        total: initialData.meta.total,
-        completed: initialData.counts.completed,
-        ongoing: initialData.counts.ongoing,
-        sectors: initialData.counts.bySector?.length || 0
-      });
-      setLoading(false);
-    } else {
-      fetchProjects();
-    }
-  }, [initialData]);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async (statusFilter: string) => {
     try {
       setLoading(true);
+      const params = new URLSearchParams({ limit: '50' });
+      if (statusFilter !== 'all') {
+        params.set('status', statusFilter);
+      }
+
       const res = await fetch(
-        apiUrl('/projects?limit=50'),
+        apiUrl(`/projects?${params.toString()}`),
         { cache: 'no-store' }
       );
       
@@ -86,7 +73,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
         setProjects(sortedProjects);
         setFilteredProjects(sortedProjects);
         setStats({
-          total: data.meta.total,
+          total: getStatsTotal(data),
           completed: data.counts.completed,
           ongoing: data.counts.ongoing,
           sectors: data.counts.bySector?.length || 0
@@ -97,7 +84,34 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  // Initialize with server data
+  useEffect(() => {
+    if (initialData?.success) {
+      const sortedProjects = [...initialData.data].sort((a, b) => {
+        if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
+        if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      });
+      
+      setProjects(sortedProjects);
+      setFilteredProjects(sortedProjects);
+      setStats({
+        total: getStatsTotal(initialData),
+        completed: initialData.counts.completed,
+        ongoing: initialData.counts.ongoing,
+        sectors: initialData.counts.bySector?.length || 0
+      });
+      setLoading(false);
+    } else {
+      fetchProjects(initialStatus || 'all');
+    }
+  }, [fetchProjects, initialData, initialStatus]);
+
+  useEffect(() => {
+    setSelectedStatus(initialStatus || 'all');
+  }, [initialStatus]);
 
   // Filter and sort projects
   useEffect(() => {
@@ -132,6 +146,10 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
           return a.title.localeCompare(b.title);
         case 'name-desc':
           return b.title.localeCompare(a.title);
+        case 'year-desc':
+          return (b.year || 0) - (a.year || 0);
+        case 'year-asc':
+          return (a.year || 0) - (b.year || 0);
         default:
           return 0;
       }
@@ -145,6 +163,12 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     setSelectedSector('all');
     setSelectedStatus('all');
     setSortBy('newest');
+    fetchProjects('all');
+  };
+
+  const handleStatusChange = (status: string) => {
+    setSelectedStatus(status);
+    fetchProjects(status);
   };
 
   if (error) {
@@ -171,14 +195,14 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
     >
       <HeroSection stats={stats} />
       
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-4 md:py-5">
         <FilterBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           selectedSector={selectedSector}
           onSectorChange={setSelectedSector}
           selectedStatus={selectedStatus}
-          onStatusChange={setSelectedStatus}
+          onStatusChange={handleStatusChange}
           sortBy={sortBy}
           onSortChange={setSortBy}
           onReset={resetFilters}
@@ -189,6 +213,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
           projects={filteredProjects} 
           loading={loading}
           onProjectClick={setSelectedProject}
+          activeStatus={selectedStatus}
         />
       </div>
 

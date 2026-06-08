@@ -84,67 +84,52 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 pb-24">
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/5 rounded-full blur-3xl animate-pulse" />
-        
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-20">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 mb-6 animate-slideInLeft">
-              <div className="w-12 h-0.5 bg-gradient-to-r from-red-600 to-red-700" />
-              <Sparkles className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-semibold text-red-600 uppercase tracking-wider">HYTORC Series</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight animate-slideInLeft animation-delay-200">
-              {category.headline}
-            </h1>
-            
-            <div className="mt-6 flex flex-wrap gap-3 animate-slideInLeft animation-delay-400">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all cursor-pointer">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                <span className="text-sm text-white">Industry Leading</span>
-              </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all cursor-pointer">
-                <Shield className="w-4 h-4 text-red-400" />
-                <span className="text-sm text-white">Precision Engineering</span>
-              </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all cursor-pointer">
-                <Award className="w-4 h-4 text-yellow-400" />
-                <span className="text-sm text-white">Certified Quality</span>
-              </div>
-            </div>
+    <section className="min-h-screen bg-linear-to-b from-slate-50 via-white to-slate-50 pb-14">
+      <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
+        <div className="mb-5 flex flex-col gap-3 rounded-lg border border-slate-200 bg-white/90 px-4 py-3 shadow-sm md:flex-row md:items-center md:justify-between">
+          <div className="flex min-w-0 flex-col gap-2 md:flex-row md:items-center md:gap-3">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-red-100 bg-red-50 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-red-700">
+              <Sparkles className="h-3.5 w-3.5" />
+              HYTORC Series
+            </span>
+            <p className="truncate text-sm font-semibold text-slate-500">
+              Precision bolting solutions, service support, and certified tooling.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <span className="inline-flex h-8 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-bold text-slate-700">
+              <CheckCircle className="h-3.5 w-3.5 text-green-500" />
+              Industry Leading
+            </span>
+            <span className="inline-flex h-8 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-bold text-slate-700">
+              <Shield className="h-3.5 w-3.5 text-red-500" />
+              Precision Engineering
+            </span>
+            <span className="inline-flex h-8 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 text-xs font-bold text-slate-700">
+              <Award className="h-3.5 w-3.5 text-blue-600" />
+              Certified Quality
+            </span>
           </div>
         </div>
-        
-        {/* Decorative bottom curve */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#F9FAFB"/>
-          </svg>
-        </div>
-      </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 -mt-8 relative z-10">
+      <div className="relative z-10">
         {/* Description Card */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 md:p-10 mb-16 transform hover:scale-[1.01] transition-all duration-300">
-          <p className="text-lg md:text-xl leading-relaxed text-gray-700">
+        <div className="mb-8 rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md md:p-6">
+          <p className="text-base font-medium leading-7 text-slate-600 md:text-lg">
             {category.description}
           </p>
           {category.highlight && (
-            <div className="mt-6 pt-6 border-t border-gray-100">
+            <div className="mt-5 border-t border-slate-100 pt-5">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center animate-bounce">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600">
                     <Zap className="w-5 h-5 text-white" />
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-1">Key Highlight</h3>
-                  <p className="text-gray-800 font-semibold text-lg">{category.highlight}</p>
+                  <h3 className="mb-1 text-xs font-extrabold uppercase tracking-[0.14em] text-red-600">Key Highlight</h3>
+                  <p className="text-base font-extrabold text-slate-950">{category.highlight}</p>
                 </div>
               </div>
             </div>
@@ -330,6 +315,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       <style jsx>{`

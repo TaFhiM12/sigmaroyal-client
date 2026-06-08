@@ -55,9 +55,21 @@ export const navbarMenu: NavbarMenu[] = [
       title: "Projects",
       url: "#",
       items: [
-        { title: "Completed Projects", url: "/projects?status=completed" },
-        { title: "Ongoing Projects", url: "/projects?status=ongoing" },
-        { title: "Project Gallery", url: "/projects" },
+        {
+          title: "Completed Projects",
+          url: "/projects?status=completed",
+          description: "Delivered work across energy and infrastructure sectors",
+        },
+        {
+          title: "Ongoing Projects",
+          url: "/projects?status=ongoing",
+          description: "Active delivery, construction and commissioning references",
+        },
+        {
+          title: "Project Gallery",
+          url: "/projects",
+          description: "Browse the complete project portfolio in one place",
+        },
       ],
     },
     {

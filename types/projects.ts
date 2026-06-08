@@ -20,7 +20,7 @@ export interface Project {
   year: number | null;
   scopeOfWork: string;
   description: string | null;
-  status: 'COMPLETED' | 'ONGOING' | 'UPCOMING';
+  status: 'COMPLETED' | 'ONGOING';
   featured: boolean;
   images: ProjectImage[];
   createdAt: string;

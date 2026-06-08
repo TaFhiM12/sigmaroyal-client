@@ -1,21 +1,18 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { motion, useInView, useAnimation, AnimatePresence, Variants } from "framer-motion";
+import { motion, useInView, useAnimation, useScroll, useTransform, MotionValue, Variants } from "framer-motion";
 import { 
   Factory, 
   Zap, 
   Droplets, 
   Wrench, 
-  Wind,
-  Cpu,
-  Shield,
   ArrowRight,
   Sparkles,
-  CheckCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import yearsExperience from "@/lib/yearsExperience";
 
 interface ExpertiseAreaProps {
@@ -36,12 +33,15 @@ interface AreaOfExpertiseProps {
 type ExpertiseTab = "oil-gas" | "power" | "process" | "engineering";
 
 const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
-  const [activeTab, setActiveTab] = useState<ExpertiseTab>("oil-gas");
-  const [hoveredCard, setHoveredCard] = useState<ExpertiseTab | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const ref = useRef(null);
+  const stackRef = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const controls = useAnimation();
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start start", "end end"],
+  });
 
   useEffect(() => {
     // Check if mobile for performance optimization
@@ -98,7 +98,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "SCADA Systems",
         "Turnkey Solutions"
       ],
-      image: "/banner/banner1.jpeg"
+      image: "/banner/banner3.jpg"
     },
     "process": {
       title: "Process Plant",
@@ -114,7 +114,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "Chemical Processing",
         "Safety Standards"
       ],
-      image: "/banner/banner1.jpeg"
+      image: "/banner/banner4.jpg"
     },
     "engineering": {
       title: "Engineering & Services",
@@ -134,7 +134,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         "Spherical Tanks",
         "Turnkey Solutions"
       ],
-      image: "/banner/banner1.jpeg"
+      image: "/banner/banner5.jpg"
     }
   }), []);
 
@@ -173,324 +173,224 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
     },
   };
 
-  const tabContentVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: {
-        duration: isMobile ? 0.3 : 0.5,
-        ease: "easeOut" as const,
-      }
-    },
-  };
-
-  const scaleVariants: Variants = {
-    hidden: { scale: 0.9, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: isMobile ? 0.4 : 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
+  const expertiseEntries = Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][];
 
   return (
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-50 py-12 md:py-24",
+        "relative bg-[#f6f8fb] py-12 md:py-20",
         className
       )}
     >
-      {/* Simplified Background - Only on desktop */}
-      {!isMobile && (
-        <>
-          <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-blue-700/10 to-transparent" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/8 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
-        </>
-      )}
-
-      {/* Only show floating animation on desktop */}
-      {!isMobile && (
-        <motion.div
-          animate={{ 
-            y: [0, -10, 0],
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity,
-            ease: "easeInOut" 
-          }}
-          className="absolute top-20 left-10 opacity-5"
-        >
-          <Wind className="h-40 w-40 text-gray-600" />
-        </motion.div>
-      )}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.045)_1px,transparent_1px)] bg-size-[56px_56px]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-600/35 to-transparent" />
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header Section - Optimized */}
+        {/* Header Section */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="text-center max-w-3xl mx-auto mb-8 md:mb-16"
+          className="mx-auto mb-8 grid max-w-7xl gap-6 md:mb-12 md:grid-cols-[0.95fr_1.05fr] md:items-end"
         >
-          <motion.div variants={itemVariants} className="section-kicker mb-3 md:mb-4">
-            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
-            <span>CORE COMPETENCIES</span>
-          </motion.div>
+          <div>
+            <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-900 shadow-sm">
+              <Sparkles className="h-4 w-4 text-blue-700" />
+              <span>Core Competencies</span>
+            </motion.div>
 
-          <motion.h2 
-            variants={fadeUpVariants}
-            className="section-title mb-4 md:mb-6"
-          >
-            <span>Areas of </span>
-            <span className="brand-text-gradient">
-              Expertise
-            </span>
-          </motion.h2>
-          <div className="section-underline mx-auto -mt-2 mb-5" />
+            <motion.h2
+              variants={fadeUpVariants}
+              className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-slate-950 md:text-5xl lg:text-6xl"
+            >
+              Areas of <span className="brand-text-gradient">Expertise</span>
+            </motion.h2>
+            <div className="mt-5 h-1 w-28 rounded-full bg-linear-to-r from-blue-600 via-blue-700 to-red-600" />
+          </div>
 
           <motion.p 
             variants={itemVariants}
-            className="section-copy"
+            className="max-w-2xl text-base font-medium leading-8 text-slate-600 md:justify-self-end md:text-lg"
           >
             {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
             delivering innovative solutions with uncompromising quality and safety.
           </motion.p>
         </motion.div>
 
-        {/* Main Content */}
+        {/* Scroll Stack */}
         <motion.div
           initial="hidden"
           animate={controls}
           variants={containerVariants}
-          className="space-y-8 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0"
+          className="mx-auto max-w-7xl"
         >
-          {/* Left Column - Tabs Navigation */}
-          <motion.div variants={fadeUpVariants} className="lg:col-span-1">
-            <div className="sticky top-24 space-y-3 md:space-y-4">
-              <div className="bg-linear-to-br from-blue-950 to-blue-900 p-4 md:p-6 rounded-lg shadow-lg">
-                <h3 className="text-lg md:text-xl font-extrabold text-white mb-4 md:mb-6">Expertise Categories</h3>
-                <div className="space-y-2">
-                  {(Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][]).map(([key, area]) => (
-                    <button
-                      key={key}
-                      onClick={() => setActiveTab(key)}
-                      onMouseEnter={() => !isMobile && setHoveredCard(key)}
-                      onMouseLeave={() => !isMobile && setHoveredCard(null)}
-                      className={cn(
-                        "w-full text-left p-3 md:p-4 rounded-lg transition-all duration-200",
-                        activeTab === key 
-                          ? `bg-linear-to-r ${area.color} text-white shadow-md` 
-                          : "bg-white/10 text-gray-300 hover:bg-white/20"
-                      )}
-                    >
-                      <div className="flex items-center gap-2 md:gap-3">
-                        <div className={cn(
-                          "p-1.5 md:p-2 rounded-md transition-colors",
-                          activeTab === key ? "bg-white/20" : "bg-white/10"
-                        )}>
-                          {area.icon}
-                        </div>
-                        <span className="text-sm md:text-base font-semibold">{area.title}</span>
-                        <ArrowRight className={cn(
-                          "ml-auto h-3 w-3 md:h-4 md:w-4 transition-transform",
-                          activeTab === key ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
-                        )} />
-                      </div>
-                    </button>
-                  ))}
-                </div>
+          <div className="space-y-6 md:hidden">
+            {expertiseEntries.map(([key, area], index) => (
+              <ExpertisePanel
+                key={key}
+                area={area}
+                index={index}
+                total={expertiseEntries.length}
+                reversed={index % 2 === 1}
+                priority={index === 0}
+              />
+            ))}
+          </div>
 
-                {/* Stats - Simplified for mobile */}
-                <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-white/20">
-                  <div className="grid grid-cols-2 gap-3 md:gap-4">
-                    <div className="text-center">
-                      <div className="text-xl md:text-2xl font-bold text-white">4</div>
-                      <div className="text-xs text-gray-400">Expertise Sectors</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-xl md:text-2xl font-bold text-white">25+</div>
-                      <div className="text-xs text-gray-400">Services</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Tab Content */}
-          <div className="lg:col-span-2">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={tabContentVariants}
-                className="brand-card overflow-hidden"
-              >
-                {activeTab && expertiseAreas[activeTab] && (
-                  <>
-                    {/* Content Header with Image - Optimized */}
-                    <div className="relative h-40 md:h-56 overflow-hidden">
-                      <Image
-                        src={expertiseAreas[activeTab].image || "/placeholder.jpg"}
-                        alt={expertiseAreas[activeTab].title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        priority={activeTab === "oil-gas"}
-                      />
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                        <div className="flex items-center gap-2 md:gap-3 mb-1 md:mb-2">
-                          <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color}`}>
-                            {expertiseAreas[activeTab].icon}
-                          </div>
-                          <h3 className="text-xl md:text-2xl lg:text-3xl font-extrabold text-white">
-                            {expertiseAreas[activeTab].title}
-                          </h3>
-                        </div>
-                        <p className="text-sm md:text-base text-gray-100 line-clamp-2">
-                          {expertiseAreas[activeTab].description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Content Body */}
-                    <div className="p-4 md:p-6 lg:p-8">
-                      {/* Highlights */}
-                      <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
-                        {expertiseAreas[activeTab].highlights.map((highlight) => (
-                          <span
-                            key={highlight}
-                            className="inline-flex items-center gap-1 md:gap-2 px-3 py-1.5 bg-linear-to-r from-gray-50 to-white border border-gray-200 rounded-full text-xs md:text-sm font-medium"
-                          >
-                            <CheckCircle className="h-3 w-3 text-blue-700" />
-                            {highlight}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Features List */}
-                      <div className="space-y-3 md:space-y-4">
-                        <h4 className="text-base md:text-lg font-extrabold text-gray-900">Key Services</h4>
-                        <div className="space-y-2 md:space-y-3">
-                          {expertiseAreas[activeTab].features.map((feature) => (
-                            <div
-                              key={feature}
-                              className="flex items-start gap-2 md:gap-3 p-3 rounded-lg hover:bg-blue-50 transition-colors duration-200"
-                            >
-                              <div className={`p-1.5 md:p-2 rounded-md bg-linear-to-br ${expertiseAreas[activeTab].color} mt-0.5`}>
-                                <Shield className="h-3 w-3 md:h-4 md:w-4 text-white" />
-                              </div>
-                              <span className="section-copy-sm">
-                                {feature}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Projects Reference */}
-                      <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-200">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                          <div>
-                            <h4 className="text-base md:text-lg font-extrabold text-gray-900 mb-1 md:mb-2">
-                              Featured Project
-                            </h4>
-                            <p className="section-copy-sm">
-                              {activeTab === "oil-gas" 
-                                ? "07 Nos. capacity of 60 MMSCFD Project at B-baria"
-                                : activeTab === "power"
-                                ? "588.31 MW CCPP Project at Sonargaon, Narayanganj"
-                                : "Multiple ongoing projects nationwide"
-                              }
-                            </p>
-                          </div>
-                          <button
-                            className={`px-4 py-2 md:px-6 md:py-3 rounded-lg bg-linear-to-r ${expertiseAreas[activeTab].color} text-white font-bold text-sm md:text-base hover:shadow-md transition-shadow`}
-                          >
-                            View Projects
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Additional Info - Optimized */}
-            <div className="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
-                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Cpu className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
-                  <span className="text-sm md:text-base font-semibold text-gray-900">Technology</span>
-                </div>
-                <p className="section-copy-sm">
-                  Latest HDD, SCADA, and PLC systems ensuring precision and safety
-                </p>
-              </div>
-              
-              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
-                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Shield className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
-                  <span className="text-sm md:text-base font-semibold text-gray-900">Safety</span>
-                </div>
-                <p className="section-copy-sm">
-                  ISO certified safety protocols with zero compromise on quality
-                </p>
-              </div>
-              
-              <div className="brand-card bg-linear-to-br from-slate-50 to-white p-4 md:p-6">
-                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                  <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-blue-700" />
-                  <span className="text-sm md:text-base font-semibold text-gray-900">Innovation</span>
-                </div>
-                <p className="section-copy-sm">
-                  Continuous R&D for sustainable and efficient energy solutions
-                </p>
+          <div
+            ref={stackRef}
+            className="relative hidden md:block"
+            style={{ height: `${expertiseEntries.length * 105}vh` }}
+          >
+            <div className="sticky top-24 h-[calc(100vh-8rem)] min-h-[620px]">
+              <div className="relative h-full">
+                {expertiseEntries.map(([key, area], index) => (
+                  <ExpertiseDeckPanel
+                    key={key}
+                    area={area}
+                    index={index}
+                    total={expertiseEntries.length}
+                    progress={scrollYProgress}
+                    reversed={index % 2 === 1}
+                    priority={index === 0}
+                  />
+                ))}
               </div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Floating Expertise Badges - Simplified */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={controls}
-          transition={{ delay: 0.5 }}
-          className="mt-8 md:mt-16 flex flex-wrap justify-center gap-3"
-        >
-          {[
-            { icon: <Zap className="h-4 w-4 md:h-5 md:w-5" />, label: "Power Specialists", color: "border-gray-300 bg-gray-50" },
-            { icon: <Factory className="h-4 w-4 md:h-5 md:w-5" />, label: "Plant Engineering", color: "border-blue-300 bg-blue-50" },
-            { icon: <Droplets className="h-4 w-4 md:h-5 md:w-5" />, label: "LPG Solutions", color: "border-gray-300 bg-gray-50" },
-          ].map((badge) => (
-            <div
-              key={badge.label}
-              className={cn(
-                "flex items-center gap-1 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full border",
-                badge.color
-              )}
-            >
-              <div className="text-gray-700">
-                {badge.icon}
-              </div>
-              <span className="text-xs md:text-sm font-medium text-gray-800">
-                {badge.label}
-              </span>
-            </div>
-          ))}
         </motion.div>
       </div>
     </section>
   );
 };
+
+function ExpertiseDeckPanel({
+  area,
+  index,
+  total,
+  progress,
+  reversed,
+  priority,
+}: {
+  area: ExpertiseAreaProps;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+  reversed: boolean;
+  priority: boolean;
+}) {
+  const step = 1 / total;
+  const start = index * step;
+  const hold = Math.min(start + step * 0.16, 1);
+  const end = Math.min(start + step * 0.86, 1);
+  const isLast = index === total - 1;
+  const y = useTransform(progress, [start, hold, end], ["0%", "0%", isLast ? "0%" : "-112%"]);
+  const opacity = useTransform(progress, [start, hold, end], [1, 1, isLast ? 1 : 0.98]);
+
+  return (
+    <ExpertisePanel
+      area={area}
+      index={index}
+      total={total}
+      reversed={reversed}
+      priority={priority}
+      className="absolute inset-0 h-full"
+      style={{
+        y,
+        opacity,
+        zIndex: total - index,
+      }}
+    />
+  );
+}
+
+function ExpertisePanel({
+  area,
+  index,
+  total,
+  reversed,
+  priority,
+  className,
+  style,
+}: {
+  area: ExpertiseAreaProps;
+  index: number;
+  total: number;
+  reversed: boolean;
+  priority: boolean;
+  className?: string;
+  style?: React.ComponentProps<typeof motion.article>["style"];
+}) {
+  return (
+    <motion.article
+      className={cn(
+        "group grid overflow-hidden border border-white/10 bg-[#070b14] shadow-[0_28px_80px_rgba(15,23,42,0.28)] md:grid-cols-[1.08fr_0.92fr]",
+        reversed && "md:grid-cols-[0.92fr_1.08fr]",
+        className
+      )}
+      style={style}
+    >
+      <div className={cn("relative min-h-72 overflow-hidden md:min-h-full", reversed && "md:order-2")}>
+        <Image
+          src={area.image || "/banner/banner1.jpeg"}
+          alt={area.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 55vw"
+          priority={priority}
+        />
+        <div className="absolute inset-0 bg-linear-to-tr from-blue-950/55 via-blue-950/10 to-transparent" />
+        <div className="absolute bottom-5 left-5 rounded-full border border-white/20 bg-blue-950/70 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white/85 backdrop-blur">
+          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </div>
+      </div>
+
+      <div className="flex min-h-72 flex-col justify-center bg-[#070b14] px-6 py-8 md:min-h-full md:px-12 lg:px-16">
+        <div className="mb-8 flex h-16 w-16 items-center justify-center bg-red-600 text-white shadow-[0_16px_35px_rgba(220,38,38,0.28)] [clip-path:polygon(0_0,76%_0,100%_24%,100%_100%,0_100%)] md:h-20 md:w-20">
+          {area.icon}
+        </div>
+
+        <h3 className="max-w-md text-3xl font-extrabold leading-tight tracking-normal text-white md:text-4xl lg:text-5xl">
+          {area.title}
+        </h3>
+
+        <div className="my-6 h-px max-w-md bg-white/16" />
+
+        <p className="max-w-xl text-base font-medium leading-7 text-white/62">
+          {area.description}
+        </p>
+
+        <div className="mt-6 grid gap-3 text-sm font-semibold text-white/78 sm:grid-cols-2">
+          {area.features.slice(0, 4).map((feature) => (
+            <div key={feature} className="flex gap-2">
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
+              <span>{feature}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-5">
+          {area.highlights.map((highlight) => (
+            <span
+              key={highlight}
+              className="inline-flex rounded-full border border-white/14 bg-white/[0.03] px-3 py-1 text-xs font-bold text-white/70"
+            >
+              {highlight}
+            </span>
+          ))}
+        </div>
+
+        <Link
+          href="/portfolio"
+          className="mt-8 inline-flex w-fit items-center gap-2 text-base font-extrabold text-white transition-colors hover:text-red-400"
+        >
+          View Details
+          <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+        </Link>
+      </div>
+    </motion.article>
+  );
+}
 
 export default AreaOfExpertise;

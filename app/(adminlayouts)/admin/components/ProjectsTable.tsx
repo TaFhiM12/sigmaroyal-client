@@ -42,13 +42,11 @@ interface ProjectsTableProps {
 const statusColors = {
   COMPLETED: "bg-green-100 text-green-800",
   ONGOING: "bg-blue-100 text-blue-800",
-  UPCOMING: "bg-yellow-100 text-yellow-800",
 };
 
 const statusLabels = {
   COMPLETED: "Completed",
   ONGOING: "Ongoing",
-  UPCOMING: "Upcoming",
 };
 
 export default function ProjectsTable({

@@ -45,7 +45,6 @@ const sectors = [
 const statuses = [
   { value: "COMPLETED", label: "Completed" },
   { value: "ONGOING", label: "Ongoing" },
-  { value: "UPCOMING", label: "Upcoming" },
 ];
 
 export default function ProjectForm({

@@ -271,7 +271,7 @@ const HeroCarousel = ({
                       variant="outline"
                       className="group h-12 rounded-lg border border-white/25 bg-white/8 px-4 text-sm font-extrabold tracking-normal text-white backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:bg-white/14 hover:text-white sm:h-13 sm:px-6 md:px-8"
                     >
-                      <a href="#contact">Contact Us</a>
+                      <a href="/contact">Contact Us</a>
                     </Button>
                   </motion.div>
                 )}

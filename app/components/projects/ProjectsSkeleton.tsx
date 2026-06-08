@@ -7,22 +7,26 @@ export function ProjectsSkeleton() {
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
       {/* Hero Skeleton */}
-      <section className="bg-linear-to-r from-red-700 to-red-900 py-20 md:py-28">
-        <div className="container mx-auto px-4 text-center">
-          <Skeleton className="h-12 w-64 mx-auto mb-4 bg-white/20" />
-          <Skeleton className="h-6 w-96 max-w-full mx-auto mb-12 bg-white/20" />
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {[...Array(4)].map((_, i) => (
-              <Skeleton key={i} className="h-32 bg-white/20 rounded-2xl" />
-            ))}
+      <section className="border-b border-slate-200 bg-white py-4 md:py-5">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
+              <Skeleton className="h-6 w-24 rounded-full" />
+              <Skeleton className="h-8 w-64" />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[...Array(4)].map((_, i) => (
+                <Skeleton key={i} className="h-11 w-28 rounded-lg" />
+              ))}
+              <Skeleton className="h-11 w-24 rounded-lg" />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Content Skeleton */}
-      <div className="container mx-auto px-4 py-8">
-        <Skeleton className="h-12 w-full mb-8" />
+      <div className="container mx-auto px-4 py-4 md:py-5">
+        <Skeleton className="h-9 w-full mb-4" />
         
         <div className="space-y-12">
           <div>

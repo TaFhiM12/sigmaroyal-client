@@ -2,9 +2,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, Target, Award, Clock, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Award, Briefcase, Clock, Target } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 
 interface HeroSectionProps {
   stats: {
@@ -17,99 +16,75 @@ interface HeroSectionProps {
 
 export function HeroSection({ stats }: HeroSectionProps) {
   const statCards = [
-    { icon: Briefcase, value: stats.total.toString(), label: 'Total Projects', color: 'from-red-500 to-red-700' },
-    { icon: Clock, value: stats.ongoing.toString(), label: 'Active Projects', color: 'from-gray-500 to-gray-700' },
-    { icon: Award, value: stats.completed.toString(), label: 'Completed', color: 'from-red-500 to-red-700' },
-    { icon: Target, value: stats.sectors.toString(), label: 'Sectors', color: 'from-gray-500 to-gray-700' },
+    { icon: Briefcase, value: stats.total.toString(), label: 'Total', color: 'bg-red-600 text-white' },
+    { icon: Clock, value: stats.ongoing.toString(), label: 'Active', color: 'bg-blue-950 text-white' },
+    { icon: Award, value: stats.completed.toString(), label: 'Done', color: 'bg-red-50 text-red-700' },
+    { icon: Target, value: stats.sectors.toString(), label: 'Sectors', color: 'bg-slate-100 text-slate-700' },
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-gray-50 to-white py-12 md:py-20">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-
+    <section className="relative overflow-hidden border-b border-slate-200 bg-white py-4 md:py-5">
+      <motion.div
+        aria-hidden="true"
+        initial={{ x: '-20%' }}
+        animate={{ x: '20%' }}
+        transition={{ duration: 8, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
+        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-red-500/70 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"
+      />
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full mb-6"
+            transition={{ duration: 0.45 }}
+            className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between"
           >
-            <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />
-            <span className="text-xs md:text-sm font-semibold text-red-700 tracking-wider">
-              OUR PORTFOLIO
-            </span>
-          </motion.div>
+            <div className="flex min-w-0 flex-col gap-2 lg:flex-row lg:items-center lg:gap-4">
+              <div className="inline-flex w-fit items-center gap-2 rounded-full border border-red-100 bg-red-50 px-2.5 py-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-red-600 shadow-[0_0_0_3px_rgba(220,38,38,0.12)]" />
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-red-700">
+                  Portfolio
+                </span>
+              </div>
+              <p className="max-w-xl truncate text-sm font-semibold text-slate-500">
+                Energy infrastructure delivery references across Bangladesh.
+              </p>
+            </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4"
-          >
-            <span className="text-gray-900">Featured </span>
-           
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
-              Projects
-            </span>
-          </motion.h1>
+            <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap lg:flex-nowrap">
+                {statCards.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="group flex h-11 min-w-[118px] items-center gap-2 rounded-lg border border-slate-200 bg-white/90 px-2.5 shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+                  >
+                    <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md ${stat.color}`}>
+                      <stat.icon className="h-3.5 w-3.5" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-base font-extrabold leading-none text-slate-950">
+                        {stat.value}
+                      </div>
+                      <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-12"
-          >
-            Discover our portfolio of successful energy infrastructure projects across Bangladesh
-          </motion.p>
-
-          {/* Stats Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
-          >
-            {statCards.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="bg-white p-4 md:p-6 rounded-xl shadow-sm border border-gray-100"
+              <Link
+                href="/contact"
+                className="group inline-flex h-11 w-fit shrink-0 items-center gap-2 rounded-lg bg-red-600 px-4 text-sm font-extrabold text-white shadow-sm shadow-red-600/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-md"
               >
-                <div className={`inline-flex p-2 md:p-3 rounded-lg bg-gradient-to-br ${stat.color} mb-3`}>
-                  <stat.icon className="h-5 w-5 md:h-6 md:w-6 text-white" />
-                </div>
-                <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs md:text-sm font-medium text-gray-600">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-12"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="group bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white px-8 py-6 text-base rounded-xl font-semibold transition-all duration-300"
-            >
-              <Link href="/contact">
-                <span className="mr-3">Discuss Your Project</span>
-                <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Discuss
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
-            </Button>
+            </div>
           </motion.div>
         </div>
       </div>

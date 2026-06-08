@@ -141,7 +141,7 @@ const Footer2 = ({
                 <div className="space-y-3 text-sm leading-6 text-blue-50/90 [&_a]:text-blue-50 [&_p]:text-blue-50 [&_span]:text-blue-50">
                   <div className="flex items-start gap-3">
                     <MapPin className="mt-1 h-[18px] w-[18px] flex-shrink-0 text-red-400" />
-                    <p>House#383, (3rd floor), Road#28, New DOHS, Mohakhali, Dhaka-1206.</p>
+                    <p>3rd Floor, Achhia Manjil, House#383, Road#28, Dhaka-1205.</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="h-[18px] w-[18px] flex-shrink-0 text-red-400" />
