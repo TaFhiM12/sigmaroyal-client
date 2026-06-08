@@ -99,15 +99,33 @@ const AboutUs = ({ className }: AboutUsProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-slate-50 to-white py-12 md:py-24",
+        "relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-white py-12 md:py-24",
         className
       )}
     >
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.035)_1px,transparent_1px)] bg-size-[64px_64px]" />
+      <motion.div
+        aria-hidden="true"
+        animate={!isMobile ? { x: ["-20%", "20%", "-20%"] } : undefined}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-700/40 to-transparent"
+      />
+
       {/* Simplified background elements - only show on desktop */}
       {!isMobile && (
         <>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/8 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+          <motion.div
+            aria-hidden="true"
+            animate={{ y: [0, 18, 0], opacity: [0.18, 0.28, 0.18] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute right-0 top-14 h-44 w-1/2 bg-linear-to-l from-blue-700/10 to-transparent blur-2xl"
+          />
+          <motion.div
+            aria-hidden="true"
+            animate={{ y: [0, -14, 0], opacity: [0.14, 0.24, 0.14] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-12 left-0 h-36 w-1/2 bg-linear-to-r from-red-600/8 to-transparent blur-2xl"
+          />
         </>
       )}
 
@@ -126,14 +144,33 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 <span>SINCE 1977</span>
               </div>
 
-              <h2 className="section-title">
-                <span>Pioneering</span>
+              <h2 className="section-title overflow-hidden">
+                <motion.span
+                  variants={fadeUpVariants}
+                  className="inline-block"
+                >
+                  Pioneering
+                </motion.span>
                 <br />
-                <span className="brand-text-gradient">
+                <motion.span
+                  variants={fadeUpVariants}
+                  className="brand-text-gradient inline-block"
+                >
                   Energy Excellence
-                </span>
+                </motion.span>
               </h2>
-              <div className="section-underline" />
+              <motion.div
+                initial={{ scaleX: 0, transformOrigin: "left" }}
+                animate={controls}
+                variants={{
+                  hidden: { scaleX: 0 },
+                  visible: {
+                    scaleX: 1,
+                    transition: { duration: 0.75, ease: "easeOut" },
+                  },
+                }}
+                className="section-underline"
+              />
 
               <div className="space-y-4">
                 <p className="section-copy">
@@ -182,12 +219,32 @@ const AboutUs = ({ className }: AboutUsProps) => {
                     animate={controls}
                     variants={fadeUpVariants}
                     custom={index}
-                    className="brand-card p-4 md:p-6 hover:border-blue-300 transition-colors duration-300"
+                    whileHover={
+                      !isMobile
+                        ? {
+                            y: -8,
+                            scale: 1.012,
+                            boxShadow: "0 24px 60px rgba(15, 23, 42, 0.16)",
+                            transition: { duration: 0.28, ease: "easeOut" },
+                          }
+                        : undefined
+                    }
+                    className="brand-card group relative overflow-hidden p-4 transition-colors duration-300 hover:border-blue-300 md:p-6"
                   >
+                    <motion.div
+                      aria-hidden="true"
+                      className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100"
+                      initial={{ x: "-140%" }}
+                      whileHover={!isMobile ? { x: "720%" } : undefined}
+                      transition={{ duration: 0.9, ease: "easeOut" }}
+                    />
                     <div className="flex items-start gap-3">
-                      <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 bg-linear-to-br from-blue-800 to-blue-600 rounded-lg flex items-center justify-center">
+                      <motion.div
+                        whileHover={!isMobile ? { rotate: -4, scale: 1.06 } : undefined}
+                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-blue-800 to-blue-600 md:h-12 md:w-12"
+                      >
                         <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-white" />
-                      </div>
+                      </motion.div>
                       <div className="flex-1 min-w-0">
                         <h4 className="text-base md:text-lg font-extrabold text-gray-900 line-clamp-2">
                           {project.title}
@@ -244,12 +301,32 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 <motion.div
                   key={stat.label}
                   variants={scaleVariants}
-                  className="brand-card p-4 md:p-6"
+                  whileHover={
+                    !isMobile
+                      ? {
+                          y: -10,
+                          rotateX: 4,
+                          rotateY: -3,
+                          scale: 1.015,
+                          boxShadow: "0 28px 70px rgba(15, 23, 42, 0.16)",
+                          transition: { duration: 0.25, ease: "easeOut" },
+                        }
+                      : undefined
+                  }
+                  className="brand-card group relative overflow-hidden p-4 [transform-style:preserve-3d] md:p-6"
                 >
-                  <div className="space-y-2">
+                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-linear-to-r from-blue-700 via-blue-600 to-red-600 transition-transform duration-500 group-hover:scale-x-100" />
+                  <motion.div
+                    aria-hidden="true"
+                    className="absolute -right-12 top-0 h-full w-20 bg-linear-to-r from-transparent via-blue-100/45 to-transparent opacity-0 group-hover:opacity-100"
+                    initial={{ x: -90, rotate: 12 }}
+                    whileHover={!isMobile ? { x: 180 } : undefined}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                  <div className="relative space-y-2">
                     <div
                       className={cn(
-                        "inline-flex p-2 md:p-3 rounded-lg bg-linear-to-br",
+                        "inline-flex rounded-lg bg-linear-to-br p-2 shadow-[0_12px_28px_rgba(30,64,175,0.22)] transition-transform duration-300 group-hover:-translate-y-1 md:p-3",
                         stat.color
                       )}
                     >
@@ -276,9 +353,10 @@ const AboutUs = ({ className }: AboutUsProps) => {
               <Button
                 asChild
                 size={isMobile ? "default" : "lg"}
-                className="brand-button-primary w-full md:w-auto group px-6 md:px-8 py-4 md:py-6 text-base md:text-lg rounded-lg"
+                className="brand-button-primary group relative w-full overflow-hidden rounded-lg px-6 py-4 text-base transition-transform duration-300 hover:-translate-y-1 md:w-auto md:px-8 md:py-6 md:text-lg"
               >
                 <Link href="/about">
+                  <span className="absolute inset-y-0 -left-16 w-12 rotate-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-80" />
                   <span className="mr-2 md:mr-3 text-xs sm:text-sm md:text-base lg:text-lg">Discover Our Journey</span>
                   <ChevronRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 md:group-hover:translate-x-2 transition-transform" />
                 </Link>
