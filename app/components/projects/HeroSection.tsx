@@ -19,11 +19,11 @@ export function HeroSection({ stats }: HeroSectionProps) {
     { icon: Briefcase, value: stats.total.toString(), label: 'Total', color: 'bg-red-600 text-white' },
     { icon: Clock, value: stats.ongoing.toString(), label: 'Active', color: 'bg-blue-950 text-white' },
     { icon: Award, value: stats.completed.toString(), label: 'Done', color: 'bg-red-50 text-red-700' },
-    { icon: Target, value: stats.sectors.toString(), label: 'Sectors', color: 'bg-slate-100 text-slate-700' },
+    { icon: Target, value: stats.sectors.toString(), label: 'Sectors', color: 'bg-[#eef4ff] text-[var(--brand-copy)]' },
   ];
 
   return (
-    <section className="relative overflow-hidden border-b border-slate-200 bg-white py-4 md:py-5">
+    <section className="relative overflow-hidden border-b border-[#d8e4f5] bg-white py-4 md:py-5">
       <motion.div
         aria-hidden="true"
         initial={{ x: '-20%' }}
@@ -50,7 +50,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                   Portfolio
                 </span>
               </div>
-              <p className="max-w-xl truncate text-sm font-semibold text-slate-500">
+              <p className="max-w-xl truncate text-sm font-semibold text-[var(--brand-muted)]">
                 Energy infrastructure delivery references across Bangladesh.
               </p>
             </div>
@@ -60,16 +60,16 @@ export function HeroSection({ stats }: HeroSectionProps) {
                 {statCards.map((stat) => (
                   <div
                     key={stat.label}
-                    className="group flex h-11 min-w-[118px] items-center gap-2 rounded-lg border border-slate-200 bg-white/90 px-2.5 shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
+                    className="group flex h-11 min-w-[118px] items-center gap-2 rounded-lg border border-[#d8e4f5] bg-white/90 px-2.5 shadow-sm backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:shadow-md"
                   >
                     <div className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md ${stat.color}`}>
                       <stat.icon className="h-3.5 w-3.5" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-base font-extrabold leading-none text-slate-950">
+                      <div className="text-base font-extrabold leading-none text-[var(--brand-navy)]">
                         {stat.value}
                       </div>
-                      <div className="mt-0.5 truncate text-[11px] font-bold text-slate-500">
+                      <div className="mt-0.5 truncate text-[11px] font-bold text-[var(--brand-muted)]">
                         {stat.label}
                       </div>
                     </div>

@@ -43,9 +43,9 @@ export default function OurStrength() {
       icon: HardHat,
       title: 'Technical Staff',
       description: 'Trained professionals with certification',
-      color: 'from-emerald-500 to-emerald-600',
-      bgColor: 'bg-emerald-50',
-      textColor: 'text-emerald-600',
+      color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]',
+      bgColor: 'bg-[#eef4ff]',
+      textColor: 'text-[var(--brand-blue)]',
       details: [
         'Regular training and skill development',
         'Qualified engineers and technicians',
@@ -56,9 +56,9 @@ export default function OurStrength() {
       icon: Wrench,
       title: 'Equipment & Machineries',
       description: 'State-of-the-art equipment for all projects',
-      color: 'from-amber-500 to-amber-600',
-      bgColor: 'bg-amber-50',
-      textColor: 'text-amber-600',
+      color: 'from-[var(--brand-red)] to-[var(--brand-red)]',
+      bgColor: 'bg-red-50',
+      textColor: 'text-[var(--brand-red)]',
       details: [
         'Modern construction equipment',
         'Specialized machinery for pipeline',
@@ -82,9 +82,9 @@ export default function OurStrength() {
       icon: Shield,
       title: 'ISO 14001:2015',
       description: 'Environmental Management',
-      color: 'from-green-500 to-green-600',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-600',
+      color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]',
+      bgColor: 'bg-[#eef4ff]',
+      textColor: 'text-[var(--brand-blue)]',
       details: [
         'Environmental responsibility',
         'Sustainable practices',
@@ -95,9 +95,9 @@ export default function OurStrength() {
       icon: ClipboardCheck,
       title: 'OHSAS 18001:2007',
       description: 'Occupational Health & Safety',
-      color: 'from-purple-500 to-purple-600',
-      bgColor: 'bg-purple-50',
-      textColor: 'text-purple-600',
+      color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]',
+      bgColor: 'bg-[#eef4ff]',
+      textColor: 'text-[var(--brand-blue)]',
       details: [
         'Safety-first culture',
         'Regular safety audits',
@@ -143,7 +143,7 @@ export default function OurStrength() {
   };
 
   return (
-    <section ref={ref} className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
+    <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -169,7 +169,7 @@ export default function OurStrength() {
               variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
             >
-              <span className="text-gray-900">Built on</span>
+              <span className="text-[var(--brand-navy)]">Built on</span>
               <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
                 Strong Foundations
@@ -178,7 +178,7 @@ export default function OurStrength() {
             
             <motion.p 
               variants={fadeInUp}
-              className="text-lg text-gray-600"
+              className="text-lg text-[var(--brand-muted)]"
             >
               Leveraging decades of experience, qualified professionals, and world-class certifications to deliver excellence
             </motion.p>
@@ -192,13 +192,13 @@ export default function OurStrength() {
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 text-center"
+                  className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-[#eef4ff] text-center"
                 >
                   <div className="inline-flex p-2 md:p-3 bg-red-50 rounded-lg mb-2 md:mb-3">
                     <Icon className="w-4 h-4 md:w-6 md:h-6 text-red-600" />
                   </div>
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900">{stat.value}</div>
-                  <p className="text-xs md:text-sm text-gray-500">{stat.label}</p>
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--brand-navy)]">{stat.value}</div>
+                  <p className="text-xs md:text-sm text-[var(--brand-muted)]">{stat.label}</p>
                   {stat.sublabel && (
                     <p className="text-[10px] md:text-xs text-red-600 mt-1">{stat.sublabel}</p>
                   )}
@@ -216,7 +216,7 @@ export default function OurStrength() {
                   key={index}
                   variants={scaleIn}
                   whileHover={{ y: -5 }}
-                  className="group relative bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100"
+                  className="group relative bg-white rounded-2xl shadow-lg overflow-hidden border border-[#eef4ff]"
                 >
                   {/* Colored Top Bar */}
                   <div className={cn("h-2 bg-linear-to-r", strength.color)} />
@@ -228,8 +228,8 @@ export default function OurStrength() {
                         <Icon className={cn("w-6 h-6", strength.textColor)} />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-gray-900">{strength.title}</h3>
-                        <p className="text-sm text-gray-500">{strength.description}</p>
+                        <h3 className="text-lg font-bold text-[var(--brand-navy)]">{strength.title}</h3>
+                        <p className="text-sm text-[var(--brand-muted)]">{strength.description}</p>
                       </div>
                     </div>
 
@@ -238,13 +238,13 @@ export default function OurStrength() {
                       {strength.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm">
                           <CheckCircle className={cn("w-4 h-4 mt-0.5 shrink-0", strength.textColor)} />
-                          <span className="text-gray-600">{detail}</span>
+                          <span className="text-[var(--brand-muted)]">{detail}</span>
                         </li>
                       ))}
                     </ul>
 
                     {/* Hover Effect Decoration */}
-                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-gray-50 rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-[#f7faff] rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </motion.div>
               );
@@ -282,7 +282,7 @@ export default function OurStrength() {
           </motion.div>
 
           {/* Project Management Excellence */}
-          <motion.div variants={fadeInUp} className="bg-gray-900 rounded-2xl p-8 md:p-12">
+          <motion.div variants={fadeInUp} className="bg-[var(--brand-navy)] rounded-2xl p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <div className="inline-flex p-3 bg-red-600 rounded-xl mb-4">
@@ -291,7 +291,7 @@ export default function OurStrength() {
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   Standard Project Management
                 </h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-blue-50/80 mb-4">
                   Implemented by Project Management Professionals (PMP®) ensuring:
                 </p>
                 <ul className="space-y-2">
@@ -302,7 +302,7 @@ export default function OurStrength() {
                     'Risk management',
                     'Stakeholder communication'
                   ].map((item, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-300">
+                    <li key={index} className="flex items-center gap-2 text-blue-50/80">
                       <CheckCircle className="w-4 h-4 text-red-500" />
                       <span>{item}</span>
                     </li>
@@ -312,8 +312,8 @@ export default function OurStrength() {
               
               <div className="grid grid-cols-2 gap-4">
                 {['PMP Certified', 'ISO Standards', 'Safety First', 'Quality Focus'].map((item, index) => (
-                  <div key={index} className="bg-gray-800 p-4 rounded-xl text-center">
-                    <Star className="w-5 h-5 text-yellow-500 mx-auto mb-2" />
+                  <div key={index} className="bg-blue-950/70 p-4 rounded-xl text-center">
+                    <Star className="w-5 h-5 text-[var(--brand-red)] mx-auto mb-2" />
                     <p className="text-white text-sm">{item}</p>
                   </div>
                 ))}

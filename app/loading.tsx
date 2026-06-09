@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex items-center justify-center">
+    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white flex items-center justify-center">
       <div className="text-center">
         {/* Animated Logo/SVG */}
         <div className="relative mb-8">
@@ -14,15 +14,15 @@ export default function Loading() {
 
         {/* Loading Text */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-[var(--brand-navy)]">
             Loading Content
           </h2>
-          <p className="text-gray-600">
+          <p className="text-[var(--brand-muted)]">
             Please wait while we prepare your experience
           </p>
           
           {/* Progress Bar */}
-          <div className="w-64 h-2 bg-gray-200 rounded-full overflow-hidden mx-auto">
+          <div className="w-64 h-2 bg-[#d8e4f5] rounded-full overflow-hidden mx-auto">
             <div className="h-full bg-linear-to-r from-red-600 to-red-400 rounded-full animate-[loading_2s_ease-in-out_infinite]"></div>
           </div>
         </div>

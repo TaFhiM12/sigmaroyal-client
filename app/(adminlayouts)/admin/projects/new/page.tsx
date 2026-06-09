@@ -21,8 +21,8 @@ export default function NewProjectPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Create New Project</h1>
-          <p className="text-gray-600 mt-1">Add a new project to your portfolio</p>
+          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Create New Project</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Add a new project to your portfolio</p>
         </div>
       </div>
 

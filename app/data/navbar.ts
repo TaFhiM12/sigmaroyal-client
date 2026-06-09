@@ -14,7 +14,7 @@ export const navbarMenu: NavbarMenu[] = [
       url: "#",
       items: [
         { title: "Company Overview", url: "/preface" },
-        { title: "Leadership Team", url: "/team" },
+        { title: "Meet Our Team", url: "/team" },
         { title: "Clients", url: "/clients" },
         { title: "HSE & Quality", url: "/qhse-policy" },
         { title: "Company History", url: "/at-a-glance" },

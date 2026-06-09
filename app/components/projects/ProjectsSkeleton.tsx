@@ -5,9 +5,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function ProjectsSkeleton() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
       {/* Hero Skeleton */}
-      <section className="border-b border-slate-200 bg-white py-4 md:py-5">
+      <section className="border-b border-[#d8e4f5] bg-white py-4 md:py-5">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
             <div className="flex flex-col gap-2 lg:flex-row lg:items-center">

@@ -41,7 +41,7 @@ export default function ContactMap() {
   };
 
   return (
-    <section className="border-t border-slate-200 bg-slate-100">
+    <section className="border-t border-[#d8e4f5] bg-[#eef4ff]">
       <div className="grid lg:grid-cols-[380px_1fr]">
         <aside className="bg-blue-950 px-4 py-6 text-white md:px-8 lg:px-10">
           <div className="mb-4 inline-flex bg-red-600 px-3 py-1.5 text-xs font-extrabold uppercase tracking-[0.08em] text-white">
@@ -99,7 +99,7 @@ export default function ContactMap() {
           </div>
         </aside>
 
-        <div className="h-[460px] min-h-[420px] bg-slate-200 lg:h-[620px]">
+        <div className="h-[460px] min-h-[420px] bg-[#d8e4f5] lg:h-[620px]">
           <iframe
             title="The Royal Utilisation Services office location map"
             src={EMBED_URL}

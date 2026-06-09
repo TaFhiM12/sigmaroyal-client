@@ -40,7 +40,7 @@ interface ProjectsTableProps {
 }
 
 const statusColors = {
-  COMPLETED: "bg-green-100 text-green-800",
+  COMPLETED: "bg-[#eef4ff] text-[var(--brand-blue)]",
   ONGOING: "bg-blue-100 text-blue-800",
 };
 
@@ -72,7 +72,7 @@ export default function ProjectsTable({
     return (
       <div className="space-y-3">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-16 bg-gray-100 animate-pulse rounded-lg" />
+          <div key={i} className="h-16 bg-[#eef4ff] animate-pulse rounded-lg" />
         ))}
       </div>
     );
@@ -80,8 +80,8 @@ export default function ProjectsTable({
 
   if (projects.length === 0) {
     return (
-      <div className="text-center py-12 bg-gray-50 rounded-lg">
-        <p className="text-gray-500">
+      <div className="text-center py-12 bg-[#f7faff] rounded-lg">
+        <p className="text-[var(--brand-muted)]">
           No projects found. Create your first project!
         </p>
       </div>
@@ -106,7 +106,7 @@ export default function ProjectsTable({
           </TableHeader>
           <TableBody>
             {projects.map((project) => (
-              <TableRow key={project.id} className="hover:bg-gray-50">
+              <TableRow key={project.id} className="hover:bg-[#f7faff]">
                 <TableCell>
                   {project.images && project.images[0] ? (
                     <div className="relative w-10 h-10 rounded-lg overflow-hidden">
@@ -118,15 +118,15 @@ export default function ProjectsTable({
                       />
                     </div>
                   ) : (
-                    <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <span className="text-xs text-gray-400">No img</span>
+                    <div className="w-10 h-10 bg-[#eef4ff] rounded-lg flex items-center justify-center">
+                      <span className="text-xs text-[var(--brand-muted)]">No img</span>
                     </div>
                   )}
                 </TableCell>
                 <TableCell className="font-medium">
                   <div>
                     <p className="line-clamp-1">{project.title}</p>
-                    <p className="text-xs text-gray-500">{project.slug}</p>
+                    <p className="text-xs text-[var(--brand-muted)]">{project.slug}</p>
                   </div>
                 </TableCell>
                 <TableCell>
@@ -147,7 +147,7 @@ export default function ProjectsTable({
                 </TableCell>
                 <TableCell>
                   {project.featured && (
-                    <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                    <Star className="h-4 w-4 text-[var(--brand-red)] fill-[var(--brand-red)]" />
                   )}
                 </TableCell>
                 <TableCell>

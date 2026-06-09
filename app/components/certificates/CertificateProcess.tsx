@@ -55,7 +55,7 @@ export default function CertificateProcess() {
     <section className="py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="bg-linear-to-br from-gray-900 to-black rounded-2xl overflow-hidden">
+          <div className="bg-linear-to-br from-[var(--brand-navy)] to-[var(--brand-navy)] rounded-2xl overflow-hidden">
             <div className="p-8 md:p-12 lg:p-16">
               <div className="flex items-center gap-3 mb-6">
                 <CheckCircle className="h-6 w-6 text-red-400" />
@@ -72,7 +72,7 @@ export default function CertificateProcess() {
                 {processSteps.map((step, index) => (
                   <div key={index} className="relative">
                     {index < processSteps.length - 1 && (
-                      <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gray-700 -translate-x-1/2" />
+                      <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-blue-900 -translate-x-1/2" />
                     )}
                     <div className="flex items-start gap-4">
                       <div className="shrink-0">
@@ -89,7 +89,7 @@ export default function CertificateProcess() {
                             {step.title}
                           </h3>
                         </div>
-                        <p className="text-gray-300 text-sm">
+                        <p className="text-blue-50/80 text-sm">
                           {step.description}
                         </p>
                       </div>
@@ -98,31 +98,31 @@ export default function CertificateProcess() {
                 ))}
               </div>
 
-              <div className="mt-12 pt-8 border-t border-gray-700">
+              <div className="mt-12 pt-8 border-t border-blue-900">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-bold text-white mb-2">
                       Continuous Improvement
                     </h3>
-                    <p className="text-gray-300">
+                    <p className="text-blue-50/80">
                       Our commitment to quality extends beyond certification - it&apos;s embedded in our culture
                     </p>
                   </div>
                   <div className="flex items-center gap-6">
                     <div className="text-center">
                       <div className="text-3xl font-bold text-red-400">{certCount}+</div>
-                      <div className="text-sm text-gray-400">Certifications</div>
+                      <div className="text-sm text-[var(--brand-muted)]">Certifications</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-red-400">100%</div>
-                      <div className="text-sm text-gray-400">Compliance</div>
+                      <div className="text-sm text-[var(--brand-muted)]">Compliance</div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-red-400 flex items-center gap-1">
                         <TrendingUp className="h-6 w-6" />
                         ∞
                       </div>
-                      <div className="text-sm text-gray-400">Continuous</div>
+                      <div className="text-sm text-[var(--brand-muted)]">Continuous</div>
                     </div>
                   </div>
                 </div>

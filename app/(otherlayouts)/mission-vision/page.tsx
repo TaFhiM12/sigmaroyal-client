@@ -32,10 +32,10 @@ export default function MissionVisionPage() {
 
   // Strategic goals
   const goals = [
-    { icon: Star, label: 'Excellence', color: 'from-amber-500 to-amber-600' },
+    { icon: Star, label: 'Excellence', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' },
     { icon: Shield, label: 'Safety', color: 'from-blue-500 to-blue-600' },
-    { icon: TrendingUp, label: 'Growth', color: 'from-emerald-500 to-emerald-600' },
-    { icon: Globe, label: 'Global', color: 'from-purple-500 to-purple-600' }
+    { icon: TrendingUp, label: 'Growth', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { icon: Globe, label: 'Global', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' }
   ];
 
   // Animation variants
@@ -60,7 +60,7 @@ export default function MissionVisionPage() {
   };
 
   return (
-    <section ref={ref} className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
+    <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -89,7 +89,7 @@ export default function MissionVisionPage() {
             
             <motion.p 
               variants={fadeInUp}
-              className="text-lg text-gray-600"
+              className="text-lg text-[var(--brand-muted)]"
             >
               Driving excellence in energy infrastructure through unwavering commitment to quality, safety, and innovation
             </motion.p>
@@ -128,7 +128,7 @@ export default function MissionVisionPage() {
                           <div className="w-2 h-2 bg-red-600 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-[var(--brand-copy)] leading-relaxed">
                         To be among the leading contractors for delivering a personalized standard of services that pertains to a level of excellence.
                       </p>
                     </div>
@@ -139,7 +139,7 @@ export default function MissionVisionPage() {
                           <div className="w-2 h-2 bg-red-600 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-[var(--brand-copy)] leading-relaxed">
                         To provide the most efficient, trustworthy, high-quality service while ensuring international standards of safety and quality.
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export default function MissionVisionPage() {
                     {['Excellence', 'Efficiency', 'Trust', 'Quality'].map((item, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <CheckCircle className="w-4 h-4 text-red-600" />
-                        <span className="text-gray-600">{item}</span>
+                        <span className="text-[var(--brand-muted)]">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -167,18 +167,18 @@ export default function MissionVisionPage() {
               className="group relative"
             >
               {/* Background Gradient */}
-              <div className="absolute -inset-1 bg-linear-to-r from-gray-700 to-gray-900 rounded-3xl opacity-20 group-hover:opacity-30 blur transition-opacity" />
+              <div className="absolute -inset-1 bg-linear-to-r from-[var(--brand-blue)] to-[var(--brand-navy)] rounded-3xl opacity-20 group-hover:opacity-30 blur transition-opacity" />
               
               <div className="relative bg-white rounded-2xl shadow-xl overflow-hidden">
                 {/* Header */}
-                <div className="bg-linear-to-r from-gray-800 to-gray-900 p-8">
+                <div className="bg-linear-to-r from-[var(--brand-navy)] to-[var(--brand-navy)] p-8">
                   <div className="flex items-center gap-4">
                     <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
                       <Eye className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <h2 className="text-3xl md:text-4xl font-bold text-white">Vision</h2>
-                      <p className="text-gray-300 text-sm mt-1">Where we&apos;re heading</p>
+                      <p className="text-blue-50/80 text-sm mt-1">Where we&apos;re heading</p>
                     </div>
                   </div>
                 </div>
@@ -188,22 +188,22 @@ export default function MissionVisionPage() {
                   <div className="space-y-4">
                     <div className="flex gap-4">
                       <div className="shrink-0">
-                        <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mt-1">
-                          <div className="w-2 h-2 bg-gray-600 rounded-full" />
+                        <div className="w-6 h-6 rounded-full bg-[#eef4ff] flex items-center justify-center mt-1">
+                          <div className="w-2 h-2 bg-blue-800 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-[var(--brand-copy)] leading-relaxed">
                         To have a viable business suitable for sustainable development by assuring the topmost quality and safety.
                       </p>
                     </div>
 
                     <div className="flex gap-4">
                       <div className="shrink-0">
-                        <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center mt-1">
-                          <div className="w-2 h-2 bg-gray-600 rounded-full" />
+                        <div className="w-6 h-6 rounded-full bg-[#eef4ff] flex items-center justify-center mt-1">
+                          <div className="w-2 h-2 bg-blue-800 rounded-full" />
                         </div>
                       </div>
-                      <p className="text-gray-700 leading-relaxed">
+                      <p className="text-[var(--brand-copy)] leading-relaxed">
                         Having a commitment to long term business relationships with our Clients while providing guidance and innovation in worldwide business by delivering a wide range of services built on quality, safety, honesty and immense strength.
                       </p>
                     </div>
@@ -213,15 +213,15 @@ export default function MissionVisionPage() {
                   <div className="grid grid-cols-2 gap-3 pt-4">
                     {['Sustainability', 'Innovation', 'Relationships', 'Strength'].map((item, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-600">{item}</span>
+                        <CheckCircle className="w-4 h-4 text-[var(--brand-muted)]" />
+                        <span className="text-[var(--brand-muted)]">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Decorative Element */}
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gray-50 rounded-tl-full" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#f7faff] rounded-tl-full" />
               </div>
             </motion.div>
           </div>
@@ -229,10 +229,10 @@ export default function MissionVisionPage() {
           {/* Core Values Section */}
           <motion.div variants={fadeInUp} className="pt-8">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">
                 Core <span className="text-red-600">Values</span>
               </h2>
-              <p className="text-gray-600 mt-2">The principles that guide everything we do</p>
+              <p className="text-[var(--brand-muted)] mt-2">The principles that guide everything we do</p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -245,13 +245,13 @@ export default function MissionVisionPage() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ delay: 0.6 + index * 0.1 }}
                     whileHover={{ y: -5 }}
-                    className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center group"
+                    className="bg-white p-6 rounded-xl shadow-lg border border-[#eef4ff] text-center group"
                   >
                     <div className="inline-flex p-3 bg-red-50 rounded-xl mb-4 group-hover:bg-red-100 transition-colors">
                       <Icon className="w-6 h-6 text-red-600" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{value.name}</h3>
-                    <p className="text-sm text-gray-500">{value.description}</p>
+                    <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-2">{value.name}</h3>
+                    <p className="text-sm text-[var(--brand-muted)]">{value.description}</p>
                   </motion.div>
                 );
               })}
@@ -263,7 +263,7 @@ export default function MissionVisionPage() {
             <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-800 rounded-2xl opacity-5" />
             <div className="relative p-8 md:p-12">
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">
                   Strategic <span className="text-red-600">Priorities</span>
                 </h2>
               </div>
@@ -285,7 +285,7 @@ export default function MissionVisionPage() {
                       )}>
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="text-sm font-medium text-gray-700">{goal.label}</span>
+                      <span className="text-sm font-medium text-[var(--brand-copy)]">{goal.label}</span>
                     </motion.div>
                   );
                 })}
@@ -301,13 +301,13 @@ export default function MissionVisionPage() {
             <div className="inline-flex p-2 bg-red-50 rounded-full mb-4">
               <Sparkles className="w-5 h-5 text-red-600" />
             </div>
-            <p className="text-xl text-gray-700 italic">
+            <p className="text-xl text-[var(--brand-copy)] italic">
               Committed to delivering excellence through quality, safety, honesty, and immense strength
             </p>
             <div className="flex justify-center gap-2 mt-6">
               <div className="w-12 h-0.5 bg-red-600" />
-              <div className="w-12 h-0.5 bg-gray-300" />
-              <div className="w-12 h-0.5 bg-gray-300" />
+              <div className="w-12 h-0.5 bg-[#d8e4f5]" />
+              <div className="w-12 h-0.5 bg-[#d8e4f5]" />
             </div>
           </motion.div>
         </motion.div>

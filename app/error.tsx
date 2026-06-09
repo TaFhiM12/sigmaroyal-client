@@ -17,23 +17,23 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white flex items-center justify-center p-4">
       <div className="max-w-lg w-full">
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 text-center">
+        <div className="bg-white rounded-2xl shadow-xl border border-[#d8e4f5] p-8 text-center">
           {/* Error Icon */}
           <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <AlertTriangle className="h-10 w-10 text-red-600" />
           </div>
 
           {/* Error Message */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
             Something Went Wrong
           </h1>
           
-          <p className="text-gray-600 mb-6">
+          <p className="text-[var(--brand-muted)] mb-6">
             We apologize for the inconvenience. An unexpected error has occurred.
             {error.digest && (
-              <span className="block text-sm text-gray-500 mt-2">
+              <span className="block text-sm text-[var(--brand-muted)] mt-2">
                 Error ID: {error.digest}
               </span>
             )}
@@ -51,7 +51,7 @@ export default function Error({
             
             <Link
               href="/"
-              className="flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
+              className="flex items-center justify-center gap-2 bg-[var(--brand-navy)] hover:bg-blue-950/70 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300"
             >
               <Home className="h-4 w-4" />
               Back to Home
@@ -59,20 +59,20 @@ export default function Error({
           </div>
 
           {/* Technical Details (Collapsible) */}
-          <details className="mt-8 border border-gray-200 rounded-lg">
-            <summary className="cursor-pointer p-4 text-sm font-medium text-gray-700 hover:text-gray-900">
+          <details className="mt-8 border border-[#d8e4f5] rounded-lg">
+            <summary className="cursor-pointer p-4 text-sm font-medium text-[var(--brand-copy)] hover:text-[var(--brand-navy)]">
               Technical Details
             </summary>
-            <div className="p-4 bg-gray-50 text-left">
-              <code className="text-xs text-gray-600 break-all">
+            <div className="p-4 bg-[#f7faff] text-left">
+              <code className="text-xs text-[var(--brand-muted)] break-all">
                 {error.message || 'Unknown error occurred'}
               </code>
             </div>
           </details>
 
           {/* Support Information */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-500">
+          <div className="mt-8 pt-6 border-t border-[#d8e4f5]">
+            <p className="text-sm text-[var(--brand-muted)]">
               If the problem persists, please contact our support team at{' '}
               <a href="mailto:support@sigma-royal.com" className="text-red-600 hover:text-red-700">
                 support@sigma-royal.com

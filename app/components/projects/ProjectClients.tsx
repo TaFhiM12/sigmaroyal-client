@@ -176,8 +176,8 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center p-8 max-w-md">
           <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Unable to Load Projects</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h2 className="text-2xl font-bold text-[var(--brand-navy)] mb-2">Unable to Load Projects</h2>
+          <p className="text-[var(--brand-muted)] mb-6">{error}</p>
           <Button asChild>
             <Link href="/">Return Home</Link>
           </Button>
@@ -191,7 +191,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-b from-gray-50 to-white"
+      className="min-h-screen bg-linear-to-b from-[#f7faff] to-white"
     >
       <HeroSection stats={stats} />
       

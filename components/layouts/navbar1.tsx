@@ -222,7 +222,7 @@ const Navbar1 = ({
               <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-blue-700">
                 {getDropdownEyebrow(item.title)}
               </p>
-              <h3 className="mt-1 text-lg font-extrabold text-slate-950">
+              <h3 className="mt-1 text-lg font-extrabold text-[var(--brand-navy)]">
                 {item.title}
               </h3>
             </div>
@@ -239,7 +239,7 @@ const Navbar1 = ({
               href={subItem.url}
               className={cn(
                 "group grid grid-cols-[40px_1fr_22px] items-start gap-3 rounded-xl border border-transparent px-3.5 py-3 transition-all duration-200",
-                "text-slate-900 hover:-translate-y-0.5 hover:border-blue-100 hover:bg-blue-50/85 hover:shadow-lg hover:shadow-blue-950/8"
+                "text-[var(--brand-navy)] hover:-translate-y-0.5 hover:border-blue-100 hover:bg-blue-50/85 hover:shadow-lg hover:shadow-blue-950/8"
               )}
               onClick={() => setActiveDropdown(null)}
             >
@@ -247,27 +247,27 @@ const Navbar1 = ({
                 {getDropdownIcon(item.title, index)}
               </span>
               <span className="min-w-0">
-                <span className="block text-sm font-extrabold leading-tight text-slate-950 transition-colors group-hover:text-blue-950">
+                <span className="block text-sm font-extrabold leading-tight text-[var(--brand-navy)] transition-colors group-hover:text-blue-950">
                   {subItem.title}
                 </span>
                 {subItem.description ? (
-                  <span className="mt-1.5 block text-xs leading-relaxed text-slate-600">
+                  <span className="mt-1.5 block text-xs leading-relaxed text-[var(--brand-muted)]">
                     {subItem.description}
                   </span>
                 ) : (
-                  <span className="mt-1.5 block text-xs leading-relaxed text-slate-500">
+                  <span className="mt-1.5 block text-xs leading-relaxed text-[var(--brand-muted)]">
                     Explore company information and resources
                   </span>
                 )}
               </span>
-              <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-all duration-200 group-hover:bg-red-600 group-hover:text-white">
+              <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#eef4ff] text-[var(--brand-muted)] transition-all duration-200 group-hover:bg-red-600 group-hover:text-white">
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </span>
             </Link>
           ))}
         </div>
 
-        <div className="relative border-t border-blue-950/8 bg-slate-50/80 px-5 py-3">
+        <div className="relative border-t border-blue-950/8 bg-[#f7faff]/80 px-5 py-3">
           <Link
             href={item.url === "#" ? "/contact" : item.url}
             onClick={() => setActiveDropdown(null)}
@@ -370,8 +370,8 @@ const Navbar1 = ({
         >
           <AccordionTrigger
             className={cn(
-              "group rounded-lg border border-slate-200 bg-white px-3.5 py-3 text-left shadow-sm",
-              "text-[15px] font-extrabold text-slate-900 hover:no-underline",
+              "group rounded-lg border border-[#d8e4f5] bg-white px-3.5 py-3 text-left shadow-sm",
+              "text-[15px] font-extrabold text-[var(--brand-navy)] hover:no-underline",
               "transition-all duration-200 hover:border-blue-200 hover:bg-blue-50/70 hover:text-blue-950",
               "data-[state=open]:border-blue-200 data-[state=open]:bg-blue-50 data-[state=open]:text-blue-950",
             )}
@@ -392,18 +392,18 @@ const Navbar1 = ({
                   href={subItem.url}
                   onClick={handleMobileLinkClick}
                   className={cn(
-                    "group relative rounded-lg border border-slate-200 bg-white p-3 no-underline shadow-sm outline-none",
+                    "group relative rounded-lg border border-[#d8e4f5] bg-white p-3 no-underline shadow-sm outline-none",
                     "transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/70 hover:shadow-md"
                   )}
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <div className="text-sm font-bold leading-tight text-slate-900">
+                    <div className="text-sm font-bold leading-tight text-[var(--brand-navy)]">
                       {subItem.title}
                     </div>
-                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition-colors group-hover:text-red-600" />
+                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-[var(--brand-muted)] transition-colors group-hover:text-red-600" />
                   </div>
                   {subItem.description && (
-                    <p className="mt-1.5 text-xs leading-relaxed text-slate-600">
+                    <p className="mt-1.5 text-xs leading-relaxed text-[var(--brand-muted)]">
                       {subItem.description}
                     </p>
                   )}
@@ -421,8 +421,8 @@ const Navbar1 = ({
         href={item.url}
         onClick={handleMobileLinkClick}
         className={cn(
-          "group flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3.5 py-3 text-[15px]",
-          "font-extrabold text-slate-900 shadow-sm transition-all duration-200",
+          "group flex items-center justify-between rounded-lg border border-[#d8e4f5] bg-white px-3.5 py-3 text-[15px]",
+          "font-extrabold text-[var(--brand-navy)] shadow-sm transition-all duration-200",
           "hover:-translate-y-0.5 hover:border-blue-200 hover:bg-blue-50/70 hover:text-blue-950 hover:shadow-md",
         )}
       >
@@ -432,7 +432,7 @@ const Navbar1 = ({
           </span>
           <span>{item.title}</span>
         </span>
-        <ArrowUpRight className="h-4 w-4 text-slate-400 transition-colors group-hover:text-red-600" />
+        <ArrowUpRight className="h-4 w-4 text-[var(--brand-muted)] transition-colors group-hover:text-red-600" />
       </Link>
     );
   };
@@ -554,7 +554,7 @@ const Navbar1 = ({
                 </SheetTrigger>
                 <SheetContent 
                   side="right" 
-                  className="h-dvh w-[92vw] max-w-[430px] gap-0 overflow-hidden border-l border-blue-950/10 bg-slate-50 p-0 shadow-2xl sm:max-w-[430px]"
+                  className="h-dvh w-[92vw] max-w-[430px] gap-0 overflow-hidden border-l border-blue-950/10 bg-[#f7faff] p-0 shadow-2xl sm:max-w-[430px]"
                 >
                   <div className="flex h-full flex-col">
                     <SheetHeader className="border-b border-blue-950/10 bg-white p-0">
@@ -564,7 +564,7 @@ const Navbar1 = ({
                           onClick={() => setSheetOpen(false)}
                           className={cn(
                             "flex items-center gap-3 px-5 py-5 pr-12 text-left transition-colors duration-200",
-                            "text-slate-950 hover:text-blue-950"
+                            "text-[var(--brand-navy)] hover:text-blue-950"
                           )}
                         >
                           <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
@@ -577,7 +577,7 @@ const Navbar1 = ({
                             />
                           </span>
                           <span className="flex min-w-0 flex-col leading-tight">
-                            <span className="text-[15px] font-extrabold leading-snug text-slate-950">
+                            <span className="text-[15px] font-extrabold leading-snug text-[var(--brand-navy)]">
                               The Royal Utilisation Services (Pvt.) Ltd
                             </span>
                             <span className="mt-1 text-xs font-semibold text-blue-700">
@@ -588,13 +588,13 @@ const Navbar1 = ({
                       </SheetTitle>
                     </SheetHeader>
                     
-                    <div className="custom-scrollbar flex-1 overflow-y-auto bg-linear-to-b from-slate-50 to-white px-4 py-4">
+                    <div className="custom-scrollbar flex-1 overflow-y-auto bg-linear-to-b from-[#f7faff] to-white px-4 py-4">
                       <div className="mb-4 rounded-lg border border-blue-100 bg-blue-50/70 px-4 py-3">
                         <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.08em] text-blue-900">
                           <Award className="h-4 w-4" />
                           Since 1977
                         </div>
-                        <p className="mt-1 text-xs leading-relaxed text-slate-700">
+                        <p className="mt-1 text-xs leading-relaxed text-[var(--brand-copy)]">
                           Pipeline, power, oil and gas infrastructure services across Bangladesh.
                         </p>
                       </div>
@@ -630,8 +630,8 @@ const Navbar1 = ({
                         </Link>
                       </div>
                       
-                      <div className="mt-4 grid gap-2 rounded-lg bg-slate-50 p-3 text-xs text-slate-700 ring-1 ring-slate-200">
-                        <p className="font-extrabold text-slate-950">Contact Info</p>
+                      <div className="mt-4 grid gap-2 rounded-lg bg-[#f7faff] p-3 text-xs text-[var(--brand-copy)] ring-1 ring-slate-200">
+                        <p className="font-extrabold text-[var(--brand-navy)]">Contact Info</p>
                         <a href="mailto:info@sigma-royal.com" className="flex items-center gap-2 font-semibold hover:text-red-600">
                           <Mail className="h-3.5 w-3.5 text-blue-700" />
                           info@sigma-royal.com

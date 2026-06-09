@@ -49,13 +49,13 @@
 
 :root {
   --radius: 0.625rem;
-  --brand-navy: #08204a;
-  --brand-blue: #1357a6;
-  --brand-blue-soft: #eaf2ff;
-  --brand-red: #c81e2b;
-  --brand-ink: #101828;
-  --brand-copy: #111827;
-  --brand-muted: #475467;
+  --brand-navy: #0b1533;
+  --brand-blue: #1556a6;
+  --brand-blue-soft: #eef4ff;
+  --brand-red: #e30613;
+  --brand-ink: #0b1533;
+  --brand-copy: #18243d;
+  --brand-muted: #516078;
   --background: oklch(1 0 0);
   --foreground: var(--brand-ink);
   --card: oklch(1 0 0);
@@ -214,18 +214,18 @@
     height: 0.25rem;
     width: 5rem;
     border-radius: 9999px;
-    background: linear-gradient(90deg, var(--brand-blue), #2563eb 68%, var(--brand-red));
+    background: linear-gradient(90deg, var(--brand-blue), var(--brand-red));
   }
 
   .brand-card {
-    border: 1px solid #dbe3ef;
+    border: 1px solid #d8e4f5;
     border-radius: 0.5rem;
     background: #ffffff;
     box-shadow: 0 8px 24px rgb(8 32 74 / 0.06);
   }
 
   .brand-button-primary {
-    background: linear-gradient(90deg, var(--brand-navy), #123d7a);
+    background: var(--brand-navy);
     color: #ffffff;
     font-family: var(--font-heading);
     font-weight: 700;
@@ -233,7 +233,7 @@
   }
 
   .brand-button-primary:hover {
-    background: linear-gradient(90deg, var(--brand-red), #9f1622);
+    background: var(--brand-red);
     box-shadow: 0 10px 22px rgb(200 30 43 / 0.18);
   }
 

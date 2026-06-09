@@ -35,9 +35,9 @@ const getSectorIcon = (sector: string) => {
 const getSectorColor = (sector: string) => {
   const colors: Record<string, { bg: string; text: string; border: string }> = {
     OIL_GAS: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
-    POWER_SECTOR: { bg: 'bg-yellow-50', text: 'text-yellow-700', border: 'border-yellow-200' },
+    POWER_SECTOR: { bg: 'bg-red-50', text: 'text-[var(--brand-red)]', border: 'border-red-100' },
   };
-  return colors[sector] || { bg: 'bg-gray-50', text: 'text-gray-700', border: 'border-gray-200' };
+  return colors[sector] || { bg: 'bg-[#f7faff]', text: 'text-[var(--brand-copy)]', border: 'border-[#d8e4f5]' };
 };
 
 // Demo images array for consistent display
@@ -67,11 +67,11 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
         animate={{ opacity: 1, y: 0 }}
         className="text-center py-20"
       >
-        <div className="inline-flex items-center justify-center w-24 h-24 bg-gray-100 rounded-full mb-6">
-          <Search className="h-12 w-12 text-gray-400" />
+        <div className="inline-flex items-center justify-center w-24 h-24 bg-[#eef4ff] rounded-full mb-6">
+          <Search className="h-12 w-12 text-[var(--brand-muted)]" />
         </div>
-        <h3 className="text-2xl font-semibold text-gray-900 mb-2">No projects found</h3>
-        <p className="text-gray-600">Try adjusting your filters or search term</p>
+        <h3 className="text-2xl font-semibold text-[var(--brand-navy)] mb-2">No projects found</h3>
+        <p className="text-[var(--brand-muted)]">Try adjusting your filters or search term</p>
       </motion.div>
     );
   }
@@ -93,7 +93,7 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
             <div className="p-2 bg-blue-100 rounded-lg">
               <Clock className="h-6 w-6 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Active Projects</h2>
+            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Active Projects</h2>
             <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
               {ongoingProjects.length} in progress
             </span>
@@ -120,11 +120,11 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
           transition={{ delay: 0.4 }}
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <CheckCircle className="h-6 w-6 text-green-600" />
+            <div className="p-2 bg-[#eef4ff] rounded-lg">
+              <CheckCircle className="h-6 w-6 text-[var(--brand-blue)]" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Completed Projects</h2>
-            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
+            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Completed Projects</h2>
+            <span className="px-3 py-1 bg-[#eef4ff] text-[var(--brand-blue)] rounded-full text-sm font-medium">
               {completedProjects.length} delivered
             </span>
           </div>
@@ -160,7 +160,7 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
       className="group relative bg-white rounded-2xl overflow-hidden border-2 border-blue-100 hover:border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
     >
       {/* Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-[#d8e4f5]">
         <motion.div 
           initial={{ width: "0%" }}
           animate={{ width: "75%" }}
@@ -178,7 +178,7 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-r from-[var(--brand-navy)]/50 to-transparent" />
           
           {/* Status Badge */}
           <div className="absolute top-4 left-4">
@@ -197,23 +197,23 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
 
         {/* Content Section */}
         <div className="flex-1 p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
             {project.title}
           </h3>
           
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          <p className="text-[var(--brand-muted)] text-sm mb-4 line-clamp-2">
             {project.description || project.scopeOfWork}
           </p>
 
           <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
-              <MapPin className="h-4 w-4 text-gray-400" />
+            <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
+              <MapPin className="h-4 w-4 text-[var(--brand-muted)]" />
               <span className="line-clamp-1">{project.location}</span>
             </div>
             
             {project.duration && (
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Calendar className="h-4 w-4 text-gray-400" />
+              <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
+                <Calendar className="h-4 w-4 text-[var(--brand-muted)]" />
                 <span>Duration: {project.duration}</span>
               </div>
             )}
@@ -248,7 +248,7 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
       transition={{ delay: index * 0.05 }}
       whileHover={{ y: -4 }}
       onClick={onClick}
-      className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid mb-6"
+      className="group relative bg-white rounded-2xl overflow-hidden border border-[#d8e4f5] hover:border-[#d8e4f5] shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer break-inside-avoid mb-6"
     >
       {/* Image Container */}
       <div className="relative h-56 overflow-hidden">
@@ -258,11 +258,11 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-[var(--brand-navy)]/70 via-[var(--brand-navy)]/20 to-transparent" />
         
         {/* Status Badge */}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-green-500 text-white rounded-full text-xs font-medium flex items-center gap-1">
+          <span className="px-3 py-1 bg-[#eef4ff]0 text-white rounded-full text-xs font-medium flex items-center gap-1">
             <CheckCircle className="h-3 w-3" />
             COMPLETED
           </span>
@@ -276,7 +276,7 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
 
         {/* Title Overlay */}
         <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-lg font-bold text-white line-clamp-2 group-hover:text-green-200 transition-colors">
+          <h3 className="text-lg font-bold text-white line-clamp-2 group-hover:text-[var(--brand-blue)] transition-colors">
             {project.title}
           </h3>
         </div>
@@ -285,22 +285,22 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
       {/* Content */}
       <div className="p-4">
         <div className="space-y-2 mb-3">
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <MapPin className="h-4 w-4 text-gray-400 shrink-0" />
+          <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
+            <MapPin className="h-4 w-4 text-[var(--brand-muted)] shrink-0" />
             <span className="line-clamp-1">{project.location}</span>
           </div>
           
-          <p className="text-sm text-gray-500 line-clamp-2">
+          <p className="text-sm text-[var(--brand-muted)] line-clamp-2">
             {project.description || project.scopeOfWork}
           </p>
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-gray-100">
-          <span className="text-xs text-gray-500">{project.client}</span>
+        <div className="flex items-center justify-between pt-2 border-t border-[#eef4ff]">
+          <span className="text-xs text-[var(--brand-muted)]">{project.client}</span>
           <motion.div
             animate={{ x: 0 }}
             whileHover={{ x: 4 }}
-            className="flex items-center gap-1 text-green-600 text-sm font-medium"
+            className="flex items-center gap-1 text-[var(--brand-blue)] text-sm font-medium"
           >
             Details
             <ChevronRight className="h-4 w-4" />
@@ -316,16 +316,16 @@ function MosaicSkeleton() {
   return (
     <div className="space-y-12">
       <div>
-        <div className="h-10 w-48 bg-gray-200 rounded-lg mb-6 animate-pulse" />
+        <div className="h-10 w-48 bg-[#d8e4f5] rounded-lg mb-6 animate-pulse" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {[1, 2].map(i => (
-            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-200">
+            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#d8e4f5]">
               <div className="flex">
-                <div className="w-2/5 h-48 bg-gray-200 animate-pulse" />
+                <div className="w-2/5 h-48 bg-[#d8e4f5] animate-pulse" />
                 <div className="flex-1 p-6 space-y-3">
-                  <div className="h-6 bg-gray-200 rounded animate-pulse" />
-                  <div className="h-4 bg-gray-200 rounded animate-pulse" />
-                  <div className="h-4 bg-gray-200 rounded animate-pulse w-2/3" />
+                  <div className="h-6 bg-[#d8e4f5] rounded animate-pulse" />
+                  <div className="h-4 bg-[#d8e4f5] rounded animate-pulse" />
+                  <div className="h-4 bg-[#d8e4f5] rounded animate-pulse w-2/3" />
                 </div>
               </div>
             </div>
@@ -334,14 +334,14 @@ function MosaicSkeleton() {
       </div>
       
       <div>
-        <div className="h-10 w-48 bg-gray-200 rounded-lg mb-6 animate-pulse" />
+        <div className="h-10 w-48 bg-[#d8e4f5] rounded-lg mb-6 animate-pulse" />
         <div className="columns-3 gap-6">
           {[1, 2, 3, 4, 5, 6].map(i => (
-            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-200 mb-6">
-              <div className="h-48 bg-gray-200 animate-pulse" />
+            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-[#d8e4f5] mb-6">
+              <div className="h-48 bg-[#d8e4f5] animate-pulse" />
               <div className="p-4 space-y-2">
-                <div className="h-4 bg-gray-200 rounded animate-pulse" />
-                <div className="h-4 bg-gray-200 rounded animate-pulse w-2/3" />
+                <div className="h-4 bg-[#d8e4f5] rounded animate-pulse" />
+                <div className="h-4 bg-[#d8e4f5] rounded animate-pulse w-2/3" />
               </div>
             </div>
           ))}

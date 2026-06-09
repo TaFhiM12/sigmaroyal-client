@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-linear-to-b from-gray-50 to-white">
+    <main className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
       <HeroCarousel 
         autoPlayInterval={6000}
         showProgressBar={true}

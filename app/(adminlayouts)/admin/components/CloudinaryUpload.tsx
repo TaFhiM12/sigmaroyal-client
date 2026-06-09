@@ -149,14 +149,14 @@ export default function CloudinaryUpload({
           className={`rounded-lg border-2 border-dashed p-6 text-center cursor-pointer transition-colors ${
             isDragging
               ? 'border-red-500 bg-red-50'
-              : 'border-gray-300 bg-white hover:border-red-400 hover:bg-red-50/40'
+              : 'border-[#b9cff0] bg-white hover:border-red-400 hover:bg-red-50/40'
           } ${uploading ? 'opacity-60 cursor-not-allowed' : ''}`}
         >
-          <Upload className="h-6 w-6 mx-auto text-gray-500" />
-          <p className="mt-3 text-sm font-medium text-gray-700">
+          <Upload className="h-6 w-6 mx-auto text-[var(--brand-muted)]" />
+          <p className="mt-3 text-sm font-medium text-[var(--brand-copy)]">
             Drag and drop image files here
           </p>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-[var(--brand-muted)] mt-1">
             or click this area to browse files
           </p>
         </div>
@@ -180,7 +180,7 @@ export default function CloudinaryUpload({
             className="hidden"
             disabled={uploading}
           />
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-[var(--brand-muted)]">
             Max {maxFiles} images, 10MB each (JPG, PNG, WEBP)
           </p>
         </div>
@@ -189,7 +189,7 @@ export default function CloudinaryUpload({
         {previewUrls.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-gray-700">
+              <p className="text-sm font-medium text-[var(--brand-copy)]">
                 {previewUrls.length} file(s) selected
               </p>
               <div className="flex gap-2">
@@ -206,7 +206,7 @@ export default function CloudinaryUpload({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {previewUrls.map((url, index) => (
                 <div key={index} className="relative group">
-                  <div className="relative aspect-video rounded-lg overflow-hidden border bg-gray-100">
+                  <div className="relative aspect-video rounded-lg overflow-hidden border bg-[#eef4ff]">
                     <Image
                       src={url}
                       alt={`Preview ${index + 1}`}
@@ -233,13 +233,13 @@ export default function CloudinaryUpload({
       {/* Existing Images Gallery with Order Controls */}
       {existingImages.length > 0 && (
         <div className="space-y-3">
-          <p className="text-sm font-medium text-gray-700">
+          <p className="text-sm font-medium text-[var(--brand-copy)]">
             Gallery Images ({existingImages.length}) - First image is featured/banner
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {existingImages.map((image, index) => (
               <div key={image.id} className="relative group">
-                <div className="relative aspect-video rounded-lg overflow-hidden border bg-gray-100">
+                <div className="relative aspect-video rounded-lg overflow-hidden border bg-[#eef4ff]">
                   <Image
                     src={image.url}
                     alt="Project"
@@ -249,7 +249,7 @@ export default function CloudinaryUpload({
                   />
                   {index === 0 && (
                     <div className="absolute top-2 left-2">
-                      <span className="px-2 py-1 text-xs font-medium bg-yellow-500 text-white rounded flex items-center gap-1">
+                      <span className="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded flex items-center gap-1">
                         <Star className="h-3 w-3" /> Featured
                       </span>
                     </div>
@@ -257,7 +257,7 @@ export default function CloudinaryUpload({
                 </div>
                 
                 {/* Image Controls Overlay */}
-                <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-1 flex-wrap p-1">
+                <div className="absolute inset-0 bg-[var(--brand-navy)]/70 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-1 flex-wrap p-1">
                   {onSetAsFeatured && index !== 0 && (
                     <Button
                       size="sm"
@@ -303,7 +303,7 @@ export default function CloudinaryUpload({
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-[var(--brand-muted)] mt-2">
             Tip: Drag or use arrows to reorder. The first image will be used as the featured/banner image.
           </p>
         </div>

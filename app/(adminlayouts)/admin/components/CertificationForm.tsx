@@ -179,7 +179,7 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
                 onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
                 placeholder="0"
               />
-              <p className="text-xs text-gray-500">Lower numbers appear first</p>
+              <p className="text-xs text-[var(--brand-muted)]">Lower numbers appear first</p>
             </div>
 
             <div className="space-y-2">
@@ -191,14 +191,14 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />
               </div>
-              <p className="text-xs text-gray-500">Inactive certifications won&apos;t be shown on the website</p>
+              <p className="text-xs text-[var(--brand-muted)]">Inactive certifications won&apos;t be shown on the website</p>
             </div>
           </div>
 
           {/* Image Upload */}
           <div className="space-y-2">
             <Label>Certification Image</Label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition-colors">
+            <div className="border-2 border-dashed border-[#b9cff0] rounded-lg p-6 text-center hover:border-red-500 transition-colors">
               <input
                 type="file"
                 id="image"
@@ -217,13 +217,13 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
                         className="object-contain"
                       />
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">Click to change image</p>
+                    <p className="text-sm text-[var(--brand-muted)] mt-2">Click to change image</p>
                   </div>
                 ) : (
                   <>
-                    <Upload className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-                    <p className="text-sm text-gray-600">Click to upload certification image</p>
-                    <p className="text-xs text-gray-500 mt-1">PNG, JPG, WEBP up to 5MB</p>
+                    <Upload className="h-12 w-12 mx-auto text-[var(--brand-muted)] mb-3" />
+                    <p className="text-sm text-[var(--brand-muted)]">Click to upload certification image</p>
+                    <p className="text-xs text-[var(--brand-muted)] mt-1">PNG, JPG, WEBP up to 5MB</p>
                   </>
                 )}
               </label>

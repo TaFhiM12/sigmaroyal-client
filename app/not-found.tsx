@@ -3,12 +3,12 @@ import { FileQuestion, Home, ArrowLeft, Search } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white flex items-center justify-center p-4">
       <div className="max-w-xl w-full">
         <div className="text-center">
           {/* 404 Number */}
           <div className="relative mb-8">
-            <div className="text-9xl font-bold text-gray-900 opacity-5">404</div>
+            <div className="text-9xl font-bold text-[var(--brand-navy)] opacity-5">404</div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-6xl md:text-8xl font-bold text-red-600">404</div>
             </div>
@@ -20,11 +20,11 @@ export default function NotFound() {
           </div>
 
           {/* Message */}
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
             Page Not Found
           </h1>
           
-          <p className="text-gray-600 mb-8">
+          <p className="text-[var(--brand-muted)] mb-8">
             The page you are looking for might have been removed, had its name changed,
             or is temporarily unavailable.
           </p>
@@ -49,8 +49,8 @@ export default function NotFound() {
           </div>
 
           {/* Quick Links */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="font-semibold text-gray-900 mb-4 flex items-center justify-center gap-2">
+          <div className="bg-white rounded-xl border border-[#d8e4f5] p-6">
+            <h3 className="font-semibold text-[var(--brand-navy)] mb-4 flex items-center justify-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               You might be looking for:
             </h3>
@@ -66,7 +66,7 @@ export default function NotFound() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors text-sm font-medium"
+                  className="text-[var(--brand-copy)] hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors text-sm font-medium"
                 >
                   {link.label}
                 </Link>
@@ -75,8 +75,8 @@ export default function NotFound() {
           </div>
 
           {/* Search Suggestion */}
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600">
+          <div className="mt-8 p-4 bg-[#f7faff] rounded-lg">
+            <p className="text-sm text-[var(--brand-muted)]">
               Try searching for what you need or check our{' '}
               <Link href="/sitemap" className="text-red-600 hover:text-red-700 font-medium">
                 sitemap

@@ -117,17 +117,17 @@ const Footer2 = ({
                 <h3 className="mb-4 text-base font-extrabold text-blue-100">Head Office</h3>
                 <div className="space-y-3 text-sm leading-6 text-blue-50/90 [&_a]:text-blue-50 [&_p]:text-blue-50 [&_span]:text-blue-50">
                   <div className="flex items-start gap-3 ">
-                    <MapPin className="mt-1 h-[18px] w-[18px] shrink-0 text-red-400" />
+                    <MapPin className="mt-1 size-4.5 shrink-0 text-red-400" />
                     <p>28/A, Nayapaltan (4th Floor) VIP Road, Dhaka-1000, Bangladesh.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-[18px] w-[18px] shrink-0 text-red-400" />
+                    <Phone className="size-4.5 shrink-0 text-red-400" />
                     <a href="tel:+8802222229238" className="hover:text-red-400 transition-colors">
                       +88 02222229238
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-[18px] w-[18px] shrink-0 text-red-400" />
+                    <Mail className="size-4.5 shrink-0 text-red-400" />
                     <a href="mailto:info@sigma-royal.com" className="hover:text-red-400 transition-colors">
                       info@sigma-royal.com
                     </a>
@@ -140,17 +140,17 @@ const Footer2 = ({
                 <h3 className="mb-4 text-base font-extrabold text-blue-100">Business Office</h3>
                 <div className="space-y-3 text-sm leading-6 text-blue-50/90 [&_a]:text-blue-50 [&_p]:text-blue-50 [&_span]:text-blue-50">
                   <div className="flex items-start gap-3">
-                    <MapPin className="mt-1 h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <MapPin className="mt-1 size-4.5 flex-shrink-0 text-red-400" />
                     <p>3rd Floor, Achhia Manjil, House#383, Road#28, Dhaka-1205.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <Phone className="size-4.5 flex-shrink-0 text-red-400" />
                     <a href="tel:+8802222281246" className="hover:text-red-400 transition-colors">
                       +88 02222281246
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <Phone className="size-4.5 flex-shrink-0 text-red-400" />
                     <span>0258810750</span>
                   </div>
                 </div>
@@ -161,17 +161,17 @@ const Footer2 = ({
                 <h3 className="mb-4 text-base font-extrabold text-blue-100">Sirajgonj Office</h3>
                 <div className="grid gap-3 text-sm leading-6 text-blue-50/90 md:grid-cols-3 [&_a]:text-blue-50 [&_p]:text-blue-50 [&_span]:text-blue-50">
                   <div className="flex items-start gap-3">
-                    <MapPin className="mt-1 h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <MapPin className="mt-1 size-4.5 flex-shrink-0 text-red-400" />
                     <p>Wasim Villa, Masumpur, Sirajgonj.</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <Phone className="size-4.5 flex-shrink-0 text-red-400" />
                     <a href="tel:+8802588831606" className="hover:text-red-400 transition-colors">
                       +88 02588831606
                     </a>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="h-[18px] w-[18px] flex-shrink-0 text-red-400" />
+                    <Mail className="size-4.5 flex-shrink-0 text-red-400" />
                     <a href="https://www.sigma-royal.com" target="_blank" rel="noopener noreferrer" 
                        className="hover:text-red-400 transition-colors">
                       www.sigma-royal.com
@@ -231,7 +231,7 @@ const Footer2 = ({
       <div className="relative border-t border-blue-900/70 bg-slate-950">
         <div className="container mx-auto px-4 py-6 md:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <p className="text-center text-sm text-slate-400 md:text-left">
+            <p className="text-center text-sm text-[var(--brand-muted)] md:text-left">
               {copyright}
             </p>
             
@@ -241,7 +241,7 @@ const Footer2 = ({
                   <li key={index}>
                     <Link 
                       href={link.url}
-                      className="text-slate-400 hover:text-red-400 transition-colors"
+                      className="text-[var(--brand-muted)] hover:text-red-400 transition-colors"
                     >
                       {link.text}
                     </Link>
@@ -252,7 +252,7 @@ const Footer2 = ({
               {/* Back to Top */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="hidden md:flex items-center gap-2 text-sm text-slate-400 hover:text-red-400 transition-colors"
+                className="hidden md:flex items-center gap-2 text-sm text-[var(--brand-muted)] hover:text-red-400 transition-colors"
                 aria-label="Back to top"
               >
                 Back to Top
@@ -264,7 +264,7 @@ const Footer2 = ({
           </div>
           
           {/* Accreditation Note */}
-          <div className="mt-4 text-center text-xs text-slate-600">
+          <div className="mt-4 text-center text-xs text-[var(--brand-muted)]">
             <p>ISO Certified • Member of Bangladesh Energy Society • Registered with Petrobangla</p>
           </div>
         </div>

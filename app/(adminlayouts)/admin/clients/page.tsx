@@ -38,8 +38,8 @@ export default async function AdminClientsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Our Clients</h1>
-          <p className="text-gray-600 mt-1">Manage client logos and information</p>
+          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Our Clients</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Manage client logos and information</p>
         </div>
         <Button asChild>
           <Link href="/admin/clients/new">
@@ -49,7 +49,7 @@ export default async function AdminClientsPage() {
         </Button>
       </div>
 
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg" />}>
+      <Suspense fallback={<div className="h-96 bg-[#eef4ff] animate-pulse rounded-lg" />}>
         <ClientsClient initialData={clientsData} />
       </Suspense>
     </div>

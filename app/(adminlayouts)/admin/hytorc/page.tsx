@@ -272,17 +272,17 @@ export default function AdminHytorcPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h1 className="text-3xl font-semibold text-zinc-900">HYTORC Content Manager</h1>
-          <p className="text-zinc-600 mt-1">Manage section pages, descriptions, and product cards.</p>
+          <h1 className="text-3xl font-semibold text-[var(--brand-navy)]">HYTORC Content Manager</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Manage section pages, descriptions, and product cards.</p>
         </div>
-        <Button onClick={handleSeed} variant="outline" className="border-zinc-300">
+        <Button onClick={handleSeed} variant="outline" className="border-[#b9cff0]">
           <Wrench className="h-4 w-4 mr-2" />
           Seed Default HYTORC Data
         </Button>
       </div>
 
       {loading ? (
-        <div className="h-72 rounded-xl bg-zinc-100 animate-pulse" />
+        <div className="h-72 rounded-xl bg-[#eef4ff] animate-pulse" />
       ) : (
         <div className="grid gap-6 lg:grid-cols-5">
           <Card className="lg:col-span-2">
@@ -295,7 +295,7 @@ export default function AdminHytorcPage() {
                 <div
                   key={category.id}
                   className={`p-3 border rounded-lg transition-colors ${
-                    activeCategoryId === category.id ? "border-red-500 bg-red-50" : "border-zinc-200 bg-white"
+                    activeCategoryId === category.id ? "border-red-500 bg-red-50" : "border-[#d8e4f5] bg-white"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -304,8 +304,8 @@ export default function AdminHytorcPage() {
                       onClick={() => setActiveCategoryId(category.id)}
                       type="button"
                     >
-                      <p className="font-medium text-zinc-900">{category.title}</p>
-                      <p className="text-xs text-zinc-500 mt-1">/{category.slug}</p>
+                      <p className="font-medium text-[var(--brand-navy)]">{category.title}</p>
+                      <p className="text-xs text-[var(--brand-muted)] mt-1">/{category.slug}</p>
                     </button>
                     <Badge variant={category.isActive ? "default" : "secondary"}>
                       {category.isActive ? "Active" : "Hidden"}
@@ -390,7 +390,7 @@ export default function AdminHytorcPage() {
         </CardHeader>
         <CardContent className="space-y-5">
           {!activeCategory ? (
-            <p className="text-sm text-zinc-500">Select a category first.</p>
+            <p className="text-sm text-[var(--brand-muted)]">Select a category first.</p>
           ) : (
             <>
               <div className="grid gap-4 md:grid-cols-2">
@@ -415,8 +415,8 @@ export default function AdminHytorcPage() {
                 </div>
               </div>
 
-              <div className="space-y-3 rounded-lg border border-zinc-200 p-4 bg-zinc-50/60">
-                <Label className="text-sm font-medium text-zinc-800">Upload Product Image (Cloudinary)</Label>
+              <div className="space-y-3 rounded-lg border border-[#d8e4f5] p-4 bg-[#f7faff]/60">
+                <Label className="text-sm font-medium text-[var(--brand-navy)]">Upload Product Image (Cloudinary)</Label>
                 <CloudinaryUpload
                   key={uploaderKey}
                   onUpload={handleHytorcImageUpload}
@@ -426,7 +426,7 @@ export default function AdminHytorcPage() {
                 />
                 {productForm.imageUrl ? (
                   <div className="space-y-3">
-                    <div className="relative h-40 w-full max-w-sm rounded-lg overflow-hidden border border-zinc-200 bg-white">
+                    <div className="relative h-40 w-full max-w-sm rounded-lg overflow-hidden border border-[#d8e4f5] bg-white">
                       <Image
                         src={productForm.imageUrl}
                         alt="HYTORC product preview"
@@ -453,13 +453,13 @@ export default function AdminHytorcPage() {
 
               <div className="space-y-3">
                 {activeCategory.products.length === 0 ? (
-                  <p className="text-sm text-zinc-500">No products yet.</p>
+                  <p className="text-sm text-[var(--brand-muted)]">No products yet.</p>
                 ) : (
                   activeCategory.products.map((product) => (
-                    <div key={product.id} className="rounded-lg border border-zinc-200 p-3 flex flex-wrap items-center justify-between gap-3">
+                    <div key={product.id} className="rounded-lg border border-[#d8e4f5] p-3 flex flex-wrap items-center justify-between gap-3">
                       <div>
-                        <p className="font-medium text-zinc-900">{product.name}</p>
-                        <p className="text-xs text-zinc-500 mt-1">order: {product.sortOrder}</p>
+                        <p className="font-medium text-[var(--brand-navy)]">{product.name}</p>
+                        <p className="text-xs text-[var(--brand-muted)] mt-1">order: {product.sortOrder}</p>
                       </div>
                       <div className="flex gap-2">
                         <Button variant="outline" size="sm" onClick={() => startEditProduct(product)}>Edit</Button>

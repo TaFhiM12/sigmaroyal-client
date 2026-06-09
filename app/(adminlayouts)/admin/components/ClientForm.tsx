@@ -183,7 +183,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                 onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
                 placeholder="0"
               />
-              <p className="text-xs text-gray-500">Lower numbers appear first</p>
+              <p className="text-xs text-[var(--brand-muted)]">Lower numbers appear first</p>
             </div>
 
             <div className="space-y-2">
@@ -195,14 +195,14 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />
               </div>
-              <p className="text-xs text-gray-500">Inactive clients won&apos;t be shown on the website</p>
+              <p className="text-xs text-[var(--brand-muted)]">Inactive clients won&apos;t be shown on the website</p>
             </div>
           </div>
 
           {/* Logo Upload */}
           <div className="space-y-2">
             <Label>Client Logo</Label>
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-red-500 transition-colors">
+            <div className="border-2 border-dashed border-[#b9cff0] rounded-lg p-6 text-center hover:border-red-500 transition-colors">
               <input
                 type="file"
                 id="logo"
@@ -213,7 +213,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
               <label htmlFor="logo" className="cursor-pointer">
                 {imagePreview ? (
                   <div className="relative">
-                    <div className="relative w-32 h-32 mx-auto rounded-lg overflow-hidden bg-gray-100">
+                    <div className="relative w-32 h-32 mx-auto rounded-lg overflow-hidden bg-[#eef4ff]">
                       <Image
                         src={imagePreview}
                         alt="Preview"
@@ -221,13 +221,13 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                         className="object-contain p-2"
                       />
                     </div>
-                    <p className="text-sm text-gray-600 mt-2">Click to change logo</p>
+                    <p className="text-sm text-[var(--brand-muted)] mt-2">Click to change logo</p>
                   </div>
                 ) : (
                   <>
-                    <Upload className="h-12 w-12 mx-auto text-gray-400 mb-3" />
-                    <p className="text-sm text-gray-600">Click to upload client logo</p>
-                    <p className="text-xs text-gray-500 mt-1">PNG, JPG, WEBP, SVG up to 2MB</p>
+                    <Upload className="h-12 w-12 mx-auto text-[var(--brand-muted)] mb-3" />
+                    <p className="text-sm text-[var(--brand-muted)]">Click to upload client logo</p>
+                    <p className="text-xs text-[var(--brand-muted)] mt-1">PNG, JPG, WEBP, SVG up to 2MB</p>
                   </>
                 )}
               </label>

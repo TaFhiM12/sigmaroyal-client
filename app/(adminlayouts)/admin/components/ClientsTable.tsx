@@ -85,7 +85,7 @@ export default function ClientsTable({
     return (
       <div className="space-y-3">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-16 bg-gray-100 animate-pulse rounded-lg" />
+          <div key={i} className="h-16 bg-[#eef4ff] animate-pulse rounded-lg" />
         ))}
       </div>
     );
@@ -93,8 +93,8 @@ export default function ClientsTable({
 
   if (clients.length === 0) {
     return (
-      <div className="text-center py-12 bg-gray-50 rounded-lg">
-        <p className="text-gray-500">No clients found. Create your first client!</p>
+      <div className="text-center py-12 bg-[#f7faff] rounded-lg">
+        <p className="text-[var(--brand-muted)]">No clients found. Create your first client!</p>
       </div>
     );
   }
@@ -125,7 +125,7 @@ export default function ClientsTable({
                   <Button 
                     size="sm" 
                     onClick={handleReorder} 
-                    className="bg-green-600 hover:bg-green-700"
+                    className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue)]"
                     disabled={isSaving}
                   >
                     {isSaving ? (
@@ -158,11 +158,11 @@ export default function ClientsTable({
           </TableHeader>
           <TableBody>
             {displayItems.map((client, index) => (
-              <TableRow key={client.id} className="hover:bg-gray-50">
+              <TableRow key={client.id} className="hover:bg-[#f7faff]">
                 <TableCell>
                   {isReorderMode ? (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-gray-400 w-6 text-center">{index + 1}</span>
+                      <span className="text-sm text-[var(--brand-muted)] w-6 text-center">{index + 1}</span>
                       <div className="flex flex-col">
                         <Button
                           variant="ghost"
@@ -185,11 +185,11 @@ export default function ClientsTable({
                       </div>
                     </div>
                   ) : (
-                    <span className="text-sm font-medium text-gray-600">{client.order}</span>
+                    <span className="text-sm font-medium text-[var(--brand-muted)]">{client.order}</span>
                   )}
                 </TableCell>
                 <TableCell>
-                  <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-[#eef4ff]">
                     <Image
                       src={client.logoUrl}
                       alt={client.name}
@@ -212,11 +212,11 @@ export default function ClientsTable({
                       Visit <ExternalLink className="h-3 w-3" />
                     </a>
                   ) : (
-                    <span className="text-gray-400 text-sm">Not provided</span>
+                    <span className="text-[var(--brand-muted)] text-sm">Not provided</span>
                   )}
                 </TableCell>
                 <TableCell>
-                  <Badge className={client.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                  <Badge className={client.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-[var(--brand-navy)]'}>
                     {client.isActive ? 'Active' : 'Inactive'}
                   </Badge>
                 </TableCell>

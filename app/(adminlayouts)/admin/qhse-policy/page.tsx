@@ -164,17 +164,17 @@ export default function AdminQhsePolicyPage() {
   };
 
   if (loading) {
-    return <div className="h-96 rounded-xl bg-zinc-100 animate-pulse" />;
+    return <div className="h-96 rounded-xl bg-[#eef4ff] animate-pulse" />;
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h1 className="text-3xl font-semibold text-zinc-900">QHSE Policy</h1>
-          <p className="text-zinc-600 mt-1">Manage public QHSE policy page content and safety rules.</p>
+          <h1 className="text-3xl font-semibold text-[var(--brand-navy)]">QHSE Policy</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Manage public QHSE policy page content and safety rules.</p>
         </div>
-        <Button onClick={handleSeed} variant="outline" className="border-zinc-300">
+        <Button onClick={handleSeed} variant="outline" className="border-[#b9cff0]">
           <Database className="h-4 w-4 mr-2" />
           Seed Default QHSE
         </Button>
@@ -201,7 +201,7 @@ export default function AdminQhsePolicyPage() {
             </div>
           </div>
 
-          <div className="space-y-3 rounded-lg border border-zinc-200 p-4 bg-zinc-50">
+          <div className="space-y-3 rounded-lg border border-[#d8e4f5] p-4 bg-[#f7faff]">
             <Label>Upload Banner Image</Label>
             <CloudinaryUpload
               key={uploaderKey}
@@ -212,7 +212,7 @@ export default function AdminQhsePolicyPage() {
             />
             {form.heroImageUrl ? (
               <div className="space-y-3">
-                <div className="relative h-48 w-full max-w-xl rounded-lg overflow-hidden border border-zinc-200 bg-white">
+                <div className="relative h-48 w-full max-w-xl rounded-lg overflow-hidden border border-[#d8e4f5] bg-white">
                   <Image src={form.heroImageUrl} alt="QHSE banner" fill className="object-cover" />
                 </div>
                 <Button type="button" variant="outline" size="sm" onClick={clearImage}>

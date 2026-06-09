@@ -36,12 +36,12 @@ export default function PortfolioPage() {
 
   // Project categories
   const categories = [
-    { name: 'Oil & Gas', count: '156 Projects', color: 'from-amber-500 to-amber-700' },
+    { name: 'Oil & Gas', count: '156 Projects', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' },
     { name: 'Power Sector', count: '89 Projects', color: 'from-blue-500 to-blue-700' },
-    { name: 'Pipeline Construction', count: '234 Projects', color: 'from-emerald-500 to-emerald-700' },
-    { name: 'LPG Systems', count: '67 Projects', color: 'from-purple-500 to-purple-700' },
-    { name: 'Marine Facilities', count: '34 Projects', color: 'from-cyan-500 to-cyan-700' },
-    { name: 'Storage Tanks', count: '42 Projects', color: 'from-rose-500 to-rose-700' }
+    { name: 'Pipeline Construction', count: '234 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { name: 'LPG Systems', count: '67 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { name: 'Marine Facilities', count: '34 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { name: 'Storage Tanks', count: '42 Projects', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' }
   ];
 
   // Featured projects
@@ -87,7 +87,7 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <section ref={ref} className="relative bg-linear-to-b from-gray-50 to-white py-12 md:py-24 overflow-hidden">
+      <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -107,14 +107,14 @@ export default function PortfolioPage() {
               </motion.div>
               
               <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                <span className="text-gray-900">Company</span>
+                <span className="text-[var(--brand-navy)]">Company</span>
                 <br />
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
                   Portfolio
                 </span>
               </motion.h1>
               
-              <motion.p variants={fadeInUp} className="text-lg text-gray-600">
+              <motion.p variants={fadeInUp} className="text-lg text-[var(--brand-muted)]">
                 Explore our comprehensive portfolio showcasing 47+ years of excellence in energy infrastructure development
               </motion.p>
             </div>
@@ -133,7 +133,7 @@ export default function PortfolioPage() {
               <a
                 href="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"
                 download
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 rounded-xl font-semibold border-2 border-gray-200 hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-[#f7faff] text-[var(--brand-navy)] rounded-xl font-semibold border-2 border-[#d8e4f5] hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Download PDF
@@ -145,12 +145,12 @@ export default function PortfolioPage() {
               {stats.map((stat, index) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={index} className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+                  <div key={index} className="text-center p-6 bg-white rounded-xl shadow-sm border border-[#eef4ff]">
                     <div className="inline-flex p-3 bg-red-50 rounded-lg mb-3">
                       <Icon className="w-6 h-6 text-red-600" />
                     </div>
-                    <div className="text-2xl md:text-3xl font-bold text-gray-900">{stat.value}</div>
-                    <p className="text-sm text-gray-500">{stat.label}</p>
+                    <div className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">{stat.value}</div>
+                    <p className="text-sm text-[var(--brand-muted)]">{stat.label}</p>
                   </div>
                 );
               })}
@@ -158,7 +158,7 @@ export default function PortfolioPage() {
 
             {/* Categories Grid */}
             <motion.div variants={fadeInUp} className="space-y-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)] text-center">
                 Project <span className="text-red-600">Categories</span>
               </h2>
               
@@ -185,7 +185,7 @@ export default function PortfolioPage() {
 
             {/* Featured Projects */}
             <motion.div variants={fadeInUp} className="space-y-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)] text-center">
                 Featured <span className="text-red-600">Projects</span>
               </h2>
               
@@ -194,7 +194,7 @@ export default function PortfolioPage() {
                   <motion.div
                     key={index}
                     whileHover={{ y: -5 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100"
+                    className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#eef4ff]"
                   >
                     <div className="h-2 bg-red-600" />
                     <div className="p-6">
@@ -202,11 +202,11 @@ export default function PortfolioPage() {
                         <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded-full">
                           {project.category}
                         </span>
-                        <span className="text-sm text-gray-400">{project.year}</span>
+                        <span className="text-sm text-[var(--brand-muted)]">{project.year}</span>
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">{project.title}</h3>
-                      <p className="text-sm text-gray-500 mb-3">{project.location}</p>
-                      <p className="text-sm text-gray-600">{project.description}</p>
+                      <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-2">{project.title}</h3>
+                      <p className="text-sm text-[var(--brand-muted)] mb-3">{project.location}</p>
+                      <p className="text-sm text-[var(--brand-muted)]">{project.description}</p>
                       <button className="mt-4 text-red-600 hover:text-red-700 font-medium text-sm inline-flex items-center gap-1 group">
                         Read More
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -218,27 +218,27 @@ export default function PortfolioPage() {
             </motion.div>
 
             {/* Timeline/Experience Section */}
-            <motion.div variants={fadeInUp} className="bg-gray-900 text-white rounded-2xl p-8 md:p-12">
+            <motion.div variants={fadeInUp} className="bg-[var(--brand-navy)] text-white rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
                   <h3 className="text-3xl font-bold mb-4">{yearsExperience}+ Years of Excellence</h3>
-                  <p className="text-gray-300 mb-6">
+                  <p className="text-blue-50/80 mb-6">
                     Since 1977, we have been at the forefront of Bangladesh&apos;s energy sector, delivering world-class infrastructure projects that power the nation&apos;s growth.
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="flex -space-x-2">
                       {[1,2,3,4].map((i) => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-gray-700 border-2 border-gray-900" />
+                        <div key={i} className="w-8 h-8 rounded-full bg-blue-900 border-2 border-[var(--brand-navy)]" />
                       ))}
                     </div>
-                    <span className="text-sm text-gray-400">Trusted by industry leaders</span>
+                    <span className="text-sm text-[var(--brand-muted)]">Trusted by industry leaders</span>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   {['1977', '1990', '2005', '2024'].map((year, index) => (
-                    <div key={index} className="text-center p-4 bg-gray-800 rounded-xl">
+                    <div key={index} className="text-center p-4 bg-blue-950/70 rounded-xl">
                       <div className="text-2xl font-bold text-red-400">{year}</div>
-                      <p className="text-xs text-gray-400">Milestone Year</p>
+                      <p className="text-xs text-[var(--brand-muted)]">Milestone Year</p>
                     </div>
                   ))}
                 </div>
@@ -255,13 +255,13 @@ export default function PortfolioPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-50 bg-[var(--brand-navy)]/95 backdrop-blur-sm p-4"
             onClick={() => setIsModalOpen(false)}
           >
             <div className="absolute top-4 right-4 z-10">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center transition-colors"
+                className="w-10 h-10 bg-blue-950/70 hover:bg-blue-900 rounded-full flex items-center justify-center transition-colors"
               >
                 <X className="w-5 h-5 text-white" />
               </button>
@@ -274,7 +274,7 @@ export default function PortfolioPage() {
               className="h-full flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative w-full max-w-5xl h-[80vh] bg-gray-900 rounded-xl overflow-hidden">
+              <div className="relative w-full max-w-5xl h-[80vh] bg-[var(--brand-navy)] rounded-xl overflow-hidden">
                 {/* PDF Viewer */}
                 <iframe
                   src="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"

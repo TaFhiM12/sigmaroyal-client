@@ -40,10 +40,10 @@ export function ProjectShowcase({
   if (projects.length === 0) {
     return (
       <div className="py-16 text-center">
-        <div className="mb-4 inline-flex rounded-full bg-slate-100 p-4">
-          <Briefcase className="h-8 w-8 text-slate-400" />
+        <div className="mb-4 inline-flex rounded-full bg-[#eef4ff] p-4">
+          <Briefcase className="h-8 w-8 text-[var(--brand-muted)]" />
         </div>
-        <p className="text-lg font-semibold text-slate-500">No projects found</p>
+        <p className="text-lg font-semibold text-[var(--brand-muted)]">No projects found</p>
       </div>
     );
   }
@@ -61,14 +61,14 @@ export function ProjectShowcase({
   return (
     <div className="space-y-6">
       {pageSummary && (
-        <div className="flex flex-col gap-2 border-b border-slate-200 pb-3 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col gap-2 border-b border-[#d8e4f5] pb-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
               {pageSummary.eyebrow}
             </p>
-            <h2 className="mt-1 text-xl font-extrabold text-slate-950">{pageSummary.title}</h2>
+            <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{pageSummary.title}</h2>
           </div>
-          <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-slate-400">
+          <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--brand-muted)]">
             {projects.length} references
           </span>
         </div>
@@ -111,12 +111,12 @@ function ProjectCatalog({
   return (
     <section className="space-y-5">
       {showHeader && (
-        <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+        <div className="flex items-center justify-between border-b border-[#d8e4f5] pb-3">
           <div>
             <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
               Project Catalogue
             </p>
-            <h2 className="mt-1 text-xl font-extrabold text-slate-950">{title}</h2>
+            <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{title}</h2>
           </div>
           <span className="h-1.5 w-16 rounded-full bg-red-600" />
         </div>
@@ -167,7 +167,7 @@ function FeaturedProject({
       onClick={onClick}
       className="group grid w-full overflow-hidden bg-white text-left shadow-sm transition-all duration-300 hover:shadow-lg md:grid-cols-[1.06fr_1fr]"
     >
-      <div className="relative min-h-64 overflow-hidden bg-slate-100 md:min-h-80">
+      <div className="relative min-h-64 overflow-hidden bg-[#eef4ff] md:min-h-80">
         <Image
           src={imageUrl}
           alt={project.title}
@@ -180,21 +180,21 @@ function FeaturedProject({
 
       <div className="flex min-h-64 flex-col justify-center px-5 py-6 md:px-8">
         <div className="mb-3 flex items-center gap-2">
-          <span className="h-px w-12 bg-slate-200" />
+          <span className="h-px w-12 bg-[#d8e4f5]" />
           <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
             {isOngoing ? 'Active delivery' : 'Delivered reference'}
           </span>
         </div>
 
-        <h3 className="max-w-xl text-xl font-semibold leading-snug text-slate-950 md:text-2xl">
+        <h3 className="max-w-xl text-xl font-semibold leading-snug text-[var(--brand-navy)] md:text-2xl">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-3 max-w-xl text-sm leading-6 text-slate-600">
+        <p className="mt-3 line-clamp-3 max-w-xl text-sm leading-6 text-[var(--brand-muted)]">
           {project.description || project.scopeOfWork}
         </p>
 
-        <div className="mt-5 grid gap-2 text-xs font-semibold text-slate-500 sm:grid-cols-2">
+        <div className="mt-5 grid gap-2 text-xs font-semibold text-[var(--brand-muted)] sm:grid-cols-2">
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-red-600" />
             {project.location}
@@ -237,7 +237,7 @@ function ProjectCatalogueTile({
       onClick={onClick}
       className="group bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
     >
-      <div className="relative h-48 overflow-hidden bg-slate-100">
+      <div className="relative h-48 overflow-hidden bg-[#eef4ff]">
         <Image
           src={imageUrl}
           alt={project.title}
@@ -249,24 +249,24 @@ function ProjectCatalogueTile({
 
       <div className="px-5 py-5">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-slate-400">
+          <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[var(--brand-muted)]">
             {getSectorLabel(project)}
           </span>
-          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-500">
+          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--brand-muted)]">
             <StatusIcon className="h-3.5 w-3.5 text-red-600" />
             {isOngoing ? 'Ongoing' : 'Completed'}
           </span>
         </div>
 
-        <h3 className="min-h-12 text-base font-semibold leading-snug text-slate-950 group-hover:text-red-600">
+        <h3 className="min-h-12 text-base font-semibold leading-snug text-[var(--brand-navy)] group-hover:text-red-600">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-4 text-xs leading-5 text-slate-600">
+        <p className="mt-3 line-clamp-4 text-xs leading-5 text-[var(--brand-muted)]">
           {project.description || project.scopeOfWork}
         </p>
 
-        <div className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">
+        <div className="mt-5 space-y-2 border-t border-[#eef4ff] pt-4 text-xs font-semibold text-[var(--brand-muted)]">
           <div className="flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-red-600" />
             <span className="truncate">{project.location}</span>
@@ -290,21 +290,21 @@ function ShowcaseSkeleton() {
   return (
     <div className="space-y-5">
       <div className="grid overflow-hidden bg-white shadow-sm md:grid-cols-2">
-        <div className="h-72 animate-pulse bg-slate-200" />
+        <div className="h-72 animate-pulse bg-[#d8e4f5]" />
         <div className="space-y-4 p-6">
-          <div className="h-4 w-32 animate-pulse bg-slate-200" />
-          <div className="h-7 w-3/4 animate-pulse bg-slate-200" />
-          <div className="h-20 w-full animate-pulse bg-slate-100" />
+          <div className="h-4 w-32 animate-pulse bg-[#d8e4f5]" />
+          <div className="h-7 w-3/4 animate-pulse bg-[#d8e4f5]" />
+          <div className="h-20 w-full animate-pulse bg-[#eef4ff]" />
         </div>
       </div>
       <div className="grid gap-4 bg-[#eaf0f3] p-4 md:grid-cols-2 xl:grid-cols-3">
         {[1, 2, 3].map((item) => (
           <div key={item} className="bg-white">
-            <div className="h-48 animate-pulse bg-slate-200" />
+            <div className="h-48 animate-pulse bg-[#d8e4f5]" />
             <div className="space-y-3 p-5">
-              <div className="h-4 w-24 animate-pulse bg-slate-200" />
-              <div className="h-6 w-4/5 animate-pulse bg-slate-200" />
-              <div className="h-16 w-full animate-pulse bg-slate-100" />
+              <div className="h-4 w-24 animate-pulse bg-[#d8e4f5]" />
+              <div className="h-6 w-4/5 animate-pulse bg-[#d8e4f5]" />
+              <div className="h-16 w-full animate-pulse bg-[#eef4ff]" />
             </div>
           </div>
         ))}

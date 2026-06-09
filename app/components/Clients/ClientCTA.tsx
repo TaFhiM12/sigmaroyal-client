@@ -45,7 +45,7 @@ export default function ClientCTA() {
 
   return (
     <section ref={ref} className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700">
+      <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-700">
         {/* Animated Particles */}
         <div className="absolute inset-0 overflow-hidden">
           {particles.map((particle) => (
@@ -84,7 +84,7 @@ export default function ClientCTA() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-red-600 hover:bg-gray-100 hover:text-red-700 shadow-lg">
+            <Button asChild size="lg" className="bg-white text-red-600 hover:bg-[#eef4ff] hover:text-red-700 shadow-lg">
               <Link href="/contact">
                 Become a Partner
                 <ArrowRight className="ml-2 h-4 w-4" />

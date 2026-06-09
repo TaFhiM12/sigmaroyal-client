@@ -58,6 +58,7 @@ const HeroCarousel = ({
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const progressValueRef = useRef(0);
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -78,22 +79,27 @@ const HeroCarousel = ({
     mouseY.set(0);
   };
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrentSlide(index);
+  const resetProgress = useCallback(() => {
+    progressValueRef.current = 0;
     setProgress(0);
   }, []);
+
+  const goToSlide = useCallback((index: number) => {
+    resetProgress();
+    setCurrentSlide(index);
+  }, [resetProgress]);
 
   const nextSlide = useCallback(() => {
+    resetProgress();
     setCurrentSlide((prev) => (prev + 1) % customSlides.length);
-    setProgress(0);
-  }, []);
+  }, [resetProgress]);
 
   const prevSlide = useCallback(() => {
+    resetProgress();
     setCurrentSlide((prev) =>
       prev === 0 ? customSlides.length - 1 : prev - 1
     );
-    setProgress(0);
-  }, []);
+  }, [resetProgress]);
 
   // Progress tick
   useEffect(() => {
@@ -104,32 +110,33 @@ const HeroCarousel = ({
 
     if (progressRef.current) clearInterval(progressRef.current);
 
+    const progressStep = 100 / (autoPlayInterval / 100);
+
     progressRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          nextSlide();
-          return 0;
-        }
-        return prev + 100 / (autoPlayInterval / 100);
-      });
+      const nextProgress = progressValueRef.current + progressStep;
+
+      if (nextProgress >= 100) {
+        progressValueRef.current = 0;
+        setProgress(0);
+        setCurrentSlide((prev) => (prev + 1) % customSlides.length);
+        return;
+      }
+
+      progressValueRef.current = nextProgress;
+      setProgress(nextProgress);
     }, 100);
 
     return () => {
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [isPlaying, autoPlayInterval, nextSlide]);
-
-  // Reset on slide change
-  useEffect(() => {
-    setProgress(0);
-  }, [currentSlide]);
+  }, [isPlaying, autoPlayInterval]);
 
   const slide = customSlides[currentSlide];
 
   return (
     <section
       className={cn(
-        "relative min-h-[640px] h-[100svh] w-full overflow-hidden bg-neutral-950 md:min-h-150",
+        "relative min-h-160 h-[100svh] w-full overflow-hidden bg-[var(--brand-navy)] md:min-h-150",
         className
       )}
       onMouseMove={handleMouseMove}
@@ -161,8 +168,8 @@ const HeroCarousel = ({
           </motion.div>
 
           {/* Layered overlays */}
-          <div className="absolute inset-0 bg-linear-to-r from-neutral-950/92 via-neutral-950/68 to-neutral-950/20" />
-          <div className="absolute inset-0 bg-linear-to-t from-neutral-950/85 via-neutral-950/20 to-blue-950/25" />
+          <div className="absolute inset-0 bg-linear-to-r from-[var(--brand-navy)]/92 via-[var(--brand-navy)]/68 to-[var(--brand-navy)]/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-[var(--brand-navy)]/85 via-[var(--brand-navy)]/20 to-blue-950/25" />
           <div className="absolute inset-0 bg-linear-to-b from-blue-950/30 via-transparent to-transparent md:hidden" />
           {/* Noise texture overlay */}
           <div

@@ -47,11 +47,11 @@ export default function ContactPage() {
               Feel free to reach out for project inquiries or support.
             </h1>
 
-            <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-slate-600 md:text-lg">
+            <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)] md:text-lg">
               Reach out to our team for consultation, tender queries, technical support, or office directions. We respond with clear next steps.
             </p>
 
-            <div className="my-8 h-px max-w-3xl bg-slate-200" />
+            <div className="my-8 h-px max-w-3xl bg-[#d8e4f5]" />
 
             <div className="grid max-w-4xl gap-5 md:grid-cols-2">
               {contactItems.map((item) => (
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 >
                   <item.icon className="mt-1 h-5 w-5 shrink-0 text-red-600" />
                   <span>
-                    <span className="block text-sm font-semibold text-slate-400">{item.label}</span>
+                    <span className="block text-sm font-semibold text-[var(--brand-muted)]">{item.label}</span>
                     <span className="mt-1 block text-base font-extrabold leading-6 text-blue-950 transition-colors group-hover:text-red-600">
                       {item.value}
                     </span>
@@ -73,8 +73,8 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700">
-              <Clock className="h-4 w-4 text-green-600" />
+            <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#d8e4f5] px-4 py-2 text-sm font-bold text-[var(--brand-copy)]">
+              <Clock className="h-4 w-4 text-[var(--brand-blue)]" />
               Closed now · Opens 9 AM Tuesday
             </div>
           </div>

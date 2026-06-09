@@ -40,7 +40,7 @@ export default function ClientShowcase() {
     return (
       <section className="py-8 bg-white">
         <div className="container mx-auto px-4">
-          <div className="h-72 bg-gray-100 rounded-lg animate-pulse" />
+          <div className="h-72 bg-[#eef4ff] rounded-lg animate-pulse" />
         </div>
       </section>
     );
@@ -58,14 +58,14 @@ export default function ClientShowcase() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-5 flex flex-col gap-3 rounded-lg border border-slate-200 bg-white/90 px-4 py-3 shadow-sm md:flex-row md:items-center md:justify-between"
+          className="mb-5 flex flex-col gap-3 rounded-lg border border-[#d8e4f5] bg-white/90 px-4 py-3 shadow-sm md:flex-row md:items-center md:justify-between"
         >
           <div className="flex min-w-0 flex-col gap-2 md:flex-row md:items-center md:gap-3">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-red-100 bg-red-50 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-red-700">
               <Sparkles className="h-3.5 w-3.5" />
               Partners
             </span>
-            <p className="truncate text-sm font-semibold text-slate-500">
+            <p className="truncate text-sm font-semibold text-[var(--brand-muted)]">
               Trusted organizations across Bangladesh energy infrastructure.
             </p>
           </div>
@@ -78,13 +78,13 @@ export default function ClientShowcase() {
           <div className="flex justify-end gap-2 mb-3">
             <button
               onClick={prevSlide}
-              className="rounded-lg border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
+              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-[var(--brand-muted)] shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="rounded-lg border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
+              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-[var(--brand-muted)] shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -98,7 +98,7 @@ export default function ClientShowcase() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="overflow-hidden rounded-lg border border-slate-800 bg-linear-to-br from-slate-950 to-slate-900 shadow-xl"
+              className="overflow-hidden rounded-lg border border-slate-800 bg-linear-to-br from-slate-950 to-[var(--brand-navy)] shadow-xl"
             >
               <div className="grid gap-5 p-5 md:grid-cols-[280px_1fr] md:p-6">
                 {/* Logo Section */}
@@ -116,7 +116,7 @@ export default function ClientShowcase() {
                 {/* Info Section */}
                 <div className="space-y-3 text-white">
                   <div className="inline-flex items-center gap-2 bg-red-600/20 px-3 py-1 rounded-full">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <div className="w-2 h-2 bg-[var(--brand-blue)] rounded-full animate-pulse" />
                     <span className="text-xs font-medium text-red-300">Active Partner</span>
                   </div>
                   <h3 className="text-2xl font-extrabold">{activeClient.name}</h3>
@@ -125,12 +125,12 @@ export default function ClientShowcase() {
                       href={activeClient.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-gray-300 hover:text-red-400 transition-colors"
+                      className="inline-flex items-center gap-2 text-blue-50/80 hover:text-red-400 transition-colors"
                     >
                       Visit Website <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
-                  <p className="text-sm leading-relaxed text-gray-300">
+                  <p className="text-sm leading-relaxed text-blue-50/80">
                     A valued partner in Bangladesh's energy infrastructure development, contributing to major projects across oil, gas, and power sectors.
                   </p>
                 </div>
@@ -143,7 +143,7 @@ export default function ClientShowcase() {
                     key={index}
                     onClick={() => setActiveIndex(index)}
                     className={`h-1 rounded-full transition-all ${
-                      index === activeIndex ? 'w-8 bg-red-500' : 'w-3 bg-gray-600'
+                      index === activeIndex ? 'w-8 bg-red-500' : 'w-3 bg-blue-800'
                     }`}
                   />
                 ))}
@@ -159,8 +159,8 @@ export default function ClientShowcase() {
             className="mt-6"
           >
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-extrabold uppercase tracking-[0.12em] text-slate-500">All Partners</h3>
-              <span className="text-sm font-semibold text-gray-500">{clients.length} Organizations</span>
+              <h3 className="text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--brand-muted)]">All Partners</h3>
+              <span className="text-sm font-semibold text-[var(--brand-muted)]">{clients.length} Organizations</span>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
               {clients.map((client, index) => (
@@ -171,7 +171,7 @@ export default function ClientShowcase() {
                   className={`relative rounded-lg border bg-white p-3 transition-all ${
                     index === activeIndex
                       ? 'border-red-500 shadow-md shadow-red-100'
-                      : 'border-slate-200 hover:border-red-200 hover:shadow-md'
+                      : 'border-[#d8e4f5] hover:border-red-200 hover:shadow-md'
                   }`}
                 >
                   <div className="relative h-12 w-full">

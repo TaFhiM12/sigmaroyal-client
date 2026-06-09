@@ -48,8 +48,8 @@ export default function EditClientPage({ params }: EditClientPageProps) {
   if (!client) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Client Not Found</h2>
-        <p className="text-gray-600 mb-6">The client you&apos;re looking for doesn&apos;t exist.</p>
+        <h2 className="text-2xl font-bold text-[var(--brand-navy)] mb-2">Client Not Found</h2>
+        <p className="text-[var(--brand-muted)] mb-6">The client you&apos;re looking for doesn&apos;t exist.</p>
         <Button asChild>
           <Link href="/admin/clients">Back to Clients</Link>
         </Button>
@@ -67,8 +67,8 @@ export default function EditClientPage({ params }: EditClientPageProps) {
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Edit Client</h1>
-          <p className="text-gray-600 mt-1">Update client information</p>
+          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Edit Client</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Update client information</p>
         </div>
       </div>
 

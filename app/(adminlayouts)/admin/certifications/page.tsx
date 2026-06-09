@@ -37,8 +37,8 @@ export default async function AdminCertificationsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Certifications</h1>
-          <p className="text-gray-600 mt-1">Manage your certifications and credentials</p>
+          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Certifications</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Manage your certifications and credentials</p>
         </div>
         <Button asChild>
           <Link href="/admin/certifications/new">
@@ -48,7 +48,7 @@ export default async function AdminCertificationsPage() {
         </Button>
       </div>
 
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg" />}>
+      <Suspense fallback={<div className="h-96 bg-[#eef4ff] animate-pulse rounded-lg" />}>
         <CertificationsClient initialData={certificationsData} />
       </Suspense>
     </div>

@@ -33,13 +33,13 @@ export default function AdminPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-semibold text-zinc-900">Admin Dashboard</h1>
-        <p className="text-zinc-600 mt-1">Control your industrial website content from one place.</p>
+        <h1 className="text-3xl font-semibold text-[var(--brand-navy)]">Admin Dashboard</h1>
+        <p className="text-[var(--brand-muted)] mt-1">Control your industrial website content from one place.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
         {quickLinks.map((item) => (
-          <Card key={item.title} className="border-zinc-200">
+          <Card key={item.title} className="border-[#d8e4f5]">
             <CardHeader>
               <CardTitle className="text-xl">{item.title}</CardTitle>
               <CardDescription>{item.description}</CardDescription>

@@ -36,7 +36,7 @@ export default function HeroBanner() {
       >
         {/* linear Overlay */}
         <div className="absolute inset-0 bg-linear-to-r from-blue-950/92 via-blue-950/68 to-blue-950/20" />
-        <div className="absolute inset-0 bg-linear-to-t from-neutral-950/78 via-transparent to-blue-950/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-[var(--brand-navy)]/78 via-transparent to-blue-950/20" />
         
         {/* Animated Grid Pattern */}
         <div className="absolute inset-0 opacity-10">

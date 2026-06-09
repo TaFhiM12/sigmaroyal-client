@@ -18,6 +18,7 @@ import {
   Wrench,
   ShieldCheck,
   Bell,
+  Users,
   LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -89,6 +90,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
         // { title: "About Pages", url: "/admin/about", icon: Info },
         // { title: "Expertise", url: "/admin/expertise", icon: Star },
         { title: "Projects", url: "/admin/projects", icon: FolderKanban },
+        { title: "Team Members", url: "/admin/team", icon: Users },
         { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
         { title: "QHSE Policy", url: "/admin/qhse-policy", icon: ShieldCheck },
         // { title: "Resources", url: "/admin/resources", icon: FileText },
@@ -171,7 +173,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
               "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
               "hover:bg-linear-to-r hover:from-red-50 hover:to-red-50/50",
               active && "bg-linear-to-r from-red-50 to-red-50/50 text-red-700",
-              !active && "text-gray-600 hover:text-red-600",
+              !active && "text-[var(--brand-muted)] hover:text-red-600",
               collapsed && "justify-center px-2"
             )}
           >
@@ -198,7 +200,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
           </button>
 
           {!collapsed && isExpanded && (
-            <div className="ml-6 mt-1 space-y-1 border-l-2 border-gray-200 pl-3">
+            <div className="ml-6 mt-1 space-y-1 border-l-2 border-[#d8e4f5] pl-3">
               {item.items!.map((subItem) => renderSidebarItem(subItem, level + 1))}
             </div>
           )}
@@ -208,18 +210,18 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className="absolute left-full ml-2 z-50 hidden group-hover:block">
-                    <div className="bg-gray-900 text-white text-sm rounded-md px-3 py-2 whitespace-nowrap">
+                    <div className="bg-[var(--brand-navy)] text-white text-sm rounded-md px-3 py-2 whitespace-nowrap">
                       {item.title}
                     </div>
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="bg-gray-900 text-white">
+                <TooltipContent side="right" className="bg-[var(--brand-navy)] text-white">
                   <div className="space-y-1">
                     {item.items!.map((sub) => (
                       <Link
                         key={sub.title}
                         href={sub.url}
-                        className="block px-2 py-1 hover:bg-gray-800 rounded"
+                        className="block px-2 py-1 hover:bg-blue-950/70 rounded"
                       >
                         {sub.title}
                       </Link>
@@ -241,7 +243,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
           "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group relative",
           "hover:bg-linear-to-r hover:from-red-50 hover:to-red-50/50",
           active && "bg-linear-to-r from-red-50 to-red-50/50 text-red-700",
-          !active && "text-gray-600 hover:text-red-600",
+          !active && "text-[var(--brand-muted)] hover:text-red-600",
           collapsed && "justify-center px-2"
         )}
       >
@@ -269,7 +271,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
             <TooltipTrigger asChild>
               {linkContent}
             </TooltipTrigger>
-            <TooltipContent side="right" className="bg-gray-900 text-white">
+            <TooltipContent side="right" className="bg-[var(--brand-navy)] text-white">
               <p>{item.title}</p>
             </TooltipContent>
           </Tooltip>
@@ -285,7 +287,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
       {/* Mobile Menu Button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg text-gray-600"
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg text-[var(--brand-muted)]"
       >
         <Menu className="h-5 w-5" />
       </button>
@@ -293,7 +295,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
       {/* Mobile Sidebar Overlay */}
       {mobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-50"
+          className="lg:hidden fixed inset-0 bg-[var(--brand-navy)]/50 z-50"
           onClick={() => setMobileOpen(false)}
         />
       )}
@@ -301,7 +303,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed left-0 top-0 h-screen bg-white border-r border-gray-200 transition-all duration-300 z-50",
+          "fixed left-0 top-0 h-screen bg-white border-r border-[#d8e4f5] transition-all duration-300 z-50",
           "flex flex-col",
           collapsed ? "w-20" : "w-72",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
@@ -310,7 +312,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
       >
         {/* Logo Area */}
         <div className={cn(
-          "h-16 flex items-center border-b border-gray-200 px-4",
+          "h-16 flex items-center border-b border-[#d8e4f5] px-4",
           collapsed ? "justify-center" : "justify-between"
         )}>
           {!collapsed ? (
@@ -324,15 +326,15 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
                   className="h-8 w-auto"
                 />
                 <div className="flex flex-col">
-                  <span className="text-sm font-bold text-gray-800">Admin Panel</span>
-                  <span className="text-xs text-gray-500">The Royal Utilisation</span>
+                  <span className="text-sm font-bold text-[var(--brand-navy)]">Admin Panel</span>
+                  <span className="text-xs text-[var(--brand-muted)]">The Royal Utilisation</span>
                 </div>
               </Link>
               <button
                 onClick={toggleCollapse}
-                className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-[#eef4ff] transition-colors"
               >
-                <ChevronLeft className="h-4 w-4 text-gray-500" />
+                <ChevronLeft className="h-4 w-4 text-[var(--brand-muted)]" />
               </button>
             </>
           ) : (
@@ -346,9 +348,9 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
               />
               <button
                 onClick={toggleCollapse}
-                className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-[#eef4ff] transition-colors"
               >
-                <ChevronRight className="h-4 w-4 text-gray-500" />
+                <ChevronRight className="h-4 w-4 text-[var(--brand-muted)]" />
               </button>
             </>
           )}
@@ -356,7 +358,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
 
         {/* User Profile */}
         <div className={cn(
-          "p-4 border-b border-gray-200",
+          "p-4 border-b border-[#d8e4f5]",
           collapsed && "flex justify-center"
         )}>
           {!collapsed ? (
@@ -365,11 +367,11 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
                 AD
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-gray-800">Admin User</p>
-                <p className="text-xs text-gray-500">Super Administrator</p>
+                <p className="text-sm font-semibold text-[var(--brand-navy)]">Admin User</p>
+                <p className="text-xs text-[var(--brand-muted)]">Super Administrator</p>
               </div>
-              <button className="p-1 hover:bg-gray-100 rounded-lg">
-                <Settings className="h-4 w-4 text-gray-500" />
+              <button className="p-1 hover:bg-[#eef4ff] rounded-lg">
+                <Settings className="h-4 w-4 text-[var(--brand-muted)]" />
               </button>
             </div>
           ) : (
@@ -380,7 +382,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
                     AD
                   </div>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="bg-gray-900 text-white">
+                <TooltipContent side="right" className="bg-[var(--brand-navy)] text-white">
                   <p>Admin User</p>
                   <p className="text-xs">Super Administrator</p>
                 </TooltipContent>
@@ -398,16 +400,16 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
 
         {/* Footer Actions */}
         <div className={cn(
-          "border-t border-gray-200 p-4",
+          "border-t border-[#d8e4f5] p-4",
           collapsed && "flex justify-center"
         )}>
           {!collapsed ? (
             <div className="space-y-2">
-              <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors">
+              <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--brand-muted)] hover:bg-red-50 hover:text-red-600 transition-colors">
                 <Bell className="h-5 w-5" />
                 <span className="text-sm font-medium">Notifications</span>
               </button>
-              <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors">
+              <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[var(--brand-muted)] hover:bg-red-50 hover:text-red-600 transition-colors">
                 <LogOut className="h-5 w-5" />
                 <span className="text-sm font-medium">Logout</span>
               </button>
@@ -416,11 +418,11 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="p-2 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600">
+                  <button className="p-2 rounded-lg text-[var(--brand-muted)] hover:bg-red-50 hover:text-red-600">
                     <LogOut className="h-5 w-5" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent side="right" className="bg-gray-900 text-white">
+                <TooltipContent side="right" className="bg-[var(--brand-navy)] text-white">
                   <p>Logout</p>
                 </TooltipContent>
               </Tooltip>

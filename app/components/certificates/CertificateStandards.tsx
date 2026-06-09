@@ -68,21 +68,21 @@ export default function CertificateStandards() {
   };
 
   return (
-    <section className="bg-gradient-to-b from-white to-gray-50 py-16 md:py-20">
+    <section className="bg-linear-to-b from-white to-[#f7faff] py-16 md:py-20">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
             <span className="text-sm font-semibold text-red-700 tracking-wider">
               QUALITY STANDARDS
             </span>
-            <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
+            <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
             Our <span className="text-red-600">Compliance Framework</span>
           </h2>
-          <p className="text-gray-600">
+          <p className="text-[var(--brand-muted)]">
             Integrated management systems ensuring excellence in every aspect of our operations
           </p>
         </div>
@@ -93,17 +93,17 @@ export default function CertificateStandards() {
             return (
               <div
                 key={index}
-                className="bg-white rounded-xl border border-gray-200 p-6 hover:border-red-200 hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-xl border border-[#d8e4f5] p-6 hover:border-red-200 hover:shadow-lg transition-all duration-300"
               >
                 <div className="inline-flex items-center justify-center w-14 h-14 bg-red-50 rounded-xl mb-4">
                   <div className="text-red-600">
                     {standard.icon}
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-3">
                   {standard.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-[var(--brand-muted)] text-sm mb-4">
                   {standard.description}
                 </p>
                 <div className="space-y-2">
@@ -111,13 +111,13 @@ export default function CertificateStandards() {
                     matchingCerts.slice(0, 3).map((cert, idx) => (
                       <div key={idx} className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />
-                        <span className="text-xs font-medium text-gray-700">{cert.shortLabel}</span>
+                        <span className="text-xs font-medium text-[var(--brand-copy)]">{cert.shortLabel}</span>
                       </div>
                     ))
                   ) : (
                     <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-gray-300 rounded-full" />
-                      <span className="text-xs text-gray-500">Certifications pending</span>
+                      <div className="w-1.5 h-1.5 bg-[#d8e4f5] rounded-full" />
+                      <span className="text-xs text-[var(--brand-muted)]">Certifications pending</span>
                     </div>
                   )}
                 </div>
@@ -128,9 +128,9 @@ export default function CertificateStandards() {
 
         {/* Certification Count Badge */}
         <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-gray-100">
+          <div className="inline-flex items-center gap-3 bg-white px-6 py-3 rounded-full shadow-md border border-[#eef4ff]">
             <Award className="w-5 h-5 text-red-600" />
-            <span className="text-gray-700">
+            <span className="text-[var(--brand-copy)]">
               <span className="font-bold text-red-600">{certifications.length}</span> Active Certifications & Accreditations
             </span>
           </div>

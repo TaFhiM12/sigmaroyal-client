@@ -11,14 +11,14 @@ export const metadata = {
 
 export default function CertificatePage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 to-white">
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse" />}>
+    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
+      <Suspense fallback={<div className="h-96 bg-[#eef4ff] animate-pulse" />}>
         <CertificateGrid />
       </Suspense>
-      <Suspense fallback={<div className="h-64 bg-gray-100 animate-pulse" />}>
+      <Suspense fallback={<div className="h-64 bg-[#eef4ff] animate-pulse" />}>
         <CertificateStandards />
       </Suspense>
-      <Suspense fallback={<div className="h-64 bg-gray-100 animate-pulse" />}>
+      <Suspense fallback={<div className="h-64 bg-[#eef4ff] animate-pulse" />}>
         <CertificateProcess />
       </Suspense>
     </div>

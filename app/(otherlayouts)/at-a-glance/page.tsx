@@ -57,8 +57,8 @@ export default function AtAGlancePage() {
   const metrics = [
     { icon: Calendar, value: '47', label: 'Years of Experience', suffix: 'Years', color: 'from-red-500 to-red-600' },
     { icon: CheckCircle, value: '50+', label: 'Projects (5 Years)', suffix: 'Completed', color: 'from-blue-500 to-blue-600' },
-    { icon: Activity, value: '7', label: 'Ongoing Projects', suffix: 'Active', color: 'from-emerald-500 to-emerald-600' },
-    { icon: Users, value: '195', label: 'Permanent Employees', suffix: 'Staff', color: 'from-amber-500 to-amber-600' }
+    { icon: Activity, value: '7', label: 'Ongoing Projects', suffix: 'Active', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { icon: Users, value: '195', label: 'Permanent Employees', suffix: 'Staff', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' }
   ];
 
   // Animation variants
@@ -83,7 +83,7 @@ export default function AtAGlancePage() {
   };
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-slate-50 to-white py-6 md:py-8">
+    <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-[#f7faff] to-white py-6 md:py-8">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -95,13 +95,13 @@ export default function AtAGlancePage() {
           animate={isInView ? "visible" : "hidden"}
           className="space-y-6"
         >
-          <motion.div variants={fadeInUp} className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white/90 px-4 py-3 shadow-sm backdrop-blur md:flex-row md:items-center md:justify-between">
+          <motion.div variants={fadeInUp} className="flex flex-col gap-3 rounded-lg border border-[#d8e4f5] bg-white/90 px-4 py-3 shadow-sm backdrop-blur md:flex-row md:items-center md:justify-between">
             <div className="flex min-w-0 flex-col gap-2 md:flex-row md:items-center md:gap-3">
               <span className="inline-flex w-fit items-center gap-2 rounded-full border border-red-100 bg-red-50 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-red-700">
                 <FileText className="h-3.5 w-3.5" />
                 Company Snapshot
               </span>
-              <p className="truncate text-sm font-semibold text-slate-500">
+              <p className="truncate text-sm font-semibold text-[var(--brand-muted)]">
                 Quick operating profile of The Royal Utilisation Services since 1977.
               </p>
             </div>
@@ -116,14 +116,14 @@ export default function AtAGlancePage() {
                 <motion.div
                   key={index}
                   whileHover={{ y: -2 }}
-                  className="group flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-3 py-3 shadow-sm transition-all hover:border-blue-200 hover:shadow-md"
+                  className="group flex items-center gap-3 rounded-lg border border-[#d8e4f5] bg-white px-3 py-3 shadow-sm transition-all hover:border-blue-200 hover:shadow-md"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600 text-white">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xl font-extrabold leading-none text-slate-950">{metric.value}</div>
-                    <p className="mt-1 truncate text-xs font-bold text-slate-500">{metric.label}</p>
+                    <div className="text-xl font-extrabold leading-none text-[var(--brand-navy)]">{metric.value}</div>
+                    <p className="mt-1 truncate text-xs font-bold text-[var(--brand-muted)]">{metric.label}</p>
                   </div>
                 </motion.div>
               );
@@ -134,12 +134,12 @@ export default function AtAGlancePage() {
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Left Column - Basic Info */}
             <motion.div variants={scaleIn} className="space-y-6">
-              <h2 className="flex items-center gap-2 text-lg font-extrabold text-slate-950">
+              <h2 className="flex items-center gap-2 text-lg font-extrabold text-[var(--brand-navy)]">
                 <Building2 className="w-6 h-6 text-red-600" />
                 Basic Information
               </h2>
               
-              <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+              <div className="overflow-hidden rounded-lg border border-[#d8e4f5] bg-white shadow-sm">
                 {companyInfo.basic.map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -149,15 +149,15 @@ export default function AtAGlancePage() {
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ delay: 0.3 + index * 0.1 }}
                       className={cn(
-                        "flex items-start gap-3 border-b border-slate-100 p-3 last:border-0 transition-colors hover:bg-slate-50",
+                        "flex items-start gap-3 border-b border-[#eef4ff] p-3 last:border-0 transition-colors hover:bg-[#f7faff]",
                       )}
                     >
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-red-50">
                         <Icon className="h-4 w-4 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="mb-1 text-xs font-bold text-slate-500">{item.label}</p>
-                        <p className="text-sm font-bold text-slate-950">{item.value}</p>
+                        <p className="mb-1 text-xs font-bold text-[var(--brand-muted)]">{item.label}</p>
+                        <p className="text-sm font-bold text-[var(--brand-navy)]">{item.value}</p>
                       </div>
                     </motion.div>
                   );
@@ -169,12 +169,12 @@ export default function AtAGlancePage() {
             <motion.div variants={scaleIn} className="space-y-6">
               {/* Business Info */}
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-4">
+                <h2 className="text-2xl font-bold text-[var(--brand-navy)] flex items-center gap-2 mb-4">
                   <Briefcase className="w-6 h-6 text-red-600" />
                   Business Overview
                 </h2>
                 
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-2xl shadow-lg border border-[#eef4ff] overflow-hidden">
                   {companyInfo.business.map((item, index) => {
                     const Icon = item.icon;
                     return (
@@ -183,17 +183,17 @@ export default function AtAGlancePage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.4 + index * 0.1 }}
-                        className="p-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors"
+                        className="p-4 border-b border-[#eef4ff] last:border-0 hover:bg-[#f7faff] transition-colors"
                       >
                         <div className="flex items-start gap-4">
                           <div className="shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-gray-500 mb-1">{item.label}</p>
-                            <p className="text-base font-semibold text-gray-900">{item.value}</p>
+                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
+                            <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
                             {item.subvalue && (
-                              <p className="text-sm text-gray-600 mt-2 bg-gray-50 p-3 rounded-lg">
+                              <p className="text-sm text-[var(--brand-muted)] mt-2 bg-[#f7faff] p-3 rounded-lg">
                                 {item.subvalue}
                               </p>
                             )}
@@ -207,12 +207,12 @@ export default function AtAGlancePage() {
 
               {/* Leadership & Contact */}
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-4">
+                <h2 className="text-2xl font-bold text-[var(--brand-navy)] flex items-center gap-2 mb-4">
                   <User className="w-6 h-6 text-red-600" />
                   Leadership & Contact
                 </h2>
                 
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <div className="bg-white rounded-2xl shadow-lg border border-[#eef4ff] overflow-hidden">
                   {/* Leadership */}
                   {companyInfo.leadership.map((item, index) => {
                     const Icon = item.icon;
@@ -222,15 +222,15 @@ export default function AtAGlancePage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.5 + index * 0.1 }}
-                        className="p-4 border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                        className="p-4 border-b border-[#eef4ff] hover:bg-[#f7faff] transition-colors"
                       >
                         <div className="flex items-start gap-4">
                           <div className="shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-gray-500 mb-1">{item.label}</p>
-                            <p className="text-base font-semibold text-gray-900">{item.value}</p>
+                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
+                            <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -246,21 +246,21 @@ export default function AtAGlancePage() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.6 + index * 0.1 }}
-                        className="p-4 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors"
+                        className="p-4 border-b border-[#eef4ff] last:border-0 hover:bg-[#f7faff] transition-colors"
                       >
                         <div className="flex items-start gap-4">
                           <div className="shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-gray-500 mb-1">{item.label}</p>
+                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
                             {item.subvalue ? (
                               <>
-                                <p className="text-base font-semibold text-gray-900">{item.value}</p>
-                                <p className="text-sm text-gray-600 mt-1">{item.subvalue}</p>
+                                <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
+                                <p className="text-sm text-[var(--brand-muted)] mt-1">{item.subvalue}</p>
                               </>
                             ) : (
-                              <p className="text-base font-semibold text-gray-900">{item.value}</p>
+                              <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
                             )}
                           </div>
                         </div>
@@ -305,19 +305,19 @@ export default function AtAGlancePage() {
           </motion.div>
 
           {/* Quick Contact Strip */}
-          <motion.div variants={fadeInUp} className="bg-gray-900 rounded-xl p-6">
+          <motion.div variants={fadeInUp} className="bg-[var(--brand-navy)] rounded-xl p-6">
             <div className="flex flex-wrap justify-center gap-6">
-              <div className="flex items-center gap-2 text-gray-300">
+              <div className="flex items-center gap-2 text-blue-50/80">
                 <Mail className="w-4 h-4 text-red-500" />
                 <span className="text-sm">zhaider@sigma-royal.com</span>
               </div>
-              <div className="w-px h-4 bg-gray-700 my-auto" />
-              <div className="flex items-center gap-2 text-gray-300">
+              <div className="w-px h-4 bg-blue-900 my-auto" />
+              <div className="flex items-center gap-2 text-blue-50/80">
                 <Mail className="w-4 h-4 text-red-500" />
                 <span className="text-sm">zhaider.rusl@gmail.com</span>
               </div>
-              <div className="w-px h-4 bg-gray-700 my-auto" />
-              <div className="flex items-center gap-2 text-gray-300">
+              <div className="w-px h-4 bg-blue-900 my-auto" />
+              <div className="flex items-center gap-2 text-blue-50/80">
                 <Globe className="w-4 h-4 text-red-500" />
                 <span className="text-sm">www.sigma-royal.com</span>
               </div>

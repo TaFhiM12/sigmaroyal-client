@@ -37,7 +37,7 @@ export default function CertificateGrid() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-gray-100 animate-pulse rounded-xl h-48" />
+              <div key={i} className="bg-[#eef4ff] animate-pulse rounded-xl h-48" />
             ))}
           </div>
         </div>
@@ -58,11 +58,11 @@ export default function CertificateGrid() {
               </span>
               <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--brand-navy)] mb-4">
               Certifications &{" "}
               <span className="text-red-600">Accreditations</span>
             </h1>
-            <p className="text-gray-600 text-lg">
+            <p className="text-[var(--brand-muted)] text-lg">
               Recognized for excellence in quality, safety, and environmental management
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function CertificateGrid() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                className="group relative bg-white rounded-xl border border-[#d8e4f5] p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
                 onClick={() => setSelectedCert(cert)}
               >
                 {/* Image Container */}
@@ -89,7 +89,7 @@ export default function CertificateGrid() {
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-sm font-semibold text-gray-900 text-center mb-2 line-clamp-2">
+                <h3 className="text-sm font-semibold text-[var(--brand-navy)] text-center mb-2 line-clamp-2">
                   {cert.title}
                 </h3>
                 
@@ -99,8 +99,8 @@ export default function CertificateGrid() {
                 </p>
 
                 {/* Overlay on Hover */}
-                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
-                  <button className="bg-white text-gray-900 px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors">
+                <div className="absolute inset-0 bg-[var(--brand-navy)]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
+                  <button className="bg-white text-[var(--brand-navy)] px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors">
                     <Eye className="w-4 h-4" />
                     View Details
                   </button>
@@ -140,7 +140,7 @@ export default function CertificateGrid() {
       {/* Lightbox Modal */}
       {selectedCert && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[var(--brand-navy)]/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedCert(null)}
         >
           <div className="absolute top-4 right-4 z-10">
@@ -157,7 +157,7 @@ export default function CertificateGrid() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Image */}
-            <div className="relative aspect-video bg-gray-100">
+            <div className="relative aspect-video bg-[#eef4ff]">
               <Image
                 src={selectedCert.src}
                 alt={selectedCert.title}
@@ -168,7 +168,7 @@ export default function CertificateGrid() {
 
             {/* Info */}
             <div className="p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
+              <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-2">
                 {selectedCert.title}
               </h3>
               <p className="text-red-600 font-medium mb-4">

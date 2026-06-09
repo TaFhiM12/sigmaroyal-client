@@ -41,8 +41,8 @@ export default async function AdminProjectsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Projects</h1>
-          <p className="text-gray-600 mt-1">Manage your project portfolio</p>
+          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Projects</h1>
+          <p className="text-[var(--brand-muted)] mt-1">Manage your project portfolio</p>
         </div>
         <Button asChild>
           <Link href="/admin/projects/new">
@@ -53,7 +53,7 @@ export default async function AdminProjectsPage() {
       </div>
 
       {/* Projects Table Client Component */}
-      <Suspense fallback={<div className="h-96 bg-gray-100 animate-pulse rounded-lg" />}>
+      <Suspense fallback={<div className="h-96 bg-[#eef4ff] animate-pulse rounded-lg" />}>
         <ProjectsClient initialData={projectsData} />
       </Suspense>
     </div>

@@ -13,14 +13,14 @@ export default function ContactBusinessHours() {
   ];
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+    <div className="bg-white rounded-2xl shadow-lg border border-[#d8e4f5] p-8">
       <div className="flex items-center gap-3 mb-6">
         <div className="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
           <Clock className="h-5 w-5 text-red-600" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Business Hours</h2>
-          <p className="text-gray-600 text-sm">Current status: <span className="text-green-600 font-medium">Open ⋅ Closes 10 PM</span></p>
+          <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Business Hours</h2>
+          <p className="text-[var(--brand-muted)] text-sm">Current status: <span className="text-[var(--brand-blue)] font-medium">Open ⋅ Closes 10 PM</span></p>
         </div>
       </div>
 
@@ -28,25 +28,25 @@ export default function ContactBusinessHours() {
         {businessHours.map((item) => (
           <div
             key={item.day}
-            className="flex items-center justify-between py-3 border-b border-gray-100 last:border-0"
+            className="flex items-center justify-between py-3 border-b border-[#eef4ff] last:border-0"
           >
             <div className="flex items-center gap-3">
-              <Calendar className="h-4 w-4 text-gray-400" />
-              <span className="font-medium text-gray-900">{item.day}</span>
+              <Calendar className="h-4 w-4 text-[var(--brand-muted)]" />
+              <span className="font-medium text-[var(--brand-navy)]">{item.day}</span>
             </div>
             <div className="text-right">
-              <span className={`font-medium ${item.day === 'Friday' ? 'text-red-600' : 'text-gray-700'}`}>
+              <span className={`font-medium ${item.day === 'Friday' ? 'text-red-600' : 'text-[var(--brand-copy)]'}`}>
                 {item.hours}
               </span>
               {item.note && (
-                <p className="text-xs text-gray-500 mt-1">{item.note}</p>
+                <p className="text-xs text-[var(--brand-muted)] mt-1">{item.note}</p>
               )}
             </div>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 pt-6 border-t border-gray-200">
+      <div className="mt-8 pt-6 border-t border-[#d8e4f5]">
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
           <h4 className="font-semibold text-blue-900 mb-2">Emergency Support</h4>
           <p className="text-sm text-blue-700">

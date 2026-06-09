@@ -76,12 +76,12 @@ export default function ContactForm() {
         </h2>
 
         {status === 'success' && (
-          <div className="mt-6 border border-green-200 bg-green-50 p-3">
+          <div className="mt-6 border border-[#d8e4f5] bg-[#eef4ff] p-3">
             <div className="flex items-center gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600" />
+              <CheckCircle className="h-5 w-5 text-[var(--brand-blue)]" />
               <div>
-                <p className="font-bold text-green-800">Message sent successfully.</p>
-                <p className="text-sm text-green-700">We will get back to you within 24 hours.</p>
+                <p className="font-bold text-[var(--brand-blue)]">Message sent successfully.</p>
+                <p className="text-sm text-[var(--brand-blue)]">We will get back to you within 24 hours.</p>
               </div>
             </div>
           </div>

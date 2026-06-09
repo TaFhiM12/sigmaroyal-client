@@ -3,10 +3,10 @@ import { Shield, Award, FileCheck } from 'lucide-react';
 
 export default function CertificateHero() {
   return (
-    <section className="relative bg-linear-to-br from-gray-900 via-gray-900 to-black py-20 md:py-24">
+    <section className="relative bg-linear-to-br from-[var(--brand-navy)] via-[var(--brand-navy)] to-[var(--brand-navy)] py-20 md:py-24">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2074')] bg-cover bg-center opacity-10" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-[var(--brand-navy)]/90 via-[var(--brand-navy)]/80 to-transparent" />
       </div>
       
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
@@ -25,7 +25,7 @@ export default function CertificateHero() {
             </span>
           </h1>
 
-          <p className="text-xl text-gray-300 leading-relaxed mb-8 max-w-3xl">
+          <p className="text-xl text-blue-50/80 leading-relaxed mb-8 max-w-3xl">
             46+ years of commitment to excellence, backed by internationally recognized certifications
             and industry compliance standards that guarantee the highest quality in energy infrastructure.
           </p>

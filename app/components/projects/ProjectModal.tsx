@@ -54,7 +54,6 @@ interface ProjectModalProps {
 interface SectorConfig {
   primary: string;
   secondary: string;
-  accent: string;
   gradient: string;
   light: string;
   dark: string;
@@ -75,28 +74,26 @@ const getSectorIcon = (sector: string): React.ReactNode => {
 const getSectorConfig = (sector: string): SectorConfig => {
   const config: Record<string, SectorConfig> = {
     OIL_GAS: { 
-      primary: 'from-rose-600 to-rose-700',
-      secondary: 'from-rose-500 to-rose-600',
-      accent: 'rose',
-      gradient: 'bg-gradient-to-r from-rose-600 via-rose-500 to-rose-600',
-      light: 'from-rose-400 to-rose-500',
-      dark: 'from-rose-800 to-rose-900',
-      text: 'text-rose-600',
-      border: 'border-rose-200',
-      glow: 'shadow-rose-600/30',
-      bgLight: 'bg-rose-50'
+      primary: 'from-[var(--brand-red)] to-[var(--brand-red)]',
+      secondary: 'from-[var(--brand-red)] to-[var(--brand-red)]',
+      gradient: 'bg-linear-to-r from-[var(--brand-red)] via-[var(--brand-red)] to-[var(--brand-red)]',
+      light: 'from-[var(--brand-red)] to-[var(--brand-red)]',
+      dark: 'from-[var(--brand-red)] to-[var(--brand-red)]',
+      text: 'text-[var(--brand-red)]',
+      border: 'border-red-100',
+      glow: 'shadow-[rgb(227_6_19_/_0.30)]',
+      bgLight: 'bg-red-50'
     },
     POWER_SECTOR: { 
-      primary: 'from-gray-700 to-gray-900',
-      secondary: 'from-gray-600 to-gray-800',
-      accent: 'gray',
-      gradient: 'bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800',
-      light: 'from-gray-400 to-gray-500',
-      dark: 'from-gray-900 to-black',
-      text: 'text-gray-700',
-      border: 'border-gray-300',
-      glow: 'shadow-gray-700/30',
-      bgLight: 'bg-gray-50'
+      primary: 'from-[var(--brand-blue)] to-[var(--brand-navy)]',
+      secondary: 'from-[var(--brand-blue)] to-[var(--brand-navy)]',
+      gradient: 'bg-linear-to-r from-[var(--brand-blue)] via-[var(--brand-blue)] to-[var(--brand-navy)]',
+      light: 'from-[var(--brand-blue)] to-[var(--brand-blue)]',
+      dark: 'from-[var(--brand-navy)] to-[var(--brand-navy)]',
+      text: 'text-[var(--brand-blue)]',
+      border: 'border-[#b9cff0]',
+      glow: 'shadow-[rgb(21_86_166_/_0.30)]',
+      bgLight: 'bg-[#f7faff]'
     },
   };
   return config[sector] || config.OIL_GAS;
@@ -162,11 +159,11 @@ const DetailItem: React.FC<DetailItemProps> = ({ icon, label, value, highlight =
   return (
     <motion.div 
       whileHover={{ x: 4 }}
-      className={`flex items-start gap-2 pb-3 sm:pb-4 border-b border-gray-200 last:border-0 last:pb-0 group ${
+      className={`flex items-start gap-2 pb-3 sm:pb-4 border-b border-[#d8e4f5] last:border-0 last:pb-0 group ${
         highlight ? `${config.bgLight} -mx-2 sm:-mx-3 px-2 sm:px-3 py-2 sm:py-3 rounded-lg sm:rounded-xl border-0` : ''
       }`}
     >
-      <div className={`${highlight ? config.text : 'text-gray-400 group-hover:text-gray-600'} shrink-0 mt-0.5 transition-colors`}>
+      <div className={`${highlight ? config.text : 'text-[var(--brand-muted)] group-hover:text-[var(--brand-muted)]'} shrink-0 mt-0.5 transition-colors`}>
         {React.cloneElement(icon as React.ReactElement<{ className?: string; strokeWidth?: number }>, { 
           className: 'h-3 w-3 sm:h-4 sm:w-4',
           strokeWidth: 2.5 
@@ -174,11 +171,11 @@ const DetailItem: React.FC<DetailItemProps> = ({ icon, label, value, highlight =
       </div>
       <div className="min-w-0 flex-1">
         <p className={`text-[10px] uppercase tracking-wider font-bold mb-0.5 ${
-          highlight ? config.text : 'text-gray-500'
+          highlight ? config.text : 'text-[var(--brand-muted)]'
         }`}>
           {label}
         </p>
-        <p className={`text-xs sm:text-sm font-bold truncate ${highlight ? `text-${config.accent}-900` : 'text-gray-900'}`}>
+        <p className={`text-xs sm:text-sm font-bold truncate ${highlight ? config.text : 'text-[var(--brand-navy)]'}`}>
           {value}
         </p>
       </div>
@@ -314,7 +311,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-md z-50"
+            className="fixed inset-0 bg-[var(--brand-navy)]/80 backdrop-blur-md z-50"
           />
 
           {/* Modal Container */}
@@ -330,15 +327,15 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               {isModalReady && (
                 <motion.div
                   style={{ opacity: headerOpacity, y: headerY }}
-                  className="absolute top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-200 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 pointer-events-none"
+                  className="absolute top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-b border-[#d8e4f5] px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 pointer-events-none"
                 >
                   <div className="flex items-center justify-between max-w-full mx-auto">
                     <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-1">
-                      <div className={`w-1 h-4 sm:h-5 md:h-6 bg-gradient-to-b ${sectorConfig.primary} rounded-full flex-shrink-0`} />
-                      <h3 className="text-xs sm:text-sm md:text-base font-black text-gray-900 truncate max-w-[150px] xs:max-w-[200px] sm:max-w-[300px] md:max-w-[400px]">
+                      <div className={`w-1 h-4 sm:h-5 md:h-6 bg-linear-to-b ${sectorConfig.primary} rounded-full flex-shrink-0`} />
+                      <h3 className="text-xs sm:text-sm md:text-base font-black text-[var(--brand-navy)] truncate max-w-[150px] xs:max-w-[200px] sm:max-w-[300px] md:max-w-[400px]">
                         {project.title}
                       </h3>
-                      <span className={`hidden xs:inline-flex px-1.5 sm:px-2 py-0.5 bg-gradient-to-r ${sectorConfig.primary} text-white rounded-full text-[8px] sm:text-[10px] font-bold flex-shrink-0`}>
+                      <span className={`hidden xs:inline-flex px-1.5 sm:px-2 py-0.5 bg-linear-to-r ${sectorConfig.primary} text-white rounded-full text-[8px] sm:text-[10px] font-bold flex-shrink-0`}>
                         {project.status}
                       </span>
                     </div>
@@ -347,28 +344,28 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsLiked(!isLiked)}
-                        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                        className="p-1 hover:bg-[#eef4ff] rounded-full transition-colors"
                         aria-label={isLiked ? "Unlike" : "Like"}
                       >
-                        <Heart className={`h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 ${isLiked ? 'fill-rose-500 text-rose-500' : 'text-gray-600'}`} />
+                        <Heart className={`h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 ${isLiked ? 'fill-[var(--brand-red)] text-[var(--brand-red)]' : 'text-[var(--brand-muted)]'}`} />
                       </motion.button>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsSaved(!isSaved)}
-                        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                        className="p-1 hover:bg-[#eef4ff] rounded-full transition-colors"
                         aria-label={isSaved ? "Remove from saved" : "Save"}
                       >
-                        <Bookmark className={`h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 ${isSaved ? 'fill-amber-500 text-amber-500' : 'text-gray-600'}`} />
+                        <Bookmark className={`h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 ${isSaved ? 'fill-[var(--brand-red)] text-[var(--brand-red)]' : 'text-[var(--brand-muted)]'}`} />
                       </motion.button>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={onClose}
-                        className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                        className="p-1 hover:bg-[#eef4ff] rounded-full transition-colors"
                         aria-label="Close"
                       >
-                        <X className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-gray-600" />
+                        <X className="h-3 w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-[var(--brand-muted)]" />
                       </motion.button>
                     </div>
                   </div>
@@ -403,14 +400,14 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         unoptimized
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
+                      <div className="w-full h-full bg-linear-to-br from-[var(--brand-navy)] via-[var(--brand-navy)] to-[var(--brand-navy)]" />
                     )}
                   </motion.div>
 
                   {/* Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${sectorConfig.primary}/20 mix-blend-overlay`} />
+                  <div className="absolute inset-0 bg-linear-to-t from-[var(--brand-navy)] via-[var(--brand-navy)]/70 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-r from-[var(--brand-navy)]/60 via-transparent to-transparent" />
+                  <div className={`absolute inset-0 bg-linear-to-br ${sectorConfig.primary}/20 mix-blend-overlay`} />
 
                   {/* Image Navigation */}
                   {hasMultipleImages && (
@@ -435,7 +432,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       </motion.button>
                       
                       {/* Image Counter */}
-                      <div className="absolute bottom-12 xs:bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 left-1/2 -translate-x-1/2 flex items-center gap-1 sm:gap-2 bg-black/40 backdrop-blur-xl rounded-full px-2 sm:px-3 py-1 border border-white/20 z-30">
+                      <div className="absolute bottom-12 xs:bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 left-1/2 -translate-x-1/2 flex items-center gap-1 sm:gap-2 bg-[var(--brand-navy)]/40 backdrop-blur-xl rounded-full px-2 sm:px-3 py-1 border border-white/20 z-30">
                         <Camera className="h-2 w-2 sm:h-3 sm:w-3 text-white" />
                         <div className="flex gap-0.5 sm:gap-1">
                           {validImages.map((_, i) => (
@@ -445,7 +442,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               onClick={() => setCurrentImageIndex(i)}
                               className={`h-1 sm:h-1.5 rounded-full transition-all ${
                                 i === currentImageIndex 
-                                  ? `w-3 sm:w-4 md:w-5 lg:w-6 bg-gradient-to-r ${sectorConfig.primary}` 
+                                  ? `w-3 sm:w-4 md:w-5 lg:w-6 bg-linear-to-r ${sectorConfig.primary}` 
                                   : 'w-1 sm:w-1.5 bg-white/40 hover:bg-white/60'
                               }`}
                               aria-label={`Go to image ${i + 1}`}
@@ -470,7 +467,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.3, type: "spring" }}
-                          className={`relative px-1.5 sm:px-2 py-0.5 bg-gradient-to-r ${sectorConfig.primary} text-white rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide flex items-center gap-0.5 sm:gap-1 border border-white/20 shadow-lg`}
+                          className={`relative px-1.5 sm:px-2 py-0.5 bg-linear-to-r ${sectorConfig.primary} text-white rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide flex items-center gap-0.5 sm:gap-1 border border-white/20 shadow-lg`}
                         >
                           {getSectorIcon(project.sector)}
                           <span className="hidden xs:inline">
@@ -488,14 +485,14 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                           className={`px-1.5 sm:px-2 py-0.5 ${
                             project.status === 'ONGOING' 
                               ? 'bg-blue-500/30 text-blue-200 border-blue-400/30' 
-                              : 'bg-emerald-500/30 text-emerald-200 border-emerald-400/30'
+                              : 'bg-[#eef4ff]0/30 text-[var(--brand-blue)] border-[#d8e4f5]/30'
                           } backdrop-blur-xl rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide border shadow-lg flex items-center gap-0.5 sm:gap-1`}
                         >
                           {project.status === 'ONGOING' ? (
                             <>
                               <span className="relative flex h-1 w-1">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-1 w-1 bg-green-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--brand-blue)] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-1 w-1 bg-[#eef4ff]0"></span>
                               </span>
                               <span className="hidden xs:inline">LIVE</span>
                               <span className="xs:hidden">LIVE</span>
@@ -514,7 +511,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.5, type: "spring" }}
-                            className="px-1.5 sm:px-2 py-0.5 bg-amber-500/30 backdrop-blur-xl text-amber-200 rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide border border-amber-400/30 shadow-lg flex items-center gap-0.5 sm:gap-1"
+                            className="px-1.5 sm:px-2 py-0.5 bg-red-500/30 backdrop-blur-xl text-[var(--brand-red)] rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide border border-red-100/30 shadow-lg flex items-center gap-0.5 sm:gap-1"
                           >
                             <Sparkles className="h-2 w-2" />
                             <span className="hidden xs:inline">HOT</span>
@@ -584,7 +581,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 {isModalReady && (
                   <div className="bg-white w-full overflow-x-hidden">
                     {/* Tab Navigation */}
-                    <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-xl border-b border-gray-200 overflow-x-auto hide-scrollbar">
+                    <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-xl border-b border-[#d8e4f5] overflow-x-auto hide-scrollbar">
                       <div className="max-w-full mx-auto px-3 sm:px-4">
                         <div className="flex gap-2 sm:gap-3 md:gap-4 min-w-max">
                           {[
@@ -598,7 +595,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               whileTap={{ y: 0 }}
                               onClick={() => setActiveTab(tab.id as typeof activeTab)}
                               className={`relative py-1.5 sm:py-2 px-1.5 sm:px-2 text-[10px] xs:text-xs sm:text-sm font-bold tracking-wide transition-colors flex items-center gap-0.5 sm:gap-1 whitespace-nowrap ${
-                                activeTab === tab.id ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'
+                                activeTab === tab.id ? 'text-[var(--brand-navy)]' : 'text-[var(--brand-muted)] hover:text-[var(--brand-muted)]'
                               }`}
                             >
                               <tab.icon className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
@@ -606,8 +603,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               {tab.count && tab.count > 1 && (
                                 <span className={`ml-0.5 px-1 py-0.5 rounded-full text-[8px] ${
                                   activeTab === tab.id 
-                                    ? `bg-gradient-to-r ${sectorConfig.primary} text-white` 
-                                    : 'bg-gray-100 text-gray-600'
+                                    ? `bg-linear-to-r ${sectorConfig.primary} text-white` 
+                                    : 'bg-[#eef4ff] text-[var(--brand-muted)]'
                                 }`}>
                                   {tab.count}
                                 </span>
@@ -615,7 +612,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               {activeTab === tab.id && (
                                 <motion.div
                                   layoutId="activeTab"
-                                  className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${sectorConfig.primary}`}
+                                  className={`absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r ${sectorConfig.primary}`}
                                 />
                               )}
                             </motion.button>
@@ -639,38 +636,38 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                 transition={{ duration: 0.3 }}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <div className={`w-1 h-8 sm:h-10 bg-gradient-to-b ${sectorConfig.primary} rounded-full`} />
-                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-gray-900 tracking-tight">
+                                  <div className={`w-1 h-8 sm:h-10 bg-linear-to-b ${sectorConfig.primary} rounded-full`} />
+                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[var(--brand-navy)] tracking-tight">
                                     Overview
                                   </h2>
                                 </div>
                                 <div className="prose max-w-none">
-                                  <p className="text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base font-light">
+                                  <p className="text-[var(--brand-copy)] leading-relaxed text-xs sm:text-sm md:text-base font-light">
                                     {project.description || project.scopeOfWork}
                                   </p>
                                 </div>
 
                                 {/* Key Metrics */}
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
-                                  <div className="text-center p-2 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-200">
+                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
                                     <HardHat className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-gray-900">50+</div>
-                                    <div className="text-[8px] sm:text-[10px] text-gray-500">Workers</div>
+                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">50+</div>
+                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Workers</div>
                                   </div>
-                                  <div className="text-center p-2 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-200">
+                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
                                     <Shield className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-gray-900">100%</div>
-                                    <div className="text-[8px] sm:text-[10px] text-gray-500">Safety</div>
+                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">100%</div>
+                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Safety</div>
                                   </div>
-                                  <div className="text-center p-2 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-200">
+                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
                                     <TrendingUp className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-gray-900">24/7</div>
-                                    <div className="text-[8px] sm:text-[10px] text-gray-500">Ops</div>
+                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">24/7</div>
+                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Ops</div>
                                   </div>
-                                  <div className="text-center p-2 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-200">
+                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
                                     <Globe className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-gray-900">ISO</div>
-                                    <div className="text-[8px] sm:text-[10px] text-gray-500">Cert</div>
+                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">ISO</div>
+                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Cert</div>
                                   </div>
                                 </div>
                               </motion.section>
@@ -686,43 +683,43 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                 transition={{ duration: 0.3 }}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <div className={`w-1 h-8 sm:h-10 bg-gradient-to-b ${sectorConfig.primary} rounded-full`} />
-                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-gray-900 tracking-tight">
+                                  <div className={`w-1 h-8 sm:h-10 bg-linear-to-b ${sectorConfig.primary} rounded-full`} />
+                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[var(--brand-navy)] tracking-tight">
                                     Scope
                                   </h2>
                                 </div>
-                                <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-200">
-                                  <p className="text-gray-700 leading-relaxed text-xs sm:text-sm md:text-base font-light">
+                                <div className="bg-linear-to-br from-[#f7faff] to-white rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#d8e4f5]">
+                                  <p className="text-[var(--brand-copy)] leading-relaxed text-xs sm:text-sm md:text-base font-light">
                                     {project.scopeOfWork}
                                   </p>
                                 </div>
 
                                 {/* Technical Specifications */}
                                 <div className="mt-4">
-                                  <h3 className="text-sm sm:text-base font-black text-gray-900 mb-2 flex items-center gap-1">
+                                  <h3 className="text-sm sm:text-base font-black text-[var(--brand-navy)] mb-2 flex items-center gap-1">
                                     <Ruler className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text}`} />
                                     Specs
                                   </h3>
                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                     {project.capacity && (
-                                      <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg border border-gray-200">
-                                        <div className={`p-1 bg-gradient-to-r ${sectorConfig.primary} rounded-lg`}>
+                                      <div className="flex items-center gap-2 p-2 bg-[#f7faff] rounded-lg border border-[#d8e4f5]">
+                                        <div className={`p-1 bg-linear-to-r ${sectorConfig.primary} rounded-lg`}>
                                           <Factory className="h-2 w-2 sm:h-3 sm:w-3 text-white" />
                                         </div>
                                         <div className="min-w-0">
-                                          <div className="text-[8px] sm:text-[10px] text-gray-500">Capacity</div>
-                                          <div className="text-[10px] sm:text-xs font-bold text-gray-900 truncate">{project.capacity}</div>
+                                          <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Capacity</div>
+                                          <div className="text-[10px] sm:text-xs font-bold text-[var(--brand-navy)] truncate">{project.capacity}</div>
                                         </div>
                                       </div>
                                     )}
                                     {project.duration && (
-                                      <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg border border-gray-200">
-                                        <div className={`p-1 bg-gradient-to-r ${sectorConfig.primary} rounded-lg`}>
+                                      <div className="flex items-center gap-2 p-2 bg-[#f7faff] rounded-lg border border-[#d8e4f5]">
+                                        <div className={`p-1 bg-linear-to-r ${sectorConfig.primary} rounded-lg`}>
                                           <Clock className="h-2 w-2 sm:h-3 sm:w-3 text-white" />
                                         </div>
                                         <div className="min-w-0">
-                                          <div className="text-[8px] sm:text-[10px] text-gray-500">Duration</div>
-                                          <div className="text-[10px] sm:text-xs font-bold text-gray-900 truncate">{project.duration}</div>
+                                          <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Duration</div>
+                                          <div className="text-[10px] sm:text-xs font-bold text-[var(--brand-navy)] truncate">{project.duration}</div>
                                         </div>
                                       </div>
                                     )}
@@ -741,8 +738,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                 transition={{ duration: 0.3 }}
                               >
                                 <div className="flex items-center gap-2 mb-3">
-                                  <div className={`w-1 h-8 sm:h-10 bg-gradient-to-b ${sectorConfig.primary} rounded-full`} />
-                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-gray-900 tracking-tight">
+                                  <div className={`w-1 h-8 sm:h-10 bg-linear-to-b ${sectorConfig.primary} rounded-full`} />
+                                  <h2 className="text-lg sm:text-xl md:text-2xl font-black text-[var(--brand-navy)] tracking-tight">
                                     Gallery
                                   </h2>
                                 </div>
@@ -759,7 +756,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                       transition={{ delay: index * 0.05 }}
                                       whileHover={{ y: -2 }}
                                       onClick={() => setCurrentImageIndex(index)}
-                                      className={`relative rounded-lg overflow-hidden cursor-pointer group bg-gray-100 shadow-md hover:shadow-lg transition-all duration-500 ${
+                                      className={`relative rounded-lg overflow-hidden cursor-pointer group bg-[#eef4ff] shadow-md hover:shadow-lg transition-all duration-500 ${
                                         isGalleryExpanded ? 'aspect-video' : 'aspect-square'
                                       }`}
                                     >
@@ -771,10 +768,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                         sizes="(max-width: 640px) 50vw, 33vw"
                                         unoptimized
                                       />
-                                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                      <div className="absolute inset-0 bg-linear-to-t from-[var(--brand-navy)]/70 via-[var(--brand-navy)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                       
                                       {index === currentImageIndex && (
-                                        <div className="absolute top-1 left-1 px-1 py-0.5 bg-rose-600 text-white rounded-full text-[6px] sm:text-[8px] font-bold">
+                                        <div className="absolute top-1 left-1 px-1 py-0.5 bg-[var(--brand-red)] text-white rounded-full text-[6px] sm:text-[8px] font-bold">
                                           CURRENT
                                         </div>
                                       )}
@@ -787,7 +784,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                     whileHover={{ scale: 1.01 }}
                                     whileTap={{ scale: 0.99 }}
                                     onClick={() => setIsGalleryExpanded(!isGalleryExpanded)}
-                                    className="mt-3 w-full py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg text-gray-700 text-xs font-medium flex items-center justify-center gap-1 transition-colors"
+                                    className="mt-3 w-full py-1.5 bg-[#eef4ff] hover:bg-[#d8e4f5] rounded-lg text-[var(--brand-copy)] text-xs font-medium flex items-center justify-center gap-1 transition-colors"
                                   >
                                     <Layers className="h-3 w-3" />
                                     {isGalleryExpanded ? 'Show Less' : `Show All ${validImages.length}`}
@@ -806,9 +803,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               initial={{ opacity: 0, x: 20 }}
                               whileInView={{ opacity: 1, x: 0 }}
                               viewport={{ once: true }}
-                              className={`bg-gradient-to-br from-gray-50 to-white rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-200 shadow-md`}
+                              className={`bg-linear-to-br from-[#f7faff] to-white rounded-lg sm:rounded-xl p-3 sm:p-4 border border-[#d8e4f5] shadow-md`}
                             >
-                              <h3 className="text-sm sm:text-base font-black text-gray-900 mb-2 flex items-center gap-1">
+                              <h3 className="text-sm sm:text-base font-black text-[var(--brand-navy)] mb-2 flex items-center gap-1">
                                 <Info className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text}`} />
                                 Details
                               </h3>
@@ -864,17 +861,17 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
                               {/* Progress Bar */}
                               {project.status === 'ONGOING' && (
-                                <div className="mt-3 pt-3 border-t border-gray-200">
+                                <div className="mt-3 pt-3 border-t border-[#d8e4f5]">
                                   <div className="flex justify-between text-[10px] sm:text-xs mb-1">
-                                    <span className="text-gray-600 font-medium">Progress</span>
+                                    <span className="text-[var(--brand-muted)] font-medium">Progress</span>
                                     <span className={`font-black ${sectorConfig.text}`}>65%</span>
                                   </div>
-                                  <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                  <div className="h-1.5 bg-[#d8e4f5] rounded-full overflow-hidden">
                                     <motion.div
                                       initial={{ width: 0 }}
                                       whileInView={{ width: '65%' }}
                                       transition={{ duration: 1, delay: 0.5 }}
-                                      className={`h-full bg-gradient-to-r ${sectorConfig.primary} rounded-full`}
+                                      className={`h-full bg-linear-to-r ${sectorConfig.primary} rounded-full`}
                                     />
                                   </div>
                                 </div>
@@ -892,7 +889,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               <motion.button
                                 whileHover={{ scale: 1.01 }}
                                 whileTap={{ scale: 0.99 }}
-                                className={`w-full bg-gradient-to-r ${sectorConfig.primary} text-white hover:shadow-md rounded-lg h-8 sm:h-9 md:h-10 font-bold tracking-wide shadow-md flex items-center justify-center gap-1 group relative overflow-hidden text-xs sm:text-sm`}
+                                className={`w-full bg-linear-to-r ${sectorConfig.primary} text-white hover:shadow-md rounded-lg h-8 sm:h-9 md:h-10 font-bold tracking-wide shadow-md flex items-center justify-center gap-1 group relative overflow-hidden text-xs sm:text-sm`}
                               >
                                 <motion.div
                                   className="absolute inset-0 bg-white/20"
@@ -910,7 +907,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                   whileHover={{ scale: 1.01 }}
                                   whileTap={{ scale: 0.99 }}
                                   onClick={() => setShowShareMenu(!showShareMenu)}
-                                  className="w-full bg-white border border-gray-200 text-gray-900 hover:border-gray-300 hover:bg-gray-50 rounded-lg h-8 sm:h-9 md:h-10 font-bold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-1 group text-xs sm:text-sm"
+                                  className="w-full bg-white border border-[#d8e4f5] text-[var(--brand-navy)] hover:border-[#b9cff0] hover:bg-[#f7faff] rounded-lg h-8 sm:h-9 md:h-10 font-bold tracking-wide shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-1 group text-xs sm:text-sm"
                                 >
                                   <Share2 className="h-3 w-3 sm:h-4 sm:w-4 group-hover:rotate-12 transition-transform" />
                                   <span className="hidden xs:inline">Share</span>
@@ -924,37 +921,37 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                       initial={{ opacity: 0, y: -5 }}
                                       animate={{ opacity: 1, y: 0 }}
                                       exit={{ opacity: 0, y: -5 }}
-                                      className="absolute bottom-full left-0 right-0 mb-1 bg-white rounded-lg shadow-xl border border-gray-200 p-1"
+                                      className="absolute bottom-full left-0 right-0 mb-1 bg-white rounded-lg shadow-xl border border-[#d8e4f5] p-1"
                                     >
                                       {[
                                         { icon: Linkedin, label: 'LinkedIn', color: 'text-blue-600' },
                                         { icon: Twitter, label: 'Twitter', color: 'text-sky-500' },
-                                        { icon: Mail, label: 'Email', color: 'text-gray-600' },
+                                        { icon: Mail, label: 'Email', color: 'text-[var(--brand-muted)]' },
                                       ].map((item) => (
                                         <motion.button
                                           key={item.label}
                                           whileHover={{ x: 2 }}
-                                          className="w-full flex items-center gap-1.5 px-2 py-1.5 hover:bg-gray-50 rounded transition-colors"
+                                          className="w-full flex items-center gap-1.5 px-2 py-1.5 hover:bg-[#f7faff] rounded transition-colors"
                                         >
                                           <item.icon className={`h-2.5 w-2.5 ${item.color}`} />
-                                          <span className="text-[10px] sm:text-xs font-medium text-gray-700">{item.label}</span>
+                                          <span className="text-[10px] sm:text-xs font-medium text-[var(--brand-copy)]">{item.label}</span>
                                         </motion.button>
                                       ))}
-                                      <div className="border-t border-gray-200 my-1" />
+                                      <div className="border-t border-[#d8e4f5] my-1" />
                                       <motion.button
                                         whileHover={{ x: 2 }}
                                         onClick={copyToClipboard}
-                                        className="w-full flex items-center gap-1.5 px-2 py-1.5 hover:bg-gray-50 rounded transition-colors"
+                                        className="w-full flex items-center gap-1.5 px-2 py-1.5 hover:bg-[#f7faff] rounded transition-colors"
                                       >
                                         {copied ? (
                                           <>
-                                            <Check className="h-2.5 w-2.5 text-green-500" />
-                                            <span className="text-[10px] sm:text-xs font-medium text-green-600">Copied!</span>
+                                            <Check className="h-2.5 w-2.5 text-[var(--brand-blue)]" />
+                                            <span className="text-[10px] sm:text-xs font-medium text-[var(--brand-blue)]">Copied!</span>
                                           </>
                                         ) : (
                                           <>
-                                            <Link2 className="h-2.5 w-2.5 text-gray-600" />
-                                            <span className="text-[10px] sm:text-xs font-medium text-gray-700">Copy Link</span>
+                                            <Link2 className="h-2.5 w-2.5 text-[var(--brand-muted)]" />
+                                            <span className="text-[10px] sm:text-xs font-medium text-[var(--brand-copy)]">Copy Link</span>
                                           </>
                                         )}
                                       </motion.button>
@@ -972,10 +969,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               transition={{ delay: 0.2 }}
                               className="pt-2"
                             >
-                              <p className="text-[6px] sm:text-[8px] font-mono text-gray-400 tracking-wider text-center">
+                              <p className="text-[6px] sm:text-[8px] font-mono text-[var(--brand-muted)] tracking-wider text-center">
                                 ID
                               </p>
-                              <p className="text-[8px] sm:text-[10px] font-mono text-gray-600 tracking-wider text-center font-bold">
+                              <p className="text-[8px] sm:text-[10px] font-mono text-[var(--brand-muted)] tracking-wider text-center font-bold">
                                 {project.id.slice(-6).toUpperCase()}
                               </p>
                             </motion.div>
@@ -992,18 +989,18 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className={`bg-gradient-to-br ${sectorConfig.dark} text-white py-6 sm:py-8 px-3 sm:px-4 relative overflow-hidden`}
+                    className={`bg-linear-to-br ${sectorConfig.dark} text-white py-6 sm:py-8 px-3 sm:px-4 relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 opacity-10">
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                        className="absolute -top-1/2 -right-1/2 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-gradient-to-r from-white/20 to-transparent rounded-full"
+                        className="absolute -top-1/2 -right-1/2 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-linear-to-r from-white/20 to-transparent rounded-full"
                       />
                       <motion.div
                         animate={{ rotate: -360 }}
                         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                        className="absolute -bottom-1/2 -left-1/2 w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] bg-gradient-to-r from-white/10 to-transparent rounded-full"
+                        className="absolute -bottom-1/2 -left-1/2 w-[150px] sm:w-[200px] h-[150px] sm:h-[200px] bg-linear-to-r from-white/10 to-transparent rounded-full"
                       />
                     </div>
 
@@ -1026,7 +1023,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="px-3 py-1.5 bg-white text-gray-900 rounded-lg font-bold tracking-wide shadow-md flex items-center justify-center gap-1 text-xs"
+                          className="px-3 py-1.5 bg-white text-[var(--brand-navy)] rounded-lg font-bold tracking-wide shadow-md flex items-center justify-center gap-1 text-xs"
                         >
                           <ExternalLink className="h-3 w-3" />
                           <span>Contact</span>
@@ -1054,7 +1051,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={scrollToTop}
-                    className={`absolute bottom-2 right-2 sm:bottom-3 sm:right-3 p-1.5 sm:p-2 bg-gradient-to-r ${sectorConfig.primary} text-white rounded-full shadow-lg hover:scale-110 transition-transform z-40`}
+                    className={`absolute bottom-2 right-2 sm:bottom-3 sm:right-3 p-1.5 sm:p-2 bg-linear-to-r ${sectorConfig.primary} text-white rounded-full shadow-lg hover:scale-110 transition-transform z-40`}
                     aria-label="Scroll to top"
                   >
                     <ChevronUp className="h-3 w-3 sm:h-4 sm:w-4" />

@@ -202,7 +202,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
 
             <motion.h2
               variants={fadeUpVariants}
-              className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-slate-950 md:text-5xl lg:text-6xl"
+              className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-[var(--brand-navy)] md:text-5xl lg:text-6xl"
             >
               Areas of <span className="brand-text-gradient">Expertise</span>
             </motion.h2>
@@ -211,7 +211,7 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
 
           <motion.p 
             variants={itemVariants}
-            className="max-w-2xl text-base font-medium leading-8 text-slate-600 md:justify-self-end md:text-lg"
+            className="max-w-2xl text-base font-medium leading-8 text-[var(--brand-muted)] md:justify-self-end md:text-lg"
           >
             {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
             delivering innovative solutions with uncompromising quality and safety.

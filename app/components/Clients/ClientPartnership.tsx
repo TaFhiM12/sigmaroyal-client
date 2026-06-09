@@ -31,7 +31,7 @@ export default function ClientPartners() {
   if (clients.length === 0) return null;
 
   return (
-    <section ref={ref} className="py-12 bg-gray-50">
+    <section ref={ref} className="py-12 bg-[#f7faff]">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function ClientPartners() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <h3 className="text-lg font-semibold text-gray-700">Trusted by Leading Organizations</h3>
+          <h3 className="text-lg font-semibold text-[var(--brand-copy)]">Trusted by Leading Organizations</h3>
         </motion.div>
 
         <motion.div

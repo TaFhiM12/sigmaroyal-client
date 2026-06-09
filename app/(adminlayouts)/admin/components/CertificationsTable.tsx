@@ -58,7 +58,7 @@ export default function CertificationsTable({
     return (
       <div className="space-y-3">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-16 bg-gray-100 animate-pulse rounded-lg" />
+          <div key={i} className="h-16 bg-[#eef4ff] animate-pulse rounded-lg" />
         ))}
       </div>
     );
@@ -66,8 +66,8 @@ export default function CertificationsTable({
 
   if (certifications.length === 0) {
     return (
-      <div className="text-center py-12 bg-gray-50 rounded-lg">
-        <p className="text-gray-500">No certifications found. Create your first certification!</p>
+      <div className="text-center py-12 bg-[#f7faff] rounded-lg">
+        <p className="text-[var(--brand-muted)]">No certifications found. Create your first certification!</p>
       </div>
     );
   }
@@ -86,7 +86,7 @@ export default function CertificationsTable({
                   <Button variant="outline" size="sm" onClick={() => setIsReorderMode(false)}>
                     Cancel
                   </Button>
-                  <Button size="sm" onClick={handleReorder} className="bg-green-600 hover:bg-green-700">
+                  <Button size="sm" onClick={handleReorder} className="bg-[var(--brand-blue)] hover:bg-[var(--brand-blue)]">
                     <Check className="h-4 w-4 mr-1" />
                     Save Order
                   </Button>
@@ -113,7 +113,7 @@ export default function CertificationsTable({
           </TableHeader>
           <TableBody>
             {displayItems.map((certification, index) => (
-              <TableRow key={certification.id} className="hover:bg-gray-50">
+              <TableRow key={certification.id} className="hover:bg-[#f7faff]">
                 <TableCell>
                   {isReorderMode ? (
                     <div className="flex gap-1">
@@ -137,11 +137,11 @@ export default function CertificationsTable({
                       </Button>
                     </div>
                   ) : (
-                    <span className="text-sm text-gray-500">{certification.order}</span>
+                    <span className="text-sm text-[var(--brand-muted)]">{certification.order}</span>
                   )}
                 </TableCell>
                 <TableCell>
-                  <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-gray-100">
+                  <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-[#eef4ff]">
                     <Image
                       src={certification.src}
                       alt={certification.title}
@@ -159,7 +159,7 @@ export default function CertificationsTable({
                   <Badge variant="outline">{certification.shortLabel}</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge className={certification.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                  <Badge className={certification.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-[var(--brand-navy)]'}>
                     {certification.isActive ? 'Active' : 'Inactive'}
                   </Badge>
                 </TableCell>
