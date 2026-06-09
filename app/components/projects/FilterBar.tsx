@@ -41,6 +41,7 @@ const sectors = [
 
 const statuses = [
   { value: 'all', label: 'All Status' },
+  { value: 'UPCOMING', label: 'Upcoming' },
   { value: 'COMPLETED', label: 'Completed' },
   { value: 'ONGOING', label: 'Ongoing' },
 ];

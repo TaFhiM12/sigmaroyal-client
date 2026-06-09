@@ -16,7 +16,7 @@ const normalizeStatus = (status?: string | string[]) => {
   const value = Array.isArray(status) ? status[0] : status;
   const normalizedStatus = value?.toUpperCase();
 
-  return normalizedStatus === 'COMPLETED' || normalizedStatus === 'ONGOING'
+  return normalizedStatus === 'COMPLETED' || normalizedStatus === 'ONGOING' || normalizedStatus === 'UPCOMING'
     ? normalizedStatus
     : undefined;
 };

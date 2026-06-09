@@ -2,7 +2,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Award, Briefcase, Clock, Target } from 'lucide-react';
+import { ArrowUpRight, Award, Briefcase, CalendarClock, Clock, Target } from 'lucide-react';
 import Link from 'next/link';
 
 interface HeroSectionProps {
@@ -10,6 +10,7 @@ interface HeroSectionProps {
     total: number;
     completed: number;
     ongoing: number;
+    upcoming: number;
     sectors: number;
   };
 }
@@ -17,6 +18,7 @@ interface HeroSectionProps {
 export function HeroSection({ stats }: HeroSectionProps) {
   const statCards = [
     { icon: Briefcase, value: stats.total.toString(), label: 'Total', color: 'bg-red-600 text-white' },
+    { icon: CalendarClock, value: stats.upcoming.toString(), label: 'Upcoming', color: 'bg-[#eef4ff] text-[var(--brand-blue)]' },
     { icon: Clock, value: stats.ongoing.toString(), label: 'Active', color: 'bg-blue-950 text-white' },
     { icon: Award, value: stats.completed.toString(), label: 'Done', color: 'bg-red-50 text-red-700' },
     { icon: Target, value: stats.sectors.toString(), label: 'Sectors', color: 'bg-[#eef4ff] text-[var(--brand-copy)]' },

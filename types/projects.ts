@@ -20,7 +20,7 @@ export interface Project {
   year: number | null;
   scopeOfWork: string;
   description: string | null;
-  status: 'COMPLETED' | 'ONGOING';
+  status: 'COMPLETED' | 'ONGOING' | 'UPCOMING';
   featured: boolean;
   images: ProjectImage[];
   createdAt: string;
@@ -39,6 +39,7 @@ export interface ProjectsResponse {
   counts: {
     completed: number;
     ongoing: number;
+    upcoming: number;
     bySector: Array<{ _count: { sector: number }; sector: string }>;
   };
   data: Project[];

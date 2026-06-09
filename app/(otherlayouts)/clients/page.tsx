@@ -1,10 +1,22 @@
 // app/clients/page.tsx
 import { Suspense } from 'react';
-import ClientShowcase from '@/app/components/Clients/ClientShowcase';
-import ClientStats from '@/app/components/Clients/ClientStats';
-import ClientTestimonials from '@/app/components/Clients/ClientTestimonials';
-import ClientCTA from '@/app/components/Clients/ClientCTA';
-import ClientPartners from '@/app/components/Clients/ClientPartnership';
+import dynamic from 'next/dynamic';
+
+const ClientShowcase = dynamic(() => import('@/app/components/Clients/ClientShowcase'), {
+  loading: () => <ClientShowcaseSkeleton />,
+});
+const ClientStats = dynamic(() => import('@/app/components/Clients/ClientStats'), {
+  loading: () => <ClientStatsSkeleton />,
+});
+const ClientTestimonials = dynamic(() => import('@/app/components/Clients/ClientTestimonials'), {
+  loading: () => <ClientTestimonialsSkeleton />,
+});
+const ClientPartners = dynamic(() => import('@/app/components/Clients/ClientPartnership'), {
+  loading: () => <ClientPartnersSkeleton />,
+});
+const ClientCTA = dynamic(() => import('@/app/components/Clients/ClientCTA'), {
+  loading: () => <ClientCTASkeleton />,
+});
 
 export const revalidate = 3600;
 

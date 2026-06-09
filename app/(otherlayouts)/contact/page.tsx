@@ -1,5 +1,6 @@
 import ContactForm from "@/app/components/contact/ContactForm";
 import ContactMap from "@/app/components/contact/ContactMap";
+import { getPageContent } from "@/lib/page-content";
 import { Clock, Globe, Mail, MapPin, Phone } from "lucide-react";
 
 export const metadata = {
@@ -33,7 +34,11 @@ const contactItems = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const content = await getPageContent("contact");
+  const heading = content?.introTitle || "Feel free to reach out for project inquiries or support.";
+  const body = content?.introBody || "Reach out to our team for consultation, tender queries, technical support, or office directions. We respond with clear next steps.";
+
   return (
     <div className="min-h-screen bg-white">
       <section className="px-4 py-10 md:px-6 md:py-14 lg:px-8">
@@ -44,11 +49,11 @@ export default function ContactPage() {
             </div>
 
             <h1 className="max-w-4xl text-4xl font-extrabold leading-tight tracking-normal text-blue-950 md:text-5xl lg:text-6xl">
-              Feel free to reach out for project inquiries or support.
+              {heading}
             </h1>
 
             <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)] md:text-lg">
-              Reach out to our team for consultation, tender queries, technical support, or office directions. We respond with clear next steps.
+              {body}
             </p>
 
             <div className="my-8 h-px max-w-3xl bg-[#d8e4f5]" />

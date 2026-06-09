@@ -66,6 +66,11 @@ export const navbarMenu: NavbarMenu[] = [
           description: "Active delivery, construction and commissioning references",
         },
         {
+          title: "Upcoming Projects",
+          url: "/projects?status=upcoming",
+          description: "Planned and upcoming delivery references",
+        },
+        {
           title: "Project Gallery",
           url: "/projects",
           description: "Browse the complete project portfolio in one place",

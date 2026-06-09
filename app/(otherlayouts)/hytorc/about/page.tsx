@@ -1,14 +1,18 @@
 import { notFound } from "next/navigation";
 import HytorcCategoryView from "@/app/components/hytorc/HytorcCategoryView";
 import { HytorcApiResponse, HytorcCategory } from "@/types/hytorc";
+import { apiUrl, publicApiFetchOptions } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export const metadata = {
+  title: "HYTORC Solutions",
+  description: "HYTORC torque tools, pumps, fasteners, accessories and industrial bolting solutions from The Royal Utilisation Services.",
+};
 
 async function getAboutCategory(): Promise<HytorcCategory | null> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hytorc/categories/about`, {
-      cache: "no-store",
-    });
+    const res = await fetch(apiUrl("/hytorc/categories/about"), publicApiFetchOptions);
 
     if (!res.ok) return null;
 
@@ -21,9 +25,7 @@ async function getAboutCategory(): Promise<HytorcCategory | null> {
 
 async function getFallbackAbout(): Promise<HytorcCategory | null> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hytorc/categories`, {
-      cache: "no-store",
-    });
+    const res = await fetch(apiUrl("/hytorc/categories"), publicApiFetchOptions);
 
     if (!res.ok) return null;
 

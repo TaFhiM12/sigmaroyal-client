@@ -3,6 +3,7 @@ export interface HeroSectionProps {
     total: number;
     completed: number;
     ongoing: number;
+    upcoming: number;
     sectors: number;
   };
 }

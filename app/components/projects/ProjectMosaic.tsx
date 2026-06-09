@@ -13,7 +13,8 @@ import {
   Clock,
   CheckCircle,
   ArrowUpRight,
-  Search
+  Search,
+  CalendarClock
 } from 'lucide-react';
 import { Project } from '@/types/projects';
 
@@ -76,12 +77,43 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
     );
   }
 
-  // Split projects into ongoing and completed
+  // Split projects by delivery status
+  const upcomingProjects = projects.filter(p => p.status === 'UPCOMING');
   const ongoingProjects = projects.filter(p => p.status === 'ONGOING');
   const completedProjects = projects.filter(p => p.status === 'COMPLETED');
 
   return (
     <div className="space-y-12">
+      {/* Upcoming Projects Section */}
+      {upcomingProjects.length > 0 && (
+        <motion.section
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15 }}
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-2 bg-[#eef4ff] rounded-lg">
+              <CalendarClock className="h-6 w-6 text-[var(--brand-blue)]" />
+            </div>
+            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Upcoming Projects</h2>
+            <span className="px-3 py-1 bg-[#eef4ff] text-[var(--brand-blue)] rounded-full text-sm font-medium">
+              {upcomingProjects.length} planned
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {upcomingProjects.map((project, index) => (
+              <OngoingProjectCard 
+                key={project.id} 
+                project={project} 
+                index={index}
+                onClick={() => onProjectClick(project)}
+              />
+            ))}
+          </div>
+        </motion.section>
+      )}
+
       {/* Ongoing Projects Section */}
       {ongoingProjects.length > 0 && (
         <motion.section
@@ -184,7 +216,7 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
           <div className="absolute top-4 left-4">
             <span className="px-3 py-1 bg-blue-500 text-white rounded-full text-xs font-medium flex items-center gap-1">
               <Clock className="h-3 w-3" />
-              ONGOING
+              {project.status === 'UPCOMING' ? 'UPCOMING' : 'ONGOING'}
             </span>
           </div>
 

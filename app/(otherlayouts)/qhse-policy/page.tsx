@@ -2,13 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { QhsePolicyResponse } from "@/types/qhse";
 import { Shield, CheckCircle, Award, TrendingUp, Heart, Globe, Users, Sparkles, FileText, Target, Leaf } from "lucide-react";
+import { apiUrl, publicApiFetchOptions } from "@/lib/api";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export const metadata = {
+  title: "QHSE Policy",
+  description: "Quality, Health, Safety and Environment policy commitments, principles and standards for The Royal Utilisation Services.",
+};
 
 async function getQhsePolicy() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/qhse-policy`, {
-    cache: "no-store",
-  });
+  const res = await fetch(apiUrl("/qhse-policy"), publicApiFetchOptions);
 
   if (!res.ok) {
     throw new Error("Failed to fetch QHSE policy");

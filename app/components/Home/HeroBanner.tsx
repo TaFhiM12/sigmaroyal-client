@@ -1,13 +1,42 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
 import Link from "next/link";
 import yearsExperience from "@/lib/yearsExperience";
+import { apiUrl } from "@/lib/api";
+import { pageSlugFromPath } from "@/lib/page-content";
+import { PageContent } from "@/types/page-content";
 
 export default function HeroBanner() {
   const pathname = usePathname();
+  const [content, setContent] = useState<PageContent | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    const loadContent = async () => {
+      try {
+        const res = await fetch(apiUrl(`/page-content/${pageSlugFromPath(pathname)}`), {
+          headers: { Accept: "application/json" },
+        });
+        const data = await res.json();
+
+        if (active && res.ok && data.success) {
+          setContent(data.data);
+        }
+      } catch {
+        if (active) setContent(null);
+      }
+    };
+
+    loadContent();
+    return () => {
+      active = false;
+    };
+  }, [pathname]);
 
   // Convert route into title, with special case for QHSE Policy
   const getTitle = () => {
@@ -24,14 +53,16 @@ export default function HeroBanner() {
     return segments.join(" → ");
   };
 
-  const title = getTitle();
+  const title = content?.heroTitle || getTitle();
+  const subtitle = content?.heroSubtitle;
+  const heroImageUrl = content?.heroImageUrl || "/banner/banner1.jpeg";
 
   return (
     <section className="relative h-[320px] overflow-hidden sm:h-[360px] md:h-112.5">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/banner/banner1.jpeg')",
+          backgroundImage: `url('${heroImageUrl}')`,
         }}
       >
         {/* linear Overlay */}
@@ -116,6 +147,11 @@ export default function HeroBanner() {
                   className="mt-3 block h-1 rounded-full bg-linear-to-r from-blue-500 via-blue-400 to-transparent md:mt-4"
                 />
               </h1>
+              {subtitle && (
+                <p className="max-w-2xl text-base font-medium leading-7 text-blue-50/85 md:text-lg">
+                  {subtitle}
+                </p>
+              )}
             </motion.div>
 
             {/* Decorative Elements - Right Side */}

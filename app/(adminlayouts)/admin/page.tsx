@@ -4,6 +4,12 @@ import { Button } from "@/components/ui/button";
 
 const quickLinks = [
   {
+    title: "Page Content CMS",
+    description: "Edit every page heading, body copy, hero image, SEO text and flexible sections.",
+    url: "/admin/page-content",
+    cta: "Edit Website Pages",
+  },
+  {
     title: "HYTORC Content",
     description: "Manage section pages and product cards for all HYTORC menus.",
     url: "/admin/hytorc",

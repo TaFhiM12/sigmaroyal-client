@@ -1,9 +1,18 @@
 import { Footer2 } from '@/components/layouts/footer2';
-import AboutUs from '../components/Home/AboutUs';
-import AreaOfExpertise from '../components/Home/AreaOfExperties';
+import dynamic from 'next/dynamic';
 import HeroCarousel from '../components/Home/HeroCarousole';
+
+const AboutUs = dynamic(() => import('../components/Home/AboutUs'), {
+  loading: () => <section className="h-[520px] bg-[#f7faff]" />,
+});
+
+const AreaOfExpertise = dynamic(() => import('../components/Home/AreaOfExperties'), {
+  loading: () => <section className="h-[620px] bg-white" />,
+});
+
 export const metadata = {
   title: "RUSL | Home",
+  description: "Engineering, construction and energy infrastructure services for oil, gas, power, LPG and industrial projects in Bangladesh.",
 };
 
 export default function Home() {

@@ -15,11 +15,25 @@ import { apiUrl } from '@/lib/api';
 
 interface ProjectsClientProps {
   initialData?: ProjectsResponse | null;
-  initialStatus?: 'COMPLETED' | 'ONGOING';
+  initialStatus?: 'COMPLETED' | 'ONGOING' | 'UPCOMING';
 }
 
 const getStatsTotal = (data: ProjectsResponse) => {
-  return data.counts.completed + data.counts.ongoing || data.meta.total;
+  return data.counts.completed + data.counts.ongoing + (data.counts.upcoming ?? 0) || data.meta.total;
+};
+
+const statusRank: Record<Project['status'], number> = {
+  UPCOMING: 0,
+  ONGOING: 1,
+  COMPLETED: 2,
+};
+
+const sortProjectsByDeliveryStatus = (items: Project[]) => {
+  return [...items].sort((a, b) => {
+    const statusOrder = statusRank[a.status] - statusRank[b.status];
+    if (statusOrder !== 0) return statusOrder;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
 };
 
 export default function ProjectsClient({ initialData, initialStatus }: ProjectsClientProps) {
@@ -32,6 +46,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
     total: 0,
     completed: 0,
     ongoing: 0,
+    upcoming: 0,
     sectors: 0
   });
   
@@ -64,11 +79,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
       const data: ProjectsResponse = await res.json();
       
       if (data.success) {
-        const sortedProjects = [...data.data].sort((a, b) => {
-          if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
-          if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        });
+        const sortedProjects = sortProjectsByDeliveryStatus(data.data);
         
         setProjects(sortedProjects);
         setFilteredProjects(sortedProjects);
@@ -76,6 +87,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
           total: getStatsTotal(data),
           completed: data.counts.completed,
           ongoing: data.counts.ongoing,
+          upcoming: data.counts.upcoming ?? 0,
           sectors: data.counts.bySector?.length || 0
         });
       }
@@ -89,11 +101,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
   // Initialize with server data
   useEffect(() => {
     if (initialData?.success) {
-      const sortedProjects = [...initialData.data].sort((a, b) => {
-        if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
-        if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
-        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      });
+      const sortedProjects = sortProjectsByDeliveryStatus(initialData.data);
       
       setProjects(sortedProjects);
       setFilteredProjects(sortedProjects);
@@ -101,6 +109,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
         total: getStatsTotal(initialData),
         completed: initialData.counts.completed,
         ongoing: initialData.counts.ongoing,
+        upcoming: initialData.counts.upcoming ?? 0,
         sectors: initialData.counts.bySector?.length || 0
       });
       setLoading(false);
@@ -134,8 +143,8 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
     }
 
     filtered.sort((a, b) => {
-      if (a.status === 'ONGOING' && b.status !== 'ONGOING') return -1;
-      if (a.status !== 'ONGOING' && b.status === 'ONGOING') return 1;
+      const statusOrder = statusRank[a.status] - statusRank[b.status];
+      if (statusOrder !== 0) return statusOrder;
       
       switch (sortBy) {
         case 'newest':

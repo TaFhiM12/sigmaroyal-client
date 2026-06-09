@@ -4,7 +4,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ArrowUpRight, Briefcase, CheckCircle, Clock, FileText, MapPin } from 'lucide-react';
+import { ArrowUpRight, Briefcase, CalendarClock, CheckCircle, Clock, FileText, MapPin } from 'lucide-react';
 import { Project } from '@/types/projects';
 
 interface ProjectShowcaseProps {
@@ -48,11 +48,14 @@ export function ProjectShowcase({
     );
   }
 
+  const upcomingProjects = projects.filter((project) => project.status === 'UPCOMING');
   const ongoingProjects = projects.filter((project) => project.status === 'ONGOING');
   const completedProjects = projects.filter((project) => project.status === 'COMPLETED');
-  const isStatusView = activeStatus === 'COMPLETED' || activeStatus === 'ONGOING';
+  const isStatusView = activeStatus === 'COMPLETED' || activeStatus === 'ONGOING' || activeStatus === 'UPCOMING';
   const pageSummary =
-    activeStatus === 'ONGOING'
+    activeStatus === 'UPCOMING'
+      ? { eyebrow: 'Planned delivery', title: 'Upcoming Projects' }
+      : activeStatus === 'ONGOING'
       ? { eyebrow: 'Delivery in progress', title: 'Ongoing Projects' }
       : activeStatus === 'COMPLETED'
         ? { eyebrow: 'Delivered work', title: 'Completed Projects' }
@@ -72,6 +75,15 @@ export function ProjectShowcase({
             {projects.length} references
           </span>
         </div>
+      )}
+
+      {upcomingProjects.length > 0 && (
+        <ProjectCatalog
+          title="Upcoming Projects"
+          projects={upcomingProjects}
+          showHeader={!isStatusView}
+          onProjectClick={onProjectClick}
+        />
       )}
 
       {ongoingProjects.length > 0 && (
@@ -156,7 +168,8 @@ function FeaturedProject({
   imageUrl: string;
   onClick: () => void;
 }) {
-  const isOngoing = project.status === 'ONGOING';
+  const statusMeta = getProjectStatusMeta(project.status);
+  const StatusIcon = statusMeta.icon;
 
   return (
     <motion.button
@@ -182,7 +195,7 @@ function FeaturedProject({
         <div className="mb-3 flex items-center gap-2">
           <span className="h-px w-12 bg-[#d8e4f5]" />
           <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
-            {isOngoing ? 'Active delivery' : 'Delivered reference'}
+            {statusMeta.eyebrow}
           </span>
         </div>
 
@@ -225,8 +238,8 @@ function ProjectCatalogueTile({
   imageUrl: string;
   onClick: () => void;
 }) {
-  const isOngoing = project.status === 'ONGOING';
-  const StatusIcon = isOngoing ? Clock : CheckCircle;
+  const statusMeta = getProjectStatusMeta(project.status);
+  const StatusIcon = statusMeta.icon;
 
   return (
     <motion.button
@@ -254,7 +267,7 @@ function ProjectCatalogueTile({
           </span>
           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--brand-muted)]">
             <StatusIcon className="h-3.5 w-3.5 text-red-600" />
-            {isOngoing ? 'Ongoing' : 'Completed'}
+            {statusMeta.label}
           </span>
         </div>
 
@@ -284,6 +297,30 @@ function ProjectCatalogueTile({
       </div>
     </motion.button>
   );
+}
+
+function getProjectStatusMeta(status: Project['status']) {
+  if (status === 'UPCOMING') {
+    return {
+      label: 'Upcoming',
+      eyebrow: 'Planned delivery',
+      icon: CalendarClock,
+    };
+  }
+
+  if (status === 'ONGOING') {
+    return {
+      label: 'Ongoing',
+      eyebrow: 'Active delivery',
+      icon: Clock,
+    };
+  }
+
+  return {
+    label: 'Completed',
+    eyebrow: 'Delivered reference',
+    icon: CheckCircle,
+  };
 }
 
 function ShowcaseSkeleton() {

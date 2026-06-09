@@ -485,6 +485,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                           className={`px-1.5 sm:px-2 py-0.5 ${
                             project.status === 'ONGOING' 
                               ? 'bg-blue-500/30 text-blue-200 border-blue-400/30' 
+                              : project.status === 'UPCOMING'
+                                ? 'bg-red-500/20 text-red-100 border-red-300/30'
                               : 'bg-[#eef4ff]0/30 text-[var(--brand-blue)] border-[#d8e4f5]/30'
                           } backdrop-blur-xl rounded-full text-[8px] xs:text-[10px] sm:text-xs font-bold tracking-wide border shadow-lg flex items-center gap-0.5 sm:gap-1`}
                         >
@@ -496,6 +498,12 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                               </span>
                               <span className="hidden xs:inline">LIVE</span>
                               <span className="xs:hidden">LIVE</span>
+                            </>
+                          ) : project.status === 'UPCOMING' ? (
+                            <>
+                              <Calendar className="h-2 w-2" />
+                              <span className="hidden xs:inline">SOON</span>
+                              <span className="xs:hidden">SOON</span>
                             </>
                           ) : (
                             <>

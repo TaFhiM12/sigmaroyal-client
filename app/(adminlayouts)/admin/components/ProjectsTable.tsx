@@ -40,11 +40,13 @@ interface ProjectsTableProps {
 }
 
 const statusColors = {
+  UPCOMING: "bg-red-50 text-[var(--brand-red)]",
   COMPLETED: "bg-[#eef4ff] text-[var(--brand-blue)]",
   ONGOING: "bg-blue-100 text-blue-800",
 };
 
 const statusLabels = {
+  UPCOMING: "Upcoming",
   COMPLETED: "Completed",
   ONGOING: "Ongoing",
 };
