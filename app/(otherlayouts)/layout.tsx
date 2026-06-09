@@ -1,7 +1,6 @@
 import { Footer2 } from "@/components/layouts/footer2";
 import Navbar1 from "@/components/layouts/navbar1";
 import HeroBanner from "../components/Home/HeroBanner";
-import PageContentIntro from "../components/cms/PageContentIntro";
 
 export default function CommonLayout({
   children,
@@ -14,7 +13,6 @@ export default function CommonLayout({
         <Navbar1 />
 
         <HeroBanner />
-        <PageContentIntro />
         <main className="flex-1">
           {children}
         </main>
