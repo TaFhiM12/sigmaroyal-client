@@ -4,6 +4,65 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  async redirects() {
+    return [
+      {
+        source: '/about',
+        destination: '/preface',
+        permanent: true,
+      },
+      {
+        source: '/expertise',
+        destination: '/our-strength',
+        permanent: true,
+      },
+      {
+        source: '/expertise/:path*',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/certifications',
+        destination: '/certificates',
+        permanent: true,
+      },
+      {
+        source: '/services/:path*',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/downloads',
+        destination: '/portfolio',
+        permanent: true,
+      },
+      {
+        source: '/media',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/careers',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/privacy',
+        destination: '/contact',
+        permanent: false,
+      },
+      {
+        source: '/terms',
+        destination: '/contact',
+        permanent: false,
+      },
+      {
+        source: '/sitemap',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60 * 60 * 24 * 30,

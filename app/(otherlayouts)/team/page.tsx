@@ -1,9 +1,10 @@
 import TeamDirectory from "@/app/components/team/TeamDirectory";
 import { getTeamCategory } from "@/app/data/team";
-import { apiUrl, publicApiFetchOptions } from "@/lib/api";
+import { apiUrl } from "@/lib/api";
 import { TeamMember, TeamResponse } from "@/types/team";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata = {
   title: "RUSL | Team",
@@ -11,7 +12,12 @@ export const metadata = {
 
 async function getTeamMembers(): Promise<TeamMember[]> {
   try {
-    const res = await fetch(apiUrl("/employees"), publicApiFetchOptions);
+    const res = await fetch(apiUrl("/employees"), {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+      },
+    });
     if (!res.ok) return [];
 
     const data = (await res.json()) as TeamResponse;

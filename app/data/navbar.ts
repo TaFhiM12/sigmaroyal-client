@@ -26,7 +26,7 @@ export const navbarMenu: NavbarMenu[] = [
       items: [
         {
           title: "Oil & Gas",
-          url: "/expertise/oil-gas",
+          url: "/projects",
           description: "Pipeline construction, HDD, LPG solutions",
         },
         {
@@ -41,7 +41,7 @@ export const navbarMenu: NavbarMenu[] = [
         },
         {
           title: "Power Infrastructure",
-          url: "/expertise/power",
+          url: "/projects",
           description: "BOP installation, fabrication, construction",
         },
         {

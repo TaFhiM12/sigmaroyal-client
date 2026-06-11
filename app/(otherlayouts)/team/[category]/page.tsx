@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import TeamDirectory from "@/app/components/team/TeamDirectory";
 import { getTeamCategory, teamCategories } from "@/app/data/team";
-import { apiUrl, publicApiFetchOptions } from "@/lib/api";
+import { apiUrl } from "@/lib/api";
 import { TeamMember, TeamResponse } from "@/types/team";
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export function generateStaticParams() {
   return teamCategories
@@ -31,7 +32,12 @@ async function getTeamMembers(department: string): Promise<TeamMember[]> {
   try {
     const res = await fetch(
       apiUrl(`/employees?department=${encodeURIComponent(department)}`),
-      publicApiFetchOptions
+      {
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+        },
+      }
     );
     if (!res.ok) return [];
 

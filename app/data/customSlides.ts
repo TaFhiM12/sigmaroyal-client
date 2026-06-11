@@ -29,6 +29,6 @@ export const customSlides: Slide[] = [
     description:
       "Specialized construction of 42-inch high pressure natural gas pipelines using horizontal directional drilling",
     ctaText: "Our Expertise",
-    ctaLink: "/expertise",
+    ctaLink: "/our-strength",
   },
 ];
