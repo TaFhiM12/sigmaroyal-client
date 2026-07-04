@@ -58,7 +58,7 @@ export default function HeroBanner() {
   const heroImageUrl = content?.heroImageUrl || "/banner/banner1.jpeg";
 
   return (
-    <section className="relative h-[320px] overflow-hidden sm:h-[360px] md:h-112.5">
+    <section className="relative h-[320px] overflow-hidden sm:h-[350px] md:h-[400px]">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -134,7 +134,7 @@ export default function HeroBanner() {
                 />
                 
                 <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-blue-100 md:text-sm">
-                  {yearsExperience}+ YEARS OF EXCELLENCE
+                  {yearsExperience} YEARS OPERATING
                 </span>
               </div>
 

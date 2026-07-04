@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Award, UsersRound } from "lucide-react";
+import { Award } from "lucide-react";
 import { teamCategories } from "@/app/data/team";
 import { cn } from "@/lib/utils";
 import { TeamCategory, TeamMember } from "@/types/team";
@@ -14,47 +14,37 @@ export default function TeamDirectory({ members, activeCategory }: TeamDirectory
   return (
     <main className="bg-[#f7faff]">
       <section className="border-b border-[#d8e4f5] bg-white">
-        <div className="mx-auto max-w-screen-2xl px-4 py-9 md:px-6 lg:px-8 lg:py-11">
-          <div className="grid gap-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <div className="max-w-4xl">
-              <span className="section-kicker">
-                <UsersRound className="h-4 w-4" />
-                Company People
-              </span>
-              <h1 className="mt-4 text-4xl font-extrabold tracking-normal text-[var(--brand-navy)] md:text-5xl">
-                Meet our <span className="text-[var(--brand-red)]">team.</span>
-              </h1>
-              <div className="section-underline mt-4" />
-            </div>
-            <div className="rounded-lg border border-[#d8e4f5] bg-[#f7faff] px-5 py-4 text-left lg:text-right">
+        <div className="mx-auto max-w-screen-2xl px-4 py-5 md:px-6 lg:px-8">
+          <div className="flex flex-col gap-4 rounded-xl border border-[#d8e4f5] bg-[#f7faff] p-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
               <p className="text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--brand-navy)]">
                 {activeCategory.label}
               </p>
               <p className="mt-1 text-sm text-[var(--brand-muted)]">{members.length} team members</p>
             </div>
+
+            <nav className="flex flex-wrap gap-2" aria-label="Team categories">
+              {teamCategories.map((category) => {
+                const href = category.slug === "all" ? "/team" : `/team/${category.slug}`;
+                const active = activeCategory.slug === category.slug;
+
+                return (
+                  <Link
+                    key={category.slug}
+                    href={href}
+                    className={cn(
+                      "rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-all duration-200",
+                      active
+                        ? "border-[var(--brand-red)] bg-[var(--brand-red)] text-white shadow-lg shadow-[rgb(227_6_19_/_0.16)]"
+                        : "border-[#d8e4f5] bg-white text-[var(--brand-navy)] hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
+                    )}
+                  >
+                    {category.label}
+                  </Link>
+                );
+              })}
+            </nav>
           </div>
-
-          <nav className="mt-7 flex flex-wrap gap-2" aria-label="Team categories">
-            {teamCategories.map((category) => {
-              const href = category.slug === "all" ? "/team" : `/team/${category.slug}`;
-              const active = activeCategory.slug === category.slug;
-
-              return (
-                <Link
-                  key={category.slug}
-                  href={href}
-                  className={cn(
-                    "rounded-full border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-all duration-200",
-                    active
-                      ? "border-[var(--brand-red)] bg-[var(--brand-red)] text-white shadow-lg shadow-[rgb(227_6_19_/_0.16)]"
-                      : "border-[#d8e4f5] bg-white text-[var(--brand-navy)] hover:border-[var(--brand-blue)] hover:text-[var(--brand-blue)]"
-                  )}
-                >
-                  {category.label}
-                </Link>
-              );
-            })}
-          </nav>
         </div>
       </section>
 

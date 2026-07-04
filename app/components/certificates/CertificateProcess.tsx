@@ -1,9 +1,8 @@
 // app/components/certificates/CertificateProcess.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
-import { FileCheck, Search, Award, Shield, CheckCircle, TrendingUp } from 'lucide-react';
-import { Certification } from '@/types/certification';
+import { FileCheck, Search, Award, Shield, CheckCircle } from 'lucide-react';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 const processSteps = [
   {
@@ -33,23 +32,8 @@ const processSteps = [
 ];
 
 export default function CertificateProcess() {
-  const [certCount, setCertCount] = useState(0);
-
-  useEffect(() => {
-    const fetchCertCount = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/certifications`);
-        const data = await res.json();
-        if (data.success) {
-          setCertCount(data.data.filter((cert: Certification) => cert.isActive).length);
-        }
-      } catch (error) {
-        console.error('Error fetching certifications:', error);
-      }
-    };
-
-    void fetchCertCount();
-  }, []);
+  const companyStats = useCompanyStats();
+  const certCount = companyStats?.certifications ?? 0;
 
   return (
     <section className="py-16 md:py-20">
@@ -108,23 +92,12 @@ export default function CertificateProcess() {
                       Our commitment to quality extends beyond certification - it&apos;s embedded in our culture
                     </p>
                   </div>
-                  <div className="flex items-center gap-6">
+                  {certCount > 0 && (
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-red-400">{certCount}+</div>
-                      <div className="text-sm text-[var(--brand-muted)]">Certifications</div>
+                      <div className="text-3xl font-bold text-red-400">{certCount}</div>
+                      <div className="text-sm text-[var(--brand-muted)]">Published certifications</div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-red-400">100%</div>
-                      <div className="text-sm text-[var(--brand-muted)]">Compliance</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-red-400 flex items-center gap-1">
-                        <TrendingUp className="h-6 w-6" />
-                        ∞
-                      </div>
-                      <div className="text-sm text-[var(--brand-muted)]">Continuous</div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

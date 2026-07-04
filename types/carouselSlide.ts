@@ -9,6 +9,7 @@ export interface CarouselSlide {
 }
 
 export interface HeroCarouselProps {
+  slides?: CarouselSlide[];
   autoPlayInterval?: number;
   showControls?: boolean;
   showIndicators?: boolean;

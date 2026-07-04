@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navbarLogo, navbarMenu } from "@/app/data/navbar";
 import { Navbar1Props } from "@/types/navbar";
 
@@ -46,6 +47,7 @@ const Navbar1 = ({
   menu = navbarMenu,
   className,
 }: Navbar1Props) => {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [navVisible, setNavVisible] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -109,12 +111,18 @@ const Navbar1 = ({
 
   useEffect(() => {
     if (sheetOpen || activeDropdown) {
-      setNavVisible(true);
+      const frameId = window.requestAnimationFrame(() => setNavVisible(true));
+      return () => window.cancelAnimationFrame(frameId);
     }
   }, [activeDropdown, sheetOpen]);
 
   const textColorClass = scrolled ? "text-blue-950" : "text-white";
   const hoverTextColorClass = "hover:text-red-600";
+  const isUrlActive = (url: string) => {
+    const path = url.split(/[?#]/)[0];
+    if (path === "/") return pathname === "/";
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
 
   const toggleDropdown = (menuTitle: string) => {
     if (dropdownCloseTimer.current) clearTimeout(dropdownCloseTimer.current);
@@ -152,14 +160,16 @@ const Navbar1 = ({
     switch (title) {
       case "Home":
         return <Home className={iconClass} />;
-      case "About Us":
+      case "Company":
         return <Building2 className={iconClass} />;
-      case "Services":
+      case "Expertise":
         return <Wrench className={iconClass} />;
       case "Projects":
         return <FolderKanban className={iconClass} />;
       case "Resources":
         return <FileText className={iconClass} />;
+      case "HYTORC":
+        return <Wrench className={iconClass} />;
       case "Contact":
         return <Phone className={iconClass} />;
       default:
@@ -170,10 +180,11 @@ const Navbar1 = ({
   const getDropdownIcon = (parentTitle: string, index: number) => {
     const iconClass = "h-4 w-4";
     const icons = {
-      "About Us": [Building2, UsersIcon, Award, ShieldIcon, HistoryIcon],
-      Services: [Wrench, FolderKanban, Sparkles, Building2, Award],
+      Company: [Building2, UsersIcon, Award, ShieldIcon, HistoryIcon],
+      Expertise: [Wrench, FolderKanban, Sparkles, Building2, Award],
       Projects: [FolderKanban, Sparkles, FileText],
       Resources: [Award, FileText, FolderKanban, ArrowUpRight],
+      HYTORC: [Wrench, Sparkles, Award, ShieldIcon, FolderKanban],
     };
     const Icon =
       icons[parentTitle as keyof typeof icons]?.[index] ||
@@ -184,14 +195,16 @@ const Navbar1 = ({
 
   const getDropdownEyebrow = (title: string) => {
     switch (title) {
-      case "About Us":
+      case "Company":
         return "Company";
-      case "Services":
+      case "Expertise":
         return "Capabilities";
       case "Projects":
         return "Delivery";
       case "Resources":
-        return "Knowledge Base";
+        return "Knowledge & Media";
+      case "HYTORC":
+        return "Bolting Systems";
       default:
         return "Explore";
     }
@@ -206,10 +219,11 @@ const Navbar1 = ({
           dropdownRefs.current[item.title] = el;
         }}
         className={cn(
-          "absolute top-full mt-2 w-[410px] overflow-hidden rounded-2xl border border-white/70 bg-white/96 shadow-2xl shadow-blue-950/20 backdrop-blur-2xl z-50",
+          "absolute top-full mt-2 overflow-hidden rounded-2xl border border-white/70 bg-white/96 shadow-2xl shadow-blue-950/20 backdrop-blur-2xl z-50",
+          item.items.length > 6 ? "w-[680px]" : "w-[430px]",
           "before:absolute before:-top-2 before:left-0 before:h-2 before:w-full before:content-['']",
           "transition-all duration-500 ease-out origin-top",
-          item.title === "Resources" || item.title === "Projects" ? "right-0" : "left-0",
+          item.title === "Resources" || item.title === "Projects" || item.title === "HYTORC" ? "right-0" : "left-0",
           activeDropdown === item.title 
             ? "opacity-100 scale-100 translate-y-0" 
             : "opacity-0 scale-[0.97] -translate-y-3 pointer-events-none"
@@ -232,7 +246,10 @@ const Navbar1 = ({
           </div>
         </div>
 
-        <div className="relative grid gap-1.5 p-2">
+        <div className={cn(
+          "relative grid gap-1.5 p-2",
+          item.items.length > 6 && "grid-cols-2"
+        )}>
           {item.items.map((subItem, index) => (
             <Link
               key={subItem.title}
@@ -308,6 +325,9 @@ const Navbar1 = ({
   );
 
   const renderMenuItem = (item: MenuItem) => {
+    const itemIsActive =
+      isUrlActive(item.url) || Boolean(item.items?.some((subItem) => isUrlActive(subItem.url)));
+
     if (item.items) {
       return (
         <div
@@ -319,12 +339,12 @@ const Navbar1 = ({
           <button
             onClick={() => toggleDropdown(item.title)}
             className={cn(
-              "group relative flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-extrabold transition-all duration-200",
-              textColorClass,
-              hoverTextColorClass,
-              scrolled ? "hover:bg-blue-50" : "hover:bg-white/10",
-              activeDropdown === item.title && (scrolled ? "bg-blue-950 text-white shadow-sm shadow-blue-950/15 hover:bg-blue-900 hover:text-white" : "bg-white/12 text-white ring-1 ring-white/12 hover:text-white")
+              "group relative flex items-center gap-1 rounded-lg px-2 py-2 text-xs font-bold text-white/82 transition-all duration-200 xl:px-2.5 xl:text-[13px] 2xl:px-3 2xl:text-sm",
+              "hover:bg-white/10 hover:text-white",
+              itemIsActive && "text-white",
+              activeDropdown === item.title && "bg-white text-blue-950 shadow-sm hover:bg-white hover:text-blue-950"
             )}
+            aria-current={itemIsActive ? "page" : undefined}
           >
             {item.title}
             <ChevronDown className={cn(
@@ -334,7 +354,7 @@ const Navbar1 = ({
             
             <div className={cn(
               "absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-0 rounded-full bg-red-500 transition-all duration-300",
-              activeDropdown === item.title && "w-4/5"
+              (activeDropdown === item.title || itemIsActive) && "w-4/5"
             )} />
           </button>
           
@@ -348,14 +368,17 @@ const Navbar1 = ({
         key={item.title}
         href={item.url}
         className={cn(
-          "group relative rounded-lg px-3 py-2 text-sm font-extrabold transition-all duration-200",
-          textColorClass,
-          hoverTextColorClass,
-          scrolled ? "hover:bg-blue-50 hover:text-red-600" : "hover:bg-white/10 hover:text-red-300"
+          "group relative rounded-lg px-2 py-2 text-xs font-bold text-white/82 transition-all duration-200 xl:px-2.5 xl:text-[13px] 2xl:px-3 2xl:text-sm",
+          "hover:bg-white/10 hover:text-white",
+          itemIsActive && "text-white"
         )}
+        aria-current={itemIsActive ? "page" : undefined}
       >
         {item.title}
-        <div className="absolute bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300 group-hover:w-4/5" />
+        <div className={cn(
+          "absolute bottom-1 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-red-500 transition-all duration-300 group-hover:w-4/5",
+          itemIsActive ? "w-4/5" : "w-0"
+        )} />
       </Link>
     );
   };
@@ -442,98 +465,104 @@ const Navbar1 = ({
       className={cn(
         "fixed left-0 top-0 z-50 w-full transition-all duration-300 ease-out",
         navVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0",
-        scrolled ? "py-3" : "py-4",
+        scrolled ? "py-2" : "py-3",
         className
       )}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-screen-2xl">
         {/* Desktop Menu */}
-        <nav
-          className={cn(
-            "hidden items-center justify-between rounded-2xl border px-4 py-2.5 lg:flex",
-            "shadow-lg shadow-blue-950/10 backdrop-blur-xl transition-all duration-300",
-            scrolled
-              ? "border-blue-950/10 bg-white/92"
-              : "border-white/12 bg-blue-950/70"
-          )}
-        >
+        <nav className="hidden overflow-visible rounded-[14px] border border-white/15 bg-[rgba(6,18,43,0.9)] shadow-[0_18px_55px_rgba(2,9,25,0.28)] backdrop-blur-2xl md:grid md:grid-cols-2 lg:grid-cols-[minmax(220px,1fr)_auto_minmax(180px,0.8fr)]">
           <Link
             href={logo.url}
-            className={cn(
-              "flex items-center gap-3 transition-all duration-300 group hover:scale-[1.02]",
-              "rounded-xl px-2 py-1.5",
-            )}
+            className="group order-1 flex min-w-0 items-center gap-2.5 px-4 py-1.5 transition-colors duration-200 2xl:px-5"
+            aria-label="The Royal Utilisation Services (Pvt.) Ltd"
           >
-            <div className="relative">
+            <span className="flex h-10 w-9 shrink-0 items-center justify-center rounded-lg border border-white/15 bg-white/8">
               <Image
-                width={80}
-                height={40}
-                src={logo.src}
-                className="h-10 w-auto"
-                alt={logo.alt}
+                width={40}
+                height={58}
+                src="/logo.png"
+                className="h-8 w-auto"
+                alt="Royal Utilisation Services logo"
               />
-              <div className="absolute -inset-1 bg-blue-600/20 blur-sm group-hover:bg-blue-600/30 transition-all duration-300 rounded-full opacity-0 group-hover:opacity-100"></div>
-            </div>
-            
-            <div className="flex flex-col leading-tight">
-              <span className={cn(
-                "text-lg font-extrabold tracking-normal bg-linear-to-r bg-clip-text text-transparent xl:text-xl",
-                scrolled 
-                  ? "from-blue-950 to-blue-700 group-hover:from-blue-900 group-hover:to-red-600"
-                  : "from-white to-blue-100 group-hover:from-blue-200 group-hover:to-white",
-                "transition-all duration-300"
-              )}>
-                The Royal Utilisation <br/>
-              </span>
-              <span className={cn(
-                "text-[11px] font-extrabold uppercase tracking-[0.08em]",
-                scrolled 
-                  ? "text-red-700 group-hover:text-blue-900"
-                  : "text-white/90 group-hover:text-red-300",
-                "transition-all duration-300"
-              )}>
-                SERVICES (PVT.) LTD
-              </span>
-            </div>
+            </span>
+            <span className="min-w-0 text-[13px] font-extrabold leading-tight tracking-[-0.025em] text-white transition-colors group-hover:text-blue-200 xl:text-sm 2xl:text-base">
+              The Royal Utilisation Services (Pvt.) Ltd
+            </span>
           </Link>
-          
-          <div className="flex items-center gap-1">
+
+          <div className="order-3 col-span-2 flex items-center justify-center gap-0 border-t border-white/10 px-2 py-1 lg:order-2 lg:col-span-1 lg:border-x lg:border-t-0 lg:px-1.5 xl:px-2 2xl:px-3">
             {menu.map((item) => renderMenuItem(item))}
           </div>
+
+          <Link
+            href="/projects"
+            className="group order-2 flex min-w-0 items-center justify-end gap-2.5 px-4 py-1.5 transition-colors duration-200 lg:order-3 2xl:px-5"
+            aria-label="Sigma Construction Company"
+          >
+            <span className="flex h-10 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-200/25 bg-amber-100/8">
+              <Image
+                width={36}
+                height={61}
+                src="/sigma-logo.png"
+                className="h-8 w-auto"
+                alt="Sigma Construction Company logo"
+              />
+            </span>
+            <span className="min-w-0 text-right text-[13px] font-extrabold leading-tight tracking-[-0.025em] text-white transition-colors group-hover:text-amber-200 xl:text-sm 2xl:text-base">
+              Sigma Construction Company
+            </span>
+          </Link>
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden">
+        <div className="block md:hidden">
           <div
             className={cn(
               "flex items-center justify-between rounded-2xl border px-3 py-2.5 shadow-lg shadow-blue-950/10 backdrop-blur-xl",
-              scrolled ? "border-blue-950/10 bg-white/92" : "border-white/12 bg-blue-950/72"
+              scrolled ? "border-blue-950/10 bg-white/[0.94]" : "border-white/15 bg-blue-950/75"
             )}
           >
             <Link
               href={logo.url}
               className={cn(
-                "flex items-center gap-2 transition-colors duration-200",
+                "flex min-w-0 items-center gap-2 transition-colors duration-200",
                 textColorClass,
                 hoverTextColorClass,
               )}
             >
-              <Image
-                width={60}
-                height={30}
-                src={logo.src}
-                className="h-8 w-auto shrink-0"
-                alt={logo.alt}
-              />
-              <div className="flex min-w-0 max-w-[260px] flex-col leading-tight">
+              <span className="flex shrink-0 items-center gap-1.5">
+                <Image
+                  width={40}
+                  height={58}
+                  src="/logo.png"
+                  className="h-8 w-auto"
+                  alt="Royal Utilisation Services logo"
+                />
+                <span className={cn("h-6 w-px", scrolled ? "bg-blue-950/15" : "bg-white/20")} />
+                <Image
+                  width={36}
+                  height={61}
+                  src="/sigma-logo.png"
+                  className="h-8 w-auto"
+                  alt="Sigma Construction Company logo"
+                />
+              </span>
+              <div className="flex min-w-0 max-w-[210px] flex-col leading-tight">
                 <span
                   className={cn(
-                    "truncate text-sm font-extrabold tracking-normal transition-colors duration-200",
+                    "truncate text-[9px] font-extrabold tracking-[-0.01em] transition-colors duration-200 min-[390px]:text-[10px]",
                     textColorClass,
                     hoverTextColorClass,
                   )}
                 >
                   The Royal Utilisation Services (Pvt.) Ltd
+                </span>
+                <span className={cn(
+                  "mt-1 truncate text-[9px] font-extrabold tracking-[-0.01em] min-[390px]:text-[10px]",
+                  scrolled ? "text-amber-700" : "text-amber-200"
+                )}>
+                  Sigma Construction Company
                 </span>
               </div>
             </Link>
@@ -567,21 +596,29 @@ const Navbar1 = ({
                             "text-[var(--brand-navy)] hover:text-blue-950"
                           )}
                         >
-                          <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-blue-50 ring-1 ring-blue-100">
+                          <span className="relative flex shrink-0 items-center gap-2 rounded-lg bg-blue-50 px-2.5 py-2 ring-1 ring-blue-100">
                             <Image
-                              width={60}
-                              height={30}
-                              src={logo.src}
-                              className="h-8 w-auto"
-                              alt={logo.alt}
+                              width={40}
+                              height={58}
+                              src="/logo.png"
+                              className="h-9 w-auto"
+                              alt="Royal Utilisation Services logo"
+                            />
+                            <span className="h-7 w-px bg-blue-950/15" />
+                            <Image
+                              width={36}
+                              height={61}
+                              src="/sigma-logo.png"
+                              className="h-9 w-auto"
+                              alt="Sigma Construction Company logo"
                             />
                           </span>
                           <span className="flex min-w-0 flex-col leading-tight">
-                            <span className="text-[15px] font-extrabold leading-snug text-[var(--brand-navy)]">
+                            <span className="text-[12px] font-extrabold leading-snug text-[var(--brand-navy)]">
                               The Royal Utilisation Services (Pvt.) Ltd
                             </span>
-                            <span className="mt-1 text-xs font-semibold text-blue-700">
-                              Energy Infrastructure & EPC
+                            <span className="mt-1 text-[12px] font-extrabold leading-snug text-amber-700">
+                              Sigma Construction Company
                             </span>
                           </span>
                         </Link>
@@ -614,8 +651,8 @@ const Navbar1 = ({
                     
                     <div className="border-t border-blue-950/10 bg-white p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
                       <div className="grid grid-cols-2 gap-3">
-                        <Link 
-                          href="/certifications" 
+                        <Link
+                          href="/certificates"
                           onClick={handleMobileLinkClick}
                           className="rounded-lg bg-blue-950 px-3 py-3 text-center text-sm font-extrabold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-md"
                         >

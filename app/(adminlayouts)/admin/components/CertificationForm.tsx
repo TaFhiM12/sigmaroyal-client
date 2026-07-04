@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Save, X, Loader2, AlertCircle, Upload } from 'lucide-react';
+import { Save, X, Loader2, AlertCircle, Upload, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,6 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import Image from 'next/image';
 import { Certification, CertificationFormData } from '@/types/certification';
 import { getAdminAuthHeaders } from '@/lib/admin-auth';
 
@@ -23,10 +22,11 @@ interface CertificationFormProps {
 
 export default function CertificationForm({ certification, onSuccess, onCancel }: CertificationFormProps) {
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>(certification?.src || '');
+  const [mediaPreview, setMediaPreview] = useState<string>(certification?.src || '');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState<CertificationFormData>({
@@ -37,30 +37,30 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
     isActive: certification?.isActive ?? true,
   });
 
-  const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMediaSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type and size
     if (!file.type.startsWith('image/')) {
       toast.error('Please select an image file');
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error('Image must be less than 5MB');
+    if (file.size > 15 * 1024 * 1024) {
+      toast.error('Certificate file must be less than 15MB');
       return;
     }
 
     setSelectedFile(file);
-    setImagePreview(URL.createObjectURL(file));
+    setMediaPreview(URL.createObjectURL(file));
+    toast.success('Certificate image selected.');
   };
 
   const uploadToCloudinary = async (file: File): Promise<string> => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'projects_upload');
-    formData.append('folder', 'royal-utilisation/projects');
+    formData.append('folder', 'royal-utilisation/certificates');
 
     const res = await fetch(
       `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
@@ -82,18 +82,17 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
     setError(null);
 
     try {
-      let imageUrl = formData.src;
+      let certificateUrl = formData.src;
 
-      // Upload new image if selected
       if (selectedFile) {
         setUploading(true);
-        imageUrl = await uploadToCloudinary(selectedFile);
+        certificateUrl = await uploadToCloudinary(selectedFile);
         setUploading(false);
       }
 
       const submitData = {
         ...formData,
-        src: imageUrl,
+        src: certificateUrl,
       };
 
       const url = certification
@@ -119,18 +118,44 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
       setError(err instanceof Error ? err.message : 'Something went wrong');
       toast.error('Failed to save certification');
     } finally {
+      setUploading(false);
       setLoading(false);
     }
   };
 
-  // Cleanup preview URL
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     return () => {
-      if (imagePreview && imagePreview !== certification?.src) {
-        URL.revokeObjectURL(imagePreview);
+      if (mediaPreview && mediaPreview !== certification?.src) {
+        URL.revokeObjectURL(mediaPreview);
       }
     };
-  }, [imagePreview, certification?.src]);
+  }, [mediaPreview, certification?.src]);
+
+  if (!mounted) {
+    return (
+      <div className="space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Certification Information</CardTitle>
+            <CardDescription>Add or edit certification details</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="h-20 animate-pulse rounded-lg bg-[#eef4ff]" />
+              <div className="h-20 animate-pulse rounded-lg bg-[#eef4ff]" />
+              <div className="h-20 animate-pulse rounded-lg bg-[#eef4ff]" />
+              <div className="h-20 animate-pulse rounded-lg bg-[#eef4ff]" />
+            </div>
+            <div className="h-80 animate-pulse rounded-lg bg-[#eef4ff]" />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -195,38 +220,62 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
             </div>
           </div>
 
-          {/* Image Upload */}
+          {/* Certificate Upload */}
           <div className="space-y-2">
-            <Label>Certification Image</Label>
-            <div className="border-2 border-dashed border-[#b9cff0] rounded-lg p-6 text-center hover:border-red-500 transition-colors">
+            <Label>Certification File</Label>
+            <div className="border-2 border-dashed border-[#b9cff0] rounded-lg p-4 text-center hover:border-red-500 transition-colors bg-[#f7faff]">
               <input
                 type="file"
-                id="image"
-                accept="image/jpeg,image/png,image/webp"
-                onChange={handleImageSelect}
+                id="certificate-file"
+                accept="image/*"
+                onChange={handleMediaSelect}
                 className="hidden"
               />
-              <label htmlFor="image" className="cursor-pointer">
-                {imagePreview ? (
-                  <div className="relative">
-                    <div className="relative w-48 h-32 mx-auto rounded-lg overflow-hidden">
-                      <Image
-                        src={imagePreview}
-                        alt="Preview"
-                        fill
-                        className="object-contain"
+
+              {mediaPreview ? (
+                <div className="space-y-3">
+                  <div className="overflow-hidden rounded-lg border border-[#d8e4f5] bg-white shadow-sm">
+                    <div className="relative h-72 bg-[#eaf0f8]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={mediaPreview}
+                        alt="Certificate preview"
+                        className="h-full w-full object-contain p-4"
                       />
                     </div>
-                    <p className="text-sm text-[var(--brand-muted)] mt-2">Click to change image</p>
+
+                    <div className="flex flex-col gap-2 border-t border-[#edf2f8] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="text-left">
+                        <p className="text-sm font-bold text-[var(--brand-navy)]">
+                          Image preview loaded
+                        </p>
+                        <p className="text-xs text-[var(--brand-muted)]">
+                          Confirm this is the correct certificate before saving.
+                        </p>
+                      </div>
+                      <div className="inline-flex items-center gap-1.5 rounded-full bg-[#eef4ff] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-[var(--brand-blue)]">
+                        <ImageIcon className="h-3 w-3" />
+                        Ready to save
+                      </div>
+                    </div>
                   </div>
-                ) : (
-                  <>
+
+                  <label
+                    htmlFor="certificate-file"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[#d8e4f5] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-navy)] transition-colors hover:border-red-200 hover:text-red-600"
+                  >
+                    Click to change certificate file
+                  </label>
+                </div>
+              ) : (
+                <label htmlFor="certificate-file" className="block cursor-pointer p-6">
+                  <div>
                     <Upload className="h-12 w-12 mx-auto text-[var(--brand-muted)] mb-3" />
-                    <p className="text-sm text-[var(--brand-muted)]">Click to upload certification image</p>
-                    <p className="text-xs text-[var(--brand-muted)] mt-1">PNG, JPG, WEBP up to 5MB</p>
-                  </>
-                )}
-              </label>
+                    <p className="text-sm text-[var(--brand-muted)]">Click to upload certificate image</p>
+                    <p className="text-xs text-[var(--brand-muted)] mt-1">Any image format up to 15MB</p>
+                  </div>
+                </label>
+              )}
             </div>
           </div>
         </CardContent>

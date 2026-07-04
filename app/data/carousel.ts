@@ -6,7 +6,7 @@ export const customSlides: CarouselSlide[] = [
     id: 1,
     image: "/banner/banner1.jpeg",
     title: "Engineering Energy Infrastructure Since 1977",
-    subtitle: `${yearsExperience}+ Years of Excellence in Oil, Gas & Power`,
+    subtitle: `${yearsExperience} Years Operating in Oil, Gas & Power`,
     description:
       "ISO-certified EPC contractor delivering cross-country pipelines, LNG/LPG systems, power plants and large-scale infrastructure projects across Bangladesh.",
     ctaText: "Explore Our Projects",
@@ -19,8 +19,8 @@ export const customSlides: CarouselSlide[] = [
     subtitle: "High-Pressure Gas Transmission & River Crossings",
     description:
       "Proven expertise in large-diameter pipeline construction, horizontal directional drilling (HDD), RMS and CTMS facilities.",
-    ctaText: "Pipeline Projects",
-    ctaLink: "/projects/pipeline",
+    ctaText: "Pipeline Expertise",
+    ctaLink: "/expertise#oil-gas",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const customSlides: CarouselSlide[] = [
     description:
       "Complete industrial and commercial LPG systems including storage tanks, manifold systems, auto LPG stations and reticulated networks.",
     ctaText: "Our Energy Solutions",
-    ctaLink: "/solutions",
+    ctaLink: "/expertise#engineering",
   },
   {
     id: 4,
@@ -39,8 +39,8 @@ export const customSlides: CarouselSlide[] = [
     subtitle: "Civil, Mechanical, Electrical & Instrumentation Works",
     description:
       "Balance of Plant construction, gas transmission systems and full EPC support for major power generation facilities.",
-    ctaText: "Power Projects",
-    ctaLink: "/projects/power",
+    ctaText: "Power Expertise",
+    ctaLink: "/expertise#power",
   },
   {
     id: 5,

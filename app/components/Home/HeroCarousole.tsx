@@ -50,10 +50,12 @@ const lineVariants = {
 
 
 const HeroCarousel = ({
+  slides = customSlides,
   autoPlayInterval = 6000,
   showProgressBar = true,
   className,
 }: HeroCarouselProps) => {
+  const slideItems = slides.length > 0 ? slides : customSlides;
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -91,15 +93,15 @@ const HeroCarousel = ({
 
   const nextSlide = useCallback(() => {
     resetProgress();
-    setCurrentSlide((prev) => (prev + 1) % customSlides.length);
-  }, [resetProgress]);
+    setCurrentSlide((prev) => (prev + 1) % slideItems.length);
+  }, [resetProgress, slideItems.length]);
 
   const prevSlide = useCallback(() => {
     resetProgress();
     setCurrentSlide((prev) =>
-      prev === 0 ? customSlides.length - 1 : prev - 1
+      prev === 0 ? slideItems.length - 1 : prev - 1
     );
-  }, [resetProgress]);
+  }, [resetProgress, slideItems.length]);
 
   // Progress tick
   useEffect(() => {
@@ -118,7 +120,7 @@ const HeroCarousel = ({
       if (nextProgress >= 100) {
         progressValueRef.current = 0;
         setProgress(0);
-        setCurrentSlide((prev) => (prev + 1) % customSlides.length);
+        setCurrentSlide((prev) => (prev + 1) % slideItems.length);
         return;
       }
 
@@ -129,9 +131,9 @@ const HeroCarousel = ({
     return () => {
       if (progressRef.current) clearInterval(progressRef.current);
     };
-  }, [isPlaying, autoPlayInterval]);
+  }, [isPlaying, autoPlayInterval, slideItems.length]);
 
-  const slide = customSlides[currentSlide];
+  const slide = slideItems[currentSlide] || slideItems[0];
 
   return (
     <section
@@ -189,16 +191,16 @@ const HeroCarousel = ({
         </span>
         <span className="w-8 h-px bg-white/25" />
         <span className="text-white/35 font-mono text-xs tracking-[0.25em] uppercase">
-          {String(customSlides.length).padStart(2, "0")}
+          {String(slideItems.length).padStart(2, "0")}
         </span>
       </div> */}
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex h-full items-center pt-20 md:pt-0">
+      <div className="relative z-10 flex h-full items-center pt-20 md:pb-16 md:pt-0 xl:pb-20">
         <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16">
-          <div className="max-w-[680px]">
-            <AnimatePresence mode="wait">
-              <motion.div key={currentSlide} className="space-y-4 sm:space-y-5 md:space-y-7">
+          <div className="max-w-[720px]">
+            <AnimatePresence initial={false} mode="sync">
+              <motion.div key={currentSlide} className="space-y-4 sm:space-y-5 md:space-y-5 xl:space-y-6">
 
                 {/* Accent line */}
                 <motion.div
@@ -232,7 +234,7 @@ const HeroCarousel = ({
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="max-w-[12ch] text-[34px] font-extrabold leading-[1.02] tracking-normal text-white sm:max-w-[14ch] sm:text-5xl md:max-w-3xl md:text-4xl md:leading-[0.98] lg:text-5xl xl:text-6xl"
+                  className="max-w-[12ch] text-[34px] font-extrabold leading-[1.02] tracking-[-0.035em] text-white sm:max-w-[14ch] sm:text-5xl md:max-w-3xl md:text-[clamp(2.75rem,4.3vw,4.25rem)] md:leading-[0.98]"
                   
                 >
                   {slide.title}
@@ -246,7 +248,7 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="max-w-[34rem] text-[15px] font-medium leading-7 tracking-normal text-white/90 sm:text-base md:text-sm lg:text-base"
+                    className="max-w-[36rem] text-[15px] font-medium leading-7 tracking-normal text-white/82 sm:text-base md:text-[15px] lg:text-base"
                   >
                     {slide.description}
                   </motion.p>
@@ -260,7 +262,7 @@ const HeroCarousel = ({
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="grid grid-cols-2 gap-3 pt-2 sm:flex sm:flex-wrap md:gap-4"
+                    className="grid grid-cols-2 gap-3 pt-1 sm:flex sm:flex-wrap md:gap-3"
                   >
                     <Button
                       asChild
@@ -301,7 +303,7 @@ const HeroCarousel = ({
 
         {/* Dot indicators */}
         <div className="flex items-center gap-2">
-          {customSlides.map((_, i) => (
+          {slideItems.map((_, i) => (
             <button
               key={i}
               onClick={() => goToSlide(i)}
@@ -354,7 +356,7 @@ const HeroCarousel = ({
           Since 1977
         </p>
         <p className="text-white/35 text-[10px] md:text-xs tracking-wider mt-0.5">
-          {yearsExperience}+ Years of Excellence
+          {yearsExperience} Years Operating
         </p>
         <p className="text-white/25 text-[9px] md:text-[10px] tracking-widest uppercase mt-0.5">
           Oil · Gas · Power Infrastructure

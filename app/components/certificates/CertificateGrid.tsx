@@ -4,40 +4,71 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import {  Eye, Download, X } from 'lucide-react';
+import { AlertCircle, Download, Eye, Minus, Plus, RotateCcw, RotateCw, X } from 'lucide-react';
 import { Certification } from '@/types/certification';
+
+function isImageCertificate(src?: string | null) {
+  if (!src) return false;
+
+  const cleanSrc = src.split('?')[0].toLowerCase();
+  if (cleanSrc.endsWith('.pdf') || cleanSrc.includes('/raw/upload/')) return false;
+
+  return /\.(avif|gif|jpe?g|png|svg|webp)$/i.test(cleanSrc) || cleanSrc.includes('/image/upload/');
+}
 
 export default function CertificateGrid() {
   const [certificates, setCertificates] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [modalZoom, setModalZoom] = useState(1);
+  const [modalRotation, setModalRotation] = useState(0);
 
   useEffect(() => {
+    setMounted(true);
     fetchCertificates();
   }, []);
 
   const fetchCertificates = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/certifications`);
+      const res = await fetch('/api/certifications', {
+        cache: 'no-store',
+        headers: { Accept: 'application/json' },
+      });
       const data = await res.json();
       if (data.success) {
         // Filter only active certifications
         setCertificates(data.data.filter((cert: Certification) => cert.isActive));
       }
-    } catch (error) {
-      console.error('Error fetching certificates:', error);
+    } catch {
+      setCertificates([]);
     } finally {
       setLoading(false);
     }
   };
 
+  const openCertificate = (cert: Certification) => {
+    setModalZoom(1);
+    setModalRotation(0);
+    setSelectedCert(cert);
+  };
+
+  const gridClassName = certificates.length === 1
+    ? 'mx-auto grid max-w-[720px] grid-cols-1 gap-7'
+    : 'mx-auto grid max-w-7xl grid-cols-1 gap-7 lg:grid-cols-2';
+  const selectedIsImage = selectedCert ? isImageCertificate(selectedCert.src) : false;
+
+  if (!mounted) {
+    return null;
+  }
+
   if (loading) {
     return (
-      <div className="py-16 md:py-24 bg-white">
+      <div className="bg-[#f6f8fc] py-10 md:py-14">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-[#eef4ff] animate-pulse rounded-xl h-48" />
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-7 lg:grid-cols-2">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-[72vh] min-h-[560px] animate-pulse rounded-lg border border-[#d8e4f5] bg-white lg:h-[78vh] lg:min-h-[720px]" />
             ))}
           </div>
         </div>
@@ -47,93 +78,54 @@ export default function CertificateGrid() {
 
   return (
     <>
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-10 md:py-14 bg-[#f6f8fc]">
         <div className="container mx-auto px-4 md:px-6">
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
-              <span className="text-sm font-semibold text-red-700 tracking-wider">
-                OUR CREDENTIALS
-              </span>
-              <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--brand-navy)] mb-4">
-              Certifications &{" "}
-              <span className="text-red-600">Accreditations</span>
-            </h1>
-            <p className="text-[var(--brand-muted)] text-lg">
-              Recognized for excellence in quality, safety, and environmental management
-            </p>
-          </div>
-
-          {/* Certifications Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className={gridClassName}>
             {certificates.map((cert, index) => (
-              <motion.div
+              <motion.button
+                type="button"
                 key={cert.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative bg-white rounded-xl border border-[#d8e4f5] p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer"
-                onClick={() => setSelectedCert(cert)}
+                transition={{ duration: 0.45, delay: index * 0.06 }}
+                className="group relative block overflow-hidden rounded-lg border border-[#cbdcf3] bg-white p-3 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#8eabd3] hover:shadow-2xl hover:shadow-[#0b1533]/12 focus:outline-none focus:ring-4 focus:ring-[#2a7de1]/20 md:p-4"
+                onClick={() => openCertificate(cert)}
+                aria-label={`Open ${cert.title}`}
               >
-                {/* Image Container */}
-                <div className="relative h-32 mb-4">
-                  <Image
-                    src={cert.src}
-                    alt={cert.title}
-                    fill
-                    className="object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                
-                {/* Title */}
-                <h3 className="text-sm font-semibold text-[var(--brand-navy)] text-center mb-2 line-clamp-2">
-                  {cert.title}
-                </h3>
-                
-                {/* Short Label */}
-                <p className="text-xs text-red-600 text-center font-medium">
-                  {cert.shortLabel}
-                </p>
+                <span className="sr-only">{cert.title}</span>
 
-                {/* Overlay on Hover */}
-                <div className="absolute inset-0 bg-[var(--brand-navy)]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
-                  <button className="bg-white text-[var(--brand-navy)] px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 hover:bg-red-600 hover:text-white transition-colors">
-                    <Eye className="w-4 h-4" />
-                    View Details
-                  </button>
+                <div className="relative h-[72vh] min-h-[560px] overflow-hidden rounded-md border border-[#e4ecf7] bg-[#f9fbff] shadow-inner lg:h-[78vh] lg:min-h-[720px]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(42,125,225,0.09),_transparent_34%)]" />
+
+                  <div className="relative z-10 flex h-full w-full items-center justify-center bg-white p-2">
+                    {isImageCertificate(cert.src) ? (
+                      <Image
+                        src={cert.src}
+                        alt={cert.title}
+                        width={1400}
+                        height={1980}
+                        priority={index < 2}
+                        sizes={certificates.length === 1 ? '(max-width: 768px) 100vw, 720px' : '(max-width: 1024px) 100vw, 50vw'}
+                        className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.015]"
+                      />
+                    ) : (
+                      <div className="flex h-full flex-col items-center justify-center p-8 text-center">
+                        <AlertCircle className="mb-4 h-10 w-10 text-red-600" />
+                        <p className="text-base font-bold text-[var(--brand-navy)]">Image required</p>
+                        <p className="mt-2 max-w-sm text-sm text-[var(--brand-muted)]">
+                          Re-upload this certificate as an image from admin.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </motion.div>
+
+                <div className="pointer-events-none absolute right-6 top-6 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/95 text-[var(--brand-blue)] shadow-lg shadow-[#0b1533]/12 transition-transform duration-300 group-hover:scale-105">
+                  <Eye className="h-5 w-5" />
+                </div>
+              </motion.button>
             ))}
           </div>
-
-          {/* Stats Section */}
-          {certificates.length > 0 && (
-            <div className="mt-16 bg-linear-to-r from-red-600 to-red-700 rounded-2xl p-8 text-center">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <div>
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    {certificates.length}+
-                  </div>
-                  <div className="text-red-100 text-sm">Active Certifications</div>
-                </div>
-                <div>
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    100%
-                  </div>
-                  <div className="text-red-100 text-sm">Compliance Rate</div>
-                </div>
-                <div className="hidden md:block">
-                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                    ISO Certified
-                  </div>
-                  <div className="text-red-100 text-sm">International Standards</div>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
@@ -143,7 +135,7 @@ export default function CertificateGrid() {
           className="fixed inset-0 z-50 bg-[var(--brand-navy)]/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedCert(null)}
         >
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-4 z-20">
             <button
               onClick={() => setSelectedCert(null)}
               className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
@@ -153,33 +145,88 @@ export default function CertificateGrid() {
           </div>
 
           <div
-            className="relative max-w-4xl w-full bg-white rounded-2xl overflow-hidden"
+            className="relative flex h-[92vh] max-h-[92vh] w-full max-w-[min(96vw,1800px)] flex-col overflow-hidden rounded-lg bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Image */}
-            <div className="relative aspect-video bg-[#eef4ff]">
-              <Image
-                src={selectedCert.src}
-                alt={selectedCert.title}
-                fill
-                className="object-contain p-8"
-              />
+            <div className="absolute left-4 top-4 z-20 flex flex-wrap items-center gap-2 rounded-lg border border-white/15 bg-[var(--brand-navy)]/90 p-2 text-white shadow-xl backdrop-blur">
+              <button
+                type="button"
+                onClick={() => setModalZoom((value) => Math.max(0.7, value - 0.15))}
+                className="flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-white/10"
+                aria-label="Zoom out"
+              >
+                <Minus className="h-4 w-4" />
+              </button>
+              <span className="min-w-14 text-center text-xs font-bold">{Math.round(modalZoom * 100)}%</span>
+              <button
+                type="button"
+                onClick={() => setModalZoom((value) => Math.min(2.4, value + 0.15))}
+                className="flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-white/10"
+                aria-label="Zoom in"
+              >
+                <Plus className="h-4 w-4" />
+              </button>
+              <div className="h-6 w-px bg-white/15" />
+              <button
+                type="button"
+                onClick={() => setModalRotation((value) => (value + 270) % 360)}
+                className="flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-white/10"
+                aria-label="Rotate left"
+              >
+                <RotateCcw className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setModalRotation((value) => (value + 90) % 360)}
+                className="flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-white/10"
+                aria-label="Rotate right"
+              >
+                <RotateCw className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Preview */}
+            <div className="relative min-h-0 flex-1 overflow-auto bg-[#eef4ff]">
+              {selectedIsImage ? (
+                <div className="flex min-h-full items-center justify-center p-4 md:p-6">
+                  <div
+                    className="flex h-full min-h-[520px] w-full items-center justify-center transition-transform duration-200"
+                    style={{ transform: `scale(${modalZoom}) rotate(${modalRotation}deg)` }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={selectedCert.src}
+                      alt={selectedCert.title}
+                      className="max-h-[calc(92vh-180px)] max-w-full object-contain"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex h-full min-h-[520px] flex-col items-center justify-center p-8 text-center">
+                  <AlertCircle className="mb-4 h-12 w-12 text-red-600" />
+                  <p className="text-2xl font-bold text-[var(--brand-navy)]">Image required</p>
+                  <p className="mt-2 max-w-lg text-sm text-[var(--brand-muted)]">
+                    This record is not an image URL. Re-upload the certificate as JPG, PNG, WEBP, SVG, GIF, or AVIF from admin.
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Info */}
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-2">
-                {selectedCert.title}
-              </h3>
-              <p className="text-red-600 font-medium mb-4">
-                {selectedCert.shortLabel}
-              </p>
+            <div className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+              <div>
+                <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-1">
+                  {selectedCert.title}
+                </h3>
+                <p className="text-red-600 font-semibold">
+                  {selectedCert.shortLabel}
+                </p>
+              </div>
               
-              {/* Download Button */}
               <a
                 href={selectedCert.src}
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-red-600 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-red-700"
               >
                 <Download className="w-4 h-4" />
                 Download Certificate

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, Facebook, Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowUpRight, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,7 +32,7 @@ const CURRENT_YEAR = 2026;
 
 const Footer2 = ({
   logo = {
-    src: "https://sigma-royal.com/images/logo-1.png",
+    src: "/logo.png",
     alt: "The Royal Utilisation Services (Pvt.) Ltd",
     title: "The Royal Utilisation Services (Pvt.) Ltd",
     url: "/",
@@ -53,12 +53,12 @@ const Footer2 = ({
     {
       title: "Services",
       links: [
-        { text: "Oil & Gas Pipeline", url: "/projects" },
-        { text: "Power Plant Construction", url: "/projects" },
-        { text: "Process Plants", url: "/projects" },
-        { text: "LPG Solutions", url: "/projects" },
-        { text: "HDD River Crossing", url: "/projects" },
-        { text: "Engineering Services", url: "/our-strength" },
+        { text: "Oil & Gas Pipeline", url: "/expertise#oil-gas" },
+        { text: "Power Plant Construction", url: "/expertise#power" },
+        { text: "Process Plants", url: "/expertise#process" },
+        { text: "LPG Solutions", url: "/expertise#engineering" },
+        { text: "HDD River Crossing", url: "/expertise#oil-gas" },
+        { text: "Engineering Services", url: "/expertise#engineering" },
       ],
     },
     {
@@ -66,7 +66,7 @@ const Footer2 = ({
       links: [
         { text: "Certifications", url: "/certificates" },
         { text: "Portfolio", url: "/portfolio" },
-        { text: "Media Gallery", url: "/projects" },
+        { text: "Media Gallery", url: "/media" },
         { text: "QHSE Policy", url: "/qhse-policy" },
         { text: "Careers", url: "/contact" },
         { text: "Downloads", url: "/portfolio" },
@@ -77,7 +77,7 @@ const Footer2 = ({
   bottomLinks = [
     { text: "Terms and Conditions", url: "/contact" },
     { text: "Privacy Policy", url: "/contact" },
-    { text: "Sitemap", url: "/sitemap.xml" },
+    { text: "Sitemap", url: "/sitemap" },
   ],
 }: Footer2Props) => {
   return (
@@ -91,22 +91,45 @@ const Footer2 = ({
           <div className="space-y-8">
             {/* Logo & Tagline */}
             <div className="space-y-4">
-              <Link href={logo.url} className="inline-block">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/8 ring-1 ring-white/12">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                <Link href={logo.url} className="group flex items-center gap-3">
+                  <span className="flex h-14 w-12 items-center justify-center rounded-xl bg-white/8 ring-1 ring-white/12 transition-colors group-hover:bg-white/12">
                     <Image
-                      src={logo.src}
+                      src="/logo.png"
                       alt={logo.alt}
-                      width={60}
-                      height={60}
-                      className="h-11 w-auto"
+                      width={40}
+                      height={58}
+                      className="h-10 w-auto"
                     />
                   </span>
-                  <span className="max-w-md text-lg font-extrabold leading-tight text-white md:text-2xl">{logo.title}</span>
-                </div>
-              </Link>
+                  <span className="max-w-52 text-base font-extrabold leading-tight text-white md:text-lg">
+                    The Royal Utilisation
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.1em] text-red-300">
+                      Services (Pvt.) Ltd
+                    </span>
+                  </span>
+                </Link>
+                <span className="hidden h-10 w-px bg-white/15 sm:block" />
+                <Link href="/preface" className="group flex items-center gap-3">
+                  <span className="flex h-14 w-12 items-center justify-center rounded-xl bg-white/8 ring-1 ring-white/12 transition-colors group-hover:bg-white/12">
+                    <Image
+                      src="/sigma-logo.png"
+                      alt="Sigma Construction Company"
+                      width={36}
+                      height={61}
+                      className="h-10 w-auto"
+                    />
+                  </span>
+                  <span className="max-w-48 text-base font-extrabold leading-tight text-white md:text-lg">
+                    Sigma Construction
+                    <span className="mt-1 block text-[10px] uppercase tracking-[0.1em] text-amber-200">
+                      Company
+                    </span>
+                  </span>
+                </Link>
+              </div>
               <p className="max-w-xl text-sm leading-7 text-blue-50/85 md:text-base">
-                Pioneers in energy sector with 46+ years of excellence  in Oil, <br /> Gas & Power infrastructure development.
+                Operating since 1977 across oil, gas and power infrastructure development.
               </p>
             </div>
 
@@ -185,14 +208,14 @@ const Footer2 = ({
             <div className="space-y-4">
               <h3 className="text-base font-extrabold text-blue-100">Connect With Us</h3>
               <div className="flex gap-3">
-                <a href="#" aria-label="Facebook" className="rounded-lg bg-white/8 p-2.5 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-red-600 hover:ring-red-500/40">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href="#" aria-label="LinkedIn" className="rounded-lg bg-white/8 p-2.5 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-red-600 hover:ring-red-500/40">
+                <a
+                  href="https://bd.linkedin.com/company/the-royal-utilisation-services-pvt-ltd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="The Royal Utilisation Services on LinkedIn"
+                  className="rounded-lg bg-white/8 p-2.5 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-red-600 hover:ring-red-500/40"
+                >
                   <Linkedin className="h-5 w-5" />
-                </a>
-                <a href="#" aria-label="Twitter" className="rounded-lg bg-white/8 p-2.5 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-red-600 hover:ring-red-500/40">
-                  <Twitter className="h-5 w-5" />
                 </a>
                 <a href="mailto:info@sigma-royal.com" aria-label="Email" className="rounded-lg bg-white/8 p-2.5 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-red-600 hover:ring-red-500/40">
                   <Mail className="h-5 w-5" />

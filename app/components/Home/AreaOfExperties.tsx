@@ -27,12 +27,15 @@ interface ExpertiseAreaProps {
 
 interface AreaOfExpertiseProps {
   className?: string;
+  heading?: string;
+  description?: string;
+  showHeader?: boolean;
 }
 
 // Define specific tab keys as a type
 type ExpertiseTab = "oil-gas" | "power" | "process" | "engineering";
 
-const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
+const AreaOfExpertise = ({ className, heading, description, showHeader = true }: AreaOfExpertiseProps) => {
   const [isMobile, setIsMobile] = useState(false);
   const ref = useRef(null);
   const stackRef = useRef(null);
@@ -183,40 +186,48 @@ const AreaOfExpertise = ({ className }: AreaOfExpertiseProps) => {
         className
       )}
     >
+      {(["oil-gas", "power", "process", "engineering"] as ExpertiseTab[]).map((anchor) => (
+        <span key={anchor} id={anchor} className="pointer-events-none absolute top-0 scroll-mt-28" />
+      ))}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.045)_1px,transparent_1px)] bg-size-[56px_56px]" />
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-600/35 to-transparent" />
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
-        {/* Header Section */}
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={containerVariants}
-          className="mx-auto mb-8 grid max-w-7xl gap-6 md:mb-12 md:grid-cols-[0.95fr_1.05fr] md:items-end"
-        >
-          <div>
-            <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-900 shadow-sm">
-              <Sparkles className="h-4 w-4 text-blue-700" />
-              <span>Core Competencies</span>
-            </motion.div>
-
-            <motion.h2
-              variants={fadeUpVariants}
-              className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-[var(--brand-navy)] md:text-5xl lg:text-6xl"
-            >
-              Areas of <span className="brand-text-gradient">Expertise</span>
-            </motion.h2>
-            <div className="mt-5 h-1 w-28 rounded-full bg-linear-to-r from-blue-600 via-blue-700 to-red-600" />
-          </div>
-
-          <motion.p 
-            variants={itemVariants}
-            className="max-w-2xl text-base font-medium leading-8 text-[var(--brand-muted)] md:justify-self-end md:text-lg"
+        {showHeader && (
+          <motion.div
+            initial="hidden"
+            animate={controls}
+            variants={containerVariants}
+            className="mx-auto mb-8 grid max-w-7xl gap-6 md:mb-12 md:grid-cols-[0.95fr_1.05fr] md:items-end"
           >
-            {yearsExperience}+ years of specialized knowledge in energy infrastructure development, 
-            delivering innovative solutions with uncompromising quality and safety.
-          </motion.p>
-        </motion.div>
+            <div>
+              <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-900 shadow-sm">
+                <Sparkles className="h-4 w-4 text-blue-700" />
+                <span>Core Competencies</span>
+              </motion.div>
+
+              <motion.h2
+                variants={fadeUpVariants}
+                className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-[var(--brand-navy)] md:text-5xl lg:text-6xl"
+              >
+                {heading || <>Areas of <span className="brand-text-gradient">Expertise</span></>}
+              </motion.h2>
+              <div className="mt-5 h-1 w-28 rounded-full bg-linear-to-r from-blue-600 via-blue-700 to-red-600" />
+            </div>
+
+            <motion.p
+              variants={itemVariants}
+              className="max-w-2xl text-base font-medium leading-8 text-[var(--brand-muted)] md:justify-self-end md:text-lg"
+            >
+              {description || (
+                <>
+                  {yearsExperience} years of specialized knowledge in energy infrastructure development,
+                  delivering innovative solutions with uncompromising quality and safety.
+                </>
+              )}
+            </motion.p>
+          </motion.div>
+        )}
 
         {/* Scroll Stack */}
         <motion.div

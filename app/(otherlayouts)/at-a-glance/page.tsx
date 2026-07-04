@@ -8,43 +8,50 @@ import {
   Clock,
   MapPin,
   Briefcase,
-  HardHat,
   CheckCircle,
-  TrendingUp,
   Users,
   Landmark,
   Mail,
   Globe,
   User,
-  Phone,
   FileText,
   Activity,
   Target,
   Award
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import yearsExperience from '@/lib/yearsExperience';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 export default function AtAGlancePage() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const stats = useCompanyStats();
+  const operatingYears = stats?.yearsOperating ?? yearsExperience;
 
   // Company information organized by sections
   const companyInfo = {
     basic: [
       { icon: Building2, label: 'Name of the Company', value: 'The Royal Utilisation Services (Pvt.) Ltd.' },
       { icon: Calendar, label: 'Date of Incorporation', value: '1977' },
-      { icon: Clock, label: 'Total Experiences', value: '47 Years' },
+      { icon: Clock, label: 'Years Operating', value: `${operatingYears} Years` },
       { icon: MapPin, label: 'Business Office', value: 'House#383, Road#28, Dhaka-1205' },
       { icon: Briefcase, label: 'Status of the Company', value: 'Private Limited Company' }
     ],
     business: [
       { icon: Target, label: 'Business Line', value: 'Infrastructure Development', subvalue: 'Engineering and Construction Services in Oil & Gas Sector, Power Sector, Process Plant etc.' },
-      { icon: CheckCircle, label: 'Major Projects Completed', value: 'More than 50 projects during last 5 Years' },
-      { icon: Activity, label: 'On-going Projects', value: '7 Projects' }
+      ...(stats && stats.projects.completed > 0
+        ? [{ icon: CheckCircle, label: 'Completed Projects', value: `${stats.projects.completed} Projects` }]
+        : []),
+      ...(stats && stats.projects.ongoing > 0
+        ? [{ icon: Activity, label: 'On-going Projects', value: `${stats.projects.ongoing} Projects` }]
+        : []),
     ],
     leadership: [
       { icon: User, label: 'Director & CEO', value: 'Zulfiquer Haider' },
-      { icon: Users, label: 'Total Employee (Permanent)', value: '195' }
+      ...(stats && stats.teamMembers > 0
+        ? [{ icon: Users, label: 'Published Team Members', value: String(stats.teamMembers) }]
+        : []),
     ],
     contact: [
       { icon: Landmark, label: 'Bankers', value: 'Pubali Bank Limited' },
@@ -55,11 +62,11 @@ export default function AtAGlancePage() {
 
   // Key metrics for cards
   const metrics = [
-    { icon: Calendar, value: '47', label: 'Years of Experience', suffix: 'Years', color: 'from-red-500 to-red-600' },
-    { icon: CheckCircle, value: '50+', label: 'Projects (5 Years)', suffix: 'Completed', color: 'from-blue-500 to-blue-600' },
-    { icon: Activity, value: '7', label: 'Ongoing Projects', suffix: 'Active', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-    { icon: Users, value: '195', label: 'Permanent Employees', suffix: 'Staff', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' }
-  ];
+    { icon: Calendar, value: operatingYears, label: 'Years Operating', alwaysShow: true },
+    { icon: CheckCircle, value: stats?.projects.completed ?? 0, label: 'Completed Projects' },
+    { icon: Activity, value: stats?.projects.ongoing ?? 0, label: 'Ongoing Projects' },
+    { icon: Users, value: stats?.teamMembers ?? 0, label: 'Team Members' },
+  ].filter((metric) => metric.alwaysShow || metric.value > 0);
 
   // Animation variants
   const fadeInUp = {
@@ -285,7 +292,7 @@ export default function AtAGlancePage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-white">Private Limited Company</h3>
-                    <p className="text-red-100">Incorporated in 1977 | 47+ Years of Excellence</p>
+                    <p className="text-red-100">Incorporated in 1977 | {operatingYears} years operating</p>
                   </div>
                 </div>
                 

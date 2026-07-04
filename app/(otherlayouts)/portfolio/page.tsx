@@ -1,73 +1,63 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { 
-  FileText, 
   Download, 
-  Eye, 
   ChevronRight,
   BookOpen,
   Briefcase,
   Building2,
-  HardHat,
   Award,
-  Shield,
+  Users,
   Calendar,
-  ArrowRight,
-  X
+  ExternalLink
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import yearsExperience from '@/lib/yearsExperience';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 export default function PortfolioPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const brochureUrl = '/Brochure_Royal_Final.pdf';
+  const companyStats = useCompanyStats();
 
-  // Company statistics
-  const stats = [
-    { icon: Calendar, value: '47+', label: 'Years Experience' },
-    { icon: Briefcase, value: '500+', label: 'Projects Completed' },
-    { icon: Building2, value: '100+', label: 'Happy Clients' },
-    { icon: Award, value: '25+', label: 'Industry Awards' }
-  ];
-
-  // Project categories
-  const categories = [
-    { name: 'Oil & Gas', count: '156 Projects', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' },
-    { name: 'Power Sector', count: '89 Projects', color: 'from-blue-500 to-blue-700' },
-    { name: 'Pipeline Construction', count: '234 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-    { name: 'LPG Systems', count: '67 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-    { name: 'Marine Facilities', count: '34 Projects', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-    { name: 'Storage Tanks', count: '42 Projects', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' }
-  ];
-
-  // Featured projects
-  const featuredProjects = [
+  const verifiedStats = [
     {
-      title: '588.31 MW CCPP Project',
-      location: 'Sonargaon, Narayanganj',
-      description: 'Combined Cycle Power Plant Construction',
-      year: '2023',
-      category: 'Power Sector'
+      icon: Calendar,
+      value: companyStats?.yearsOperating ?? yearsExperience,
+      label: 'Years Operating',
+      alwaysShow: true,
     },
     {
-      title: '60 MMSCFD Gas Processing',
-      location: 'Brahmanbaria',
-      description: 'Gas Processing & Distribution Facility',
-      year: '2022',
-      category: 'Oil & Gas'
+      icon: Briefcase,
+      value: companyStats?.projects.total ?? 0,
+      label: 'Projects Recorded',
     },
     {
-      title: 'Auto LPG Dispensing Station',
-      location: 'Multiple Locations',
-      description: 'Network of ALDS Across Bangladesh',
-      year: '2024',
-      category: 'LPG Systems'
-    }
-  ];
+      icon: Building2,
+      value: companyStats?.clients ?? 0,
+      label: 'Active Clients',
+    },
+    {
+      icon: Users,
+      value: companyStats?.teamMembers ?? 0,
+      label: 'Team Members',
+    },
+    {
+      icon: Award,
+      value: companyStats?.certifications ?? 0,
+      label: 'Active Certifications',
+    },
+  ].filter((stat) => stat.alwaysShow || stat.value > 0);
+
+  const sectorLabel = (sector: string) =>
+    sector
+      .toLowerCase()
+      .split('_')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
 
   // Animation variants
   const fadeInUp = {
@@ -87,7 +77,7 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
+      <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-[#f7faff] to-white py-8 md:py-12">
         {/* Background Elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -97,55 +87,80 @@ export default function PortfolioPage() {
             variants={staggerContainer}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="space-y-16"
+            className="space-y-10 md:space-y-12"
           >
-            {/* Header */}
-            <div className="text-center max-w-3xl mx-auto">
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full mb-4">
-                <BookOpen className="w-4 h-4 text-red-600" />
-                <span className="text-sm font-semibold text-red-700 tracking-wider">OUR PORTFOLIO</span>
-              </motion.div>
-              
-              <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-                <span className="text-[var(--brand-navy)]">Company</span>
-                <br />
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
-                  Portfolio
-                </span>
-              </motion.h1>
-              
-              <motion.p variants={fadeInUp} className="text-lg text-[var(--brand-muted)]">
-                Explore our comprehensive portfolio showcasing 47+ years of excellence in energy infrastructure development
-              </motion.p>
-            </div>
+            {/* Direct PDF Portfolio */}
+            <motion.section
+              variants={fadeInUp}
+              aria-labelledby="portfolio-document-title"
+              className="mx-auto w-full max-w-[1440px] overflow-hidden rounded-2xl border border-blue-950/10 bg-white shadow-[0_24px_80px_rgba(8,32,74,0.16)]"
+            >
+              <div className="flex flex-col gap-4 border-b border-blue-950/10 bg-[var(--brand-navy)] px-4 py-4 text-white sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 ring-1 ring-white/15">
+                    <BookOpen className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <h2 id="portfolio-document-title" className="text-base font-extrabold sm:text-lg">
+                      Royal &amp; Sigma Company Portfolio
+                    </h2>
+                    <p className="mt-0.5 text-xs font-medium text-blue-100/75">
+                      Official corporate brochure · 60 pages
+                    </p>
+                  </div>
+                </div>
 
-            {/* CTA Buttons */}
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                <Eye className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                Preview Portfolio
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <a
-                href="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"
-                download
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-[#f7faff] text-[var(--brand-navy)] rounded-xl font-semibold border-2 border-[#d8e4f5] hover:border-red-300 transition-all duration-300 shadow-lg hover:shadow-xl"
-              >
-                <Download className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                Download PDF
-              </a>
-            </motion.div>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={brochureUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/8 px-3.5 py-2 text-xs font-bold text-white transition-colors hover:bg-white/15"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Open full screen
+                  </a>
+                  <a
+                    href={brochureUrl}
+                    download="Brochure_Royal_Final.pdf"
+                    className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-3.5 py-2 text-xs font-bold text-white transition-colors hover:bg-red-700"
+                  >
+                    <Download className="h-4 w-4" />
+                    Download
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-[#e8edf5] p-2 sm:p-3">
+                <object
+                  data={`${brochureUrl}#page=1&zoom=page-width&toolbar=1&navpanes=0`}
+                  type="application/pdf"
+                  className="h-[68vh] min-h-[520px] w-full rounded-xl bg-white lg:h-[82vh] lg:min-h-[760px]"
+                  aria-label="The Royal Utilisation Services and Sigma Construction Company corporate portfolio"
+                >
+                  <div className="flex min-h-[520px] flex-col items-center justify-center rounded-xl bg-white p-8 text-center">
+                    <BookOpen className="h-10 w-10 text-blue-900" />
+                    <p className="mt-4 max-w-md font-bold text-[var(--brand-navy)]">
+                      Your browser cannot display the embedded brochure.
+                    </p>
+                    <a
+                      href={brochureUrl}
+                      className="mt-4 inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-bold text-white"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Open the portfolio PDF
+                    </a>
+                  </div>
+                </object>
+              </div>
+            </motion.section>
 
             {/* Stats Grid */}
-            <motion.div variants={fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {stats.map((stat, index) => {
+            <motion.div variants={fadeInUp} className="mx-auto grid max-w-5xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
+              {verifiedStats.map((stat) => {
                 const Icon = stat.icon;
                 return (
-                  <div key={index} className="text-center p-6 bg-white rounded-xl shadow-sm border border-[#eef4ff]">
+                  <div key={stat.label} className="text-center p-6 bg-white rounded-xl shadow-sm border border-[#eef4ff]">
                     <div className="inline-flex p-3 bg-red-50 rounded-lg mb-3">
                       <Icon className="w-6 h-6 text-red-600" />
                     </div>
@@ -156,91 +171,50 @@ export default function PortfolioPage() {
               })}
             </motion.div>
 
-            {/* Categories Grid */}
-            <motion.div variants={fadeInUp} className="space-y-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)] text-center">
-                Project <span className="text-red-600">Categories</span>
-              </h2>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.map((category, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className={cn(
-                      "p-6 rounded-xl text-white cursor-pointer bg-linear-to-br",
-                      category.color
-                    )}
-                  >
-                    <h3 className="text-xl font-bold mb-2">{category.name}</h3>
-                    <p className="text-white/90">{category.count}</p>
-                    <div className="mt-4 flex items-center gap-2 text-white/80 text-sm">
-                      <span>View Projects</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            {companyStats && companyStats.projects.bySector.length > 0 && (
+              <motion.div variants={fadeInUp} className="space-y-8">
+                <h2 className="text-center text-2xl font-bold text-[var(--brand-navy)] md:text-3xl">
+                  Recorded Project <span className="text-red-600">Sectors</span>
+                </h2>
 
-            {/* Featured Projects */}
-            <motion.div variants={fadeInUp} className="space-y-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)] text-center">
-                Featured <span className="text-red-600">Projects</span>
-              </h2>
-              
-              <div className="grid md:grid-cols-3 gap-6">
-                {featuredProjects.map((project, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -5 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden border border-[#eef4ff]"
-                  >
-                    <div className="h-2 bg-red-600" />
-                    <div className="p-6">
-                      <div className="flex justify-between items-start mb-4">
-                        <span className="text-xs font-semibold text-red-600 bg-red-50 px-2 py-1 rounded-full">
-                          {project.category}
-                        </span>
-                        <span className="text-sm text-[var(--brand-muted)]">{project.year}</span>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {companyStats.projects.bySector.map((sector) => (
+                    <Link
+                      key={sector.sector}
+                      href="/projects"
+                      className="group rounded-xl border border-blue-950/10 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <div>
+                          <h3 className="text-lg font-bold text-[var(--brand-navy)]">
+                            {sectorLabel(sector.sector)}
+                          </h3>
+                          <p className="mt-2 text-sm text-[var(--brand-muted)]">
+                            {sector.count} recorded {sector.count === 1 ? 'project' : 'projects'}
+                          </p>
+                        </div>
+                        <ChevronRight className="h-5 w-5 text-blue-700 transition-transform group-hover:translate-x-1" />
                       </div>
-                      <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-2">{project.title}</h3>
-                      <p className="text-sm text-[var(--brand-muted)] mb-3">{project.location}</p>
-                      <p className="text-sm text-[var(--brand-muted)]">{project.description}</p>
-                      <button className="mt-4 text-red-600 hover:text-red-700 font-medium text-sm inline-flex items-center gap-1 group">
-                        Read More
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </button>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
             {/* Timeline/Experience Section */}
             <motion.div variants={fadeInUp} className="bg-[var(--brand-navy)] text-white rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                  <h3 className="text-3xl font-bold mb-4">{yearsExperience}+ Years of Excellence</h3>
+                  <h3 className="text-3xl font-bold mb-4">Operating since 1977</h3>
                   <p className="text-blue-50/80 mb-6">
-                    Since 1977, we have been at the forefront of Bangladesh&apos;s energy sector, delivering world-class infrastructure projects that power the nation&apos;s growth.
+                    Company history is presented alongside live database counts for projects, clients, team members and certifications.
                   </p>
-                  <div className="flex items-center gap-4">
-                    <div className="flex -space-x-2">
-                      {[1,2,3,4].map((i) => (
-                        <div key={i} className="w-8 h-8 rounded-full bg-blue-900 border-2 border-[var(--brand-navy)]" />
-                      ))}
-                    </div>
-                    <span className="text-sm text-[var(--brand-muted)]">Trusted by industry leaders</span>
-                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {['1977', '1990', '2005', '2024'].map((year, index) => (
-                    <div key={index} className="text-center p-4 bg-blue-950/70 rounded-xl">
-                      <div className="text-2xl font-bold text-red-400">{year}</div>
-                      <p className="text-xs text-[var(--brand-muted)]">Milestone Year</p>
-                    </div>
-                  ))}
+                <div className="rounded-xl border border-white/10 bg-blue-950/70 p-6 text-center">
+                  <div className="text-4xl font-bold text-red-400">
+                    {companyStats?.yearsOperating ?? yearsExperience}
+                  </div>
+                  <p className="mt-2 text-sm text-blue-100/70">Years operating</p>
                 </div>
               </div>
             </motion.div>
@@ -248,56 +222,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* PDF Preview Modal */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[var(--brand-navy)]/95 backdrop-blur-sm p-4"
-            onClick={() => setIsModalOpen(false)}
-          >
-            <div className="absolute top-4 right-4 z-10">
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="w-10 h-10 bg-blue-950/70 hover:bg-blue-900 rounded-full flex items-center justify-center transition-colors"
-              >
-                <X className="w-5 h-5 text-white" />
-              </button>
-            </div>
-
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative w-full max-w-5xl h-[80vh] bg-[var(--brand-navy)] rounded-xl overflow-hidden">
-                {/* PDF Viewer */}
-                <iframe
-                  src="https://drive.google.com/file/d/1Rhyp8qdIHwW8lpSuCrxi5oZP2tiK6e1l/view?usp=sharing"
-                  className="w-full h-full"
-                  title="Company Portfolio"
-                />
-                
-                {/* Download Overlay */}
-                <div className="absolute bottom-4 right-4">
-                  <a
-                    href="/companyPortfolio.pdf"
-                    download
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-colors shadow-lg"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download PDF
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

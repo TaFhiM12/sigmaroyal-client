@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { QhsePolicyResponse } from "@/types/qhse";
 import { Shield, CheckCircle, Award, TrendingUp, Heart, Globe, Users, Sparkles, FileText, Target, Leaf } from "lucide-react";
 import { apiUrl, publicApiFetchOptions } from "@/lib/api";
@@ -32,7 +31,7 @@ export default async function QhsePolicyPage() {
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-500/20 mb-6 animate-pulse">
             <Shield className="w-10 h-10 text-red-400" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Policy Not Found</h1>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Policy Not Found</h2>
           <p className="text-red-200 text-lg mb-2">Our QHSE guidelines are being updated</p>
           <p className="text-[var(--brand-muted)]">Please check back soon or contact our compliance team</p>
         </div>
@@ -130,7 +129,7 @@ export default async function QhsePolicyPage() {
               <div className="bg-linear-to-br from-[var(--brand-navy)] to-[var(--brand-navy)] rounded-2xl shadow-xl p-6 text-white">
                 <div className="flex items-center gap-3 mb-4">
                   <FileText className="w-6 h-6 text-red-400" />
-                  <h2 className="text-xl font-bold">{policy.sectionTitle}</h2>
+                  <h2 className="text-xl font-bold">Management standards</h2>
                 </div>
                 <div className="space-y-3 mt-4">
                   <div className="flex items-center gap-2 text-sm text-blue-50/80">
@@ -140,10 +139,6 @@ export default async function QhsePolicyPage() {
                   <div className="flex items-center gap-2 text-sm text-blue-50/80">
                     <CheckCircle className="w-4 h-4 text-[var(--brand-blue)]" />
                     <span>ISO 14001:2015 Certified</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-blue-50/80">
-                    <CheckCircle className="w-4 h-4 text-[var(--brand-blue)]" />
-                    <span>Annual Review: 2024</span>
                   </div>
                 </div>
               </div>
@@ -158,27 +153,6 @@ export default async function QhsePolicyPage() {
                 </p>
               </div>
 
-              {/* Stats Card */}
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-[#d8e4f5]">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-3 rounded-lg hover:bg-[#f7faff] transition-colors">
-                    <div className="text-2xl font-bold text-red-600">0</div>
-                    <div className="text-xs text-[var(--brand-muted)]">Lost Time Injuries</div>
-                  </div>
-                  <div className="text-center p-3 rounded-lg hover:bg-[#f7faff] transition-colors">
-                    <div className="text-2xl font-bold text-red-600">100%</div>
-                    <div className="text-xs text-[var(--brand-muted)]">Compliance Rate</div>
-                  </div>
-                  <div className="text-center p-3 rounded-lg hover:bg-[#f7faff] transition-colors">
-                    <div className="text-2xl font-bold text-red-600">500+</div>
-                    <div className="text-xs text-[var(--brand-muted)]">Trainings</div>
-                  </div>
-                  <div className="text-center p-3 rounded-lg hover:bg-[#f7faff] transition-colors">
-                    <div className="text-2xl font-bold text-red-600">15+</div>
-                    <div className="text-xs text-[var(--brand-muted)]">Safety Awards</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 

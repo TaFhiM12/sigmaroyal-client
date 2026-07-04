@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { HytorcCategory } from "@/types/hytorc";
 import { Wrench, ArrowRight, Zap, Shield, Award, Sparkles, CheckCircle, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
@@ -85,6 +84,12 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
 
   return (
     <section className="min-h-screen bg-linear-to-b from-[#f7faff] via-white to-[#f7faff] pb-14">
+      {category.slug === "hydraulic" && (
+        <>
+          <span id="square-drive" className="pointer-events-none absolute scroll-mt-28" />
+          <span id="hex-drive" className="pointer-events-none absolute scroll-mt-28" />
+        </>
+      )}
       <div className="max-w-7xl mx-auto px-4 py-6 md:py-8">
         <div className="mb-5 flex flex-col gap-3 rounded-lg border border-[#d8e4f5] bg-white/90 px-4 py-3 shadow-sm md:flex-row md:items-center md:justify-between">
           <div className="flex min-w-0 flex-col gap-2 md:flex-row md:items-center md:gap-3">

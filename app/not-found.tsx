@@ -57,8 +57,8 @@ export default function NotFound() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { href: '/', label: 'Home' },
-                { href: '/about', label: 'About Us' },
-                { href: '/services', label: 'Services' },
+                { href: '/preface', label: 'About Us' },
+                { href: '/expertise', label: 'Expertise' },
                 { href: '/projects', label: 'Projects' },
                 { href: '/clients', label: 'Clients' },
                 { href: '/contact', label: 'Contact' },

@@ -2,21 +2,25 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView, useAnimation, Variants } from "framer-motion";
-import { Briefcase, Users, Target, Award, ChevronRight, Eye } from "lucide-react";
+import { Briefcase, Users, Target, Award, ChevronRight, Eye, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import yearsExperience from "@/lib/yearsExperience";
 import Link from "next/link";
+import { useCompanyStats } from "@/hooks/useCompanyStats";
 
 interface AboutUsProps {
   className?: string;
+  heading?: string;
+  body?: string;
 }
 
-const AboutUs = ({ className }: AboutUsProps) => {
+const AboutUs = ({ className, heading, body }: AboutUsProps) => {
   const ref = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const controls = useAnimation();
+  const companyStats = useCompanyStats();
 
   useEffect(() => {
     // Check if mobile for performance optimization
@@ -95,6 +99,34 @@ const AboutUs = ({ className }: AboutUsProps) => {
     }
   };
 
+  const verifiedStats = [
+    {
+      value: companyStats?.yearsOperating ?? yearsExperience,
+      label: "Years Operating",
+      icon: <Award className="h-6 w-6 md:h-8 md:w-8" />,
+      color: "from-blue-800 to-blue-600",
+      alwaysShow: true,
+    },
+    {
+      value: companyStats?.projects.total ?? 0,
+      label: "Projects Recorded",
+      icon: <Briefcase className="h-6 w-6 md:h-8 md:w-8" />,
+      color: "from-blue-950 to-blue-800",
+    },
+    {
+      value: companyStats?.clients ?? 0,
+      label: "Active Clients",
+      icon: <Building2 className="h-6 w-6 md:h-8 md:w-8" />,
+      color: "from-blue-800 to-blue-600",
+    },
+    {
+      value: companyStats?.teamMembers ?? 0,
+      label: "Team Members",
+      icon: <Users className="h-6 w-6 md:h-8 md:w-8" />,
+      color: "from-blue-950 to-blue-800",
+    },
+  ].filter((stat) => stat.alwaysShow || stat.value > 0);
+
   return (
     <section
       ref={ref}
@@ -145,19 +177,21 @@ const AboutUs = ({ className }: AboutUsProps) => {
               </div>
 
               <h2 className="section-title overflow-hidden">
-                <motion.span
-                  variants={fadeUpVariants}
-                  className="inline-block"
-                >
-                  Pioneering
-                </motion.span>
-                <br />
-                <motion.span
-                  variants={fadeUpVariants}
-                  className="brand-text-gradient inline-block"
-                >
-                  Energy Excellence
-                </motion.span>
+                {heading ? (
+                  <motion.span variants={fadeUpVariants} className="inline-block">
+                    {heading}
+                  </motion.span>
+                ) : (
+                  <>
+                    <motion.span variants={fadeUpVariants} className="inline-block">
+                      Pioneering
+                    </motion.span>
+                    <br />
+                    <motion.span variants={fadeUpVariants} className="brand-text-gradient inline-block">
+                      Energy Excellence
+                    </motion.span>
+                  </>
+                )}
               </h2>
               <motion.div
                 initial={{ scaleX: 0, transformOrigin: "left" }}
@@ -173,7 +207,11 @@ const AboutUs = ({ className }: AboutUsProps) => {
               />
 
               <div className="space-y-4">
-                <p className="section-copy">
+                {body ? (
+                  <p className="section-copy">{body}</p>
+                ) : (
+                  <>
+                  <p className="section-copy">
                   <span className="font-bold text-[var(--brand-navy)]">
                     The Royal Utilisation Services (Pvt.) Ltd
                   </span>
@@ -191,6 +229,8 @@ const AboutUs = ({ className }: AboutUsProps) => {
                   Oil, Gas & Power sector, delivering comprehensive solutions
                   that power the nation&apos;s growth.
                 </p>
+                  </>
+                )}
               </div>
             </motion.div>
 
@@ -272,32 +312,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
               variants={containerVariants}
               className="grid grid-cols-2 gap-4 md:gap-6"
             >
-              {[
-                {
-                  value: `${yearsExperience}+`,
-                  label: "Years Experience",
-                  icon: <Award className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-blue-800 to-blue-600",
-                },
-                {
-                  value: "500+",
-                  label: "Projects",
-                  icon: <Briefcase className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-blue-950 to-blue-800",
-                },
-                {
-                  value: "50+",
-                  label: "Engineers",
-                  icon: <Users className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-blue-800 to-blue-600",
-                },
-                {
-                  value: "100%",
-                  label: "Satisfaction",
-                  icon: <Target className="h-6 w-6 md:h-8 md:w-8" />,
-                  color: "from-blue-950 to-blue-800",
-                },
-              ].map((stat) => (
+              {verifiedStats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   variants={scaleVariants}
@@ -355,7 +370,7 @@ const AboutUs = ({ className }: AboutUsProps) => {
                 size={isMobile ? "default" : "lg"}
                 className="brand-button-primary group relative w-full overflow-hidden rounded-lg px-6 py-4 text-base transition-transform duration-300 hover:-translate-y-1 md:w-auto md:px-8 md:py-6 md:text-lg"
               >
-                <Link href="/about">
+                <Link href="/preface">
                   <span className="absolute inset-y-0 -left-16 w-12 rotate-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-80" />
                   <span className="mr-2 md:mr-3 text-xs sm:text-sm md:text-base lg:text-lg">Discover Our Journey</span>
                   <ChevronRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 md:group-hover:translate-x-2 transition-transform" />

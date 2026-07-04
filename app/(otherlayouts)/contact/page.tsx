@@ -36,27 +36,24 @@ const contactItems = [
 
 export default async function ContactPage() {
   const content = await getPageContent("contact");
-  const heading = content?.introTitle || "Feel free to reach out for project inquiries or support.";
-  const body = content?.introBody || "Reach out to our team for consultation, tender queries, technical support, or office directions. We respond with clear next steps.";
+  const summary =
+    content?.introBody ||
+    content?.introTitle ||
+    "Reach out for consultation, tender queries, technical support, or office directions. We respond with clear next steps.";
 
   return (
     <div className="min-h-screen bg-white">
       <section className="px-4 py-10 md:px-6 md:py-14 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
-          <div className="pt-2">
-            <div className="mb-5 inline-flex rounded-full bg-red-50 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-red-700 ring-1 ring-red-100">
-              Contact Info
+          <div>
+            <div className="mb-7 rounded-xl border border-[#d8e4f5] bg-[#f7faff] p-5">
+              <div className="text-xs font-extrabold uppercase tracking-[0.12em] text-red-700">
+                Direct channels
+              </div>
+              <p className="mt-2 max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)]">
+                {summary}
+              </p>
             </div>
-
-            <h1 className="max-w-4xl text-4xl font-extrabold leading-tight tracking-normal text-blue-950 md:text-5xl lg:text-6xl">
-              {heading}
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)] md:text-lg">
-              {body}
-            </p>
-
-            <div className="my-8 h-px max-w-3xl bg-[#d8e4f5]" />
 
             <div className="grid max-w-4xl gap-5 md:grid-cols-2">
               {contactItems.map((item) => (
@@ -80,7 +77,7 @@ export default async function ContactPage() {
 
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-[#d8e4f5] px-4 py-2 text-sm font-bold text-[var(--brand-copy)]">
               <Clock className="h-4 w-4 text-[var(--brand-blue)]" />
-              Closed now · Opens 9 AM Tuesday
+              Saturday–Thursday · 9:00 AM–10:00 PM
             </div>
           </div>
 

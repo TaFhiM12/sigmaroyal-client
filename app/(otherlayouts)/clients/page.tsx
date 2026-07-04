@@ -8,12 +8,6 @@ const ClientShowcase = dynamic(() => import('@/app/components/Clients/ClientShow
 const ClientStats = dynamic(() => import('@/app/components/Clients/ClientStats'), {
   loading: () => <ClientStatsSkeleton />,
 });
-const ClientTestimonials = dynamic(() => import('@/app/components/Clients/ClientTestimonials'), {
-  loading: () => <ClientTestimonialsSkeleton />,
-});
-const ClientPartners = dynamic(() => import('@/app/components/Clients/ClientPartnership'), {
-  loading: () => <ClientPartnersSkeleton />,
-});
 const ClientCTA = dynamic(() => import('@/app/components/Clients/ClientCTA'), {
   loading: () => <ClientCTASkeleton />,
 });
@@ -34,12 +28,6 @@ export default function ClientPage() {
       <Suspense fallback={<ClientStatsSkeleton />}>
         <ClientStats />
       </Suspense>
-      <Suspense fallback={<ClientTestimonialsSkeleton />}>
-        <ClientTestimonials />
-      </Suspense>
-      <Suspense fallback={<ClientPartnersSkeleton />}>
-        <ClientPartners />
-      </Suspense>
       <Suspense fallback={<ClientCTASkeleton />}>
         <ClientCTA />
       </Suspense>
@@ -53,14 +41,6 @@ function ClientShowcaseSkeleton() {
 
 function ClientStatsSkeleton() {
   return <div className="py-12 bg-[#f7faff]"><div className="container mx-auto px-4"><div className="grid grid-cols-4 gap-4"><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /></div></div></div>;
-}
-
-function ClientTestimonialsSkeleton() {
-  return <div className="py-20 bg-white"><div className="container mx-auto px-4"><div className="h-96 bg-[#eef4ff] rounded-2xl animate-pulse" /></div></div>;
-}
-
-function ClientPartnersSkeleton() {
-  return <div className="py-12 bg-[#f7faff]"><div className="container mx-auto px-4"><div className="h-32 bg-[#d8e4f5] rounded-xl animate-pulse" /></div></div>;
 }
 
 function ClientCTASkeleton() {

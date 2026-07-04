@@ -18,30 +18,24 @@ import {
   Shield,
   ChevronLeft,
   ChevronRight,
-  Maximize2,
   ExternalLink,
   Heart,
   Bookmark,
   Layers,
   Ruler,
   Factory,
-  Globe,
   Building2,
   Sparkles,
   Camera,
   ChevronDown,
   ChevronUp,
   Info,
-  TrendingUp,
-  HardHat,
   FileText,
   Linkedin,
   Twitter,
-  Facebook,
   Mail,
   Link2,
   Check,
-  ArrowUpRight
 } from 'lucide-react';
 import { Project } from '@/types/projects';
 
@@ -192,8 +186,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<'overview' | 'scope' | 'gallery'>('overview');
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [isModalReady, setIsModalReady] = useState(false);
   
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -225,30 +217,35 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const headerOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
   const headerY = useTransform(scrollYProgress, [0.1, 0.2], [-20, 0]);
 
-  // Mounting effect
-  useEffect(() => {
-    setMounted(true);
-    return () => setMounted(false);
-  }, []);
-
   // Modal open/close effect
   useEffect(() => {
-    if (!mounted) return;
-    
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      setCurrentImageIndex(0);
-      const timer = setTimeout(() => setIsModalReady(true), 100);
-      return () => clearTimeout(timer);
-    } else {
-      document.body.style.overflow = 'unset';
-      setIsModalReady(false);
+      const timer = window.setTimeout(() => setCurrentImageIndex(0), 0);
+      return () => {
+        window.clearTimeout(timer);
+        document.body.style.overflow = 'unset';
+      };
     }
-  }, [isOpen, mounted]);
+
+    document.body.style.overflow = 'unset';
+  }, [isOpen, project?.id]);
+
+  const handlePrevImage = useCallback(() => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? validImages.length - 1 : prev - 1
+    );
+  }, [validImages.length]);
+
+  const handleNextImage = useCallback(() => {
+    setCurrentImageIndex((prev) =>
+      prev === validImages.length - 1 ? 0 : prev + 1
+    );
+  }, [validImages.length]);
 
   // Keyboard events
   useEffect(() => {
-    if (!mounted || !isOpen) return;
+    if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -258,11 +255,11 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, mounted, validImages.length, onClose]);
+  }, [handleNextImage, handlePrevImage, isOpen, onClose, validImages.length]);
 
   // Scroll visibility
   useEffect(() => {
-    if (!mounted || !containerRef.current || !isModalReady) return;
+    if (!isOpen || !containerRef.current) return;
 
     const container = containerRef.current;
     const handleScroll = () => {
@@ -271,20 +268,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
     container.addEventListener('scroll', handleScroll, { passive: true });
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [mounted, isModalReady]);
-
-  // Callbacks
-  const handlePrevImage = useCallback(() => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? validImages.length - 1 : prev - 1
-    );
-  }, [validImages.length]);
-
-  const handleNextImage = useCallback(() => {
-    setCurrentImageIndex((prev) => 
-      prev === validImages.length - 1 ? 0 : prev + 1
-    );
-  }, [validImages.length]);
+  }, [isOpen]);
 
   const copyToClipboard = useCallback(() => {
     if (typeof window !== 'undefined') {
@@ -298,7 +282,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
     containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  if (!project || !mounted) return null;
+  if (!project) return null;
 
   return (
     <AnimatePresence mode="wait">
@@ -324,7 +308,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           >
             <div className="h-full bg-white rounded-lg sm:rounded-xl md:rounded-2xl shadow-2xl overflow-hidden relative">
               {/* Floating Header */}
-              {isModalReady && (
+              {isOpen && (
                 <motion.div
                   style={{ opacity: headerOpacity, y: headerY }}
                   className="absolute top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-b border-[#d8e4f5] px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 pointer-events-none"
@@ -376,7 +360,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               <div 
                 ref={containerRef}
                 className="h-full overflow-y-auto overflow-x-hidden custom-scrollbar"
-                style={{ opacity: isModalReady ? 1 : 0 }}
+                style={{ opacity: 1 }}
               >
                 {/* Hero Section */}
                 <motion.div 
@@ -529,9 +513,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       </div>
                       
                       {/* Title */}
-                      <h1 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black mb-1 leading-tight tracking-tighter max-w-full line-clamp-2">
-                        {project.title}
-                      </h1>
+                    <h2 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-black mb-1 leading-tight tracking-tighter max-w-full line-clamp-2">
+                      {project.title}
+                    </h2>
                       
                       {/* Client */}
                       <motion.div
@@ -586,7 +570,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 </motion.div>
 
                 {/* Content Section */}
-                {isModalReady && (
+                {isOpen && (
                   <div className="bg-white w-full overflow-x-hidden">
                     {/* Tab Navigation */}
                     <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-xl border-b border-[#d8e4f5] overflow-x-auto hide-scrollbar">
@@ -655,29 +639,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                   </p>
                                 </div>
 
-                                {/* Key Metrics */}
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
-                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
-                                    <HardHat className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">50+</div>
-                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Workers</div>
-                                  </div>
-                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
-                                    <Shield className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">100%</div>
-                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Safety</div>
-                                  </div>
-                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
-                                    <TrendingUp className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">24/7</div>
-                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Ops</div>
-                                  </div>
-                                  <div className="text-center p-2 bg-linear-to-br from-[#f7faff] to-white rounded-lg border border-[#d8e4f5]">
-                                    <Globe className={`h-3 w-3 sm:h-4 sm:w-4 ${sectorConfig.text} mx-auto mb-1`} />
-                                    <div className="text-xs sm:text-sm font-black text-[var(--brand-navy)]">ISO</div>
-                                    <div className="text-[8px] sm:text-[10px] text-[var(--brand-muted)]">Cert</div>
-                                  </div>
-                                </div>
                               </motion.section>
                             )}
 
@@ -867,23 +828,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                                 )}
                               </div>
 
-                              {/* Progress Bar */}
-                              {project.status === 'ONGOING' && (
-                                <div className="mt-3 pt-3 border-t border-[#d8e4f5]">
-                                  <div className="flex justify-between text-[10px] sm:text-xs mb-1">
-                                    <span className="text-[var(--brand-muted)] font-medium">Progress</span>
-                                    <span className={`font-black ${sectorConfig.text}`}>65%</span>
-                                  </div>
-                                  <div className="h-1.5 bg-[#d8e4f5] rounded-full overflow-hidden">
-                                    <motion.div
-                                      initial={{ width: 0 }}
-                                      whileInView={{ width: '65%' }}
-                                      transition={{ duration: 1, delay: 0.5 }}
-                                      className={`h-full bg-linear-to-r ${sectorConfig.primary} rounded-full`}
-                                    />
-                                  </div>
-                                </div>
-                              )}
                             </motion.div>
 
                             {/* Action Buttons */}
@@ -992,7 +936,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 )}
 
                 {/* Footer CTA */}
-                {isModalReady && (
+                {isOpen && (
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -1051,7 +995,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
               {/* Scroll to Top Button */}
               <AnimatePresence>
-                {showScrollTop && isModalReady && (
+                {showScrollTop && isOpen && (
                   <motion.button
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}

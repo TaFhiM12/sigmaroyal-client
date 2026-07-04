@@ -12,9 +12,7 @@ import {
   Star,
   TrendingUp,
   CheckCircle,
-  ArrowRight,
   Sparkles,
-  Compass
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -60,7 +58,7 @@ export default function MissionVisionPage() {
   };
 
   return (
-    <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
+    <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-[#f7faff] to-white py-8 md:py-12">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -73,28 +71,8 @@ export default function MissionVisionPage() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          className="space-y-10 md:space-y-12"
         >
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.div 
-              variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full mb-4"
-            >
-              <Compass className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-semibold text-red-700 tracking-wider">OUR PURPOSE</span>
-            </motion.div>
-            
-            
-            
-            <motion.p 
-              variants={fadeInUp}
-              className="text-lg text-[var(--brand-muted)]"
-            >
-              Driving excellence in energy infrastructure through unwavering commitment to quality, safety, and innovation
-            </motion.p>
-          </div>
-
           {/* Main Grid - Mission & Vision */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Mission Card */}

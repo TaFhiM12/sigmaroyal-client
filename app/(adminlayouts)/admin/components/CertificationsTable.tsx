@@ -104,7 +104,7 @@ export default function CertificationsTable({
           <TableHeader>
             <TableRow>
               <TableHead className="w-12">Order</TableHead>
-              <TableHead className="w-12">Image</TableHead>
+              <TableHead className="w-12">File</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Short Label</TableHead>
               <TableHead className="w-24">Status</TableHead>

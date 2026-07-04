@@ -14,7 +14,7 @@ export const customSlides: Slide[] = [
     image:
       "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2070",
     title: "The Royal Utilisation Services (Pvt.) Ltd",
-    subtitle: "46+ Years of Excellence",
+    subtitle: "Operating Since 1977",
     description:
       "Pioneer in energy sector with comprehensive infrastructure development in Oil, Gas & Power since 1977",
     ctaText: "View Our Projects",

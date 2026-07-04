@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef } from 'react';
-import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { 
   Users,
@@ -13,16 +12,17 @@ import {
   CheckCircle,
   Star,
   TrendingUp,
-  Zap,
-  Building2,
   Briefcase,
   ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import yearsExperience from '@/lib/yearsExperience';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 export default function OurStrength() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const companyStats = useCompanyStats();
 
   // Strength categories
   const strengths = [
@@ -34,7 +34,7 @@ export default function OurStrength() {
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-600',
       details: [
-        'Industry veterans with 20+ years experience',
+        'Experienced energy-sector leadership',
         'Strategic vision and operational excellence',
         'Proven track record in energy sector'
       ]
@@ -108,11 +108,11 @@ export default function OurStrength() {
 
   // Statistics
   const stats = [
-    { value: '195+', label: 'Permanent Employees', icon: Users },
-    { value: '46+', label: 'Years Experience', icon: TrendingUp },
-    { value: '50+', label: 'Projects Completed', icon: Briefcase },
-    { value: '9001', label: 'ISO Certified', icon: Award, sublabel: '14001 • 45001' }
-  ];
+    { value: companyStats?.yearsOperating ?? yearsExperience, label: 'Years Operating', icon: TrendingUp, alwaysShow: true },
+    { value: companyStats?.teamMembers ?? 0, label: 'Team Members', icon: Users },
+    { value: companyStats?.projects.completed ?? 0, label: 'Completed Projects', icon: Briefcase },
+    { value: companyStats?.certifications ?? 0, label: 'Active Certifications', icon: Award },
+  ].filter((stat) => stat.alwaysShow || stat.value > 0);
 
   // Certifications
   const certifications = [
@@ -143,7 +143,7 @@ export default function OurStrength() {
   };
 
   return (
-    <section ref={ref} className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
+    <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-[#f7faff] to-white py-8 md:py-12">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
@@ -153,37 +153,8 @@ export default function OurStrength() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          className="space-y-10 md:space-y-12"
         >
-          {/* Header */}
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.div 
-              variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-full mb-4"
-            >
-              <Zap className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-semibold text-red-700 tracking-wider">OUR STRENGTH</span>
-            </motion.div>
-            
-            <motion.h1 
-              variants={fadeInUp}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
-            >
-              <span className="text-[var(--brand-navy)]">Built on</span>
-              <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-800">
-                Strong Foundations
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              variants={fadeInUp}
-              className="text-lg text-[var(--brand-muted)]"
-            >
-              Leveraging decades of experience, qualified professionals, and world-class certifications to deliver excellence
-            </motion.p>
-          </div>
-
           {/* Stats Grid */}
           <motion.div variants={fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat, index) => {
@@ -199,9 +170,6 @@ export default function OurStrength() {
                   </div>
                   <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--brand-navy)]">{stat.value}</div>
                   <p className="text-xs md:text-sm text-[var(--brand-muted)]">{stat.label}</p>
-                  {stat.sublabel && (
-                    <p className="text-[10px] md:text-xs text-red-600 mt-1">{stat.sublabel}</p>
-                  )}
                 </motion.div>
               );
             })}

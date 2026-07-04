@@ -3,18 +3,20 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Users, Clock, Trophy, Award, CheckCircle, Building2, TrendingUp } from 'lucide-react';
+import { Users, Briefcase, Award, CheckCircle, Building2 } from 'lucide-react';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 export default function ClientStats() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const companyStats = useCompanyStats();
 
   const stats = [
-    { icon: Users, value: '50+', label: 'Active Partnerships', color: 'from-blue-500 to-[var(--brand-blue)]' },
-    { icon: Clock, value: '25+', label: 'Years Average Partnership', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-    { icon: Trophy, value: '98%', label: 'Retention Rate', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' },
-    { icon: Award, value: 'ISO', label: 'Quality Certified', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
-  ];
+    { icon: Building2, value: companyStats?.clients ?? 0, label: 'Active Clients', color: 'from-blue-500 to-[var(--brand-blue)]' },
+    { icon: Briefcase, value: companyStats?.projects.total ?? 0, label: 'Projects Recorded', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+    { icon: Users, value: companyStats?.teamMembers ?? 0, label: 'Team Members', color: 'from-[var(--brand-red)] to-[var(--brand-red)]' },
+    { icon: Award, value: companyStats?.certifications ?? 0, label: 'Active Certifications', color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' },
+  ].filter((stat) => stat.value > 0);
 
   return (
     <section ref={ref} className="py-16 bg-linear-to-b from-[#f7faff] to-white">
@@ -31,7 +33,7 @@ export default function ClientStats() {
           <p className="text-[var(--brand-muted)] mt-2">Building lasting relationships that drive success</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {stats.length > 0 && <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -52,7 +54,7 @@ export default function ClientStats() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </div>}
 
         {/* Trust Badges */}
         <motion.div
@@ -68,10 +70,6 @@ export default function ClientStats() {
           <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full">
             <Building2 className="w-4 h-4 text-blue-600" />
             <span className="text-sm text-[var(--brand-copy)]">Government Enlisted</span>
-          </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-[#eef4ff] rounded-full">
-            <TrendingUp className="w-4 h-4 text-[var(--brand-blue)]" />
-            <span className="text-sm text-[var(--brand-copy)]">100% Compliance</span>
           </div>
         </motion.div>
       </div>

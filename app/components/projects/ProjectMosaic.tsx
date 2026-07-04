@@ -191,15 +191,7 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
       onClick={onClick}
       className="group relative bg-white rounded-2xl overflow-hidden border-2 border-blue-100 hover:border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
     >
-      {/* Progress Bar */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-[#d8e4f5]">
-        <motion.div 
-          initial={{ width: "0%" }}
-          animate={{ width: "75%" }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="h-full bg-blue-500"
-        />
-      </div>
+      <div className="absolute left-0 right-0 top-0 h-1 bg-blue-500" />
 
       <div className="flex flex-col md:flex-row">
         {/* Image Section */}

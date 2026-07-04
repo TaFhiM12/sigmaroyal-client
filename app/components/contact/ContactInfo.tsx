@@ -1,5 +1,6 @@
 // components/contact/ContactInfo.tsx (Updated)
 import { MapPin, Mail, Phone, Clock, Users, Award, Building } from 'lucide-react';
+import yearsExperience from '@/lib/yearsExperience';
 
 export default function ContactInfo() {
   return (
@@ -190,7 +191,7 @@ export default function ContactInfo() {
               </div>
               <div>
                 <span className="text-[var(--brand-muted)] block">Established</span>
-                <span className="block text-[var(--brand-copy)] font-medium">46+ Years</span>
+                <span className="block text-[var(--brand-copy)] font-medium">{yearsExperience} Years</span>
               </div>
             </div>
           </div>

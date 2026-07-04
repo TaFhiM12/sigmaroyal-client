@@ -51,8 +51,8 @@ export default function ContactBusinessHours() {
           <h4 className="font-semibold text-blue-900 mb-2">Emergency Support</h4>
           <p className="text-sm text-blue-700">
             For urgent matters outside business hours, call our emergency line:
-            <a href="tel:+8801712345678" className="block font-bold text-blue-900 mt-1">
-              +88 01712345678
+            <a href="tel:+8802222281246" className="block font-bold text-blue-900 mt-1">
+              +88 02222281246
             </a>
           </p>
         </div>

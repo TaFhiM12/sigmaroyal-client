@@ -3,10 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (!pathname.startsWith("/admin")) {
-    return NextResponse.next();
-  }
-
   if (pathname.startsWith("/admin/login")) {
     return NextResponse.next();
   }

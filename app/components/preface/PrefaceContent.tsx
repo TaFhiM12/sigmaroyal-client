@@ -10,10 +10,30 @@ import {
   Users,
 } from 'lucide-react';
 import yearsExperience from '@/lib/yearsExperience';
+import { useCompanyStats } from '@/hooks/useCompanyStats';
 
 export default function PrefaceContent() {
   const textRef = useRef<HTMLDivElement>(null);
   const isTextInView = useInView(textRef, { once: true, amount: 0.3 });
+  const companyStats = useCompanyStats();
+  const verifiedStats = [
+    {
+      value: companyStats?.yearsOperating ?? yearsExperience,
+      label: 'Years Operating',
+      icon: Award,
+      alwaysShow: true,
+    },
+    {
+      value: companyStats?.projects.total ?? 0,
+      label: 'Projects Recorded',
+      icon: Briefcase,
+    },
+    {
+      value: companyStats?.teamMembers ?? 0,
+      label: 'Team Members',
+      icon: Users,
+    },
+  ].filter((stat) => stat.alwaysShow || stat.value > 0);
 
   // Animation variants
   const fadeInUp = {
@@ -93,14 +113,10 @@ export default function PrefaceContent() {
 
               {/* Stats Grid */}
               <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-4 pt-4">
-                {[
-                  { value: `${yearsExperience}+`, label: 'Years Experience', icon: Award },
-                  { value: '500+', label: 'Projects', icon: Briefcase },
-                  { value: '50+', label: 'Engineers', icon: Users },
-                ].map((stat, index) => {
+                {verifiedStats.map((stat) => {
                   const Icon = stat.icon;
                   return (
-                    <div key={index} className="text-center">
+                    <div key={stat.label} className="text-center">
                       <div className="inline-flex p-2 bg-blue-50 rounded-lg mb-2">
                         <Icon className="w-5 h-5 text-blue-700" />
                       </div>
