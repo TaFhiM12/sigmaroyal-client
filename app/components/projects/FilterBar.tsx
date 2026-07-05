@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { projectSectors } from '@/lib/project-sectors';
 
 interface FilterBarProps {
   searchQuery: string;
@@ -35,8 +36,7 @@ interface FilterBarProps {
 
 const sectors = [
   { value: 'all', label: 'All Sectors' },
-  { value: 'OIL_GAS', label: 'Oil & Gas' },
-  { value: 'POWER_SECTOR', label: 'Power' },
+  ...projectSectors,
 ];
 
 const statuses = [

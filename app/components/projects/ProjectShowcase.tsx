@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ArrowUpRight, Briefcase, CalendarClock, CheckCircle, Clock, FileText, MapPin } from 'lucide-react';
 import { Project } from '@/types/projects';
+import { getProjectSectorLabel } from '@/lib/project-sectors';
 
 interface ProjectShowcaseProps {
   projects: Project[];
@@ -27,7 +28,7 @@ const getProjectImage = (project: Project): string => {
   return placeholderImages[index];
 };
 
-const getSectorLabel = (project: Project) => (project.sector === 'OIL_GAS' ? 'Oil & Gas' : 'Power');
+const getSectorLabel = (project: Project) => getProjectSectorLabel(project.sector);
 
 export function ProjectShowcase({
   projects,

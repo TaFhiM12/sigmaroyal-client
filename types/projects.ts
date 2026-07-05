@@ -1,4 +1,5 @@
 // types/project.ts
+import { ProjectSector } from "@/lib/project-sectors";
 export interface ProjectImage {
   id: string;
   url: string;
@@ -11,7 +12,7 @@ export interface Project {
   id: string;
   title: string;
   slug: string;
-  sector: 'OIL_GAS' | 'POWER_SECTOR';
+  sector: ProjectSector;
   client: string;
   companyRole: string;
   location: string;

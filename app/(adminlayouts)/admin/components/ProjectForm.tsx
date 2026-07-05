@@ -30,17 +30,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import CloudinaryUpload from "./CloudinaryUpload";
 import { Project, ProjectFormData } from "@/types/projects";
 import { getAdminAuthHeaders } from "@/lib/admin-auth";
+import { projectSectors } from "@/lib/project-sectors";
 
 interface ProjectFormProps {
   project?: Project;
   onSuccess?: () => void;
   onCancel?: () => void;
 }
-
-const sectors = [
-  { value: "OIL_GAS", label: "Oil & Gas" },
-  { value: "POWER_SECTOR", label: "Power Sector" },
-];
 
 const statuses = [
   { value: "UPCOMING", label: "Upcoming" },
@@ -260,7 +256,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       <SelectValue placeholder="Select sector" />
                     </SelectTrigger>
                     <SelectContent>
-                      {sectors.map((sector) => (
+                      {projectSectors.map((sector) => (
                         <SelectItem key={sector.value} value={sector.value}>
                           {sector.label}
                         </SelectItem>

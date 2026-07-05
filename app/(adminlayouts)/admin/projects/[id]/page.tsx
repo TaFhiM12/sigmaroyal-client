@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { getProjectSectorLabel } from '@/lib/project-sectors';
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -89,10 +90,10 @@ const getStatusBadge = (status: string) => {
 // Format sector
 const getSectorLabel = (sector: string) => {
   const sectorMap: Record<string, { label: string; color: string }> = {
-    OIL_GAS: { label: 'Oil & Gas', color: 'from-[var(--brand-red)] to-red-500' },
-    POWER_SECTOR: { label: 'Power Sector', color: 'from-blue-500 to-[var(--brand-blue)]' },
+    OIL_GAS: { label: getProjectSectorLabel(sector), color: 'from-[var(--brand-red)] to-red-500' },
+    POWER_SECTOR: { label: getProjectSectorLabel(sector), color: 'from-blue-500 to-[var(--brand-blue)]' },
   };
-  return sectorMap[sector] || { label: sector, color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' };
+  return sectorMap[sector] || { label: getProjectSectorLabel(sector), color: 'from-[var(--brand-blue)] to-[var(--brand-blue)]' };
 };
 
 export default async function ProjectViewPage({ params }: ProjectPageProps) {

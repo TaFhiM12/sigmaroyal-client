@@ -38,6 +38,7 @@ import {
   Check,
 } from 'lucide-react';
 import { Project } from '@/types/projects';
+import { getProjectSectorLabel, getProjectSectorShortLabel } from '@/lib/project-sectors';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -61,6 +62,13 @@ const getSectorIcon = (sector: string): React.ReactNode => {
   const icons: Record<string, React.ReactNode> = {
     OIL_GAS: <Droplets className="h-3 w-3 sm:h-4 sm:w-4" />,
     POWER_SECTOR: <Zap className="h-3 w-3 sm:h-4 sm:w-4" />,
+    LNG: <Droplets className="h-3 w-3 sm:h-4 sm:w-4" />,
+    LPG: <Droplets className="h-3 w-3 sm:h-4 sm:w-4" />,
+    NG: <Droplets className="h-3 w-3 sm:h-4 sm:w-4" />,
+    REFINERY: <Factory className="h-3 w-3 sm:h-4 sm:w-4" />,
+    PETROCHEMICAL: <Factory className="h-3 w-3 sm:h-4 sm:w-4" />,
+    WATER_DISTRIBUTION: <Droplets className="h-3 w-3 sm:h-4 sm:w-4" />,
+    INFRASTRUCTURE: <Building2 className="h-3 w-3 sm:h-4 sm:w-4" />,
   };
   return icons[sector] || <Zap className="h-3 w-3 sm:h-4 sm:w-4" />;
 };
@@ -455,10 +463,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                         >
                           {getSectorIcon(project.sector)}
                           <span className="hidden xs:inline">
-                            {project.sector === 'OIL_GAS' ? 'OIL & GAS' : 'POWER'}
+                            {getProjectSectorLabel(project.sector).toUpperCase()}
                           </span>
                           <span className="xs:hidden">
-                            {project.sector === 'OIL_GAS' ? 'O&G' : 'PWR'}
+                            {getProjectSectorShortLabel(project.sector)}
                           </span>
                         </motion.div>
                         

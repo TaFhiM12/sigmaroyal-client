@@ -14,9 +14,12 @@ import {
   CheckCircle,
   ArrowUpRight,
   Search,
-  CalendarClock
+  CalendarClock,
+  Factory,
+  Building2
 } from 'lucide-react';
 import { Project } from '@/types/projects';
+import { getProjectSectorLabel, getProjectSectorShortLabel } from '@/lib/project-sectors';
 
 interface ProjectMosaicProps {
   projects: Project[];
@@ -29,6 +32,13 @@ const getSectorIcon = (sector: string) => {
   const icons: Record<string, React.ReactNode> = {
     OIL_GAS: <Droplets className="h-5 w-5" />,
     POWER_SECTOR: <Zap className="h-5 w-5" />,
+    LNG: <Droplets className="h-5 w-5" />,
+    LPG: <Droplets className="h-5 w-5" />,
+    NG: <Droplets className="h-5 w-5" />,
+    REFINERY: <Factory className="h-5 w-5" />,
+    PETROCHEMICAL: <Factory className="h-5 w-5" />,
+    WATER_DISTRIBUTION: <Droplets className="h-5 w-5" />,
+    INFRASTRUCTURE: <Building2 className="h-5 w-5" />,
   };
   return icons[sector] || <Zap className="h-5 w-5" />;
 };
@@ -37,6 +47,13 @@ const getSectorColor = (sector: string) => {
   const colors: Record<string, { bg: string; text: string; border: string }> = {
     OIL_GAS: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
     POWER_SECTOR: { bg: 'bg-red-50', text: 'text-[var(--brand-red)]', border: 'border-red-100' },
+    LNG: { bg: 'bg-[#eef4ff]', text: 'text-[var(--brand-blue)]', border: 'border-[#d8e4f5]' },
+    LPG: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+    NG: { bg: 'bg-[#eef4ff]', text: 'text-[var(--brand-blue)]', border: 'border-[#d8e4f5]' },
+    REFINERY: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+    PETROCHEMICAL: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+    WATER_DISTRIBUTION: { bg: 'bg-[#f7faff]', text: 'text-[var(--brand-copy)]', border: 'border-[#d8e4f5]' },
+    INFRASTRUCTURE: { bg: 'bg-[#f7faff]', text: 'text-[var(--brand-copy)]', border: 'border-[#d8e4f5]' },
   };
   return colors[sector] || { bg: 'bg-[#f7faff]', text: 'text-[var(--brand-copy)]', border: 'border-[#d8e4f5]' };
 };
@@ -215,7 +232,7 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
           {/* Sector Badge */}
           <div className={`absolute bottom-4 left-4 px-3 py-1 rounded-full border ${sectorColors.bg} ${sectorColors.text} ${sectorColors.border} text-xs font-medium flex items-center gap-1`}>
             {getSectorIcon(project.sector)}
-            <span>{project.sector === 'OIL_GAS' ? 'Oil & Gas' : 'Power'}</span>
+            <span>{getProjectSectorShortLabel(project.sector)}</span>
           </div>
         </div>
 
@@ -295,7 +312,7 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
         {/* Sector Badge */}
         <div className={`absolute top-4 right-4 px-3 py-1 rounded-full border bg-white/90 backdrop-blur-sm ${sectorColors.text} ${sectorColors.border} text-xs font-medium flex items-center gap-1`}>
           {getSectorIcon(project.sector)}
-          <span>{project.sector === 'OIL_GAS' ? 'Oil & Gas' : 'Power'}</span>
+          <span>{getProjectSectorLabel(project.sector)}</span>
         </div>
 
         {/* Title Overlay */}
