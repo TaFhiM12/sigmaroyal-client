@@ -448,24 +448,34 @@ const Navbar1 = ({
           <Link
             href={logo.url}
             className="group flex min-w-[290px] shrink-0 items-center gap-3 rounded-lg px-2 py-2 xl:min-w-[340px]"
-            aria-label="The Royal Utilisation Services (Pvt.) Ltd"
+            aria-label="The Royal Utilisation Services and Sigma Construction Company"
           >
             <span className="flex h-12 w-11 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/8">
               <Image
-                width={44}
+                width={40}
                 height={58}
                 src="/logo.png"
                 className="h-10 w-auto object-contain"
-                alt="Royal Utilisation Services logo"
+                alt="The Royal Utilisation Services logo"
                 priority
               />
             </span>
-            <span className="flex min-w-0 flex-col">
+            <span className="flex min-w-0 flex-col items-start">
               <span className="whitespace-nowrap text-[13px] font-extrabold leading-tight tracking-[-0.015em] text-white transition-colors group-hover:text-blue-100 xl:text-sm 2xl:text-[15px]">
                 The Royal Utilisation Services (Pvt.) Ltd
               </span>
-              <span className="mt-1 text-[9px] font-bold uppercase tracking-[0.16em] text-blue-200/55 xl:text-[10px]">
-                Sigma Construction Company
+              <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/6 py-0.5 pl-1 pr-2.5">
+                <Image
+                  width={36}
+                  height={61}
+                  src="/preface/logo2.png"
+                  className="h-3.5 w-auto object-contain"
+                  alt="Sigma Construction Company logo"
+                  priority
+                />
+                <span className="text-[8px] font-semibold uppercase tracking-[0.12em] text-blue-100/65 xl:text-[9px]">
+                  Associated company · Sigma Construction Company
+                </span>
               </span>
             </span>
           </Link>
@@ -488,7 +498,7 @@ const Navbar1 = ({
             <Link
               href={logo.url}
               className="flex min-w-0 items-center gap-2.5 text-white"
-              aria-label="The Royal Utilisation Services (Pvt.) Ltd"
+              aria-label="The Royal Utilisation Services and Sigma Construction Company"
             >
               <span className="flex h-10 w-9 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-white/8">
                 <Image
@@ -496,15 +506,24 @@ const Navbar1 = ({
                   height={58}
                   src="/logo.png"
                   className="h-8 w-auto object-contain"
-                  alt="Royal Utilisation Services logo"
+                  alt="The Royal Utilisation Services logo"
                 />
               </span>
-              <span className="flex min-w-0 max-w-[240px] flex-col leading-tight">
-                <span className="truncate text-[10px] font-extrabold tracking-[-0.01em] min-[390px]:text-[11px]">
+              <span className="flex min-w-0 max-w-[250px] flex-col items-start">
+                <span className="max-w-full truncate text-[10px] font-extrabold leading-tight tracking-[-0.01em] min-[390px]:text-[11px]">
                   The Royal Utilisation Services (Pvt.) Ltd
                 </span>
-                <span className="mt-1 truncate text-[8px] font-bold uppercase tracking-[0.14em] text-blue-200/55 min-[390px]:text-[9px]">
-                  Sigma Construction Company
+                <span className="mt-1 inline-flex max-w-full items-center gap-1 rounded-full border border-white/10 bg-white/6 py-0.5 pl-1 pr-2">
+                  <Image
+                    width={36}
+                    height={61}
+                    src="/preface/logo2.png"
+                    className="h-3 w-auto shrink-0 object-contain"
+                    alt="Sigma Construction Company logo"
+                  />
+                  <span className="truncate text-[7px] font-semibold uppercase tracking-[0.08em] text-blue-100/65 min-[390px]:text-[8px]">
+                    Associated company · Sigma Construction Company
+                  </span>
                 </span>
               </span>
             </Link>
