@@ -33,11 +33,11 @@ export default async function AdminTeamPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Team Members</h1>
-          <p className="mt-1 text-[var(--brand-muted)]">Manage people shown on the public team pages</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Team Members</h1>
+          <p className="mt-1 text-(--brand-muted)">Manage people shown on the public team pages</p>
         </div>
-        <div className="rounded-lg border border-[#d8e4f5] bg-white px-4 py-3 text-sm text-[var(--brand-muted)]">
-          Total: <span className="font-bold text-[var(--brand-navy)]">{members.length}</span>
+        <div className="rounded-lg border border-[#d8e4f5] bg-white px-4 py-3 text-sm text-(--brand-muted)">
+          Total: <span className="font-bold text-(--brand-navy)">{members.length}</span>
         </div>
       </div>
 

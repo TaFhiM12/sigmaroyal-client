@@ -83,7 +83,7 @@ export default function ProjectsTable({
   if (projects.length === 0) {
     return (
       <div className="text-center py-12 bg-[#f7faff] rounded-lg">
-        <p className="text-[var(--brand-muted)]">
+        <p className="text-(--brand-muted)">
           No projects found. Create your first project!
         </p>
       </div>
@@ -121,14 +121,14 @@ export default function ProjectsTable({
                     </div>
                   ) : (
                     <div className="w-10 h-10 bg-[#eef4ff] rounded-lg flex items-center justify-center">
-                      <span className="text-xs text-[var(--brand-muted)]">No img</span>
+                      <span className="text-xs text-(--brand-muted)">No img</span>
                     </div>
                   )}
                 </TableCell>
                 <TableCell className="font-medium">
                   <div>
                     <p className="line-clamp-1">{project.title}</p>
-                    <p className="text-xs text-[var(--brand-muted)]">{project.slug}</p>
+                    <p className="text-xs text-(--brand-muted)">{project.slug}</p>
                   </div>
                 </TableCell>
                 <TableCell>

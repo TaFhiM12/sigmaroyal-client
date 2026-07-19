@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
           </div>
           <div>
             <CardTitle className="text-2xl font-semibold">Admin Login</CardTitle>
-            <CardDescription className="text-[var(--brand-muted)]">
+            <CardDescription className="text-(--brand-muted)">
               Access the Royal industrial content control center.
             </CardDescription>
           </div>

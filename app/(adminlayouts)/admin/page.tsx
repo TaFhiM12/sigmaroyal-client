@@ -39,8 +39,8 @@ export default function AdminPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-semibold text-[var(--brand-navy)]">Admin Dashboard</h1>
-        <p className="text-[var(--brand-muted)] mt-1">Control your industrial website content from one place.</p>
+        <h1 className="text-3xl font-semibold text-(--brand-navy)">Admin Dashboard</h1>
+        <p className="text-(--brand-muted) mt-1">Control your industrial website content from one place.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">

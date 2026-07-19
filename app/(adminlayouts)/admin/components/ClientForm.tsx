@@ -183,7 +183,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                 onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
                 placeholder="0"
               />
-              <p className="text-xs text-[var(--brand-muted)]">Lower numbers appear first</p>
+              <p className="text-xs text-(--brand-muted)">Lower numbers appear first</p>
             </div>
 
             <div className="space-y-2">
@@ -195,7 +195,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />
               </div>
-              <p className="text-xs text-[var(--brand-muted)]">Inactive clients won&apos;t be shown on the website</p>
+              <p className="text-xs text-(--brand-muted)">Inactive clients won&apos;t be shown on the website</p>
             </div>
           </div>
 
@@ -221,13 +221,13 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
                         className="object-contain p-2"
                       />
                     </div>
-                    <p className="text-sm text-[var(--brand-muted)] mt-2">Click to change logo</p>
+                    <p className="text-sm text-(--brand-muted) mt-2">Click to change logo</p>
                   </div>
                 ) : (
                   <>
-                    <Upload className="h-12 w-12 mx-auto text-[var(--brand-muted)] mb-3" />
-                    <p className="text-sm text-[var(--brand-muted)]">Click to upload client logo</p>
-                    <p className="text-xs text-[var(--brand-muted)] mt-1">PNG, JPG, WEBP, SVG up to 2MB</p>
+                    <Upload className="h-12 w-12 mx-auto text-(--brand-muted) mb-3" />
+                    <p className="text-sm text-(--brand-muted)">Click to upload client logo</p>
+                    <p className="text-xs text-(--brand-muted) mt-1">PNG, JPG, WEBP, SVG up to 2MB</p>
                   </>
                 )}
               </label>

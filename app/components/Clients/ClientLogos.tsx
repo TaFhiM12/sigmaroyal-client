@@ -103,13 +103,13 @@ export default function ClientLogos() {
             <Building2 className="w-4 h-4 text-red-600" />
             <span className="text-sm font-semibold text-red-700">OUR PARTNERS & CLIENTS</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--brand-navy)] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-(--brand-navy) mb-4">
             Trusted by{' '}
             <span className="bg-linear-to-r from-red-600 to-[var(--brand-red)] bg-clip-text text-transparent">
               Industry Leaders
             </span>
           </h2>
-          <p className="text-[var(--brand-muted)] text-lg">
+          <p className="text-(--brand-muted) text-lg">
             Partnering with leading organizations to deliver critical energy infrastructure across Bangladesh
           </p>
         </motion.div>
@@ -191,7 +191,7 @@ export default function ClientLogos() {
                     )}
                     
                     <div className="pt-4">
-                      <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
+                      <div className="flex items-center gap-2 text-sm text-(--brand-muted)">
                         <CheckCircle className="w-4 h-4 text-[var(--brand-blue)]" />
                         <span>Verified Partner</span>
                       </div>
@@ -228,8 +228,8 @@ export default function ClientLogos() {
             className="mt-16"
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-[var(--brand-navy)]">All Partners & Clients</h3>
-              <span className="text-sm text-[var(--brand-muted)]">{clients.length} Organizations</span>
+              <h3 className="text-xl font-semibold text-(--brand-navy)">All Partners & Clients</h3>
+              <span className="text-sm text-(--brand-muted)">{clients.length} Organizations</span>
             </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">

@@ -67,7 +67,7 @@ export default function CertificationsTable({
   if (certifications.length === 0) {
     return (
       <div className="text-center py-12 bg-[#f7faff] rounded-lg">
-        <p className="text-[var(--brand-muted)]">No certifications found. Create your first certification!</p>
+        <p className="text-(--brand-muted)">No certifications found. Create your first certification!</p>
       </div>
     );
   }
@@ -137,7 +137,7 @@ export default function CertificationsTable({
                       </Button>
                     </div>
                   ) : (
-                    <span className="text-sm text-[var(--brand-muted)]">{certification.order}</span>
+                    <span className="text-sm text-(--brand-muted)">{certification.order}</span>
                   )}
                 </TableCell>
                 <TableCell>
@@ -159,7 +159,7 @@ export default function CertificationsTable({
                   <Badge variant="outline">{certification.shortLabel}</Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge className={certification.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-[var(--brand-navy)]'}>
+                  <Badge className={certification.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-(--brand-navy)'}>
                     {certification.isActive ? 'Active' : 'Inactive'}
                   </Badge>
                 </TableCell>

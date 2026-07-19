@@ -26,14 +26,14 @@ export default function Error({
           </div>
 
           {/* Error Message */}
-          <h1 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-(--brand-navy) mb-4">
             Something Went Wrong
           </h1>
           
-          <p className="text-[var(--brand-muted)] mb-6">
+          <p className="text-(--brand-muted) mb-6">
             We apologize for the inconvenience. An unexpected error has occurred.
             {error.digest && (
-              <span className="block text-sm text-[var(--brand-muted)] mt-2">
+              <span className="block text-sm text-(--brand-muted) mt-2">
                 Error ID: {error.digest}
               </span>
             )}
@@ -60,11 +60,11 @@ export default function Error({
 
           {/* Technical Details (Collapsible) */}
           <details className="mt-8 border border-[#d8e4f5] rounded-lg">
-            <summary className="cursor-pointer p-4 text-sm font-medium text-[var(--brand-copy)] hover:text-[var(--brand-navy)]">
+            <summary className="cursor-pointer p-4 text-sm font-medium text-[var(--brand-copy)] hover:text-(--brand-navy)">
               Technical Details
             </summary>
             <div className="p-4 bg-[#f7faff] text-left">
-              <code className="text-xs text-[var(--brand-muted)] break-all">
+              <code className="text-xs text-(--brand-muted) break-all">
                 {error.message || 'Unknown error occurred'}
               </code>
             </div>
@@ -72,7 +72,7 @@ export default function Error({
 
           {/* Support Information */}
           <div className="mt-8 pt-6 border-t border-[#d8e4f5]">
-            <p className="text-sm text-[var(--brand-muted)]">
+            <p className="text-sm text-(--brand-muted)">
               If the problem persists, please contact our support team at{' '}
               <a href="mailto:support@sigma-royal.com" className="text-red-600 hover:text-red-700">
                 support@sigma-royal.com

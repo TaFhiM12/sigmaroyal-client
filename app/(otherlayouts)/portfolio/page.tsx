@@ -140,7 +140,7 @@ export default function PortfolioPage() {
                 >
                   <div className="flex min-h-[520px] flex-col items-center justify-center rounded-xl bg-white p-8 text-center">
                     <BookOpen className="h-10 w-10 text-blue-900" />
-                    <p className="mt-4 max-w-md font-bold text-[var(--brand-navy)]">
+                    <p className="mt-4 max-w-md font-bold text-(--brand-navy)">
                       Your browser cannot display the embedded brochure.
                     </p>
                     <a
@@ -164,8 +164,8 @@ export default function PortfolioPage() {
                     <div className="inline-flex p-3 bg-red-50 rounded-lg mb-3">
                       <Icon className="w-6 h-6 text-red-600" />
                     </div>
-                    <div className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">{stat.value}</div>
-                    <p className="text-sm text-[var(--brand-muted)]">{stat.label}</p>
+                    <div className="text-2xl md:text-3xl font-bold text-(--brand-navy)">{stat.value}</div>
+                    <p className="text-sm text-(--brand-muted)">{stat.label}</p>
                   </div>
                 );
               })}
@@ -173,7 +173,7 @@ export default function PortfolioPage() {
 
             {companyStats && companyStats.projects.bySector.length > 0 && (
               <motion.div variants={fadeInUp} className="space-y-8">
-                <h2 className="text-center text-2xl font-bold text-[var(--brand-navy)] md:text-3xl">
+                <h2 className="text-center text-2xl font-bold text-(--brand-navy) md:text-3xl">
                   Recorded Project <span className="text-red-600">Sectors</span>
                 </h2>
 
@@ -186,10 +186,10 @@ export default function PortfolioPage() {
                     >
                       <div className="flex items-center justify-between gap-4">
                         <div>
-                          <h3 className="text-lg font-bold text-[var(--brand-navy)]">
+                          <h3 className="text-lg font-bold text-(--brand-navy)">
                             {sectorLabel(sector.sector)}
                           </h3>
-                          <p className="mt-2 text-sm text-[var(--brand-muted)]">
+                          <p className="mt-2 text-sm text-(--brand-muted)">
                             {sector.count} recorded {sector.count === 1 ? 'project' : 'projects'}
                           </p>
                         </div>

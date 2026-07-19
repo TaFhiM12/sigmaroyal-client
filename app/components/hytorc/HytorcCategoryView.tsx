@@ -97,7 +97,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
               <Sparkles className="h-3.5 w-3.5" />
               HYTORC Series
             </span>
-            <p className="truncate text-sm font-semibold text-[var(--brand-muted)]">
+            <p className="truncate text-sm font-semibold text-(--brand-muted)">
               Precision bolting solutions, service support, and certified tooling.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
       <div className="relative z-10">
         {/* Description Card */}
         <div className="mb-8 rounded-lg border border-[#d8e4f5] bg-white p-5 shadow-sm transition-all duration-300 hover:shadow-md md:p-6">
-          <p className="text-base font-medium leading-7 text-[var(--brand-muted)] md:text-lg">
+          <p className="text-base font-medium leading-7 text-(--brand-muted) md:text-lg">
             {category.description}
           </p>
           {category.highlight && (
@@ -134,7 +134,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
                 </div>
                 <div>
                   <h3 className="mb-1 text-xs font-extrabold uppercase tracking-[0.14em] text-red-600">Key Highlight</h3>
-                  <p className="text-base font-extrabold text-[var(--brand-navy)]">{category.highlight}</p>
+                  <p className="text-base font-extrabold text-(--brand-navy)">{category.highlight}</p>
                 </div>
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
         <div>
           <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-(--brand-navy)">
                 Available Models
               </h2>
               <div className="w-20 h-1 bg-linear-to-r from-red-600 to-red-700 mt-2 rounded-full" />
@@ -155,23 +155,23 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-[var(--brand-muted)] hover:text-red-600"
+                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-(--brand-muted) hover:text-red-600"
                 title={isAutoPlaying ? "Pause" : "Play"}
               >
                 {isAutoPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
               </button>
               <button
                 onClick={prevSlide}
-                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-[var(--brand-muted)] hover:text-red-600"
+                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-(--brand-muted) hover:text-red-600"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
-              <div className="text-sm text-[var(--brand-muted)]">
+              <div className="text-sm text-(--brand-muted)">
                 {currentIndex + 1} / {maxIndex + 1}
               </div>
               <button
                 onClick={nextSlide}
-                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-[var(--brand-muted)] hover:text-red-600"
+                className="p-2 rounded-full bg-[#eef4ff] hover:bg-[#d8e4f5] transition-all text-(--brand-muted) hover:text-red-600"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -230,7 +230,7 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
                     
                     {/* Product Name */}
                     <div className="text-center mt-6 transform group-hover:translate-y-1 transition-all duration-300">
-                      <h3 className="text-base md:text-lg font-semibold text-[var(--brand-navy)] group-hover:text-red-600 transition-colors duration-300">
+                      <h3 className="text-base md:text-lg font-semibold text-(--brand-navy) group-hover:text-red-600 transition-colors duration-300">
                         {item.name}
                       </h3>
                       
@@ -276,24 +276,24 @@ export default function HytorcCategoryView({ category }: HytorcCategoryViewProps
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-600 transition-all duration-300 group-hover:scale-110">
               <Shield className="w-6 h-6 text-red-600 group-hover:text-white transition-all duration-300" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--brand-navy)] mb-2 group-hover:text-red-600 transition-colors">Industrial Grade</h3>
-            <p className="text-[var(--brand-muted)] text-sm">Built for heavy-duty applications with maximum durability</p>
+            <h3 className="text-lg font-semibold text-(--brand-navy) mb-2 group-hover:text-red-600 transition-colors">Industrial Grade</h3>
+            <p className="text-(--brand-muted) text-sm">Built for heavy-duty applications with maximum durability</p>
           </div>
           
           <div className="bg-white rounded-xl p-6 border border-[#d8e4f5] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-600 transition-all duration-300 group-hover:scale-110">
               <Zap className="w-6 h-6 text-red-600 group-hover:text-white transition-all duration-300" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--brand-navy)] mb-2 group-hover:text-red-600 transition-colors">Precision Accuracy</h3>
-            <p className="text-[var(--brand-muted)] text-sm">±1% torque accuracy for critical bolting applications</p>
+            <h3 className="text-lg font-semibold text-(--brand-navy) mb-2 group-hover:text-red-600 transition-colors">Precision Accuracy</h3>
+            <p className="text-(--brand-muted) text-sm">±1% torque accuracy for critical bolting applications</p>
           </div>
           
           <div className="bg-white rounded-xl p-6 border border-[#d8e4f5] shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-600 transition-all duration-300 group-hover:scale-110">
               <Award className="w-6 h-6 text-red-600 group-hover:text-white transition-all duration-300" />
             </div>
-            <h3 className="text-lg font-semibold text-[var(--brand-navy)] mb-2 group-hover:text-red-600 transition-colors">Certified Quality</h3>
-            <p className="text-[var(--brand-muted)] text-sm">ISO certified with comprehensive warranty coverage</p>
+            <h3 className="text-lg font-semibold text-(--brand-navy) mb-2 group-hover:text-red-600 transition-colors">Certified Quality</h3>
+            <p className="text-(--brand-muted) text-sm">ISO certified with comprehensive warranty coverage</p>
           </div>
         </div>
 

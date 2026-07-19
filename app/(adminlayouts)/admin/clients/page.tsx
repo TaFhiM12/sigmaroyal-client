@@ -38,8 +38,8 @@ export default async function AdminClientsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Our Clients</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Manage client logos and information</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Our Clients</h1>
+          <p className="text-(--brand-muted) mt-1">Manage client logos and information</p>
         </div>
         <Button asChild>
           <Link href="/admin/clients/new">

@@ -52,7 +52,7 @@ export function HeroSection({ stats }: HeroSectionProps) {
                   Portfolio
                 </span>
               </div>
-              <p className="max-w-xl truncate text-sm font-semibold text-[var(--brand-muted)]">
+              <p className="max-w-xl truncate text-sm font-semibold text-(--brand-muted)">
                 Energy infrastructure delivery references across Bangladesh.
               </p>
             </div>
@@ -68,10 +68,10 @@ export function HeroSection({ stats }: HeroSectionProps) {
                       <stat.icon className="h-3.5 w-3.5" />
                     </div>
                     <div className="min-w-0">
-                      <div className="text-base font-extrabold leading-none text-[var(--brand-navy)]">
+                      <div className="text-base font-extrabold leading-none text-(--brand-navy)">
                         {stat.value}
                       </div>
-                      <div className="mt-0.5 truncate text-[11px] font-bold text-[var(--brand-muted)]">
+                      <div className="mt-0.5 truncate text-[11px] font-bold text-(--brand-muted)">
                         {stat.label}
                       </div>
                     </div>

@@ -91,9 +91,9 @@ export default function PrefaceContent() {
               {/* Description */}
               <motion.div variants={fadeInUp} className="space-y-4">
                 <p className="section-copy">
-                  <span className="font-bold text-[var(--brand-navy)]">The Royal Utilisation Services (Pvt.) Ltd</span>
+                  <span className="font-bold text-(--brand-navy)">The Royal Utilisation Services (Pvt.) Ltd</span>
                   , together with{' '}
-                  <span className="font-bold text-[var(--brand-navy)]">Sigma Construction Company</span>
+                  <span className="font-bold text-(--brand-navy)">Sigma Construction Company</span>
                   , stands as a pioneer in Bangladesh&apos;s energy sector with over{' '}
                   <span className="font-bold text-red-600">{yearsExperience} years</span> of experience since 1977.
                 </p>
@@ -120,8 +120,8 @@ export default function PrefaceContent() {
                       <div className="inline-flex p-2 bg-blue-50 rounded-lg mb-2">
                         <Icon className="w-5 h-5 text-blue-700" />
                       </div>
-                      <div className="text-xl font-extrabold text-[var(--brand-navy)]">{stat.value}</div>
-                      <p className="text-xs font-medium text-[var(--brand-muted)]">{stat.label}</p>
+                      <div className="text-xl font-extrabold text-(--brand-navy)">{stat.value}</div>
+                      <p className="text-xs font-medium text-(--brand-muted)">{stat.label}</p>
                     </div>
                   );
                 })}
@@ -143,10 +143,10 @@ export default function PrefaceContent() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[var(--brand-navy)]">
+                    <h3 className="text-base font-bold text-(--brand-navy)">
                       The Royal Utilisation Services (Pvt.)Limited
                     </h3>
-                    <p className="text-xs font-medium text-[var(--brand-muted)]">Energy Infrastructure Pioneer</p>
+                    <p className="text-xs font-medium text-(--brand-muted)">Energy Infrastructure Pioneer</p>
                   </div>
                 </motion.div>
 
@@ -164,10 +164,10 @@ export default function PrefaceContent() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold text-[var(--brand-navy)]">
+                    <h3 className="text-base font-bold text-(--brand-navy)">
                       Sigma Construction Company
                     </h3>
-                    <p className="text-xs font-medium text-[var(--brand-muted)]">Construction & Engineering Excellence</p>
+                    <p className="text-xs font-medium text-(--brand-muted)">Construction & Engineering Excellence</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -199,8 +199,8 @@ export default function PrefaceContent() {
 
                 {/* Caption */}
                 <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-white px-6 py-3 rounded-lg shadow-lg border border-[#d8e4f5]">
-                  <p className="text-sm font-bold text-[var(--brand-navy)]">Managing Director</p>
-                  <p className="text-xs font-medium text-[var(--brand-muted)]">The Royal Utilisation Services & Sigma Construction</p>
+                  <p className="text-sm font-bold text-(--brand-navy)">Managing Director</p>
+                  <p className="text-xs font-medium text-(--brand-muted)">The Royal Utilisation Services & Sigma Construction</p>
                 </div>
               </div>
             </motion.div>

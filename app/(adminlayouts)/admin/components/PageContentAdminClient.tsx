@@ -158,7 +158,7 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
     <div className="grid gap-6 xl:grid-cols-[360px_1fr]">
       <Card className="border-[#d8e4f5]">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-[var(--brand-navy)]">
+          <CardTitle className="flex items-center gap-2 text-(--brand-navy)">
             <FileText className="h-5 w-5 text-red-600" />
             Website Pages
           </CardTitle>
@@ -166,7 +166,7 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--brand-muted)]" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-(--brand-muted)" />
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
@@ -189,10 +189,10 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
               >
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="font-bold text-[var(--brand-navy)]">{page.label}</p>
-                    <p className="mt-0.5 text-xs text-[var(--brand-muted)]">{page.path || page.slug}</p>
+                    <p className="font-bold text-(--brand-navy)">{page.label}</p>
+                    <p className="mt-0.5 text-xs text-(--brand-muted)">{page.path || page.slug}</p>
                   </div>
-                  <Badge className={page.isPublished ? "bg-[#eef4ff] text-[var(--brand-blue)]" : "bg-[#f7faff] text-[var(--brand-muted)]"}>
+                  <Badge className={page.isPublished ? "bg-[#eef4ff] text-[var(--brand-blue)]" : "bg-[#f7faff] text-(--brand-muted)"}>
                     {page.isPublished ? "Live" : "Hidden"}
                   </Badge>
                 </div>
@@ -212,7 +212,7 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
             <CardHeader>
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
-                  <CardTitle className="text-2xl text-[var(--brand-navy)]">Edit {selectedPage.label}</CardTitle>
+                  <CardTitle className="text-2xl text-(--brand-navy)">Edit {selectedPage.label}</CardTitle>
                   <CardDescription>
                     Page key: <span className="font-mono">{selectedPage.slug}</span>
                   </CardDescription>
@@ -260,7 +260,7 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
                     {form.heroImageUrl ? (
                       <Image src={form.heroImageUrl} alt={form.heroTitle || "Page banner"} fill sizes="320px" className="object-cover" />
                     ) : (
-                      <div className="flex h-full items-center justify-center text-[var(--brand-muted)]">
+                      <div className="flex h-full items-center justify-center text-(--brand-muted)">
                         <ImageIcon className="h-8 w-8" />
                       </div>
                     )}
@@ -308,13 +308,13 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
                   onChange={(event) => setForm((prev) => ({ ...prev, sections: event.target.value }))}
                   className="font-mono text-xs"
                 />
-                <p className="text-xs text-[var(--brand-muted)]">
+                <p className="text-xs text-(--brand-muted)">
                   Use this for repeatable content: cards, lists, stats, extra images, CTA blocks, values, addresses, and page-specific sections.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 border-t border-[#d8e4f5] pt-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2 text-sm font-semibold text-[var(--brand-muted)]">
+                <div className="flex items-center gap-2 text-sm font-semibold text-(--brand-muted)">
                   <UploadCloud className="h-4 w-4 text-red-600" />
                   Changes publish through the API and static pages revalidate normally.
                 </div>
@@ -329,7 +329,7 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
       ) : (
         <Card className="border-[#d8e4f5]">
           <CardHeader>
-            <CardTitle className="text-[var(--brand-navy)]">No page records yet</CardTitle>
+            <CardTitle className="text-(--brand-navy)">No page records yet</CardTitle>
             <CardDescription>Create the default records first, then edit all website pages from here.</CardDescription>
           </CardHeader>
           <CardContent>

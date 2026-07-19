@@ -111,8 +111,8 @@ export default function CertificateGrid() {
                     ) : (
                       <div className="flex h-full flex-col items-center justify-center p-8 text-center">
                         <AlertCircle className="mb-4 h-10 w-10 text-red-600" />
-                        <p className="text-base font-bold text-[var(--brand-navy)]">Image required</p>
-                        <p className="mt-2 max-w-sm text-sm text-[var(--brand-muted)]">
+                        <p className="text-base font-bold text-(--brand-navy)">Image required</p>
+                        <p className="mt-2 max-w-sm text-sm text-(--brand-muted)">
                           Re-upload this certificate as an image from admin.
                         </p>
                       </div>
@@ -204,8 +204,8 @@ export default function CertificateGrid() {
               ) : (
                 <div className="flex h-full min-h-[520px] flex-col items-center justify-center p-8 text-center">
                   <AlertCircle className="mb-4 h-12 w-12 text-red-600" />
-                  <p className="text-2xl font-bold text-[var(--brand-navy)]">Image required</p>
-                  <p className="mt-2 max-w-lg text-sm text-[var(--brand-muted)]">
+                  <p className="text-2xl font-bold text-(--brand-navy)">Image required</p>
+                  <p className="mt-2 max-w-lg text-sm text-(--brand-muted)">
                     This record is not an image URL. Re-upload the certificate as JPG, PNG, WEBP, SVG, GIF, or AVIF from admin.
                   </p>
                 </div>
@@ -215,7 +215,7 @@ export default function CertificateGrid() {
             {/* Info */}
             <div className="flex flex-col gap-4 p-5 md:flex-row md:items-center md:justify-between md:p-6">
               <div>
-                <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-1">
+                <h3 className="text-xl font-bold text-(--brand-navy) mb-1">
                   {selectedCert.title}
                 </h3>
                 <p className="text-red-600 font-semibold">

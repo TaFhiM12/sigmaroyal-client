@@ -19,8 +19,8 @@ export default function ContactBusinessHours() {
           <Clock className="h-5 w-5 text-red-600" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Business Hours</h2>
-          <p className="text-[var(--brand-muted)] text-sm">Current status: <span className="text-[var(--brand-blue)] font-medium">Open ⋅ Closes 10 PM</span></p>
+          <h2 className="text-2xl font-bold text-(--brand-navy)">Business Hours</h2>
+          <p className="text-(--brand-muted) text-sm">Current status: <span className="text-[var(--brand-blue)] font-medium">Open ⋅ Closes 10 PM</span></p>
         </div>
       </div>
 
@@ -31,15 +31,15 @@ export default function ContactBusinessHours() {
             className="flex items-center justify-between py-3 border-b border-[#eef4ff] last:border-0"
           >
             <div className="flex items-center gap-3">
-              <Calendar className="h-4 w-4 text-[var(--brand-muted)]" />
-              <span className="font-medium text-[var(--brand-navy)]">{item.day}</span>
+              <Calendar className="h-4 w-4 text-(--brand-muted)" />
+              <span className="font-medium text-(--brand-navy)">{item.day}</span>
             </div>
             <div className="text-right">
               <span className={`font-medium ${item.day === 'Friday' ? 'text-red-600' : 'text-[var(--brand-copy)]'}`}>
                 {item.hours}
               </span>
               {item.note && (
-                <p className="text-xs text-[var(--brand-muted)] mt-1">{item.note}</p>
+                <p className="text-xs text-(--brand-muted) mt-1">{item.note}</p>
               )}
             </div>
           </div>

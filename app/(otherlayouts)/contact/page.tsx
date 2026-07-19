@@ -50,7 +50,7 @@ export default async function ContactPage() {
               <div className="text-xs font-extrabold uppercase tracking-[0.12em] text-red-700">
                 Direct channels
               </div>
-              <p className="mt-2 max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)]">
+              <p className="mt-2 max-w-3xl text-base font-medium leading-7 text-(--brand-muted)">
                 {summary}
               </p>
             </div>
@@ -66,7 +66,7 @@ export default async function ContactPage() {
                 >
                   <item.icon className="mt-1 h-5 w-5 shrink-0 text-red-600" />
                   <span>
-                    <span className="block text-sm font-semibold text-[var(--brand-muted)]">{item.label}</span>
+                    <span className="block text-sm font-semibold text-(--brand-muted)">{item.label}</span>
                     <span className="mt-1 block text-base font-extrabold leading-6 text-blue-950 transition-colors group-hover:text-red-600">
                       {item.value}
                     </span>

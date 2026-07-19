@@ -171,8 +171,8 @@ export default function AdminQhsePolicyPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <div>
-          <h1 className="text-3xl font-semibold text-[var(--brand-navy)]">QHSE Policy</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Manage public QHSE policy page content and safety rules.</p>
+          <h1 className="text-3xl font-semibold text-(--brand-navy)">QHSE Policy</h1>
+          <p className="text-(--brand-muted) mt-1">Manage public QHSE policy page content and safety rules.</p>
         </div>
         <Button onClick={handleSeed} variant="outline" className="border-[#b9cff0]">
           <Database className="h-4 w-4 mr-2" />

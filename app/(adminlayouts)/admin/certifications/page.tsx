@@ -37,8 +37,8 @@ export default async function AdminCertificationsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Certifications</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Manage your certifications and credentials</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Certifications</h1>
+          <p className="text-(--brand-muted) mt-1">Manage your certifications and credentials</p>
         </div>
         <Button asChild>
           <Link href="/admin/certifications/new">

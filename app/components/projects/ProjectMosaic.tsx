@@ -86,10 +86,10 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
         className="text-center py-20"
       >
         <div className="inline-flex items-center justify-center w-24 h-24 bg-[#eef4ff] rounded-full mb-6">
-          <Search className="h-12 w-12 text-[var(--brand-muted)]" />
+          <Search className="h-12 w-12 text-(--brand-muted)" />
         </div>
-        <h3 className="text-2xl font-semibold text-[var(--brand-navy)] mb-2">No projects found</h3>
-        <p className="text-[var(--brand-muted)]">Try adjusting your filters or search term</p>
+        <h3 className="text-2xl font-semibold text-(--brand-navy) mb-2">No projects found</h3>
+        <p className="text-(--brand-muted)">Try adjusting your filters or search term</p>
       </motion.div>
     );
   }
@@ -112,7 +112,7 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
             <div className="p-2 bg-[#eef4ff] rounded-lg">
               <CalendarClock className="h-6 w-6 text-[var(--brand-blue)]" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Upcoming Projects</h2>
+            <h2 className="text-2xl font-bold text-(--brand-navy)">Upcoming Projects</h2>
             <span className="px-3 py-1 bg-[#eef4ff] text-[var(--brand-blue)] rounded-full text-sm font-medium">
               {upcomingProjects.length} planned
             </span>
@@ -142,7 +142,7 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
             <div className="p-2 bg-blue-100 rounded-lg">
               <Clock className="h-6 w-6 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Active Projects</h2>
+            <h2 className="text-2xl font-bold text-(--brand-navy)">Active Projects</h2>
             <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
               {ongoingProjects.length} in progress
             </span>
@@ -172,7 +172,7 @@ export function ProjectMosaic({ projects, loading, onProjectClick }: ProjectMosa
             <div className="p-2 bg-[#eef4ff] rounded-lg">
               <CheckCircle className="h-6 w-6 text-[var(--brand-blue)]" />
             </div>
-            <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Completed Projects</h2>
+            <h2 className="text-2xl font-bold text-(--brand-navy)">Completed Projects</h2>
             <span className="px-3 py-1 bg-[#eef4ff] text-[var(--brand-blue)] rounded-full text-sm font-medium">
               {completedProjects.length} delivered
             </span>
@@ -238,23 +238,23 @@ function OngoingProjectCard({ project, index, onClick }: { project: Project; ind
 
         {/* Content Section */}
         <div className="flex-1 p-6">
-          <h3 className="text-xl font-bold text-[var(--brand-navy)] mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="text-xl font-bold text-(--brand-navy) mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
             {project.title}
           </h3>
           
-          <p className="text-[var(--brand-muted)] text-sm mb-4 line-clamp-2">
+          <p className="text-(--brand-muted) text-sm mb-4 line-clamp-2">
             {project.description || project.scopeOfWork}
           </p>
 
           <div className="space-y-2 mb-4">
-            <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
-              <MapPin className="h-4 w-4 text-[var(--brand-muted)]" />
+            <div className="flex items-center gap-2 text-sm text-(--brand-muted)">
+              <MapPin className="h-4 w-4 text-(--brand-muted)" />
               <span className="line-clamp-1">{project.location}</span>
             </div>
             
             {project.duration && (
-              <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
-                <Calendar className="h-4 w-4 text-[var(--brand-muted)]" />
+              <div className="flex items-center gap-2 text-sm text-(--brand-muted)">
+                <Calendar className="h-4 w-4 text-(--brand-muted)" />
                 <span>Duration: {project.duration}</span>
               </div>
             )}
@@ -326,18 +326,18 @@ function CompletedProjectCard({ project, index, onClick }: { project: Project; i
       {/* Content */}
       <div className="p-4">
         <div className="space-y-2 mb-3">
-          <div className="flex items-center gap-2 text-sm text-[var(--brand-muted)]">
-            <MapPin className="h-4 w-4 text-[var(--brand-muted)] shrink-0" />
+          <div className="flex items-center gap-2 text-sm text-(--brand-muted)">
+            <MapPin className="h-4 w-4 text-(--brand-muted) shrink-0" />
             <span className="line-clamp-1">{project.location}</span>
           </div>
           
-          <p className="text-sm text-[var(--brand-muted)] line-clamp-2">
+          <p className="text-sm text-(--brand-muted) line-clamp-2">
             {project.description || project.scopeOfWork}
           </p>
         </div>
 
         <div className="flex items-center justify-between pt-2 border-t border-[#eef4ff]">
-          <span className="text-xs text-[var(--brand-muted)]">{project.client}</span>
+          <span className="text-xs text-(--brand-muted)">{project.client}</span>
           <motion.div
             animate={{ x: 0 }}
             whileHover={{ x: 4 }}

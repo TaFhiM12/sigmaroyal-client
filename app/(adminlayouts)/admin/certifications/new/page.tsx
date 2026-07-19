@@ -21,8 +21,8 @@ export default function NewCertificationPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Create New Certification</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Add a new certification to your portfolio</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Create New Certification</h1>
+          <p className="text-(--brand-muted) mt-1">Add a new certification to your portfolio</p>
         </div>
       </div>
 

@@ -46,20 +46,20 @@ export default function AdminLayout({
         <div className="sticky top-0 z-40 bg-white border-b border-[#d8e4f5] shadow-sm">
           <div className="flex items-center justify-between px-6 py-3">
             <div className="flex items-center gap-3">
-              <h1 className="text-xl font-semibold text-[var(--brand-navy)]">Dashboard</h1>
-              <span className="text-sm text-[var(--brand-muted)]">/ Admin Panel</span>
+              <h1 className="text-xl font-semibold text-(--brand-navy)">Dashboard</h1>
+              <span className="text-sm text-(--brand-muted)">/ Admin Panel</span>
             </div>
             
             <div className="flex items-center gap-3">
               {/* Quick Actions */}
               <button className="p-2 rounded-lg hover:bg-[#eef4ff] transition-colors">
-                <Bell className="h-5 w-5 text-[var(--brand-muted)]" />
+                <Bell className="h-5 w-5 text-(--brand-muted)" />
               </button>
               <div className="h-6 w-px bg-[#d8e4f5]" />
               <div className="flex items-center gap-2">
                 <div className="text-right">
-                  <p className="text-sm font-medium text-[var(--brand-navy)]">{adminName}</p>
-                  <p className="text-xs text-[var(--brand-muted)]">{adminEmail}</p>
+                  <p className="text-sm font-medium text-(--brand-navy)">{adminName}</p>
+                  <p className="text-xs text-(--brand-muted)">{adminEmail}</p>
                 </div>
                 <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-semibold">
                   AD
@@ -70,7 +70,7 @@ export default function AdminLayout({
                 className="p-2 rounded-lg hover:bg-[#eef4ff] transition-colors"
                 title="Logout"
               >
-                <LogOut className="h-5 w-5 text-[var(--brand-muted)]" />
+                <LogOut className="h-5 w-5 text-(--brand-muted)" />
               </button>
             </div>
           </div>

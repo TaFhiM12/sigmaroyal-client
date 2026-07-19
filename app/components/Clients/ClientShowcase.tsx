@@ -65,7 +65,7 @@ export default function ClientShowcase() {
               <Sparkles className="h-3.5 w-3.5" />
               Partners
             </span>
-            <p className="truncate text-sm font-semibold text-[var(--brand-muted)]">
+            <p className="truncate text-sm font-semibold text-(--brand-muted)">
               Trusted organizations across Bangladesh energy infrastructure.
             </p>
           </div>
@@ -78,13 +78,13 @@ export default function ClientShowcase() {
           <div className="flex justify-end gap-2 mb-3">
             <button
               onClick={prevSlide}
-              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-[var(--brand-muted)] shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
+              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-(--brand-muted) shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextSlide}
-              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-[var(--brand-muted)] shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
+              className="rounded-lg border border-[#d8e4f5] bg-white p-2 text-(--brand-muted) shadow-sm transition-all hover:bg-red-600 hover:text-white hover:border-red-600"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -159,8 +159,8 @@ export default function ClientShowcase() {
             className="mt-6"
           >
             <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-extrabold uppercase tracking-[0.12em] text-[var(--brand-muted)]">All Partners</h3>
-              <span className="text-sm font-semibold text-[var(--brand-muted)]">{clients.length} Organizations</span>
+              <h3 className="text-sm font-extrabold uppercase tracking-[0.12em] text-(--brand-muted)">All Partners</h3>
+              <span className="text-sm font-semibold text-(--brand-muted)">{clients.length} Organizations</span>
             </div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
               {clients.map((client, index) => (

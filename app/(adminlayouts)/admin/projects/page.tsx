@@ -41,8 +41,8 @@ export default async function AdminProjectsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Projects</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Manage your project portfolio</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Projects</h1>
+          <p className="text-(--brand-muted) mt-1">Manage your project portfolio</p>
         </div>
         <Button asChild>
           <Link href="/admin/projects/new">

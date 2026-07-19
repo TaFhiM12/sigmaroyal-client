@@ -204,7 +204,7 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
                 onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
                 placeholder="0"
               />
-              <p className="text-xs text-[var(--brand-muted)]">Lower numbers appear first</p>
+              <p className="text-xs text-(--brand-muted)">Lower numbers appear first</p>
             </div>
 
             <div className="space-y-2">
@@ -216,7 +216,7 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
                   onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })}
                 />
               </div>
-              <p className="text-xs text-[var(--brand-muted)]">Inactive certifications won&apos;t be shown on the website</p>
+              <p className="text-xs text-(--brand-muted)">Inactive certifications won&apos;t be shown on the website</p>
             </div>
           </div>
 
@@ -246,10 +246,10 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
 
                     <div className="flex flex-col gap-2 border-t border-[#edf2f8] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
                       <div className="text-left">
-                        <p className="text-sm font-bold text-[var(--brand-navy)]">
+                        <p className="text-sm font-bold text-(--brand-navy)">
                           Image preview loaded
                         </p>
-                        <p className="text-xs text-[var(--brand-muted)]">
+                        <p className="text-xs text-(--brand-muted)">
                           Confirm this is the correct certificate before saving.
                         </p>
                       </div>
@@ -262,7 +262,7 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
 
                   <label
                     htmlFor="certificate-file"
-                    className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[#d8e4f5] bg-white px-4 py-2 text-sm font-semibold text-[var(--brand-navy)] transition-colors hover:border-red-200 hover:text-red-600"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[#d8e4f5] bg-white px-4 py-2 text-sm font-semibold text-(--brand-navy) transition-colors hover:border-red-200 hover:text-red-600"
                   >
                     Click to change certificate file
                   </label>
@@ -270,9 +270,9 @@ export default function CertificationForm({ certification, onSuccess, onCancel }
               ) : (
                 <label htmlFor="certificate-file" className="block cursor-pointer p-6">
                   <div>
-                    <Upload className="h-12 w-12 mx-auto text-[var(--brand-muted)] mb-3" />
-                    <p className="text-sm text-[var(--brand-muted)]">Click to upload certificate image</p>
-                    <p className="text-xs text-[var(--brand-muted)] mt-1">Any image format up to 15MB</p>
+                    <Upload className="h-12 w-12 mx-auto text-(--brand-muted) mb-3" />
+                    <p className="text-sm text-(--brand-muted)">Click to upload certificate image</p>
+                    <p className="text-xs text-(--brand-muted) mt-1">Any image format up to 15MB</p>
                   </div>
                 </label>
               )}

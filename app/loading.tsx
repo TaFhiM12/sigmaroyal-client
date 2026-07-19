@@ -14,10 +14,10 @@ export default function Loading() {
 
         {/* Loading Text */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-[var(--brand-navy)]">
+          <h2 className="text-2xl font-bold text-(--brand-navy)">
             Loading Content
           </h2>
-          <p className="text-[var(--brand-muted)]">
+          <p className="text-(--brand-muted)">
             Please wait while we prepare your experience
           </p>
           

@@ -254,7 +254,7 @@ const Footer2 = ({
       <div className="relative border-t border-blue-900/70 bg-slate-950">
         <div className="container mx-auto px-4 py-4 md:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-3 md:flex-row">
-            <p className="text-center text-xs text-[var(--brand-muted)] md:text-left">
+            <p className="text-center text-xs text-(--brand-muted) md:text-left">
               {copyright}
             </p>
             
@@ -264,7 +264,7 @@ const Footer2 = ({
                   <li key={index}>
                     <Link 
                       href={link.url}
-                      className="text-[var(--brand-muted)] hover:text-red-400 transition-colors"
+                      className="text-(--brand-muted) hover:text-red-400 transition-colors"
                     >
                       {link.text}
                     </Link>
@@ -275,7 +275,7 @@ const Footer2 = ({
               {/* Back to Top */}
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="hidden md:flex items-center gap-2 text-xs text-[var(--brand-muted)] hover:text-red-400 transition-colors"
+                className="hidden md:flex items-center gap-2 text-xs text-(--brand-muted) hover:text-red-400 transition-colors"
                 aria-label="Back to top"
               >
                 Back to Top
@@ -287,7 +287,7 @@ const Footer2 = ({
           </div>
           
           {/* Accreditation Note */}
-          <div className="mt-2 text-center text-[11px] text-[var(--brand-muted)]">
+          <div className="mt-2 text-center text-[11px] text-(--brand-muted)">
             <p>ISO Certified • Member of Bangladesh Energy Society • Registered with Petrobangla</p>
           </div>
         </div>

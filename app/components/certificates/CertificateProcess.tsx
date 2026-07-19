@@ -95,7 +95,7 @@ export default function CertificateProcess() {
                   {certCount > 0 && (
                     <div className="text-center">
                       <div className="text-3xl font-bold text-red-400">{certCount}</div>
-                      <div className="text-sm text-[var(--brand-muted)]">Published certifications</div>
+                      <div className="text-sm text-(--brand-muted)">Published certifications</div>
                     </div>
                   )}
                 </div>

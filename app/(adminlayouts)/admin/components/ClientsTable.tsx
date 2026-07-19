@@ -94,7 +94,7 @@ export default function ClientsTable({
   if (clients.length === 0) {
     return (
       <div className="text-center py-12 bg-[#f7faff] rounded-lg">
-        <p className="text-[var(--brand-muted)]">No clients found. Create your first client!</p>
+        <p className="text-(--brand-muted)">No clients found. Create your first client!</p>
       </div>
     );
   }
@@ -162,7 +162,7 @@ export default function ClientsTable({
                 <TableCell>
                   {isReorderMode ? (
                     <div className="flex items-center gap-1">
-                      <span className="text-sm text-[var(--brand-muted)] w-6 text-center">{index + 1}</span>
+                      <span className="text-sm text-(--brand-muted) w-6 text-center">{index + 1}</span>
                       <div className="flex flex-col">
                         <Button
                           variant="ghost"
@@ -185,7 +185,7 @@ export default function ClientsTable({
                       </div>
                     </div>
                   ) : (
-                    <span className="text-sm font-medium text-[var(--brand-muted)]">{client.order}</span>
+                    <span className="text-sm font-medium text-(--brand-muted)">{client.order}</span>
                   )}
                 </TableCell>
                 <TableCell>
@@ -212,11 +212,11 @@ export default function ClientsTable({
                       Visit <ExternalLink className="h-3 w-3" />
                     </a>
                   ) : (
-                    <span className="text-[var(--brand-muted)] text-sm">Not provided</span>
+                    <span className="text-(--brand-muted) text-sm">Not provided</span>
                   )}
                 </TableCell>
                 <TableCell>
-                  <Badge className={client.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-[var(--brand-navy)]'}>
+                  <Badge className={client.isActive ? 'bg-[#eef4ff] text-[var(--brand-blue)]' : 'bg-[#eef4ff] text-(--brand-navy)'}>
                     {client.isActive ? 'Active' : 'Inactive'}
                   </Badge>
                 </TableCell>

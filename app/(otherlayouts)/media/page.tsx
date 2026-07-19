@@ -49,7 +49,7 @@ export default async function MediaPage() {
                 Visual Archive
               </span>
               <h2 className="section-title-sm mt-4">{content?.introTitle || "Project photography"}</h2>
-              <p className="mt-3 max-w-2xl text-[var(--brand-muted)]">
+              <p className="mt-3 max-w-2xl text-(--brand-muted)">
                 {content?.introBody || "A curated record of infrastructure delivery, field operations and company milestones."}
               </p>
             </div>

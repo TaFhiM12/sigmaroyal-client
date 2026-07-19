@@ -8,7 +8,7 @@ export default function NotFound() {
         <div className="text-center">
           {/* 404 Number */}
           <div className="relative mb-8">
-            <div className="text-9xl font-bold text-[var(--brand-navy)] opacity-5">404</div>
+            <div className="text-9xl font-bold text-(--brand-navy) opacity-5">404</div>
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-6xl md:text-8xl font-bold text-red-600">404</div>
             </div>
@@ -20,11 +20,11 @@ export default function NotFound() {
           </div>
 
           {/* Message */}
-          <h1 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-(--brand-navy) mb-4">
             Page Not Found
           </h1>
           
-          <p className="text-[var(--brand-muted)] mb-8">
+          <p className="text-(--brand-muted) mb-8">
             The page you are looking for might have been removed, had its name changed,
             or is temporarily unavailable.
           </p>
@@ -50,7 +50,7 @@ export default function NotFound() {
 
           {/* Quick Links */}
           <div className="bg-white rounded-xl border border-[#d8e4f5] p-6">
-            <h3 className="font-semibold text-[var(--brand-navy)] mb-4 flex items-center justify-center gap-2">
+            <h3 className="font-semibold text-(--brand-navy) mb-4 flex items-center justify-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               You might be looking for:
             </h3>
@@ -76,7 +76,7 @@ export default function NotFound() {
 
           {/* Search Suggestion */}
           <div className="mt-8 p-4 bg-[#f7faff] rounded-lg">
-            <p className="text-sm text-[var(--brand-muted)]">
+            <p className="text-sm text-(--brand-muted)">
               Try searching for what you need or check our{' '}
               <Link href="/sitemap" className="text-red-600 hover:text-red-700 font-medium">
                 sitemap

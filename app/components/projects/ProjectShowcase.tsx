@@ -42,9 +42,9 @@ export function ProjectShowcase({
     return (
       <div className="py-16 text-center">
         <div className="mb-4 inline-flex rounded-full bg-[#eef4ff] p-4">
-          <Briefcase className="h-8 w-8 text-[var(--brand-muted)]" />
+          <Briefcase className="h-8 w-8 text-(--brand-muted)" />
         </div>
-        <p className="text-lg font-semibold text-[var(--brand-muted)]">No projects found</p>
+        <p className="text-lg font-semibold text-(--brand-muted)">No projects found</p>
       </div>
     );
   }
@@ -70,7 +70,7 @@ export function ProjectShowcase({
             <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
               {pageSummary.eyebrow}
             </p>
-            <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{pageSummary.title}</h2>
+            <h2 className="mt-1 text-xl font-extrabold text-(--brand-navy)">{pageSummary.title}</h2>
           </div>
           
         </div>
@@ -166,7 +166,7 @@ function FeaturedProject({
   onClick: () => void;
 }) {
   const statusMeta = getProjectStatusMeta(project.status);
-  const StatusIcon = statusMeta.icon;
+  // const StatusIcon = statusMeta.icon;
 
   return (
     <motion.button
@@ -196,15 +196,15 @@ function FeaturedProject({
           </span>
         </div>
 
-        <h3 className="max-w-xl text-xl font-semibold leading-snug text-[var(--brand-navy)] md:text-2xl">
+        <h3 className="max-w-xl text-xl font-semibold leading-snug text-(--brand-navy) md:text-2xl">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-3 max-w-xl text-sm leading-6 text-[var(--brand-muted)]">
+        <p className="mt-3 line-clamp-3 max-w-xl text-sm leading-6 text-(--brand-muted)">
           {project.description || project.scopeOfWork}
         </p>
 
-        <div className="mt-5 grid gap-2 text-xs font-semibold text-[var(--brand-muted)] sm:grid-cols-2">
+        <div className="mt-5 grid gap-2 text-xs font-semibold text-(--brand-muted) sm:grid-cols-2">
           <span className="inline-flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-red-600" />
             {project.location}
@@ -259,24 +259,24 @@ function ProjectCatalogueTile({
 
       <div className="px-5 py-5">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[var(--brand-muted)]">
+          <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-(--brand-muted)">
             {getSectorLabel(project)}
           </span>
-          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-[var(--brand-muted)]">
+          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-(--brand-muted)">
             <StatusIcon className="h-3.5 w-3.5 text-red-600" />
             {statusMeta.label}
           </span>
         </div>
 
-        <h3 className="min-h-12 text-base font-semibold leading-snug text-[var(--brand-navy)] group-hover:text-red-600">
+        <h3 className="min-h-12 text-base font-semibold leading-snug text-(--brand-navy) group-hover:text-red-600">
           {project.title}
         </h3>
 
-        <p className="mt-3 line-clamp-4 text-xs leading-5 text-[var(--brand-muted)]">
+        <p className="mt-3 line-clamp-4 text-xs leading-5 text-(--brand-muted)">
           {project.description || project.scopeOfWork}
         </p>
 
-        <div className="mt-5 space-y-2 border-t border-[#eef4ff] pt-4 text-xs font-semibold text-[var(--brand-muted)]">
+        <div className="mt-5 space-y-2 border-t border-[#eef4ff] pt-4 text-xs font-semibold text-(--brand-muted)">
           <div className="flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-red-600" />
             <span className="truncate">{project.location}</span>

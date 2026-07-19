@@ -78,7 +78,7 @@ export function FilterBar({
       {/* Search and Filter Toggle */}
       <div className="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
         <div className="w-full md:w-86 relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--brand-muted)]" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-(--brand-muted)" />
           <Input
             placeholder="Search projects..."
             value={searchQuery}
@@ -90,7 +90,7 @@ export function FilterBar({
               onClick={() => onSearchChange('')}
               className="absolute right-3 top-1/2 -translate-y-1/2"
             >
-              <X className="h-4 w-4 text-[var(--brand-muted)] hover:text-[var(--brand-muted)]" />
+              <X className="h-4 w-4 text-(--brand-muted) hover:text-(--brand-muted)" />
             </button>
           )}
         </div>
@@ -141,7 +141,7 @@ export function FilterBar({
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {/* Sector Filter */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-[var(--brand-muted)]">Sector</label>
+                  <label className="text-xs font-bold text-(--brand-muted)">Sector</label>
                   <Select value={selectedSector} onValueChange={onSectorChange}>
                     <SelectTrigger>
                       <SelectValue />
@@ -158,7 +158,7 @@ export function FilterBar({
 
                 {/* Status Filter */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-[var(--brand-muted)]">Status</label>
+                  <label className="text-xs font-bold text-(--brand-muted)">Status</label>
                   <Select value={selectedStatus} onValueChange={onStatusChange}>
                     <SelectTrigger>
                       <SelectValue />
@@ -176,7 +176,7 @@ export function FilterBar({
 
               {/* Filter Actions */}
               <div className="mt-3 flex items-center justify-between border-t pt-3">
-                <p className="text-xs text-[var(--brand-muted)]">
+                <p className="text-xs text-(--brand-muted)">
                   Found <span className="font-semibold">{totalResults}</span> projects
                 </p>
                 {isFilterActive && (

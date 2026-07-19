@@ -78,8 +78,8 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
   if (error || !project) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-[var(--brand-navy)] mb-2">Project Not Found</h2>
-        <p className="text-[var(--brand-muted)] mb-6">{error || "The project you're looking for doesn't exist."}</p>
+        <h2 className="text-2xl font-bold text-(--brand-navy) mb-2">Project Not Found</h2>
+        <p className="text-(--brand-muted) mb-6">{error || "The project you're looking for doesn't exist."}</p>
         <Button asChild>
           <Link href="/admin/projects">Back to Projects</Link>
         </Button>
@@ -97,8 +97,8 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Edit Project</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Update project information</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Edit Project</h1>
+          <p className="text-(--brand-muted) mt-1">Update project information</p>
         </div>
       </div>
 

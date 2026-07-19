@@ -108,7 +108,7 @@ export default function AtAGlancePage() {
                 <FileText className="h-3.5 w-3.5" />
                 Company Snapshot
               </span>
-              <p className="truncate text-sm font-semibold text-[var(--brand-muted)]">
+              <p className="truncate text-sm font-semibold text-(--brand-muted)">
                 Quick operating profile of The Royal Utilisation Services since 1977.
               </p>
             </div>
@@ -129,8 +129,8 @@ export default function AtAGlancePage() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xl font-extrabold leading-none text-[var(--brand-navy)]">{metric.value}</div>
-                    <p className="mt-1 truncate text-xs font-bold text-[var(--brand-muted)]">{metric.label}</p>
+                    <div className="text-xl font-extrabold leading-none text-(--brand-navy)">{metric.value}</div>
+                    <p className="mt-1 truncate text-xs font-bold text-(--brand-muted)">{metric.label}</p>
                   </div>
                 </motion.div>
               );
@@ -141,7 +141,7 @@ export default function AtAGlancePage() {
           <div className="grid gap-5 lg:grid-cols-2">
             {/* Left Column - Basic Info */}
             <motion.div variants={scaleIn} className="space-y-6">
-              <h2 className="flex items-center gap-2 text-lg font-extrabold text-[var(--brand-navy)]">
+              <h2 className="flex items-center gap-2 text-lg font-extrabold text-(--brand-navy)">
                 <Building2 className="w-6 h-6 text-red-600" />
                 Basic Information
               </h2>
@@ -163,8 +163,8 @@ export default function AtAGlancePage() {
                         <Icon className="h-4 w-4 text-red-600" />
                       </div>
                       <div className="flex-1">
-                        <p className="mb-1 text-xs font-bold text-[var(--brand-muted)]">{item.label}</p>
-                        <p className="text-sm font-bold text-[var(--brand-navy)]">{item.value}</p>
+                        <p className="mb-1 text-xs font-bold text-(--brand-muted)">{item.label}</p>
+                        <p className="text-sm font-bold text-(--brand-navy)">{item.value}</p>
                       </div>
                     </motion.div>
                   );
@@ -176,7 +176,7 @@ export default function AtAGlancePage() {
             <motion.div variants={scaleIn} className="space-y-6">
               {/* Business Info */}
               <div>
-                <h2 className="text-2xl font-bold text-[var(--brand-navy)] flex items-center gap-2 mb-4">
+                <h2 className="text-2xl font-bold text-(--brand-navy) flex items-center gap-2 mb-4">
                   <Briefcase className="w-6 h-6 text-red-600" />
                   Business Overview
                 </h2>
@@ -197,10 +197,10 @@ export default function AtAGlancePage() {
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
-                            <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
+                            <p className="text-sm text-(--brand-muted) mb-1">{item.label}</p>
+                            <p className="text-base font-semibold text-(--brand-navy)">{item.value}</p>
                             {item.subvalue && (
-                              <p className="text-sm text-[var(--brand-muted)] mt-2 bg-[#f7faff] p-3 rounded-lg">
+                              <p className="text-sm text-(--brand-muted) mt-2 bg-[#f7faff] p-3 rounded-lg">
                                 {item.subvalue}
                               </p>
                             )}
@@ -214,7 +214,7 @@ export default function AtAGlancePage() {
 
               {/* Leadership & Contact */}
               <div>
-                <h2 className="text-2xl font-bold text-[var(--brand-navy)] flex items-center gap-2 mb-4">
+                <h2 className="text-2xl font-bold text-(--brand-navy) flex items-center gap-2 mb-4">
                   <User className="w-6 h-6 text-red-600" />
                   Leadership & Contact
                 </h2>
@@ -236,8 +236,8 @@ export default function AtAGlancePage() {
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
-                            <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
+                            <p className="text-sm text-(--brand-muted) mb-1">{item.label}</p>
+                            <p className="text-base font-semibold text-(--brand-navy)">{item.value}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -260,14 +260,14 @@ export default function AtAGlancePage() {
                             <Icon className="w-5 h-5 text-red-600" />
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm text-[var(--brand-muted)] mb-1">{item.label}</p>
+                            <p className="text-sm text-(--brand-muted) mb-1">{item.label}</p>
                             {item.subvalue ? (
                               <>
-                                <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
-                                <p className="text-sm text-[var(--brand-muted)] mt-1">{item.subvalue}</p>
+                                <p className="text-base font-semibold text-(--brand-navy)">{item.value}</p>
+                                <p className="text-sm text-(--brand-muted) mt-1">{item.subvalue}</p>
                               </>
                             ) : (
-                              <p className="text-base font-semibold text-[var(--brand-navy)]">{item.value}</p>
+                              <p className="text-base font-semibold text-(--brand-navy)">{item.value}</p>
                             )}
                           </div>
                         </div>

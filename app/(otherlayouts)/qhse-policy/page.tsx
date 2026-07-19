@@ -33,7 +33,7 @@ export default async function QhsePolicyPage() {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Policy Not Found</h2>
           <p className="text-red-200 text-lg mb-2">Our QHSE guidelines are being updated</p>
-          <p className="text-[var(--brand-muted)]">Please check back soon or contact our compliance team</p>
+          <p className="text-(--brand-muted)">Please check back soon or contact our compliance team</p>
         </div>
       </section>
     );
@@ -57,7 +57,7 @@ export default async function QhsePolicyPage() {
               </div>
 
               {/* Description */}
-              <p className="max-w-3xl text-base font-medium leading-7 text-[var(--brand-muted)]">
+              <p className="max-w-3xl text-base font-medium leading-7 text-(--brand-muted)">
                 Our commitment to Quality, Health, Safety, and Environment excellence in every operation.
               </p>
               
@@ -68,8 +68,8 @@ export default async function QhsePolicyPage() {
                     <CheckCircle className="h-4 w-4 text-[var(--brand-blue)]" />
                   </div>
                   <div>
-                    <div className="text-sm font-extrabold text-[var(--brand-navy)]">ISO 45001</div>
-                    <div className="text-xs font-medium text-[var(--brand-muted)]">Certified</div>
+                    <div className="text-sm font-extrabold text-(--brand-navy)">ISO 45001</div>
+                    <div className="text-xs font-medium text-(--brand-muted)">Certified</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-[#d8e4f5] bg-white px-3 py-2 shadow-sm">
@@ -77,8 +77,8 @@ export default async function QhsePolicyPage() {
                     <Leaf className="h-4 w-4 text-blue-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-extrabold text-[var(--brand-navy)]">ISO 14001</div>
-                    <div className="text-xs font-medium text-[var(--brand-muted)]">Environment</div>
+                    <div className="text-sm font-extrabold text-(--brand-navy)">ISO 14001</div>
+                    <div className="text-xs font-medium text-(--brand-muted)">Environment</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 rounded-lg border border-[#d8e4f5] bg-white px-3 py-2 shadow-sm">
@@ -86,8 +86,8 @@ export default async function QhsePolicyPage() {
                     <Target className="h-4 w-4 text-red-600" />
                   </div>
                   <div>
-                    <div className="text-sm font-extrabold text-[var(--brand-navy)]">Zero Harm</div>
-                    <div className="text-xs font-medium text-[var(--brand-muted)]">Goal</div>
+                    <div className="text-sm font-extrabold text-(--brand-navy)">Zero Harm</div>
+                    <div className="text-xs font-medium text-(--brand-muted)">Goal</div>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default async function QhsePolicyPage() {
                 <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
                   <Shield className="w-4 h-4 text-red-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-[var(--brand-navy)]">Key Principles</h2>
+                <h2 className="text-2xl font-bold text-(--brand-navy)">Key Principles</h2>
               </div>
               <div className="grid md:grid-cols-2 gap-4">
                 {policy.bulletPoints.map((item, idx) => (
@@ -197,8 +197,8 @@ export default async function QhsePolicyPage() {
                   <TrendingUp className="w-5 h-5 text-red-600" />
                 </div>
                 <div>
-                  <h3 className="text-md font-semibold text-[var(--brand-navy)] mb-1">Performance Analysis</h3>
-                  <p className="text-[var(--brand-muted)] text-sm leading-relaxed">{policy.analysisStatement}</p>
+                  <h3 className="text-md font-semibold text-(--brand-navy) mb-1">Performance Analysis</h3>
+                  <p className="text-(--brand-muted) text-sm leading-relaxed">{policy.analysisStatement}</p>
                 </div>
               </div>
             </div>
@@ -206,9 +206,9 @@ export default async function QhsePolicyPage() {
             {/* Golden Rules Section */}
             <div className="mt-4">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-[var(--brand-navy)] mb-2">{policy.goldenRulesTitle}</h2>
+                <h2 className="text-3xl font-bold text-(--brand-navy) mb-2">{policy.goldenRulesTitle}</h2>
                 <div className="w-16 h-0.5 bg-red-600 rounded-full"></div>
-                <p className="text-[var(--brand-muted)] text-sm mt-3">Non-negotiable standards for every team member</p>
+                <p className="text-(--brand-muted) text-sm mt-3">Non-negotiable standards for every team member</p>
               </div>
 
               <div className="space-y-3">
@@ -228,24 +228,24 @@ export default async function QhsePolicyPage() {
               <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-[#eef4ff]">
                 <Heart className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-[var(--brand-navy)] text-sm">Health & Safety</h4>
-                  <p className="text-xs text-[var(--brand-muted)] mt-1">Regular medical checkups and safety training</p>
+                  <h4 className="font-semibold text-(--brand-navy) text-sm">Health & Safety</h4>
+                  <p className="text-xs text-(--brand-muted) mt-1">Regular medical checkups and safety training</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-[#eef4ff]">
                 <Globe className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-[var(--brand-navy)] text-sm">Environment</h4>
-                  <p className="text-xs text-[var(--brand-muted)] mt-1">Sustainable practices & carbon reduction</p>
+                  <h4 className="font-semibold text-(--brand-navy) text-sm">Environment</h4>
+                  <p className="text-xs text-(--brand-muted) mt-1">Sustainable practices & carbon reduction</p>
                 </div>
               </div>
               
               <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-[#eef4ff]">
                 <Users className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-[var(--brand-navy)] text-sm">Quality Assurance</h4>
-                  <p className="text-xs text-[var(--brand-muted)] mt-1">ISO certified processes for excellence</p>
+                  <h4 className="font-semibold text-(--brand-navy) text-sm">Quality Assurance</h4>
+                  <p className="text-xs text-(--brand-muted) mt-1">ISO certified processes for excellence</p>
                 </div>
               </div>
             </div>
@@ -254,11 +254,11 @@ export default async function QhsePolicyPage() {
             <div className="pt-6 border-t border-[#d8e4f5] text-center">
               <div className="inline-flex items-center gap-2">
                 <Sparkles className="w-3 h-3 text-red-500" />
-                <p className="text-xs text-[var(--brand-muted)]">
+                <p className="text-xs text-(--brand-muted)">
                   This policy is binding for all employees, contractors, and visitors
                 </p>
               </div>
-              <p className="text-xs text-[var(--brand-muted)] mt-2">
+              <p className="text-xs text-(--brand-muted) mt-2">
                 Last updated: June 5, 2026
               </p>
             </div>

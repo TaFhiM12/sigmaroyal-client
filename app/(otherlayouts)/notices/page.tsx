@@ -47,7 +47,7 @@ export default async function NoticesPage() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
-            <p className="max-w-lg text-[var(--brand-muted)]">
+            <p className="max-w-lg text-(--brand-muted)">
               {content?.introBody || "Company announcements, observances and stakeholder updates are published here."}
             </p>
             <Link
@@ -69,7 +69,7 @@ export default async function NoticesPage() {
                   <span className="rounded-full bg-blue-50 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.12em] text-blue-900">
                     {notice.label}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--brand-muted)]">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-(--brand-muted)">
                     <CalendarDays className="h-3.5 w-3.5" />
                     {notice.date}
                   </span>

@@ -85,8 +85,8 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center p-8 max-w-md">
           <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-[var(--brand-navy)] mb-2">Unable to Load Projects</h2>
-          <p className="text-[var(--brand-muted)] mb-6">{error}</p>
+          <h2 className="text-2xl font-bold text-(--brand-navy) mb-2">Unable to Load Projects</h2>
+          <p className="text-(--brand-muted) mb-6">{error}</p>
           <Button asChild>
             <Link href="/">Return Home</Link>
           </Button>

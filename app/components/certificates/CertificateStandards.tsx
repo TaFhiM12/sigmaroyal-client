@@ -79,10 +79,10 @@ export default function CertificateStandards() {
             <div className="w-8 h-0.5 bg-linear-to-r from-transparent via-red-600 to-transparent" />
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-(--brand-navy) mb-4">
             Our <span className="text-red-600">Compliance Framework</span>
           </h2>
-          <p className="text-[var(--brand-muted)]">
+          <p className="text-(--brand-muted)">
             Integrated management systems ensuring excellence in every aspect of our operations
           </p>
         </div>
@@ -100,10 +100,10 @@ export default function CertificateStandards() {
                     {standard.icon}
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-3">
+                <h3 className="text-lg font-bold text-(--brand-navy) mb-3">
                   {standard.title}
                 </h3>
-                <p className="text-[var(--brand-muted)] text-sm mb-4">
+                <p className="text-(--brand-muted) text-sm mb-4">
                   {standard.description}
                 </p>
                 <div className="space-y-2">
@@ -117,7 +117,7 @@ export default function CertificateStandards() {
                   ) : (
                     <div className="flex items-center gap-2">
                       <div className="w-1.5 h-1.5 bg-[#d8e4f5] rounded-full" />
-                      <span className="text-xs text-[var(--brand-muted)]">Certifications pending</span>
+                      <span className="text-xs text-(--brand-muted)">Certifications pending</span>
                     </div>
                   )}
                 </div>

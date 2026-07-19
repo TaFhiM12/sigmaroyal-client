@@ -207,7 +207,7 @@ const AreaOfExpertise = ({ className, heading, description, showHeader = true }:
 
               <motion.h2
                 variants={fadeUpVariants}
-                className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-[var(--brand-navy)] md:text-5xl lg:text-6xl"
+                className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-(--brand-navy) md:text-5xl lg:text-6xl"
               >
                 {heading || <>Areas of <span className="brand-text-gradient">Expertise</span></>}
               </motion.h2>
@@ -216,7 +216,7 @@ const AreaOfExpertise = ({ className, heading, description, showHeader = true }:
 
             <motion.p
               variants={itemVariants}
-              className="max-w-2xl text-base font-medium leading-8 text-[var(--brand-muted)] md:justify-self-end md:text-lg"
+              className="max-w-2xl text-base font-medium leading-8 text-(--brand-muted) md:justify-self-end md:text-lg"
             >
               {description || (
                 <>

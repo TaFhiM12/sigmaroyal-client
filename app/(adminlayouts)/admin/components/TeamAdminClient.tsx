@@ -207,7 +207,7 @@ export default function TeamAdminClient({ initialMembers }: { initialMembers: Te
       <div className="flex flex-col gap-3 rounded-lg border border-[#d8e4f5] bg-white p-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-col gap-3 sm:flex-row">
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--brand-muted)]" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-(--brand-muted)" />
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
@@ -256,12 +256,12 @@ export default function TeamAdminClient({ initialMembers }: { initialMembers: Te
                     <Image src={member.photoUrl} alt={member.name} fill sizes="48px" className="object-cover" />
                   </div>
                 </TableCell>
-                <TableCell className="font-semibold text-[var(--brand-navy)]">{member.name}</TableCell>
+                <TableCell className="font-semibold text-(--brand-navy)">{member.name}</TableCell>
                 <TableCell>{member.designation}</TableCell>
                 <TableCell>{member.department}</TableCell>
                 <TableCell>{member.orderIndex || 0}</TableCell>
                 <TableCell>
-                  <Badge className={member.isActive ? "bg-[#eef4ff] text-[var(--brand-blue)]" : "bg-[#f7faff] text-[var(--brand-muted)]"}>
+                  <Badge className={member.isActive ? "bg-[#eef4ff] text-[var(--brand-blue)]" : "bg-[#f7faff] text-(--brand-muted)"}>
                     {member.isActive ? "Active" : "Inactive"}
                   </Badge>
                 </TableCell>
@@ -280,7 +280,7 @@ export default function TeamAdminClient({ initialMembers }: { initialMembers: Te
           </TableBody>
         </Table>
         {!filteredMembers.length && (
-          <div className="py-12 text-center text-sm text-[var(--brand-muted)]">No team members found.</div>
+          <div className="py-12 text-center text-sm text-(--brand-muted)">No team members found.</div>
         )}
       </div>
 
@@ -365,13 +365,13 @@ export default function TeamAdminClient({ initialMembers }: { initialMembers: Te
                           {selectedFile.name} will upload when you save.
                         </p>
                       ) : (
-                        <p className="text-sm text-[var(--brand-muted)]">
+                        <p className="text-sm text-(--brand-muted)">
                           JPG, PNG, or WEBP up to 5MB. The uploaded image will replace the current photo.
                         </p>
                       )}
 
                       <div className="space-y-2">
-                        <Label htmlFor="photoUrl" className="text-xs text-[var(--brand-muted)]">
+                        <Label htmlFor="photoUrl" className="text-xs text-(--brand-muted)">
                           Existing Image URL
                         </Label>
                         <Input
@@ -397,7 +397,7 @@ export default function TeamAdminClient({ initialMembers }: { initialMembers: Te
                 <div className="flex items-center justify-between rounded-lg border p-3 md:col-span-2">
                   <div>
                     <Label htmlFor="isActive">Show on Website</Label>
-                    <p className="text-xs text-[var(--brand-muted)]">Inactive members stay in admin but hide from public pages.</p>
+                    <p className="text-xs text-(--brand-muted)">Inactive members stay in admin but hide from public pages.</p>
                   </div>
                   <Switch id="isActive" checked={formData.isActive} onCheckedChange={(checked) => setFormData({ ...formData, isActive: checked })} />
                 </div>

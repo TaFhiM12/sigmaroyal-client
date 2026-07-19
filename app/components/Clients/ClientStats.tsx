@@ -27,10 +27,10 @@ export default function ClientStats() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)]">
+          <h2 className="text-3xl md:text-4xl font-bold text-(--brand-navy)">
             Partnership <span className="text-red-600">Impact</span>
           </h2>
-          <p className="text-[var(--brand-muted)] mt-2">Building lasting relationships that drive success</p>
+          <p className="text-(--brand-muted) mt-2">Building lasting relationships that drive success</p>
         </motion.div>
 
         {stats.length > 0 && <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -47,10 +47,10 @@ export default function ClientStats() {
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-r ${stat.color} mb-4 group-hover:scale-110 transition-transform`}>
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-[var(--brand-navy)] mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-(--brand-navy) mb-2">
                   {stat.value}
                 </div>
-                <div className="text-[var(--brand-muted)] text-sm font-medium">{stat.label}</div>
+                <div className="text-(--brand-muted) text-sm font-medium">{stat.label}</div>
               </div>
             </motion.div>
           ))}

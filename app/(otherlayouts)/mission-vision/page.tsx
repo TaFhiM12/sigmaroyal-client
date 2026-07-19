@@ -128,7 +128,7 @@ export default function MissionVisionPage() {
                     {['Excellence', 'Efficiency', 'Trust', 'Quality'].map((item, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
                         <CheckCircle className="w-4 h-4 text-red-600" />
-                        <span className="text-[var(--brand-muted)]">{item}</span>
+                        <span className="text-(--brand-muted)">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -191,8 +191,8 @@ export default function MissionVisionPage() {
                   <div className="grid grid-cols-2 gap-3 pt-4">
                     {['Sustainability', 'Innovation', 'Relationships', 'Strength'].map((item, index) => (
                       <div key={index} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-[var(--brand-muted)]" />
-                        <span className="text-[var(--brand-muted)]">{item}</span>
+                        <CheckCircle className="w-4 h-4 text-(--brand-muted)" />
+                        <span className="text-(--brand-muted)">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -207,10 +207,10 @@ export default function MissionVisionPage() {
           {/* Core Values Section */}
           <motion.div variants={fadeInUp} className="pt-8">
             <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">
+              <h2 className="text-2xl md:text-3xl font-bold text-(--brand-navy)">
                 Core <span className="text-red-600">Values</span>
               </h2>
-              <p className="text-[var(--brand-muted)] mt-2">The principles that guide everything we do</p>
+              <p className="text-(--brand-muted) mt-2">The principles that guide everything we do</p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -228,8 +228,8 @@ export default function MissionVisionPage() {
                     <div className="inline-flex p-3 bg-red-50 rounded-xl mb-4 group-hover:bg-red-100 transition-colors">
                       <Icon className="w-6 h-6 text-red-600" />
                     </div>
-                    <h3 className="text-lg font-bold text-[var(--brand-navy)] mb-2">{value.name}</h3>
-                    <p className="text-sm text-[var(--brand-muted)]">{value.description}</p>
+                    <h3 className="text-lg font-bold text-(--brand-navy) mb-2">{value.name}</h3>
+                    <p className="text-sm text-(--brand-muted)">{value.description}</p>
                   </motion.div>
                 );
               })}
@@ -241,7 +241,7 @@ export default function MissionVisionPage() {
             <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-800 rounded-2xl opacity-5" />
             <div className="relative p-8 md:p-12">
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-[var(--brand-navy)]">
+                <h2 className="text-2xl md:text-3xl font-bold text-(--brand-navy)">
                   Strategic <span className="text-red-600">Priorities</span>
                 </h2>
               </div>

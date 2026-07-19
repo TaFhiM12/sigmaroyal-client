@@ -49,8 +49,8 @@ export default function EditCertificationPage({ params }: EditCertificationPageP
   if (!certification) {
     return (
       <div className="text-center py-12">
-        <h2 className="text-2xl font-bold text-[var(--brand-navy)] mb-2">Certification Not Found</h2>
-        <p className="text-[var(--brand-muted)] mb-6">The certification you're looking for doesn't exist.</p>
+        <h2 className="text-2xl font-bold text-(--brand-navy) mb-2">Certification Not Found</h2>
+        <p className="text-(--brand-muted) mb-6">The certification you're looking for doesn't exist.</p>
         <Button asChild>
           <Link href="/admin/certifications">Back to Certifications</Link>
         </Button>
@@ -68,8 +68,8 @@ export default function EditCertificationPage({ params }: EditCertificationPageP
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-[var(--brand-navy)]">Edit Certification</h1>
-          <p className="text-[var(--brand-muted)] mt-1">Update certification information</p>
+          <h1 className="text-3xl font-bold text-(--brand-navy)">Edit Certification</h1>
+          <p className="text-(--brand-muted) mt-1">Update certification information</p>
         </div>
       </div>
 

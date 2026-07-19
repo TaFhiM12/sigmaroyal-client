@@ -178,24 +178,24 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                     <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                       <Building2 className="h-5 w-5 text-red-600 mt-0.5" />
                       <div>
-                        <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Client</p>
-                        <p className="font-semibold text-[var(--brand-navy)]">{project.client}</p>
+                        <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Client</p>
+                        <p className="font-semibold text-(--brand-navy)">{project.client}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                       <Briefcase className="h-5 w-5 text-red-600 mt-0.5" />
                       <div>
-                        <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Company Role</p>
-                        <p className="font-semibold text-[var(--brand-navy)]">{project.companyRole}</p>
+                        <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Company Role</p>
+                        <p className="font-semibold text-(--brand-navy)">{project.companyRole}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                       <MapPin className="h-5 w-5 text-red-600 mt-0.5" />
                       <div>
-                        <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Location</p>
-                        <p className="font-semibold text-[var(--brand-navy)]">{project.location}</p>
+                        <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Location</p>
+                        <p className="font-semibold text-(--brand-navy)">{project.location}</p>
                       </div>
                     </div>
                   </div>
@@ -205,8 +205,8 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                       <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                         <Gauge className="h-5 w-5 text-red-600 mt-0.5" />
                         <div>
-                          <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Capacity</p>
-                          <p className="font-semibold text-[var(--brand-navy)]">{project.capacity}</p>
+                          <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Capacity</p>
+                          <p className="font-semibold text-(--brand-navy)">{project.capacity}</p>
                         </div>
                       </div>
                     )}
@@ -215,8 +215,8 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                       <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                         <Clock className="h-5 w-5 text-red-600 mt-0.5" />
                         <div>
-                          <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Duration</p>
-                          <p className="font-semibold text-[var(--brand-navy)]">{project.duration}</p>
+                          <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Duration</p>
+                          <p className="font-semibold text-(--brand-navy)">{project.duration}</p>
                         </div>
                       </div>
                     )}
@@ -225,8 +225,8 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                       <div className="flex items-start gap-3 p-3 bg-[#f7faff] rounded-lg">
                         <Calendar className="h-5 w-5 text-red-600 mt-0.5" />
                         <div>
-                          <p className="text-xs text-[var(--brand-muted)] uppercase tracking-wide">Year</p>
-                          <p className="font-semibold text-[var(--brand-navy)]">{project.year}</p>
+                          <p className="text-xs text-(--brand-muted) uppercase tracking-wide">Year</p>
+                          <p className="font-semibold text-(--brand-navy)">{project.year}</p>
                         </div>
                       </div>
                     )}
@@ -237,7 +237,7 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
 
                 {/* Scope of Work */}
                 <div className="mb-6">
-                  <h3 className="text-lg font-semibold text-[var(--brand-navy)] mb-3 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-(--brand-navy) mb-3 flex items-center gap-2">
                     <span className="w-1 h-6 bg-red-600 rounded-full"></span>
                     Scope of Work
                   </h3>
@@ -249,7 +249,7 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                 {/* Description */}
                 {project.description && (
                   <div>
-                    <h3 className="text-lg font-semibold text-[var(--brand-navy)] mb-3 flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-(--brand-navy) mb-3 flex items-center gap-2">
                       <span className="w-1 h-6 bg-red-600 rounded-full"></span>
                       Description
                     </h3>
@@ -305,22 +305,22 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
               <CardContent className="p-6 space-y-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-[#eef4ff]">
-                    <span className="text-[var(--brand-muted)] text-sm">Project ID</span>
-                    <span className="font-mono text-xs text-[var(--brand-navy)] bg-[#eef4ff] px-2 py-1 rounded">
+                    <span className="text-(--brand-muted) text-sm">Project ID</span>
+                    <span className="font-mono text-xs text-(--brand-navy) bg-[#eef4ff] px-2 py-1 rounded">
                       {project.id.slice(-8)}
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-[#eef4ff]">
-                    <span className="text-[var(--brand-muted)] text-sm">Status</span>
+                    <span className="text-(--brand-muted) text-sm">Status</span>
                     <div>{getStatusBadge(project.status)}</div>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-[#eef4ff]">
-                    <span className="text-[var(--brand-muted)] text-sm">Sector</span>
-                    <span className="text-[var(--brand-navy)] font-medium">{sectorInfo.label}</span>
+                    <span className="text-(--brand-muted) text-sm">Sector</span>
+                    <span className="text-(--brand-navy) font-medium">{sectorInfo.label}</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-[var(--brand-muted)] text-sm">Featured</span>
-                    <span className={`text-sm font-medium ${project.featured ? 'text-[var(--brand-red)]' : 'text-[var(--brand-muted)]'}`}>
+                    <span className="text-(--brand-muted) text-sm">Featured</span>
+                    <span className={`text-sm font-medium ${project.featured ? 'text-[var(--brand-red)]' : 'text-(--brand-muted)'}`}>
                       {project.featured ? 'Yes' : 'No'}
                     </span>
                   </div>
@@ -346,13 +346,13 @@ export default async function ProjectViewPage({ params }: ProjectPageProps) {
                     <div className="text-2xl font-bold text-red-600">
                       {project.images?.length || 0}
                     </div>
-                    <div className="text-xs text-[var(--brand-muted)] mt-1">Images</div>
+                    <div className="text-xs text-(--brand-muted) mt-1">Images</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-red-600">
                       {project.year || 'N/A'}
                     </div>
-                    <div className="text-xs text-[var(--brand-muted)] mt-1">Year</div>
+                    <div className="text-xs text-(--brand-muted) mt-1">Year</div>
                   </div>
                 </div>
               </CardContent>

@@ -168,8 +168,8 @@ export default function OurStrength() {
                   <div className="inline-flex p-2 md:p-3 bg-red-50 rounded-lg mb-2 md:mb-3">
                     <Icon className="w-4 h-4 md:w-6 md:h-6 text-red-600" />
                   </div>
-                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-[var(--brand-navy)]">{stat.value}</div>
-                  <p className="text-xs md:text-sm text-[var(--brand-muted)]">{stat.label}</p>
+                  <div className="text-xl md:text-2xl lg:text-3xl font-bold text-(--brand-navy)">{stat.value}</div>
+                  <p className="text-xs md:text-sm text-(--brand-muted)">{stat.label}</p>
                 </motion.div>
               );
             })}
@@ -196,8 +196,8 @@ export default function OurStrength() {
                         <Icon className={cn("w-6 h-6", strength.textColor)} />
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold text-[var(--brand-navy)]">{strength.title}</h3>
-                        <p className="text-sm text-[var(--brand-muted)]">{strength.description}</p>
+                        <h3 className="text-lg font-bold text-(--brand-navy)">{strength.title}</h3>
+                        <p className="text-sm text-(--brand-muted)">{strength.description}</p>
                       </div>
                     </div>
 
@@ -206,7 +206,7 @@ export default function OurStrength() {
                       {strength.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm">
                           <CheckCircle className={cn("w-4 h-4 mt-0.5 shrink-0", strength.textColor)} />
-                          <span className="text-[var(--brand-muted)]">{detail}</span>
+                          <span className="text-(--brand-muted)">{detail}</span>
                         </li>
                       ))}
                     </ul>

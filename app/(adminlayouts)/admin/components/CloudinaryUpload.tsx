@@ -152,11 +152,11 @@ export default function CloudinaryUpload({
               : 'border-[#b9cff0] bg-white hover:border-red-400 hover:bg-red-50/40'
           } ${uploading ? 'opacity-60 cursor-not-allowed' : ''}`}
         >
-          <Upload className="h-6 w-6 mx-auto text-[var(--brand-muted)]" />
+          <Upload className="h-6 w-6 mx-auto text-(--brand-muted)" />
           <p className="mt-3 text-sm font-medium text-[var(--brand-copy)]">
             Drag and drop image files here
           </p>
-          <p className="text-xs text-[var(--brand-muted)] mt-1">
+          <p className="text-xs text-(--brand-muted) mt-1">
             or click this area to browse files
           </p>
         </div>
@@ -180,7 +180,7 @@ export default function CloudinaryUpload({
             className="hidden"
             disabled={uploading}
           />
-          <p className="text-xs text-[var(--brand-muted)]">
+          <p className="text-xs text-(--brand-muted)">
             Max {maxFiles} images, 10MB each (JPG, PNG, WEBP)
           </p>
         </div>
@@ -303,7 +303,7 @@ export default function CloudinaryUpload({
               </div>
             ))}
           </div>
-          <p className="text-xs text-[var(--brand-muted)] mt-2">
+          <p className="text-xs text-(--brand-muted) mt-2">
             Tip: Drag or use arrows to reorder. The first image will be used as the featured/banner image.
           </p>
         </div>

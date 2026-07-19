@@ -211,11 +211,11 @@ const AboutUs = ({ className, heading, body }: AboutUsProps) => {
                 ) : (
                   <>
                   <p className="section-copy">
-                  <span className="font-bold text-[var(--brand-navy)]">
+                  <span className="font-bold text-(--brand-navy)">
                     The Royal Utilisation Services (Pvt.) Ltd
                   </span>
                   , together with{" "}
-                  <span className="font-bold text-[var(--brand-navy)]">
+                  <span className="font-bold text-(--brand-navy)">
                     Sigma Construction Company
                   </span>
                   , stands as a pioneer in Bangladesh&apos;s energy sector with
@@ -285,7 +285,7 @@ const AboutUs = ({ className, heading, body }: AboutUsProps) => {
                         <Briefcase className="h-5 w-5 md:h-6 md:w-6 text-white" />
                       </motion.div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="text-base md:text-lg font-extrabold text-[var(--brand-navy)] line-clamp-2">
+                        <h4 className="text-base md:text-lg font-extrabold text-(--brand-navy) line-clamp-2">
                           {project.title}
                         </h4>
                         <p className="text-xs md:text-sm text-red-600 font-medium mt-1">
@@ -346,10 +346,10 @@ const AboutUs = ({ className, heading, body }: AboutUsProps) => {
                     >
                       <div className="text-white">{stat.icon}</div>
                     </div>
-                    <div className="text-2xl md:text-3xl font-extrabold text-[var(--brand-navy)]">
+                    <div className="text-2xl md:text-3xl font-extrabold text-(--brand-navy)">
                       {stat.value}
                     </div>
-                    <p className="text-xs md:text-sm font-medium text-[var(--brand-navy)]">
+                    <p className="text-xs md:text-sm font-medium text-(--brand-navy)">
                       {stat.label}
                     </p>
                   </div>

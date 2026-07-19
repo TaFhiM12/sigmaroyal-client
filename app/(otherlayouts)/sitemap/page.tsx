@@ -12,7 +12,7 @@ export default function SitemapPage() {
     <main className="site-canvas py-12 md:py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-3xl rounded-xl border border-[#d8e4f5] bg-white p-5 shadow-sm">
-          <p className="text-[var(--brand-muted)]">
+          <p className="text-(--brand-muted)">
             Every primary public page is grouped below for quick, accessible navigation.
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function SitemapPage() {
                         className="flex items-center justify-between gap-3 rounded-lg px-2 py-2 text-sm font-bold text-[var(--brand-copy)] transition-colors hover:bg-blue-50 hover:text-blue-900"
                       >
                         {subItem.title}
-                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-[var(--brand-muted)]" />
+                        <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-(--brand-muted)" />
                       </Link>
                     </li>
                   ))}
