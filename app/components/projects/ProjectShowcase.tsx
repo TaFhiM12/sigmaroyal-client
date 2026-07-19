@@ -126,9 +126,7 @@ function ProjectCatalog({
       {showHeader && (
         <div className="flex items-center justify-between border-b border-[#d8e4f5] pb-3">
           <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-red-600">
-              Project Catalogue
-            </p>
+            
             <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{title}</h2>
           </div>
           <span className="h-1.5 w-16 rounded-full bg-red-600" />
