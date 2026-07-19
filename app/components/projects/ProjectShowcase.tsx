@@ -55,11 +55,11 @@ export function ProjectShowcase({
   const isStatusView = activeStatus === 'COMPLETED' || activeStatus === 'ONGOING' || activeStatus === 'UPCOMING';
   const pageSummary =
     activeStatus === 'UPCOMING'
-      ? { eyebrow: 'Planned delivery', title: 'Upcoming Projects' }
+      ? { eyebrow: '', title: 'Upcoming Projects' }
       : activeStatus === 'ONGOING'
-      ? { eyebrow: 'Delivery in progress', title: 'Ongoing Projects' }
+      ? { eyebrow: '', title: 'Ongoing Projects' }
       : activeStatus === 'COMPLETED'
-        ? { eyebrow: 'Delivered work', title: 'Completed Projects' }
+        ? { eyebrow: '', title: 'Completed Projects' }
         : null;
 
   return (
@@ -72,9 +72,7 @@ export function ProjectShowcase({
             </p>
             <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{pageSummary.title}</h2>
           </div>
-          <span className="text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--brand-muted)]">
-            {projects.length} references
-          </span>
+          
         </div>
       )}
 
