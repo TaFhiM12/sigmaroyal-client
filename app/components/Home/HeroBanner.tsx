@@ -54,7 +54,7 @@ export default function HeroBanner() {
   const heroImageUrl = content?.heroImageUrl || "/banner/banner1.jpeg";
 
   return (
-    <section className="relative h-[320px] overflow-hidden sm:h-[350px] md:h-[400px]">
+    <section className="relative h-70 overflow-hidden sm:h-75 md:h-90">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
