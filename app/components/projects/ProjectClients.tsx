@@ -100,7 +100,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-linear-to-b from-[#f7faff] to-white"
+      className="site-canvas min-h-screen"
     >
       <div className="container mx-auto px-4 py-4 md:py-5">
         <ProjectShowcase 

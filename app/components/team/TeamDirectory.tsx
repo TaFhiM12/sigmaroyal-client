@@ -12,8 +12,8 @@ type TeamDirectoryProps = {
 
 export default function TeamDirectory({ members, activeCategory }: TeamDirectoryProps) {
   return (
-    <main className="bg-[#f7faff]">
-      <section className="border-b border-[#d8e4f5] bg-white">
+    <main className="site-canvas">
+      <section className="border-b border-[#d8e4f5] bg-transparent">
         <div className="mx-auto max-w-screen-2xl px-4 py-5 md:px-6 lg:px-8">
           <div className="flex flex-col gap-4 rounded-xl border border-[#d8e4f5] bg-[#f7faff] p-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
@@ -48,7 +48,7 @@ export default function TeamDirectory({ members, activeCategory }: TeamDirectory
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="bg-transparent">
         <div className="mx-auto max-w-screen-2xl px-4 py-10 md:px-6 lg:px-8 lg:py-12">
         {members.length ? (
           <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

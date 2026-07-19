@@ -39,7 +39,7 @@ export default async function MediaPage() {
   const gallery = managedPhotos.length > 0 ? managedPhotos : photos;
 
   return (
-    <main className="bg-[#f6f8fb]">
+    <main className="site-canvas">
       <section id="photo-gallery" className="scroll-mt-28 border-b border-blue-950/8 py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
@@ -88,7 +88,7 @@ export default async function MediaPage() {
         </div>
       </section>
 
-      <section id="video-gallery" className="scroll-mt-28 bg-white py-12 md:py-16">
+      <section id="video-gallery" className="scroll-mt-28 bg-transparent py-12 md:py-16">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="rounded-2xl border border-[#d8e4f5] bg-blue-950 p-7 text-white shadow-[0_20px_55px_rgba(8,32,74,0.16)] md:p-10">
             <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">

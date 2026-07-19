@@ -54,7 +54,7 @@ export default function PrefaceContent() {
   
 
   return (
-    <section className="relative bg-linear-to-b from-[#f7faff] to-white py-12 md:py-24 overflow-hidden">
+    <section className="site-canvas relative py-12 md:py-24 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />

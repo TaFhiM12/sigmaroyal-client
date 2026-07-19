@@ -19,7 +19,7 @@ export default function ClientStats() {
   ].filter((stat) => stat.value > 0);
 
   return (
-    <section ref={ref} className="py-16 bg-linear-to-b from-[#f7faff] to-white">
+    <section ref={ref} className="site-canvas py-16">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -8,12 +8,12 @@ export default function CommonLayout({
   children: React.ReactNode;
 }) {
   return (
-      <div className="min-h-screen flex flex-col">
+      <div className="site-canvas min-h-screen flex flex-col">
         {/* Static Navbar */}
         <Navbar1 />
 
         <HeroBanner />
-        <main className="flex-1">
+        <main className="site-canvas flex-1">
           {children}
         </main>
 

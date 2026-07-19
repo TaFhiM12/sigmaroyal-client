@@ -127,7 +127,7 @@ function ProjectCatalog({
         <div className="flex items-center justify-between border-b border-[#d8e4f5] pb-3">
           <div>
             
-            <h2 className="mt-1 text-xl font-extrabold text-[var(--brand-navy)]">{title}</h2>
+            <h2 className="mt-1 text-xl font-extrabold text-(--brand-navy)">{title}</h2>
           </div>
           <span className="h-1.5 w-16 rounded-full bg-red-600" />
         </div>

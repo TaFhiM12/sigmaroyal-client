@@ -90,7 +90,7 @@ export default function AtAGlancePage() {
   };
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-linear-to-b from-[#f7faff] to-white py-6 md:py-8">
+    <section ref={ref} className="site-canvas relative overflow-hidden py-6 md:py-8">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />

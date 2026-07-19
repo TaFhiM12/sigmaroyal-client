@@ -5,7 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function ProjectsSkeleton() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
+    <div className="site-canvas min-h-screen">
       {/* Hero Skeleton */}
       <section className="border-b border-[#d8e4f5] bg-white py-4 md:py-5">
         <div className="container mx-auto px-4">

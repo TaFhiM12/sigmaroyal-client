@@ -182,14 +182,13 @@ const AreaOfExpertise = ({ className, heading, description, showHeader = true }:
     <section
       ref={ref}
       className={cn(
-        "relative bg-[#f6f8fb] py-12 md:py-20",
+        "site-canvas relative py-12 md:py-20",
         className
       )}
     >
       {(["oil-gas", "power", "process", "engineering"] as ExpertiseTab[]).map((anchor) => (
         <span key={anchor} id={anchor} className="pointer-events-none absolute top-0 scroll-mt-28" />
       ))}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.045)_1px,transparent_1px)] bg-size-[56px_56px]" />
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-600/35 to-transparent" />
 
       <div className="container relative mx-auto px-4 md:px-6 lg:px-8">

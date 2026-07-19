@@ -163,21 +163,6 @@ const Navbar1 = ({
     return <Icon className={iconClass} />;
   };
 
-  const getDropdownEyebrow = (title: string) => {
-    switch (title) {
-      case "Company":
-        return "Company";
-      case "Expertise":
-        return "Capabilities";
-      case "Projects":
-        return "Delivery";
-      case "Resources":
-        return "Knowledge & Media";
-      default:
-        return "Explore";
-    }
-  };
-
   const DesktopDropdown = ({ item }: { item: MenuItem }) => {
     if (!item.items) return null;
 
@@ -188,7 +173,7 @@ const Navbar1 = ({
         }}
         className={cn(
           "absolute top-full z-50 mt-2 overflow-hidden rounded-xl border border-slate-200/90 bg-white/98 shadow-[0_22px_60px_rgba(2,12,32,0.20)] backdrop-blur-xl",
-          item.items.length > 4 ? "w-[640px] max-w-[calc(100vw-2rem)]" : "w-[420px] max-w-[calc(100vw-2rem)]",
+          item.items.length > 4 ? "w-[560px] max-w-[calc(100vw-2rem)]" : "w-[380px] max-w-[calc(100vw-2rem)]",
           "before:absolute before:-top-2 before:left-0 before:h-2 before:w-full before:content-['']",
           "origin-top transition-all duration-200 ease-out",
           item.title === "Resources" || item.title === "Projects" ? "right-0" : "left-0",
@@ -198,19 +183,8 @@ const Navbar1 = ({
         )}
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(37,99,235,0.10),transparent_32%),radial-gradient(circle_at_92%_8%,rgba(200,30,43,0.08),transparent_30%)]" />
-        <div className="relative border-b border-blue-950/8 px-5 py-4">
-          <div>
-            <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-blue-700">
-              {getDropdownEyebrow(item.title)}
-            </p>
-            <h3 className="mt-1 text-base font-extrabold text-(--brand-navy)">
-              {item.title}
-            </h3>
-          </div>
-        </div>
-
         <div className={cn(
-          "relative grid gap-1.5 p-2",
+          "relative grid gap-1 p-2",
           item.items.length > 4 && "grid-cols-2"
         )}>
           {item.items.map((subItem, index) => (
@@ -218,7 +192,7 @@ const Navbar1 = ({
               key={subItem.title}
               href={subItem.url}
               className={cn(
-                "group grid grid-cols-[36px_1fr_20px] items-start gap-3 rounded-lg border border-transparent px-3 py-3 transition-all duration-200",
+                "group grid grid-cols-[36px_1fr_24px] items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 transition-all duration-200",
                 "text-(--brand-navy) hover:border-blue-100 hover:bg-blue-50/85"
               )}
               onClick={() => setActiveDropdown(null)}
@@ -226,21 +200,10 @@ const Navbar1 = ({
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-950 text-white shadow-sm shadow-blue-950/15 transition-colors duration-200 group-hover:bg-red-600">
                 {getDropdownIcon(item.title, index)}
               </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-extrabold leading-tight text-(--brand-navy) transition-colors group-hover:text-blue-950">
-                  {subItem.title}
-                </span>
-                {subItem.description ? (
-                  <span className="mt-1.5 block text-xs leading-relaxed text-(--brand-muted)">
-                    {subItem.description}
-                  </span>
-                ) : (
-                  <span className="mt-1.5 block text-xs leading-relaxed text-(--brand-muted)">
-                    Explore company information and resources
-                  </span>
-                )}
+              <span className="min-w-0 text-sm font-extrabold leading-tight text-(--brand-navy) transition-colors group-hover:text-blue-950">
+                {subItem.title}
               </span>
-              <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#eef4ff] text-(--brand-muted) transition-all duration-200 group-hover:bg-red-600 group-hover:text-white">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#eef4ff] text-(--brand-muted) transition-all duration-200 group-hover:bg-red-600 group-hover:text-white">
                 <ArrowUpRight className="h-3.5 w-3.5" />
               </span>
             </Link>
@@ -392,11 +355,6 @@ const Navbar1 = ({
                     </div>
                     <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-(--brand-muted) transition-colors group-hover:text-red-600" />
                   </div>
-                  {subItem.description && (
-                    <p className="mt-1.5 text-xs leading-relaxed text-(--brand-muted)">
-                      {subItem.description}
-                    </p>
-                  )}
                 </Link>
               ))}
             </div>

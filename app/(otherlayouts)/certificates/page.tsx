@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function CertificatePage() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
+    <div className="site-canvas min-h-screen">
       <Suspense fallback={<div className="h-96 bg-[#eef4ff] animate-pulse" />}>
         <CertificateGrid />
       </Suspense>

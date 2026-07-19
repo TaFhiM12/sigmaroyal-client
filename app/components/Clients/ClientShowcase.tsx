@@ -38,7 +38,7 @@ export default function ClientShowcase() {
 
   if (loading) {
     return (
-      <section className="py-8 bg-white">
+      <section className="site-canvas py-8">
         <div className="container mx-auto px-4">
           <div className="h-72 bg-[#eef4ff] rounded-lg animate-pulse" />
         </div>
@@ -51,7 +51,7 @@ export default function ClientShowcase() {
   const activeClient = clients[activeIndex];
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden bg-white py-8">
+    <section ref={containerRef} className="site-canvas relative overflow-hidden py-8">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
@@ -131,7 +131,7 @@ export default function ClientShowcase() {
                     </a>
                   )}
                   <p className="text-sm leading-relaxed text-blue-50/80">
-                    A valued partner in Bangladesh's energy infrastructure development, contributing to major projects across oil, gas, and power sectors.
+                    A valued partner in Bangladesh&apos;s energy infrastructure development, contributing to major projects across oil, gas, and power sectors.
                   </p>
                 </div>
               </div>

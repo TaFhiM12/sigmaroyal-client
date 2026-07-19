@@ -5,11 +5,11 @@ import { getPageContent } from '@/lib/page-content';
 import { CarouselSlide } from '@/types/carouselSlide';
 
 const AboutUs = dynamic(() => import('../components/Home/AboutUs'), {
-  loading: () => <section className="h-[520px] bg-[#f7faff]" />,
+  loading: () => <section className="site-canvas h-[520px]" />,
 });
 
 const AreaOfExpertise = dynamic(() => import('../components/Home/AreaOfExperties'), {
-  loading: () => <section className="h-[620px] bg-white" />,
+  loading: () => <section className="site-canvas h-[620px]" />,
 });
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default async function Home() {
   const slides = parseSlides(content?.sections);
 
   return (
-    <main className="min-h-screen bg-linear-to-b from-[#f7faff] to-white">
+    <main className="site-canvas min-h-screen">
       <HeroCarousel
         slides={slides}
         autoPlayInterval={6000}

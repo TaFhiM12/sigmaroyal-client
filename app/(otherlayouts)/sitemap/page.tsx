@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function SitemapPage() {
   return (
-    <main className="bg-[#f6f8fb] py-12 md:py-16">
+    <main className="site-canvas py-12 md:py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-3xl rounded-xl border border-[#d8e4f5] bg-white p-5 shadow-sm">
           <p className="text-[var(--brand-muted)]">

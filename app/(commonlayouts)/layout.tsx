@@ -8,7 +8,7 @@ export default function CommonLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="site-canvas min-h-screen">
       <header className="fixed top-0 left-0 w-full z-50">
         <Navbar1 />
       </header>

@@ -131,11 +131,10 @@ const AboutUs = ({ className, heading, body }: AboutUsProps) => {
     <section
       ref={ref}
       className={cn(
-        "relative overflow-hidden bg-linear-to-b from-[#f7faff] via-white to-white py-12 md:py-24",
+        "site-canvas relative overflow-hidden py-12 md:py-24",
         className
       )}
     >
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.035)_1px,transparent_1px)] bg-size-[64px_64px]" />
       <motion.div
         aria-hidden="true"
         animate={!isMobile ? { x: ["-20%", "20%", "-20%"] } : undefined}

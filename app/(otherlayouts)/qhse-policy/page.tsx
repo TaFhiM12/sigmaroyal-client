@@ -40,7 +40,7 @@ export default async function QhsePolicyPage() {
   }
 
   return (
-    <section className="min-h-screen bg-linear-to-b from-[#f7faff] via-white to-[#f7faff]">
+    <section className="site-canvas min-h-screen">
       {/* Compact Policy Overview */}
       <div className="relative overflow-hidden">
         {/* Top Accent Bar */}

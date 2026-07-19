@@ -69,7 +69,7 @@ export default function ClientLogos() {
 
   if (loading) {
     return (
-      <section className="py-20 bg-linear-to-b from-[#f7faff] to-white">
+      <section className="site-canvas py-20">
         <div className="container mx-auto px-4">
           <div className="animate-pulse">
             <div className="h-96 bg-[#d8e4f5] rounded-2xl"></div>
@@ -84,7 +84,7 @@ export default function ClientLogos() {
   const activeClient = clients[activeIndex];
 
   return (
-    <section ref={containerRef} className="py-20 bg-linear-to-b from-[#f7faff] to-white relative overflow-hidden">
+    <section ref={containerRef} className="site-canvas relative overflow-hidden py-20">
       {/* Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-red-50 rounded-full blur-3xl opacity-30" />

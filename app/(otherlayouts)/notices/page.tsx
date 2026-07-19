@@ -43,7 +43,7 @@ export default async function NoticesPage() {
   const noticeItems = managedNotices.length > 0 ? managedNotices : notices;
 
   return (
-    <main className="bg-[#f6f8fb] py-12 md:py-16">
+    <main className="site-canvas py-12 md:py-16">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
           <div>

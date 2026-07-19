@@ -42,7 +42,7 @@ export default async function ContactPage() {
     "Reach out for consultation, tender queries, technical support, or office directions. We respond with clear next steps.";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="site-canvas min-h-screen">
       <section className="px-4 py-10 md:px-6 md:py-14 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
           <div>
