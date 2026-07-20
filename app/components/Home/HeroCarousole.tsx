@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, cubicBezier } from "framer-motion";
-import { ChevronDown, ArrowRight, Play, Pause } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -52,15 +52,10 @@ const lineVariants = {
 const HeroCarousel = ({
   slides = customSlides,
   autoPlayInterval = 6000,
-  showProgressBar = true,
   className,
 }: HeroCarouselProps) => {
   const slideItems = slides.length > 0 ? slides : customSlides;
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const progressRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const progressValueRef = useRef(0);
 
   // Mouse parallax
   const mouseX = useMotionValue(0);
@@ -81,57 +76,14 @@ const HeroCarousel = ({
     mouseY.set(0);
   };
 
-  const resetProgress = useCallback(() => {
-    progressValueRef.current = 0;
-    setProgress(0);
-  }, []);
-
-  const goToSlide = useCallback((index: number) => {
-    resetProgress();
-    setCurrentSlide(index);
-  }, [resetProgress]);
-
-  const nextSlide = useCallback(() => {
-    resetProgress();
-    setCurrentSlide((prev) => (prev + 1) % slideItems.length);
-  }, [resetProgress, slideItems.length]);
-
-  const prevSlide = useCallback(() => {
-    resetProgress();
-    setCurrentSlide((prev) =>
-      prev === 0 ? slideItems.length - 1 : prev - 1
-    );
-  }, [resetProgress, slideItems.length]);
-
-  // Progress tick
+  // Keep automatic slide rotation without displaying carousel controls.
   useEffect(() => {
-    if (!isPlaying) {
-      if (progressRef.current) clearInterval(progressRef.current);
-      return;
-    }
-
-    if (progressRef.current) clearInterval(progressRef.current);
-
-    const progressStep = 100 / (autoPlayInterval / 100);
-
-    progressRef.current = setInterval(() => {
-      const nextProgress = progressValueRef.current + progressStep;
-
-      if (nextProgress >= 100) {
-        progressValueRef.current = 0;
-        setProgress(0);
-        setCurrentSlide((prev) => (prev + 1) % slideItems.length);
-        return;
-      }
-
-      progressValueRef.current = nextProgress;
-      setProgress(nextProgress);
-    }, 100);
-
-    return () => {
-      if (progressRef.current) clearInterval(progressRef.current);
-    };
-  }, [isPlaying, autoPlayInterval, slideItems.length]);
+    if (slideItems.length <= 1) return;
+    const timer = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideItems.length);
+    }, autoPlayInterval);
+    return () => window.clearInterval(timer);
+  }, [autoPlayInterval, slideItems.length]);
 
   const slide = slideItems[currentSlide] || slideItems[0];
 
@@ -290,61 +242,6 @@ const HeroCarousel = ({
         </div>
       </div>
 
-      {/* ── Navigation Dots + Prev/Next ── */}
-      <div className="absolute bottom-12 md:bottom-16 left-5 md:left-10 lg:left-16 z-20 hidden md:flex items-center gap-5">
-        {/* Prev */}
-        <button
-          onClick={prevSlide}
-          aria-label="Previous slide"
-          className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white/60 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-        >
-          <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-        </button>
-
-        {/* Dot indicators */}
-        <div className="flex items-center gap-2">
-          {slideItems.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToSlide(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className="group relative flex items-center justify-center"
-            >
-              <span
-                className={cn(
-                  "block transition-all duration-500 rounded-full",
-                  i === currentSlide
-                    ? "w-8 h-2 bg-red-600"
-                    : "w-2 h-2 bg-white/30 group-hover:bg-white/60"
-                )}
-              />
-            </button>
-          ))}
-        </div>
-
-        {/* Next */}
-        <button
-          onClick={nextSlide}
-          aria-label="Next slide"
-          className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white/60 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-        >
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
-
-        {/* Play / Pause */}
-        <button
-          onClick={() => setIsPlaying((v) => !v)}
-          aria-label={isPlaying ? "Pause" : "Play"}
-          className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:text-white hover:border-white/60 transition-all duration-300 hover:scale-110 backdrop-blur-sm ml-1"
-        >
-          {isPlaying ? (
-            <Pause className="w-3 h-3" />
-          ) : (
-            <Play className="w-3 h-3 translate-x-px" />
-          )}
-        </button>
-      </div>
-
       {/* ── Company Stamp (bottom right) ── */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -362,17 +259,6 @@ const HeroCarousel = ({
           Oil · Gas · Power Infrastructure
         </p>
       </motion.div>
-
-      {/* ── Progress Bar ── */}
-      {showProgressBar && (
-        <div className="absolute bottom-0 left-0 right-0 h-0.75 bg-white/8 z-20">
-          <motion.div
-            className="h-full bg-red-600"
-            style={{ width: `${progress}%` }}
-            transition={{ duration: 0.1, ease: "linear" }}
-          />
-        </div>
-      )}
 
       {/* ── Scroll Indicator ── */}
       <motion.div
