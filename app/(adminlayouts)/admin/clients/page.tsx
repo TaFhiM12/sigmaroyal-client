@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ClientsResponse } from '@/types/client';
 import ClientsClient from '../components/ClientsClient';
+import { apiUrl } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,7 +17,7 @@ export const metadata = {
 async function getClients(): Promise<ClientsResponse | null> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/clients`,
+      apiUrl('/clients'),
       {
         cache : 'no-store',
         headers: { 'Content-Type': 'application/json' },

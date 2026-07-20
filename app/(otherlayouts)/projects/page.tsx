@@ -23,7 +23,7 @@ const normalizeStatus = (status?: string | string[]) => {
 
 async function getProjects(status?: string): Promise<ProjectsResponse | null> {
   try {
-    const params = new URLSearchParams({ limit: '50' });
+    const params = new URLSearchParams({ limit: '50', sortBy: 'updatedAt', sortOrder: 'desc' });
     if (status) params.set('status', status);
 
     const res = await fetch(

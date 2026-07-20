@@ -19,6 +19,7 @@ import {
   ShieldCheck,
   Bell,
   Users,
+  Building2,
   FileText,
   LucideIcon,
 } from "lucide-react";
@@ -92,12 +93,12 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
         // { title: "Expertise", url: "/admin/expertise", icon: Star },
         { title: "Page Content", url: "/admin/page-content", icon: FileText, badge: "CMS" },
         { title: "Projects", url: "/admin/projects", icon: FolderKanban },
+        { title: "Clients", url: "/admin/clients", icon: Building2 },
         { title: "Team Members", url: "/admin/team", icon: Users },
         { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },
         { title: "QHSE Policy", url: "/admin/qhse-policy", icon: ShieldCheck },
         // { title: "Resources", url: "/admin/resources", icon: FileText },
         // { title: "Team Members", url: "/admin/team", icon: Users },
-        // { title: "Clients", url: "/admin/clients", icon: Building2 },
       ],
     },
     // {

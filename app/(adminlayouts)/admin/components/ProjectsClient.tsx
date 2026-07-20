@@ -10,6 +10,7 @@ import { Project, ProjectsResponse } from '@/types/projects';
 import ProjectsTable from './ProjectsTable';
 import ProjectForm from './ProjectForm';
 import { getAdminAuthHeaders } from '@/lib/admin-auth';
+import { apiUrl } from '@/lib/api';
 
 interface ProjectsClientProps {
   initialData: ProjectsResponse | null;
@@ -34,7 +35,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects?limit=100`);
+      const res = await fetch(apiUrl('/projects?limit=100&sortBy=updatedAt&sortOrder=desc'), { cache: 'no-store' });
       const data = await res.json();
       if (data.success) {
         setProjects(data.data);
@@ -49,7 +50,7 @@ export default function ProjectsClient({ initialData }: ProjectsClientProps) {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/projects/${id}`, {
+      const res = await fetch(apiUrl(`/projects/${id}`), {
         method: 'DELETE',
         headers: getAdminAuthHeaders(),
       });

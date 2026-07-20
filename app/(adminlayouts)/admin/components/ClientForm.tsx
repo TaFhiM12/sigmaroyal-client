@@ -14,6 +14,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import Image from 'next/image';
 import { Client } from '@/types/client';
 import { getAdminAuthHeaders } from '@/lib/admin-auth';
+import { apiUrl } from '@/lib/api';
 
 interface ClientFormData {
   name: string;
@@ -102,9 +103,7 @@ export default function ClientForm({ client, onSuccess, onCancel }: ClientFormPr
         logoUrl,
       };
 
-      const url = client
-        ? `${process.env.NEXT_PUBLIC_API_URL}/clients/${client.id}`
-        : `${process.env.NEXT_PUBLIC_API_URL}/clients`;
+      const url = client ? apiUrl(`/clients/${client.id}`) : apiUrl('/clients');
 
       const method = client ? 'PUT' : 'POST';
 

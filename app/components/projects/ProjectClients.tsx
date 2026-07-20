@@ -26,7 +26,7 @@ const sortProjectsByDeliveryStatus = (items: Project[]) => {
   return [...items].sort((a, b) => {
     const statusOrder = statusRank[a.status] - statusRank[b.status];
     if (statusOrder !== 0) return statusOrder;
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
   });
 };
 
@@ -39,7 +39,7 @@ export default function ProjectsClient({ initialData, initialStatus }: ProjectsC
   const fetchProjects = useCallback(async (statusFilter: string) => {
     try {
       setLoading(true);
-      const params = new URLSearchParams({ limit: '50' });
+      const params = new URLSearchParams({ limit: '50', sortBy: 'updatedAt', sortOrder: 'desc' });
       if (statusFilter !== 'all') {
         params.set('status', statusFilter);
       }

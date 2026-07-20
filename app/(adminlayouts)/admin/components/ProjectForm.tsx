@@ -31,6 +31,7 @@ import CloudinaryUpload from "./CloudinaryUpload";
 import { Project, ProjectFormData } from "@/types/projects";
 import { getAdminAuthHeaders } from "@/lib/admin-auth";
 import { projectSectors } from "@/lib/project-sectors";
+import { apiUrl } from "@/lib/api";
 
 interface ProjectFormProps {
   project?: Project;
@@ -109,9 +110,7 @@ const handleSubmit = async (e: React.FormEvent) => {
       deleteImageIds: deletedImageIds,
     };
 
-    const url = project
-      ? `${process.env.NEXT_PUBLIC_API_URL}/projects/${project.id}`
-      : `${process.env.NEXT_PUBLIC_API_URL}/projects`;
+    const url = project ? apiUrl(`/projects/${project.id}`) : apiUrl('/projects');
 
     const method = project ? "PUT" : "POST";
 

@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ProjectsResponse } from '@/types/projects';
 import ProjectsClient from '../components/ProjectsClient';
+import { apiUrl } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 export const metadata = {
@@ -15,7 +16,7 @@ export const metadata = {
 async function getProjects(): Promise<ProjectsResponse | null> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/projects?limit=100`,
+      apiUrl('/projects?limit=100&sortBy=updatedAt&sortOrder=desc'),
       {
         cache: 'no-store',
         headers: {

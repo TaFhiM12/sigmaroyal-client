@@ -80,7 +80,7 @@ export default function ClientCTA() {
           </h2>
           
           <p className="text-lg text-red-100 mb-8 max-w-2xl mx-auto">
-            Join our network of industry leaders. Let's build the future of energy infrastructure together.
+            Join our network of industry leaders. Let&apos;s build the future of energy infrastructure together.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

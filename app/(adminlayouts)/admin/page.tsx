@@ -28,6 +28,12 @@ const quickLinks = [
     cta: "Manage Projects",
   },
   {
+    title: "Clients",
+    description: "Add client logos, websites, visibility and display order.",
+    url: "/admin/clients",
+    cta: "Manage Clients",
+  },
+  {
     title: "Certifications",
     description: "Manage compliance and certification listings.",
     url: "/admin/certifications",

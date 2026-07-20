@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import ClientsTable from '../components/ClientsTable';
 import ClientForm from '../components/ClientForm';
 import { getAdminAuthHeaders } from '@/lib/admin-auth';
+import { apiUrl } from '@/lib/api';
 
 export default function ClientsClient({ initialData }: { initialData: ClientsResponse | null }) {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function ClientsClient({ initialData }: { initialData: ClientsRes
   const fetchClients = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients`);
+      const res = await fetch(apiUrl('/clients'), { cache: 'no-store' });
       const data = await res.json();
       if (data.success) {
         setClients(data.data);
@@ -44,7 +45,7 @@ export default function ClientsClient({ initialData }: { initialData: ClientsRes
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/${id}`, {
+      const res = await fetch(apiUrl(`/clients/${id}`), {
         method: 'DELETE',
         headers: getAdminAuthHeaders(),
       });
@@ -66,7 +67,7 @@ export default function ClientsClient({ initialData }: { initialData: ClientsRes
 
   const handleReorder = async (ids: string[]) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients/reorder`, {
+      const res = await fetch(apiUrl('/clients/reorder'), {
         method: 'POST',
         headers: getAdminAuthHeaders(),
         body: JSON.stringify({ ids }),

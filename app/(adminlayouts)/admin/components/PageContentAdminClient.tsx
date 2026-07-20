@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { FileText, ImageIcon, Loader2, Save, Search, UploadCloud } from "lucide-react";
 import { toast } from "sonner";
@@ -71,18 +71,12 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
     );
   }, [pages, query]);
 
-  useEffect(() => {
-    if (initialPages.length === 0) {
-      refreshPages();
-    }
-  }, [initialPages.length]);
-
   const selectPage = (page: PageContent) => {
     setSelectedSlug(page.slug);
     setForm(toFormData(page));
   };
 
-  const refreshPages = async () => {
+  const refreshPages = useCallback(async () => {
     const res = await fetch(apiUrl("/page-content"), {
       headers: getAdminAuthHeaders(),
       cache: "no-store",
@@ -95,7 +89,13 @@ export default function PageContentAdminClient({ initialPages }: PageContentAdmi
         setForm(toFormData(data.data[0]));
       }
     }
-  };
+  }, [selectedSlug]);
+
+  useEffect(() => {
+    if (initialPages.length === 0) {
+      void refreshPages();
+    }
+  }, [initialPages.length, refreshPages]);
 
   const seedDefaults = async () => {
     try {

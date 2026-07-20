@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Sparkles, ExternalLink } from 'lucide-react';
 import { Client } from '@/types/client';
+import { apiUrl } from '@/lib/api';
 
 export default function ClientShowcase() {
   const [clients, setClients] = useState<Client[]>([]);
@@ -20,7 +21,7 @@ export default function ClientShowcase() {
 
   const fetchClients = async () => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/clients`);
+      const res = await fetch(apiUrl('/clients'), { cache: 'no-store' });
       const data = await res.json();
       if (data.success) {
         const activeClients = data.data.filter((c: Client) => c.isActive).sort((a: Client, b: Client) => a.order - b.order);

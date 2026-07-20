@@ -50,7 +50,7 @@ export default function EditCertificationPage({ params }: EditCertificationPageP
     return (
       <div className="text-center py-12">
         <h2 className="text-2xl font-bold text-(--brand-navy) mb-2">Certification Not Found</h2>
-        <p className="text-(--brand-muted) mb-6">The certification you're looking for doesn't exist.</p>
+        <p className="text-(--brand-muted) mb-6">The certification you&apos;re looking for doesn&apos;t exist.</p>
         <Button asChild>
           <Link href="/admin/certifications">Back to Certifications</Link>
         </Button>
