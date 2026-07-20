@@ -12,31 +12,86 @@ import yearsExperience from "@/lib/yearsExperience";
 
 
 const slideVariants = {
-  enter: { opacity: 0, scale: 1.04 },
+  enter: { opacity: 0 },
   center: {
     opacity: 1,
-    scale: 1,
-    transition: { duration: 1.1, ease: cubicBezier(0.22, 1, 0.36, 1) },
+    transition: { duration: 2.4, ease: cubicBezier(0.4, 0, 0.2, 1) },
   },
   exit: {
     opacity: 0,
-    scale: 0.97,
-    transition: { duration: 0.7, ease: cubicBezier(0.22, 1, 0.36, 1) },
+    transition: { duration: 2.4, ease: cubicBezier(0.4, 0, 0.2, 1) },
   },
 };
 
 const contentVariants = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: {
+    opacity: 0,
+    filter: "blur(3px)",
+    WebkitMaskImage: "radial-gradient(circle at center, black 0%, black 100%)",
+    maskImage: "radial-gradient(circle at center, black 0%, black 100%)",
+  },
   visible: (i: number) => ({
     opacity: 1,
-    y: 0,
+    filter: "blur(0px)",
+    WebkitMaskImage: "radial-gradient(circle at center, black 0%, black 100%)",
+    maskImage: "radial-gradient(circle at center, black 0%, black 100%)",
     transition: {
-      delay: 0.18 + i * 0.13,
-      duration: 0.72,
-      ease: cubicBezier(0.22, 1, 0.36, 1),
+      delay: 0.45 + i * 0.16,
+      duration: 1.15,
+      ease: cubicBezier(0.16, 1, 0.3, 1),
     },
   }),
-  exit: { opacity: 0, y: -20, transition: { duration: 0.35 } },
+  exit: (i: number) => ({
+    opacity: 0,
+    filter: "blur(2px)",
+    WebkitMaskImage: "radial-gradient(circle at center, transparent 72%, black 100%)",
+    maskImage: "radial-gradient(circle at center, transparent 72%, black 100%)",
+    transition: {
+      delay: i * 0.05,
+      duration: 1.45,
+      ease: cubicBezier(0.45, 0, 0.55, 1),
+    },
+  }),
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, filter: "blur(7px)", scale: 0.88 },
+  visible: (index: number) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    scale: 1,
+    transition: {
+      delay: 0.55 + index * 0.022,
+      duration: 0.55,
+      ease: cubicBezier(0.16, 1, 0.3, 1),
+    },
+  }),
+  exit: (index: number) => ({
+    opacity: 0,
+    filter: "blur(8px)",
+    scale: 0.86,
+    transition: {
+      delay: index * 0.018,
+      duration: 0.48,
+      ease: cubicBezier(0.4, 0, 0.6, 1),
+    },
+  }),
+};
+
+const contentLayerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.25, ease: cubicBezier(0.16, 1, 0.3, 1) },
+  },
+  exit: {
+    opacity: [1, 1, 0],
+    transition: {
+      duration: 1.45,
+      times: [0, 0.82, 1],
+      ease: cubicBezier(0.4, 0, 0.6, 1),
+    },
+  },
 };
 
 const lineVariants = {
@@ -48,10 +103,17 @@ const lineVariants = {
   exit: { scaleX: 0, originX: 1, transition: { duration: 0.35 } },
 };
 
+const cinematicMoves = [
+  { x: ["-1%", "1%"], y: ["-0.6%", "0.6%"], scale: [1.04, 1.1] },
+  { x: ["1%", "-1%"], y: ["0.6%", "-0.4%"], scale: [1.1, 1.04] },
+  { x: ["-0.7%", "0.7%"], y: ["1%", "-0.7%"], scale: [1.04, 1.1] },
+  { x: ["0.7%", "-1%"], y: ["-0.7%", "0.7%"], scale: [1.1, 1.04] },
+];
+
 
 const HeroCarousel = ({
   slides = customSlides,
-  autoPlayInterval = 6000,
+  autoPlayInterval = 10000,
   className,
 }: HeroCarouselProps) => {
   const slideItems = slides.length > 0 ? slides : customSlides;
@@ -111,14 +173,32 @@ const HeroCarousel = ({
             className="absolute inset-[-4%] w-[108%] h-[108%]"
             style={{ x: springX, y: springY }}
           >
-            <Image
-              src={slide.image}
-              alt={slide.title}
-              fill
-              priority={currentSlide === 0}
-              className="object-cover"
-              sizes="100vw"
-            />
+            <motion.div
+              className="absolute inset-0 will-change-transform"
+              initial={{
+                x: cinematicMoves[currentSlide % cinematicMoves.length].x[0],
+                y: cinematicMoves[currentSlide % cinematicMoves.length].y[0],
+                scale: cinematicMoves[currentSlide % cinematicMoves.length].scale[0],
+              }}
+              animate={{
+                x: cinematicMoves[currentSlide % cinematicMoves.length].x[1],
+                y: cinematicMoves[currentSlide % cinematicMoves.length].y[1],
+                scale: cinematicMoves[currentSlide % cinematicMoves.length].scale[1],
+              }}
+              transition={{
+                duration: Math.max(autoPlayInterval / 1000 + 2.5, 12),
+                ease: "linear",
+              }}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title}
+                fill
+                priority={currentSlide === 0}
+                className="object-cover"
+                sizes="100vw"
+              />
+            </motion.div>
           </motion.div>
 
           {/* Layered overlays */}
@@ -148,11 +228,18 @@ const HeroCarousel = ({
       </div> */}
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex h-full items-center pt-20 md:pb-16 md:pt-0 xl:pb-20">
+      <div className="absolute inset-0 z-10 flex items-center pt-20 md:pb-12 md:pt-16 xl:pb-16">
         <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16">
-          <div className="max-w-[720px]">
-            <AnimatePresence initial={false} mode="sync">
-              <motion.div key={currentSlide} className="space-y-4 sm:space-y-5 md:space-y-5 xl:space-y-6">
+          <div className="relative ml-0 mr-auto h-[430px] w-full max-w-[720px] md:h-[520px]">
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={currentSlide}
+                variants={contentLayerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="absolute inset-0 flex w-full flex-col justify-start space-y-4 pt-4 sm:space-y-5 sm:pt-7 md:space-y-5 md:pt-12 xl:space-y-6 xl:pt-14"
+              >
 
                 {/* Accent line */}
                 <motion.div
@@ -181,15 +268,32 @@ const HeroCarousel = ({
 
                 {/* Headline */}
                 <motion.h1
-                  custom={1}
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
                   className="max-w-[12ch] text-[34px] font-extrabold leading-[1.02] tracking-[-0.035em] text-white sm:max-w-[14ch] sm:text-5xl md:max-w-3xl md:text-[clamp(2.75rem,4.3vw,4.25rem)] md:leading-[0.98]"
-                  
                 >
-                  {slide.title}
+                  {slide.title.split(" ").map((word, wordIndex) => (
+                    <span key={`${currentSlide}-word-${wordIndex}`} className="inline-block whitespace-nowrap">
+                      {Array.from(word).map((letter, letterIndex) => {
+                        const sequence = slide.title
+                          .split(" ")
+                          .slice(0, wordIndex)
+                          .reduce((total, item) => total + item.length + 1, 0) + letterIndex;
+                        return (
+                          <motion.span
+                            key={`${currentSlide}-${wordIndex}-${letterIndex}`}
+                            custom={sequence}
+                            variants={letterVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="inline-block origin-center"
+                          >
+                            {letter}
+                          </motion.span>
+                        );
+                      })}
+                      {wordIndex < slide.title.split(" ").length - 1 ? "\u00A0" : null}
+                    </span>
+                  ))}
                 </motion.h1>
 
                 {/* Description */}

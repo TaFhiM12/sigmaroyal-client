@@ -39,8 +39,7 @@ export default async function Home() {
     <main className="site-canvas min-h-screen">
       <HeroCarousel
         slides={slides}
-        autoPlayInterval={6000}
-        showProgressBar={true}
+        autoPlayInterval={10000}
       />
       
       {/* Add smooth scroll behavior */}
