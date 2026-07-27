@@ -21,7 +21,7 @@ export const metadata = {
 
 export default function ClientPage() {
   return (
-    <div className="site-canvas min-h-screen">
+    <div className="min-h-screen bg-white">
       <Suspense fallback={<ClientShowcaseSkeleton />}>
         <ClientShowcase />
       </Suspense>
@@ -36,13 +36,13 @@ export default function ClientPage() {
 }
 
 function ClientShowcaseSkeleton() {
-  return <div className="site-canvas py-8"><div className="container mx-auto px-4"><div className="h-72 bg-[#eef4ff] rounded-lg animate-pulse" /></div></div>;
+  return <div className="bg-[#f4f7fb] px-4 py-16"><div className="mx-auto h-[520px] max-w-7xl animate-pulse rounded-[32px] bg-white" /></div>;
 }
 
 function ClientStatsSkeleton() {
-  return <div className="site-canvas py-12"><div className="container mx-auto px-4"><div className="grid grid-cols-4 gap-4"><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /><div className="h-28 bg-[#d8e4f5] rounded-xl animate-pulse" /></div></div></div>;
+  return <div className="bg-white px-4 py-20"><div className="mx-auto h-64 max-w-7xl animate-pulse rounded-[28px] bg-slate-100" /></div>;
 }
 
 function ClientCTASkeleton() {
-  return <div className="h-64 bg-red-600 animate-pulse" />;
+  return <div className="mx-auto mb-20 h-80 max-w-7xl animate-pulse rounded-[32px] bg-slate-900" />;
 }

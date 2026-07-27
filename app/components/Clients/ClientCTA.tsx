@@ -1,114 +1,72 @@
-// app/components/Clients/ClientCTA.tsx
-'use client';
+"use client";
 
-import { useMemo, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Building2, Mail, Phone } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-
-const PARTICLE_POSITIONS = [
-  { top: '12%', left: '8%' },
-  { top: '24%', left: '18%' },
-  { top: '38%', left: '6%' },
-  { top: '62%', left: '14%' },
-  { top: '78%', left: '9%' },
-  { top: '16%', left: '34%' },
-  { top: '46%', left: '28%' },
-  { top: '84%', left: '36%' },
-  { top: '10%', left: '52%' },
-  { top: '34%', left: '48%' },
-  { top: '68%', left: '56%' },
-  { top: '88%', left: '51%' },
-  { top: '18%', left: '70%' },
-  { top: '44%', left: '76%' },
-  { top: '72%', left: '68%' },
-  { top: '8%', left: '88%' },
-  { top: '30%', left: '92%' },
-  { top: '58%', left: '84%' },
-  { top: '80%', left: '91%' },
-  { top: '94%', left: '74%' },
-];
+import { motion } from "framer-motion";
+import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
+import Link from "next/link";
 
 export default function ClientCTA() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  const particles = useMemo(
-    () =>
-      PARTICLE_POSITIONS.map((position, i) => ({
-        id: i,
-        ...position,
-      })),
-    []
-  );
-
   return (
-    <section ref={ref} className="relative py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-linear-to-r from-red-600 to-red-700">
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden">
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: [0, 0.5, 0], scale: [0, 1, 0] } : {}}
-              transition={{ duration: 3, delay: particle.id * 0.2, repeat: Infinity }}
-              className="absolute w-1 h-1 bg-white rounded-full"
-              style={{
-                top: particle.top,
-                left: particle.left,
-              }}
-            />
-          ))}
+    <section className="bg-white px-4 pb-16 sm:px-6 md:pb-24 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.55 }}
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-[32px] bg-[#081326] px-6 py-14 text-white shadow-[0_35px_90px_-45px_rgba(15,23,42,0.75)] sm:px-10 md:py-16 lg:px-16"
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(37,99,235,0.35),transparent_35%),radial-gradient(circle_at_10%_100%,rgba(225,29,72,0.16),transparent_30%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:44px_44px] [mask-image:linear-gradient(to_left,black,transparent_70%)]" />
+
+        <div className="relative grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-blue-200 backdrop-blur">
+              <CheckCircle2 className="h-4 w-4" />
+              Engineering partnerships that perform
+            </div>
+            <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl lg:text-6xl lg:leading-[1.05]">
+              Your next critical project deserves a proven partner.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 md:text-lg">
+              Bring us your technical challenge. Our team will respond with a
+              clear path from engineering to safe, dependable delivery.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <Link
+              href="/contact"
+              className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-6 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+            >
+              Start a conversation
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/projects"
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/15 px-6 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+            >
+              Explore our work
+            </Link>
+          </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto text-center"
-        >
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 rounded-2xl mb-6">
-            <Building2 className="w-10 h-10 text-white" />
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Ready to Partner With Us?
-          </h2>
-          
-          <p className="text-lg text-red-100 mb-8 max-w-2xl mx-auto">
-            Join our network of industry leaders. Let&apos;s build the future of energy infrastructure together.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-red-600 hover:bg-[#eef4ff] hover:text-red-700 shadow-lg">
-              <Link href="/contact">
-                Become a Partner
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-red-600">
-              <Link href="/projects">
-                View Our Projects
-              </Link>
-            </Button>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-6 mt-8 pt-8 border-t border-white/20">
-            <div className="flex items-center gap-2 text-white/80">
-              <Mail className="w-4 h-4" />
-              <span className="text-sm">info@sigma-royal.com</span>
-            </div>
-            <div className="flex items-center gap-2 text-white/80">
-              <Phone className="w-4 h-4" />
-              <span className="text-sm">+88 02222229238</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+        <div className="relative mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:gap-8">
+          <a
+            href="mailto:info@sigma-royal.com"
+            className="inline-flex items-center gap-2 transition hover:text-white"
+          >
+            <Mail className="h-4 w-4 text-blue-400" />
+            info@sigma-royal.com
+          </a>
+          <a
+            href="tel:+8802222281246"
+            className="inline-flex items-center gap-2 transition hover:text-white"
+          >
+            <Phone className="h-4 w-4 text-blue-400" />
+            +88 02 222281246
+          </a>
+          <span className="sm:ml-auto">Dhaka, Bangladesh</span>
+        </div>
+      </motion.div>
     </section>
   );
 }
