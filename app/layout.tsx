@@ -40,8 +40,12 @@ export const metadata: Metadata = {
   authors: [{ name: "The Royal Utilisation Services (Pvt.) Ltd" }],
   creator: "The Royal Utilisation Services (Pvt.) Ltd",
   publisher: "The Royal Utilisation Services (Pvt.) Ltd",
-  alternates: {
-    canonical: "/",
+  category: "Engineering and construction",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || "",
+    },
   },
   openGraph: {
     type: "website",
@@ -90,12 +94,52 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    name: "The Royal Utilisation Services (Pvt.) Ltd",
+    alternateName: "RUSL",
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+    image: `${siteUrl}/banner/banner1.jpeg`,
+    email: "info@sigma-royal.com",
+    telephone: "+8802222281246",
+    foundingDate: "1977",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "3rd Floor, Achhia Manjil, House 383, Road 28",
+      addressLocality: "Dhaka",
+      postalCode: "1205",
+      addressCountry: "BD",
+    },
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    url: siteUrl,
+    name: "The Royal Utilisation Services",
+    publisher: { "@id": `${siteUrl}/#organization` },
+    inLanguage: "en",
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${manrope.variable} antialiased`}
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, websiteSchema]).replace(
+              /</g,
+              "\\u003c",
+            ),
+          }}
+        />
         {children}
       </body>
     </html>

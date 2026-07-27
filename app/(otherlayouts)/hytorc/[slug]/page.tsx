@@ -52,6 +52,9 @@ export async function generateMetadata({ params }: HytorcCategoryPageProps) {
   return {
     title: `${category.title} | HYTORC`,
     description: category.description || "HYTORC industrial bolting and torque solutions.",
+    alternates: {
+      canonical: `/hytorc/${slug}`,
+    },
     openGraph: {
       title: `${category.title} | HYTORC`,
       description: category.description || "HYTORC industrial bolting and torque solutions.",

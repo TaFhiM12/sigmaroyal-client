@@ -28,11 +28,20 @@ const staticRoutes = [
   "/contact",
 ];
 
+const hytorcRoutes = [
+  "/hytorc/hydraulic",
+  "/hytorc/pneumatic-torque-wrench",
+  "/hytorc/electric-torque-wrench",
+  "/hytorc/pumps",
+  "/hytorc/fasteners",
+  "/hytorc/accessories",
+];
+
 export const revalidate = 3600;
 
 export function GET() {
   const lastModified = new Date().toISOString();
-  const urls = staticRoutes
+  const urls = [...staticRoutes, ...hytorcRoutes]
     .map(
       (route) => `  <url>
     <loc>${siteUrl}${route}</loc>
