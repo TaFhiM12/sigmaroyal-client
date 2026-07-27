@@ -49,7 +49,7 @@ export default function ClientStats() {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-blue-600">
               Partnership at scale
             </p>
-            <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.035em] text-slate-950 sm:text-4xl">
+            <h2 className="max-w-2xl text-3xl font-extrabold tracking-[-0.03em] text-[var(--brand-navy)] sm:text-4xl">
               The operating strength behind every relationship.
             </h2>
           </div>
@@ -79,9 +79,9 @@ export default function ClientStats() {
               <div className="mb-10 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-blue-600 shadow-sm transition-transform group-hover:-translate-y-1">
                 <stat.icon className="h-5 w-5" />
               </div>
-              <div className="text-4xl font-semibold tracking-[-0.04em] text-slate-950">
+              <div className="text-4xl font-extrabold tracking-[-0.035em] text-[var(--brand-navy)]">
                 {stat.value}
-                <span className="text-blue-600">+</span>
+                <span className="text-red-600">+</span>
               </div>
               <h3 className="mt-3 text-sm font-semibold text-slate-900">
                 {stat.label}

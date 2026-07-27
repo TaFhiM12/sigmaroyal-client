@@ -12,7 +12,7 @@ export default function ClientCTA() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.55 }}
-        className="relative mx-auto max-w-7xl overflow-hidden rounded-[32px] bg-[#081326] px-6 py-14 text-white shadow-[0_35px_90px_-45px_rgba(15,23,42,0.75)] sm:px-10 md:py-16 lg:px-16"
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-[32px] bg-[var(--brand-navy)] px-6 py-14 text-white shadow-[0_35px_90px_-45px_rgba(15,23,42,0.75)] sm:px-10 md:py-16 lg:px-16"
       >
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(37,99,235,0.35),transparent_35%),radial-gradient(circle_at_10%_100%,rgba(225,29,72,0.16),transparent_30%)]" />
         <div className="pointer-events-none absolute inset-0 opacity-15 [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:44px_44px] [mask-image:linear-gradient(to_left,black,transparent_70%)]" />
@@ -35,7 +35,7 @@ export default function ClientCTA() {
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
             <Link
               href="/contact"
-              className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-white px-6 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+              className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-red-600 px-6 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400"
             >
               Start a conversation
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

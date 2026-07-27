@@ -21,6 +21,7 @@ import {
   Users,
   Building2,
   FileText,
+  ImageIcon,
   LucideIcon,
 } from "lucide-react";
 import Image from "next/image";
@@ -93,6 +94,7 @@ const AdminSidebar = ({ className, onCollapse }: AdminSidebarProps) => {
         // { title: "Expertise", url: "/admin/expertise", icon: Star },
         { title: "Page Content", url: "/admin/page-content", icon: FileText, badge: "CMS" },
         { title: "Projects", url: "/admin/projects", icon: FolderKanban },
+        { title: "Project Showcase", url: "/admin/showcase", icon: ImageIcon, badge: "New" },
         { title: "Clients", url: "/admin/clients", icon: Building2 },
         { title: "Team Members", url: "/admin/team", icon: Users },
         { title: "HYTORC Products", url: "/admin/hytorc", icon: Wrench },

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUpRight, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectFilmstrip } from "./ProjectFilmstrip";
 
 interface FooterLink {
   text: string;
@@ -81,6 +82,8 @@ const Footer2 = ({
   ],
 }: Footer2Props) => {
   return (
+    <>
+    <ProjectFilmstrip />
     <footer className={cn("relative overflow-hidden bg-blue-950 text-white", className)}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(37,99,235,0.22),transparent_34%),radial-gradient(circle_at_80%_10%,rgba(200,30,43,0.12),transparent_28%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-300/40 to-transparent" />
@@ -293,6 +296,7 @@ const Footer2 = ({
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

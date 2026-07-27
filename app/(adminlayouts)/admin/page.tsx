@@ -28,6 +28,12 @@ const quickLinks = [
     cta: "Manage Projects",
   },
   {
+    title: "Project Showcase",
+    description: "Upload and arrange the dynamic image filmstrip displayed directly above the footer.",
+    url: "/admin/showcase",
+    cta: "Manage Showcase",
+  },
+  {
     title: "Clients",
     description: "Add client logos, websites, visibility and display order.",
     url: "/admin/clients",

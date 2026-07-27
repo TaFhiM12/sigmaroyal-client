@@ -70,12 +70,12 @@ export default function ClientShowcase() {
               </span>
               Trusted across critical industries
             </div>
-            <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-[64px] lg:leading-[1.02]">
+            <h2 className="max-w-3xl text-4xl font-extrabold tracking-[-0.035em] text-[var(--brand-navy)] sm:text-5xl lg:text-[64px] lg:leading-[1.02]">
               Built on trust.
               <span className="block text-slate-400">Proven in the field.</span>
             </h2>
           </div>
-          <p className="max-w-xl text-base leading-7 text-slate-600 lg:justify-self-end lg:text-lg">
+          <p className="max-w-xl text-base font-medium leading-7 text-[var(--brand-muted)] lg:justify-self-end lg:text-lg">
             We work alongside Bangladesh&apos;s leading energy and infrastructure
             organizations to deliver dependable, high-stakes projects.
           </p>
@@ -108,7 +108,7 @@ export default function ClientShowcase() {
               </AnimatePresence>
             </div>
 
-            <div className="relative flex flex-col justify-between bg-[#081326] p-7 text-white sm:p-10 lg:p-12">
+            <div className="relative flex flex-col justify-between bg-[var(--brand-navy)] p-7 text-white sm:p-10 lg:p-12">
               <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_66%)]" />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -183,7 +183,7 @@ export default function ClientShowcase() {
                     type="button"
                     onClick={() => goTo(activeIndex + 1)}
                     aria-label="Show next client"
-                    className="grid h-11 w-11 place-items-center rounded-full bg-white text-slate-950 transition hover:scale-105 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400"
+                    className="grid h-11 w-11 place-items-center rounded-full bg-red-600 text-white transition hover:scale-105 hover:bg-red-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
                   >
                     <ChevronRight className="h-5 w-5" />
                   </button>
@@ -207,7 +207,7 @@ export default function ClientShowcase() {
                 onClick={() => goTo(index)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
                   index === activeIndex
-                    ? "w-9 bg-blue-600"
+                    ? "w-9 bg-red-600"
                     : "w-3 bg-slate-300 hover:bg-slate-400"
                 }`}
               />
@@ -221,9 +221,9 @@ export default function ClientShowcase() {
               key={client.id}
               type="button"
               onClick={() => goTo(index)}
-              className={`group relative flex h-28 items-center justify-center rounded-2xl border bg-white p-5 transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 ${
+              className={`group relative flex h-28 items-center justify-center rounded-2xl border bg-white p-5 transition duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 ${
                 index === activeIndex
-                  ? "border-blue-500 shadow-[0_12px_30px_-18px_rgba(37,99,235,0.8)]"
+                  ? "border-red-500 shadow-[0_12px_30px_-18px_rgba(227,6,19,0.65)]"
                   : "border-slate-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg"
               }`}
             >

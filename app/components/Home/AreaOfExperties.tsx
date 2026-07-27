@@ -1,29 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { motion, useInView, useAnimation, useScroll, useTransform, MotionValue, Variants } from "framer-motion";
-import { 
-  Factory, 
-  Zap, 
-  Droplets, 
-  Wrench, 
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
-import yearsExperience from "@/lib/yearsExperience";
-
-interface ExpertiseAreaProps {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  color: string;
-  features: string[];
-  highlights: string[];
-  image?: string;
-}
+import { motion, useReducedMotion } from "framer-motion";
+import { Droplets, Factory, Wrench, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface AreaOfExpertiseProps {
   className?: string;
@@ -32,375 +12,172 @@ interface AreaOfExpertiseProps {
   showHeader?: boolean;
 }
 
-// Define specific tab keys as a type
-type ExpertiseTab = "oil-gas" | "power" | "process" | "engineering";
+const expertise = [
+  {
+    key: "oil-gas",
+    label: "Oil & Gas Infrastructure",
+    icon: Droplets,
+    type: "pipeline",
+  },
+  {
+    key: "power",
+    label: "Power Generation",
+    icon: Zap,
+    type: "power",
+  },
+  {
+    key: "process",
+    label: "Process Industries",
+    icon: Factory,
+    type: "process",
+  },
+  {
+    key: "engineering",
+    label: "Industrial Solutions & Services",
+    icon: Wrench,
+    type: "storage",
+  },
+] as const;
 
-const AreaOfExpertise = ({ className, heading, description, showHeader = true }: AreaOfExpertiseProps) => {
-  const [isMobile, setIsMobile] = useState(false);
-  const ref = useRef(null);
-  const stackRef = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-  const controls = useAnimation();
-  const { scrollYProgress } = useScroll({
-    target: stackRef,
-    offset: ["start start", "end end"],
-  });
+function Valve({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <circle r="13" fill="#ffffff" stroke="#17345f" strokeWidth="1.5" />
+      <path d="M-7-7L0 0l-7 7M7-7L0 0l7 7" fill="none" stroke="#ef233c" strokeWidth="1.8" />
+      <circle r="18" fill="none" stroke="#ef233c" strokeOpacity=".2" />
+    </g>
+  );
+}
 
-  useEffect(() => {
-    // Check if mobile for performance optimization
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [isInView, controls]);
-
-  // Memoize expertise areas to prevent re-creation on every render
-  const expertiseAreas = useMemo(() => ({
-    "oil-gas": {
-      title: "Oil & Gas Sector",
-      description: "Comprehensive solutions for natural gas, LPG, and LNG infrastructure with advanced pipeline technology",
-      icon: <Droplets className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-blue-950 to-blue-700",
-      features: [
-        "Cross Country Pipeline Construction in NG, LPG & LNG Sector",
-        "River Crossing by HDD method",
-        "Installation & Commissioning of LPG storage tank, pump and pipeline",
-        "LPG Solution for industry, household and auto LPG station",
-        "Associate civil works, Metering works"
-      ],
-      highlights: [
-        "HDD Technology",
-        "42-inch Pipeline",
-        "Safety Certified"
-      ],
-      image: "/banner/banner1.jpeg"
-    },
-    "power": {
-      title: "Power Sector",
-      description: "End-to-end power plant construction and maintenance services with cutting-edge technology",
-      icon: <Zap className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-blue-950 to-blue-800",
-      features: [
-        "Fabrication, Erection, Installation & Commissioning of all piping, Tank, Structure",
-        "Insulation Works of pipe & tank",
-        "Installation & Commissioning of mechanical & Electrical equipment",
-        "Instrumentation & Control System (SCADA & PLC)"
-      ],
-      highlights: [
-        "588.31 MW CCPP",
-        "SCADA Systems",
-        "Turnkey Solutions"
-      ],
-      image: "/banner/banner3.jpg"
-    },
-    "process": {
-      title: "Process Plant",
-      description: "Specialized engineering for refineries and petrochemical facilities",
-      icon: <Factory className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-blue-900 to-blue-700",
-      features: [
-        "Refineries",
-        "Petrochemicals"
-      ],
-      highlights: [
-        "Refinery Projects",
-        "Chemical Processing",
-        "Safety Standards"
-      ],
-      image: "/banner/banner4.jpg"
-    },
-    "engineering": {
-      title: "Engineering & Services",
-      description: "Complete LPG solutions and specialized equipment for energy distribution",
-      icon: <Wrench className="h-5 w-5 md:h-6 md:w-6" />,
-      color: "from-blue-950 to-blue-800",
-      features: [
-        "Complete set of auto LPG dispensing station equipment",
-        "LPG solution for industry household and auto LPG station",
-        "3 wheeler and 4 wheeler LPG kit",
-        "LPG domestic meter",
-        "Bullet Tank, Carousel and other equipment",
-        "Spherical tank fabrication & commissioning"
-      ],
-      highlights: [
-        "Auto LPG Stations",
-        "Spherical Tanks",
-        "Turnkey Solutions"
-      ],
-      image: "/banner/banner5.jpg"
-    }
-  }), []);
-
-  // Simplified animations for mobile performance
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: isMobile ? 0.05 : 0.1,
-        delayChildren: isMobile ? 0 : 0.1,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: isMobile ? 0.3 : 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const fadeUpVariants: Variants = {
-    hidden: { y: isMobile ? 10 : 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: isMobile ? 0.4 : 0.8,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const expertiseEntries = Object.entries(expertiseAreas) as [ExpertiseTab, typeof expertiseAreas[ExpertiseTab]][];
+function EngineeringDrawing({ type, id }: { type: string; id: string }) {
+  const reduceMotion = useReducedMotion();
+  const flowPath =
+    type === "pipeline"
+      ? "M24 194H90V108H160V194H232V82H302V164H376"
+      : type === "power"
+        ? "M28 206H82V128H150V86H226V154H294V108H374"
+        : type === "process"
+          ? "M24 204H76V146H142V94H206V186H278V116H376"
+          : "M26 204H84V126H150V180H232V98H308V164H376";
+  const nodes =
+    type === "pipeline"
+      ? [[90, 108], [160, 194], [232, 82], [302, 164]]
+      : type === "power"
+        ? [[82, 128], [150, 86], [226, 154], [294, 108]]
+        : type === "process"
+          ? [[76, 146], [142, 94], [206, 186], [278, 116]]
+          : [[84, 126], [150, 180], [232, 98], [308, 164]];
 
   return (
-    <section
-      ref={ref}
-      className={cn(
-        "site-canvas relative py-12 md:py-20",
-        className
+    <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label={`${type} engineering drawing`}>
+      <defs>
+        <pattern id={`minor-${id}`} width="12" height="12" patternUnits="userSpaceOnUse">
+          <path d="M12 0H0V12" fill="none" stroke="#17345f" strokeOpacity=".055" strokeWidth=".6" />
+        </pattern>
+        <pattern id={`major-${id}`} width="60" height="60" patternUnits="userSpaceOnUse">
+          <rect width="60" height="60" fill={`url(#minor-${id})`} />
+          <path d="M60 0H0V60" fill="none" stroke="#17345f" strokeOpacity=".11" />
+        </pattern>
+      </defs>
+      <rect width="400" height="300" fill="#fbfcfe" />
+      <rect width="400" height="300" fill={`url(#major-${id})`} />
+      <g fill="none" stroke="#17345f" strokeOpacity=".2" strokeWidth=".8">
+        <path d="M18 30H382M18 270H382M32 18V282M368 18V282" strokeDasharray="4 6" />
+        <circle cx="200" cy="150" r="112" strokeDasharray="3 7" />
+      </g>
+
+      <path d={flowPath} fill="none" stroke="#17345f" strokeWidth="5" strokeLinejoin="round" />
+      <motion.path
+        d={flowPath}
+        fill="none"
+        stroke="#ef233c"
+        strokeWidth="2.5"
+        strokeDasharray="10 13"
+        animate={reduceMotion ? undefined : { strokeDashoffset: [46, 0] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+      />
+      {nodes.map(([x, y]) => <Valve key={`${x}-${y}`} x={x} y={y} />)}
+
+      {type === "pipeline" && (
+        <g fill="none" stroke="#17345f" strokeWidth="1.35">
+          <path d="M156 194V252H238M232 82V44H298" />
+          <rect x="174" y="226" width="64" height="34" />
+          <path d="M181 243h14l9-10 13 20 10-10h8" />
+          <circle cx="320" cy="44" r="18" />
+          <path d="M310 44h20M320 34v20" />
+          <path d="M32 258H150M248 258H370" strokeDasharray="3 4" />
+          <path d="M32 263Q92 218 150 263" />
+          <path d="M38 254v18M144 254v18M91 232v36" />
+          <path d="M52 64H214M52 58v12M90 58v12M128 58v12M166 58v12M214 58v12" />
+          <rect x="256" y="218" width="92" height="46" />
+          <rect x="266" y="228" width="22" height="25" />
+          <circle cx="310" cy="241" r="12" />
+          <path d="M322 241h16M298 241h-10" />
+          <path d="M256 271h92M264 266v10M340 266v10" />
+        </g>
       )}
-    >
-      {(["oil-gas", "power", "process", "engineering"] as ExpertiseTab[]).map((anchor) => (
-        <span key={anchor} id={anchor} className="pointer-events-none absolute top-0 scroll-mt-28" />
-      ))}
-      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-600/35 to-transparent" />
+      {type === "power" && (
+        <g fill="none" stroke="#17345f" strokeWidth="1.5">
+          <circle cx="84" cy="242" r="24" /><path d="M70 242c8-18 20 18 28 0" />
+          <path d="M226 154v90h60M270 244l12-16 12 16 12-16 12 16" />
+          <path d="M314 108V52h40M336 38v28M326 48h20" />
+        </g>
+      )}
+      {type === "process" && (
+        <g fill="none" stroke="#17345f" strokeWidth="1.5">
+          <path d="M116 94V44h50v50M124 44v-12h34v12" />
+          <path d="M206 186v66h58M220 226h30l-8-12-10 22-8-10" />
+          <rect x="290" y="198" width="54" height="58" rx="24" />
+          <path d="M290 226h54M317 198v-20" />
+        </g>
+      )}
+      {type === "storage" && (
+        <g fill="none" stroke="#17345f" strokeWidth="1.5">
+          <circle cx="86" cy="240" r="28" /><path d="M58 240h56M86 212v56" />
+          <rect x="200" y="208" width="66" height="42" rx="20" />
+          <path d="M232 98V48h68v50M244 48v-14h44v14" />
+          <path d="M308 164v86h52M326 226h24v24h-24z" />
+        </g>
+      )}
+    </svg>
+  );
+}
 
-      <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
-        {showHeader && (
-          <motion.div
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
-            className="mx-auto mb-8 grid max-w-7xl gap-6 md:mb-12 md:grid-cols-[0.95fr_1.05fr] md:items-end"
-          >
-            <div>
-              <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-900 shadow-sm">
-                <Sparkles className="h-4 w-4 text-blue-700" />
-                <span>Core Competencies</span>
-              </motion.div>
-
-              <motion.h2
-                variants={fadeUpVariants}
-                className="max-w-3xl text-4xl font-extrabold leading-tight tracking-normal text-(--brand-navy) md:text-5xl lg:text-6xl"
-              >
-                {heading || <>Areas of <span className="brand-text-gradient">Expertise</span></>}
-              </motion.h2>
-              <div className="mt-5 h-1 w-28 rounded-full bg-linear-to-r from-blue-600 via-blue-700 to-red-600" />
-            </div>
-
-            <motion.p
-              variants={itemVariants}
-              className="max-w-2xl text-base font-medium leading-8 text-(--brand-muted) md:justify-self-end md:text-lg"
+export default function AreaOfExpertise({ className }: AreaOfExpertiseProps) {
+  return (
+    <section className={cn("relative overflow-hidden bg-[#eef3f8] px-4 py-10 sm:px-6 lg:px-8", className)}>
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(11,31,66,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(11,31,66,0.035)_1px,transparent_1px)] bg-[size:42px_42px]" />
+      <div className="relative mx-auto grid max-w-[1500px] gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {expertise.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <motion.article
+              key={item.key}
+              id={item.key}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group relative min-h-[420px] overflow-hidden border border-slate-200 bg-white shadow-[0_24px_55px_-38px_rgba(15,23,42,0.3)] transition duration-500 hover:-translate-y-1 hover:border-slate-300 hover:shadow-[0_30px_65px_-36px_rgba(15,23,42,0.28)]"
             >
-              {description || (
-                <>
-                  {yearsExperience} years of specialized knowledge in energy infrastructure development,
-                  delivering innovative solutions with uncompromising quality and safety.
-                </>
-              )}
-            </motion.p>
-          </motion.div>
-        )}
-
-        {/* Scroll Stack */}
-        <motion.div
-          initial="hidden"
-          animate={controls}
-          variants={containerVariants}
-          className="mx-auto max-w-7xl"
-        >
-          <div className="space-y-6 md:hidden">
-            {expertiseEntries.map(([key, area], index) => (
-              <ExpertisePanel
-                key={key}
-                area={area}
-                index={index}
-                total={expertiseEntries.length}
-                reversed={index % 2 === 1}
-                priority={index === 0}
-              />
-            ))}
-          </div>
-
-          <div
-            ref={stackRef}
-            className="relative hidden md:block"
-            style={{ height: `${expertiseEntries.length * 105}vh` }}
-          >
-            <div className="sticky top-24 h-[calc(100vh-8rem)] min-h-[620px]">
-              <div className="relative h-full">
-                {expertiseEntries.map(([key, area], index) => (
-                  <ExpertiseDeckPanel
-                    key={key}
-                    area={area}
-                    index={index}
-                    total={expertiseEntries.length}
-                    progress={scrollYProgress}
-                    reversed={index % 2 === 1}
-                    priority={index === 0}
-                  />
-                ))}
+              <div className="absolute inset-x-0 top-0 z-20 flex min-h-20 items-center border-b border-slate-200 bg-white p-4">
+                <div className="flex items-center gap-3">
+                  <span className="grid size-10 place-items-center border border-slate-200 bg-slate-50 text-red-600 transition group-hover:border-red-600 group-hover:bg-red-600 group-hover:text-white">
+                    <Icon className="size-5" />
+                  </span>
+                  <h3 className="max-w-60 text-base font-extrabold leading-tight text-[var(--brand-navy)]">{item.label}</h3>
+                </div>
               </div>
-            </div>
-          </div>
-        </motion.div>
+
+              <div className="absolute inset-x-0 bottom-0 top-20">
+                <EngineeringDrawing type={item.type} id={item.key} />
+              </div>
+
+              <Link href={`/expertise#${item.key}`} aria-label={`Explore ${item.label} expertise`} className="absolute inset-0 z-30 focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-red-500" />
+            </motion.article>
+          );
+        })}
       </div>
     </section>
   );
-};
-
-function ExpertiseDeckPanel({
-  area,
-  index,
-  total,
-  progress,
-  reversed,
-  priority,
-}: {
-  area: ExpertiseAreaProps;
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-  reversed: boolean;
-  priority: boolean;
-}) {
-  const step = 1 / total;
-  const start = index * step;
-  const hold = Math.min(start + step * 0.16, 1);
-  const end = Math.min(start + step * 0.86, 1);
-  const isLast = index === total - 1;
-  const y = useTransform(progress, [start, hold, end], ["0%", "0%", isLast ? "0%" : "-112%"]);
-  const opacity = useTransform(progress, [start, hold, end], [1, 1, isLast ? 1 : 0.98]);
-
-  return (
-    <ExpertisePanel
-      area={area}
-      index={index}
-      total={total}
-      reversed={reversed}
-      priority={priority}
-      className="absolute inset-0 h-full"
-      style={{
-        y,
-        opacity,
-        zIndex: total - index,
-      }}
-    />
-  );
 }
-
-function ExpertisePanel({
-  area,
-  index,
-  total,
-  reversed,
-  priority,
-  className,
-  style,
-}: {
-  area: ExpertiseAreaProps;
-  index: number;
-  total: number;
-  reversed: boolean;
-  priority: boolean;
-  className?: string;
-  style?: React.ComponentProps<typeof motion.article>["style"];
-}) {
-  return (
-    <motion.article
-      className={cn(
-        "group grid overflow-hidden border border-white/10 bg-[#070b14] shadow-[0_28px_80px_rgba(15,23,42,0.28)] md:grid-cols-[1.08fr_0.92fr]",
-        reversed && "md:grid-cols-[0.92fr_1.08fr]",
-        className
-      )}
-      style={style}
-    >
-      <div className={cn("relative min-h-72 overflow-hidden md:min-h-full", reversed && "md:order-2")}>
-        <Image
-          src={area.image || "/banner/banner1.jpeg"}
-          alt={area.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 55vw"
-          priority={priority}
-        />
-        <div className="absolute inset-0 bg-linear-to-tr from-blue-950/55 via-blue-950/10 to-transparent" />
-        <div className="absolute bottom-5 left-5 rounded-full border border-white/20 bg-blue-950/70 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.16em] text-white/85 backdrop-blur">
-          {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-        </div>
-      </div>
-
-      <div className="flex min-h-72 flex-col justify-center bg-[#070b14] px-6 py-8 md:min-h-full md:px-12 lg:px-16">
-        <div className="mb-8 flex h-16 w-16 items-center justify-center bg-red-600 text-white shadow-[0_16px_35px_rgba(220,38,38,0.28)] [clip-path:polygon(0_0,76%_0,100%_24%,100%_100%,0_100%)] md:h-20 md:w-20">
-          {area.icon}
-        </div>
-
-        <h3 className="max-w-md text-3xl font-extrabold leading-tight tracking-normal text-white md:text-4xl lg:text-5xl">
-          {area.title}
-        </h3>
-
-        <div className="my-6 h-px max-w-md bg-white/16" />
-
-        <p className="max-w-xl text-base font-medium leading-7 text-white/62">
-          {area.description}
-        </p>
-
-        <div className="mt-6 grid gap-3 text-sm font-semibold text-white/78 sm:grid-cols-2">
-          {area.features.slice(0, 4).map((feature) => (
-            <div key={feature} className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red-500" />
-              <span>{feature}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 flex flex-wrap gap-2 border-t border-white/10 pt-5">
-          {area.highlights.map((highlight) => (
-            <span
-              key={highlight}
-              className="inline-flex rounded-full border border-white/14 bg-white/[0.03] px-3 py-1 text-xs font-bold text-white/70"
-            >
-              {highlight}
-            </span>
-          ))}
-        </div>
-
-        <Link
-          href="/portfolio"
-          className="mt-8 inline-flex w-fit items-center gap-2 text-base font-extrabold text-white transition-colors hover:text-red-400"
-        >
-          View Details
-          <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-        </Link>
-      </div>
-    </motion.article>
-  );
-}
-
-export default AreaOfExpertise;

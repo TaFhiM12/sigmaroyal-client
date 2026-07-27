@@ -44,8 +44,8 @@ export default async function Home() {
       
       {/* Add smooth scroll behavior */}
       <div className="relative z-10">
-        <AboutUs heading={content?.introTitle || undefined} body={content?.introBody || undefined} />
         <AreaOfExpertise />
+        <AboutUs heading={content?.introTitle || undefined} body={content?.introBody || undefined} />
         <Footer2 />
       </div>
     </main>
